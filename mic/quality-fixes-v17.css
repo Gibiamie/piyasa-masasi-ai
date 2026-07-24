@@ -1,0 +1,6 @@
+/* MIC v17 usability fixes */
+.search{overflow:visible!important}.search .dropdown{top:calc(100% + 8px)!important;left:0!important;right:0!important;max-height:390px!important}.desktopApp .desktopSearchGrid{overflow:visible}.desktopApp .search{z-index:40}.desktopApp .search .dropdown{width:100%;box-shadow:0 20px 45px rgba(0,0,0,.55)}
+#indicatorMenuV13{z-index:120}.indicatorMenuV10 .indicatorToggle{cursor:pointer}.indicatorMenuV10:not(.hidden){display:block!important}
+.etfCoverageV17{display:grid;gap:6px;margin:14px 0;padding:13px;border:1px solid var(--line);border-radius:12px;background:#081321}.etfCoverageV17 b{font-size:14px}.etfCoverageV17 span{font-size:12px;color:#d5dfed;line-height:1.45}.etfCoverageV17 small{color:var(--muted);line-height:1.45}
+#chartMessage{min-height:42px;display:flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:10px;background:rgba(8,19,33,.92);margin:8px 0;color:var(--muted)}#chartMessage.hidden{display:none!important}.chartCanvas{min-height:360px}.desktopApp .desktopChart .chartCanvas{min-height:500px}
+@media(max-width:760px){.search .dropdown{left:0!important;right:0!important;top:calc(100% + 6px)!important}.etfCoverageV17 span{font-size:11px}}

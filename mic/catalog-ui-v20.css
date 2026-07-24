@@ -1,0 +1,48 @@
+/* MIC v20 catalog and search layout fixes */
+.desktopApp .sideTitle{
+  text-transform:none!important;
+  letter-spacing:.045em!important;
+  font-size:13px!important;
+  color:#91a4bd!important;
+  white-space:normal;
+  line-height:1.35;
+}
+.chips{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  align-items:center;
+  gap:8px!important;
+  overflow:visible!important;
+  padding:1px 0 11px!important;
+  max-width:100%;
+}
+.chip{
+  flex:0 0 auto;
+  min-width:0;
+  max-width:100%;
+  white-space:nowrap;
+  padding:8px 12px!important;
+}
+.desktopApp .desktopSearchGrid .search{
+  min-height:0!important;
+}
+.desktopApp .desktopSearchGrid{
+  min-width:0;
+}
+.desktopApp .desktopSearchGrid>*{
+  min-width:0;
+}
+@media(min-width:821px){
+  .desktopApp .chips{
+    display:grid!important;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+  }
+  .desktopApp .chip{
+    width:100%;
+    text-align:center;
+  }
+}
+@media(max-width:520px){
+  .chips{gap:6px!important}
+  .chip{padding:7px 10px!important;font-size:12px}
+}
