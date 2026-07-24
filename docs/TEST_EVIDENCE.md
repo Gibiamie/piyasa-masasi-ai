@@ -42,6 +42,14 @@ Result: **11/11 checks passed** on 2026-07-24 (see script for exact assertions).
 
 **What this evidence does and does not cover:** this confirms the pure calculation/decision logic behaves per the audit's acceptance criteria. It does **not** cover the actual browser UI (the new "Senaryo" button, DOM rendering, the price-notice banner), real market data files, service worker behavior, or cross-viewport layout — those remain open per `docs/RELEASE_CHECKLIST.md` and require the full Playwright suite (MIC-P0-006), which has not been built yet. This fix was implemented and logic-tested in the same pass by the same assistant; per `organization/authority-matrix.yaml` it must still receive an independent review pass before `docs/REMEDIATION_REGISTER.md` marks MIC-P0-001/MIC-P0-002 as fully Closed.
 
+### MIC-P0-005 logic-level verification (2026-07-24)
+
+`quality/automation/verify_p0-005.logic.js` checks two things: (1) every item in `legacy-import/mic/data/ipo-calendar.json` carries no `mic_view`/`suggested_order`/`max_budget`/`score` field and does carry `verified_at`/`verification_status`; (2) `ipoAssessment()` in `ipo-calendar-v26.js`, loaded in a stubbed sandbox, returns `KARAR ÜRETİLEMEZ` when profile incomplete, `PORTFÖY ETKİSİ HESAPLANAMAZ` when the portfolio is price-locked, `VERİ DOĞRULAMA GEREKLİ` when verification is stale, and otherwise a neutral label containing no "KATIL"/"AL" wording. Result: **46/46 checks passed** on 2026-07-24.
+
+### MIC-P0-003 / MIC-P0-004 verification status (2026-07-24)
+
+`node --check` passes on both edited files. The `<nav class="bottom">` markup added to `mic-desktop/index.html` was traced by hand against the existing `desktop.css` media queries (`.sidebar{display:none}` / `.bottom{display:grid!important}` at ≤820px) rather than run in a real browser — **no screenshot or live viewport evidence exists yet for either fix.** This is the honest gap: closing MIC-P0-003/MIC-P0-004 for real requires the Playwright suite (MIC-P0-006), which is still open. Do not treat the code-level fix as equivalent to verified UI behavior.
+
 No other application code has been executed or browser-tested yet in this session. No claim of a working feature is made until it has been.
 
 ## Browser/viewport matrix (required, not yet run)

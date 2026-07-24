@@ -62,15 +62,26 @@
     return moneyValue(item.price,item.currency);
   }
 
-  function decisionClass(value){
-    const v=String(value||'').toUpperCase();
-    if(v.includes('KATILMA')||v.includes('ALMA')||v.includes('UZAK'))return 'bad';
-    if(v.includes('KATIL')&&!v.includes('SINIRLI'))return 'good';
-    return 'warn';
-  }
-
-  function scoreClass(score){
-    const n=Number(score);return n>=70?'good':n>=55?'warn':'bad';
+  // No personalized "KATIL/AL" instruction may live in the static IPO JSON (audit MIC-P0-005).
+  // Any per-user assessment is computed here, at render time, gated on profile completeness,
+  // portfolio price availability, and source verification freshness — never baked into the data file.
+  const VERIFICATION_MAX_AGE_MS = 5 * 24 * 60 * 60 * 1000; // 5 days
+  function ipoAssessment(item){
+    if(typeof profileComplete==='function'&&!profileComplete()){
+      return {label:'KARAR ÜRETİLEMEZ',cls:'warn',detail:'Profil tamamlanmadan halka arz değerlendirmesi üretilmez.'};
+    }
+    if(typeof portfolioStats==='function'){
+      const ps=portfolioStats();
+      if(ps&&ps.locked){
+        return {label:'PORTFÖY ETKİSİ HESAPLANAMAZ',cls:'warn',detail:'Portföyde fiyatı eksik pozisyon(lar) var; konsantrasyon etkisi hesaplanamıyor.'};
+      }
+    }
+    const verifiedAt=parseDate(item.verified_at),expiresAt=parseDate(item.expires_at);
+    const stale=!item.verified_at||item.verification_status!=='verified'||(verifiedAt&&Date.now()-verifiedAt.getTime()>VERIFICATION_MAX_AGE_MS)||(expiresAt&&Date.now()>expiresAt.getTime());
+    if(stale){
+      return {label:'VERİ DOĞRULAMA GEREKLİ',cls:'warn',detail:'Kaynak doğrulaması güncel değil veya süresi dolmuş; KAP/SPK ya da SEC belgesini yeniden kontrol et.'};
+    }
+    return {label:'BİREYSEL ÖNERİ YOK',cls:'',detail:'Bu sürüm otomatik kişisel katılım kararı üretmez; resmî kaynak belgesini incele.'};
   }
 
   function scenariosHtml(item){
@@ -84,11 +95,9 @@
   }
 
   function cardHtml(item){
-    const status=liveStatus(item),currency=item.currency||'TRY';
-    const demand=item.suggested_order?`${numberValue(item.suggested_order)} ${item.market==='BIST'?'lot':'adet'}`:'—';
-    const budget=item.max_budget?moneyValue(item.max_budget,currency):'—';
+    const status=liveStatus(item);
     const issueSize=item.shares_offered?`${numberValue(item.shares_offered)} pay`:'Açıklanmadı';
-    const view=item.mic_view||'İZLE';
+    const assessment=ipoAssessment(item);
     return `<article class="ipoCard" data-market="${esc(item.market)}" data-status="${status}">
       <div class="ipoTop">
         <div><div class="ipoTicker">${esc(item.ticker||'—')}</div><div class="ipoName">${esc(item.company||'')}</div></div>
@@ -98,10 +107,8 @@
       <div class="ipoMetrics">
         <div><span>Fiyat</span><strong>${priceLabel(item)}</strong></div>
         <div><span>Arz büyüklüğü</span><strong>${issueSize}</strong></div>
-        <div><span>MIC görüşü</span><strong class="${decisionClass(view)}">${esc(view)}</strong></div>
-        <div><span>Kalite puanı</span><strong class="${scoreClass(item.score)}">${item.score??'—'}${item.score!=null?'/100':''}</strong></div>
       </div>
-      <div class="ipoPlan"><div><span>Önerilen talep</span><strong>${demand}</strong></div><div><span>Azami bütçe</span><strong>${budget}</strong></div></div>
+      <div class="ipoAssessment ${assessment.cls}"><strong>${esc(assessment.label)}</strong><span>${esc(assessment.detail)}</span></div>
       <div class="ipoMeta">${esc(item.distribution||item.access||'Dağıtım/erişim bilgisi açıklanmadı')}</div>
       <button class="ghost wide ipoToggle" type="button">Detayları göster</button>
       <div class="ipoDetails hidden">
@@ -162,7 +169,7 @@
       <div class="section"><h2>Halka Arz Takvimi</h2><span id="ipoUpdated" class="source">Yükleniyor…</span></div>
       <div class="card ipoHero">
         <div><span class="source">BIST ve ABD · MIC v26</span><h3>Başvuru tarihini, fiyatı ve risk planını tek ekranda gör.</h3></div>
-        <button id="refreshIpoData" class="ghost" type="button">Yenile</button>
+        <button id="refreshIpoData" class="ghost" type="button">Kayıtlı takvimi yeniden yükle</button>
       </div>
       <div class="grid3 ipoSummary">
         <div class="card metric"><span>Talebi açık</span><strong id="ipoOpenCount">0</strong></div>
