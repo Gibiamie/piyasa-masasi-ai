@@ -20,7 +20,7 @@ async function collectPageErrors(page, path, viewport) {
 }
 
 test('mic-desktop/ Technical Methods: zero uncaught errors at desktop width (sidebar nav)', async ({ page }) => {
-  const pageErrors = await collectPageErrors(page, '/mic-desktop/', { width: 1366, height: 768 });
+  const pageErrors = await collectPageErrors(page, 'mic-desktop/', { width: 1366, height: 768 });
 
   // Known residual gap (documented in docs/REMEDIATION_REGISTER.md MIC-P0-003
   // and tracked under MIC-P1-001): technical-methods-v27.js's installNav()
@@ -36,7 +36,7 @@ test('mic-desktop/ Technical Methods: zero uncaught errors at desktop width (sid
 });
 
 test('mic-desktop/ Technical Methods: zero uncaught errors at narrow width (bottom nav), reachable and clickable', async ({ page }) => {
-  const pageErrors = await collectPageErrors(page, '/mic-desktop/', { width: 390, height: 844 });
+  const pageErrors = await collectPageErrors(page, 'mic-desktop/', { width: 390, height: 844 });
 
   const methodsNavBtn = page.locator('[data-view="methods"]');
   await expect(methodsNavBtn).toBeVisible({ timeout: 15000 });
@@ -48,7 +48,7 @@ test('mic-desktop/ Technical Methods: zero uncaught errors at narrow width (bott
 });
 
 test('mic/ Technical Methods: zero uncaught errors on mobile, reachable and clickable', async ({ page }) => {
-  const pageErrors = await collectPageErrors(page, '/mic/', { width: 390, height: 844 });
+  const pageErrors = await collectPageErrors(page, 'mic/', { width: 390, height: 844 });
 
   const methodsNavBtn = page.locator('[data-view="methods"]');
   await expect(methodsNavBtn).toBeVisible({ timeout: 15000 });

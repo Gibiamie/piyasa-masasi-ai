@@ -7,7 +7,10 @@ Thumbs.db
 /infrastructure/**/*.tfstate
 /infrastructure/**/*.tfstate.backup
 /test-results/
+/test-results-live/
 /quality/automation/e2e/report/
-/quality/automation/e2e/last-run.log
+/quality/automation/e2e/report-live/
+/quality/automation/e2e/screenshots/
+/quality/automation/e2e/last-run*.log
 /playwright-report/
 /playwright/.cache/

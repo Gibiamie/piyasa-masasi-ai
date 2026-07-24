@@ -8,7 +8,7 @@ const { seedState, COMPLETE_PROFILE } = require('./fixtures');
 
 test('IPO calendar view renders a profile-gated assessment with no personalized buy/join wording, no profile', async ({ page }) => {
   await seedState(page, { profile: null, portfolio: [] });
-  await page.goto('/mic/');
+  await page.goto('mic/');
 
   const ipoNavBtn = page.locator('[data-view="ipo"]');
   await expect(ipoNavBtn).toBeVisible({ timeout: 15000 });
@@ -32,7 +32,7 @@ test('IPO calendar view renders a profile-gated assessment with no personalized 
 
 test('IPO calendar view shows neutral assessment (no buy/join wording) with a complete, unlocked profile', async ({ page }) => {
   await seedState(page, { profile: COMPLETE_PROFILE, portfolio: [] });
-  await page.goto('/mic/');
+  await page.goto('mic/');
 
   const ipoNavBtn = page.locator('[data-view="ipo"]');
   await expect(ipoNavBtn).toBeVisible({ timeout: 15000 });

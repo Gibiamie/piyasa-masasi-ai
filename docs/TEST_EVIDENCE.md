@@ -13,13 +13,13 @@ This is **not** functional, behavioral, or regression testing — it cannot catc
 
 For each of the following, this file will record: command executed, result, date, commit SHA, and artifact location (screenshots/traces).
 
-- [x] Playwright suite bootstrapped (`quality/automation/e2e/`) — 2026-07-25, 23 tests, all passing
-- [x] MIC-P0-001: hard weight breach (100% single-position) → `KONSANTRASYON UYARISI`/`SATIŞ SİNYALİ DEĞİLDİR`, no automatic lot output; explicit "Senaryo" button → lot scenario, clearly labeled non-advice — browser-verified 2026-07-25
-- [x] MIC-P0-002: one missing price → all weight/decision output locked, `PORTFÖY AĞIRLIĞI HESAPLANAMADI` shown, total value marked partial — browser-verified 2026-07-25
-- [x] MIC-P0-003: all routes reachable at 360/390/412/768/820/1024/1366/1920px on both `mic/` and `mic-desktop/`, zero horizontal overflow — browser-verified 2026-07-25
-- [x] MIC-P0-004: zero uncaught JS errors loading Technical Methods on desktop/narrow-desktop/mobile — browser-verified 2026-07-25 (see also the two new defects found and fixed below)
-- [x] MIC-P0-005: static IPO JSON contains no personalized buy/join field; profile-gated decision confirmed in a real browser (locked/unlocked/stale-verification paths) — browser-verified 2026-07-25
-- [x] MIC-P0-006: Playwright suite itself exists (`quality/automation/e2e/`, `playwright.config.js`), runs locally via `npx playwright test`, HTML report at `quality/automation/e2e/report/` — **not yet wired into CI** (no GitHub Actions job runs it on push); that remains open, see Status below
+- [x] Playwright suite bootstrapped (`quality/automation/e2e/`) — 2026-07-25, now 25 spec files' worth of checks (82 local tests × Chromium + WebKit), all passing
+- [x] MIC-P0-001: hard weight breach (100% single-position) → `KONSANTRASYON UYARISI`/`SATIŞ SİNYALİ DEĞİLDİR`, no automatic lot output; explicit "Senaryo" button → lot scenario, clearly labeled non-advice — browser-verified 2026-07-25, Chromium + WebKit
+- [x] MIC-P0-002: one missing price → all weight/decision output locked, `PORTFÖY AĞIRLIĞI HESAPLANAMADI` shown, total value marked partial — browser-verified 2026-07-25, Chromium + WebKit
+- [x] MIC-P0-003: all routes reachable at 360/390/412/768/820/1024/1366/1920px on both `mic/` and `mic-desktop/`, zero horizontal overflow — browser-verified 2026-07-25, Chromium + WebKit
+- [x] MIC-P0-004: zero uncaught JS errors loading Technical Methods on desktop/narrow-desktop/mobile — browser-verified 2026-07-25, Chromium + WebKit (see also the three new defects found and fixed below)
+- [x] MIC-P0-005: static IPO JSON contains no personalized buy/join field; profile-gated decision confirmed in a real browser (locked/unlocked/stale-verification paths) — browser-verified 2026-07-25, Chromium + WebKit
+- [x] MIC-P0-006: Playwright suite exists (`quality/automation/e2e/`), runs locally via `npx playwright test` against a local static server AND against the live URL via `playwright.live.config.js`, and now runs in CI on every PR and push to `remediation/v30-audit` (`.github/workflows/e2e-tests.yml`, all 3 engines on Linux runners) — see the CI run result in the handoff package for the actual pass/fail once it executes on GitHub's infrastructure
 
 ## Commands executed so far
 
@@ -77,6 +77,34 @@ Covers: `p0-001-concentration-warning.spec.js` (1), `p0-002-missing-price-lock.s
 
 **What this evidence does and does not cover:** real Chromium, real DOM, real CSS, real dynamically-loaded patch-script chain, seeded `localStorage` state (no manual form-filling required, so fixtures are deterministic). It does **not** cover: Firefox/Safari/Samsung Internet (Chromium only so far), the service worker's cache/offline behavior, a live GitHub Pages deployment (still local-server-only, see `quality/automation/e2e/static-server.js`), or the `data/history/*.json` deep-dive (that directory is deliberately excluded from this migration per `docs/MIGRATION_PLAN.md`, so history-dependent panels correctly show "veri bulunamadı" in this environment — expected, not a defect). CI wiring (running this suite automatically on every push) is still open.
 
+## Cross-browser matrix and CI wiring (2026-07-25, second pass)
+
+Installed Firefox and WebKit (`npx playwright install --with-deps firefox webkit`) and added a `p0-009-pwa-and-screenshots.spec.js` covering manifest loading, service-worker registration (and its intentional absence on `mic-desktop/`), zero unexpected failed critical requests, and a screenshot at every required viewport for both `mic/` and `mic-desktop/`.
+
+**Firefox could not be launched on this local Windows development machine.** `firefox.exe --version` fails with "The application has failed to start because its side-by-side configuration is incorrect"; the Windows Application event log resolves this to `Activation context generation failed ... Dependent Assembly mozglue,... could not be found`, even though `mozglue.dll` is physically present in the install directory. Ruled out as a corrupted download (removed and reinstalled Firefox fresh, identical failure) and ruled out as this session's tool sandbox (retested with the sandbox explicitly disabled, identical failure). This is a genuine, pre-existing OS-level configuration issue on this specific machine, unrelated to the application under test. Installed the Microsoft Visual C++ Redistributable via `winget` as the most likely fix candidate; did not resolve it. Did not pursue further (deeper Windows component-store repair) as out of scope and risk-disproportionate for a dev-machine-only gap — **`.github/workflows/e2e-tests.yml` runs Firefox on GitHub's `ubuntu-latest` runners, where this Windows-specific fault does not apply**, so CI coverage is not affected by this local limitation.
+
+Local result — Chromium + WebKit, `npx playwright test --project=chromium --project=webkit`:
+
+```text
+82 passed (40.7s)
+```
+
+Fixing this cleanly required two adjustments beyond app code:
+- URL-resolution bug in the spec files themselves: `page.goto('/mic/')` (leading slash) resolves as absolute-from-origin, which is correct for the local server (root path) but silently drops the `/piyasa-masasi-ai` prefix when pointed at the live URL. Changed every `goto()` call to a relative path (`'mic/'`, no leading slash) and both `playwright.config.js`/`playwright.live.config.js` baseURLs now end in `/`.
+- `page.waitForLoadState('networkidle')` in the new screenshot spec timed out on WebKit at some viewports — not a defect, but a direct collision with the already-documented **MIC-P1-025** (`crypto-quotes-v22.js` has an uncancelable ~70s poll), which keeps the network non-idle. Replaced with waiting for `.card.hero` to be visible, a concrete, meaningful readiness signal instead.
+
+### Third new defect found and fixed (2026-07-25): MIC-P0-009
+
+`p0-009-pwa-and-screenshots.spec.js`'s "no failed critical requests" check caught `mic/app-main.js` making a fourth, completely unguarded `navigator.serviceWorker.register('sw.js?v=5')` call — left over from an old version, redundant with the correctly-guarded, desktop-aware registration already in `chart-workspace-v10.js`. With no desktop-path check and a bare relative URL, on `mic-desktop/` this resolves to `/mic-desktop/sw.js?v=5`, a path that has never existed — a 404 on every single desktop page load. Deleted the line entirely from both `mic/app-main.js` and `legacy-import/mic/app-main.js`. Re-ran the full local suite after the fix: still 82/82.
+
+## Live GitHub Pages deployment testing (2026-07-25)
+
+Ran the identical spec files against `https://gibiamie.github.io/piyasa-masasi-ai/` via `playwright.live.config.js` (Chromium + WebKit), **before** pushing today's fixes (MIC-P0-009 and the test-infrastructure fixes above), as a deliberate before/after checkpoint.
+
+**Result: 57 passed, 25 failed** — and the failures are not what they first appear to be. Direct `curl` against `mic/app-main.js` at the same moment returned the correct, fully-fixed content (verified: contains `KONSANTRASYON UYARISI`, `Content-Length: 19545`, `Cache-Control: max-age=600`, `Age: 1`, `x-proxy-cache: MISS`). A follow-up diagnostic test capturing the actual bytes a real browser received showed **`x-cache: HIT`, `Content-Length: 16894`, containing the old `DENGELE / AZALT` text** — i.e. a specific Fastly edge POP (`cache-dxb1470032-DXB`) was serving a stale, pre-fix cached copy of `app-main.js` while the origin and other request paths (`curl`) were already correctly serving the fixed version. This is a GitHub Pages/Fastly CDN edge-cache propagation characteristic, not an application defect, a deployment misconfiguration, or a regression in the code under test — every commit ever deployed to this repository already contained the P0-001 fix (`6909d72` onward); there was never a legitimate deployment of the pre-fix code for this cache to have picked up validly.
+
+**This is flagged as an open operational risk, not resolved by this pass.** A fresh deployment (planned as part of this same work session, after committing today's fixes) typically triggers a CDN purge; the plan is to redeploy and re-run the live suite afterward as the authoritative final live-verification pass. If stale edge content is still observed after that, it needs to be tracked as an infrastructure/CDN issue, not a code fix.
+
 ## Browser/viewport matrix
 
-360×800, 390×844, 412×915, 768×1024, 820×1180, 1024×768, 1366×768, 1920×1080 — **Chrome (Chromium): done, 2026-07-25, see above.** Edge, Safari, Samsung Internet require a real device or BrowserStack-class service and are marked "live verification required" until available.
+360×800, 390×844, 412×915, 768×1024, 820×1180, 1024×768, 1366×768, 1920×1080 — **Chromium: done, 2026-07-25. WebKit: done, 2026-07-25.** Firefox: configured and run in CI (Linux); not verifiable from this local Windows machine (see above). Edge, real Safari, Samsung Internet require a real device or BrowserStack-class service and remain "live verification required."

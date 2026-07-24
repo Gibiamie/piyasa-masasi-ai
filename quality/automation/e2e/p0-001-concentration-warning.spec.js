@@ -18,7 +18,7 @@ test('single-position portfolio at 100% weight shows KONSANTRASYON UYARISI, neve
       { symbol: 'TUPRS', name: 'Tüpraş', type: 'stock', exchange: 'BIST', currency: 'TRY', quantity: 2000, avgCost: 63.32 },
     ],
   });
-  await page.goto('/mic/');
+  await page.goto('mic/');
   await page.locator('[data-view="portfolio"]').click();
 
   const item = page.locator('.portfolioItem').filter({ hasText: 'TUPRS' });

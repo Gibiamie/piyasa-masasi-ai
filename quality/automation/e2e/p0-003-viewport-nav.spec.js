@@ -18,7 +18,7 @@ const VIEWPORTS = [
 for (const vp of VIEWPORTS) {
   test(`mic/ bottom nav reachable and clickable at ${vp.name}`, async ({ page }) => {
     await page.setViewportSize({ width: vp.width, height: vp.height });
-    await page.goto('/mic/');
+    await page.goto('mic/');
     const bottomNav = page.locator('nav.bottom');
     await expect(bottomNav).toBeVisible();
     const portfolioBtn = bottomNav.locator('[data-view="portfolio"]');
@@ -29,7 +29,7 @@ for (const vp of VIEWPORTS) {
 
   test(`mic-desktop/ navigation reachable and clickable at ${vp.name}`, async ({ page }) => {
     await page.setViewportSize({ width: vp.width, height: vp.height });
-    await page.goto('/mic-desktop/');
+    await page.goto('mic-desktop/');
     const isNarrow = vp.width <= 820;
     const bottomNav = page.locator('nav.bottom');
     const sidebar = page.locator('.sidebar');

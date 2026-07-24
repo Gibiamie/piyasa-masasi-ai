@@ -255,5 +255,4 @@ $('clearData').onclick=()=>{
     loadProfileForm();save();toast('Yerel veriler temizlendi');
   }
 };
-if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js?v=5').catch(()=>{});
 loadProfileForm();renderProfileResult();renderPeriodButtons();renderHome();renderPortfolio();loadMarket();

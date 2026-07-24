@@ -16,7 +16,7 @@ test('a position with no resolvable price locks portfolio weight and decisions',
       { symbol: 'ZZZNOPRICE', name: 'Fiyatsiz Test Varligi', type: 'stock', exchange: 'BIST', currency: 'TRY', quantity: 100, avgCost: 50 },
     ],
   });
-  await page.goto('/mic/');
+  await page.goto('mic/');
   await page.locator('[data-view="portfolio"]').click();
 
   // Wait for price-integrity-v18.js (loaded dynamically) to take over rendering.
