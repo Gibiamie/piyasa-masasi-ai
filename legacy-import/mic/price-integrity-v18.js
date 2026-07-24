@@ -35,6 +35,9 @@
   }
 
   // Replace silent average-cost fallback. Average cost is never a market price.
+  // A missing price must never be treated as zero value: it must lock weight/decision
+  // output for the WHOLE portfolio, not just quietly drop out of the denominator
+  // (which used to inflate every other position's weight). See audit MIC-P0-002.
   portfolioStats=function(){
     const rows=state.portfolio.map(p=>{
       const meta=assetPriceMeta(p),a=meta.asset,currency=a.currency||p.currency||'TRY';
@@ -43,8 +46,10 @@
       return {...p,...a,quantity,price,valueTRY,priceSource:meta.source,priceAsOf:meta.asOf,priceDateOnly:meta.dateOnly,priceStatus:meta.status,priceEstimated:meta.estimated,priceAvailable:valid(price)};
     });
     const total=rows.reduce((s,x)=>s+x.valueTRY,0),missing=rows.filter(x=>!x.priceAvailable).length,estimated=rows.filter(x=>x.priceEstimated&&x.priceAvailable).length;
-    rows.forEach(x=>x.weight=total&&x.priceAvailable?x.valueTRY/total*100:0);
-    return {rows,total,missing,estimated,allMarketPriced:missing===0&&estimated===0};
+    const locked=missing>0;
+    // While locked: no authoritative weight may be shown or used for concentration/lot decisions.
+    rows.forEach(x=>x.weight=(!locked&&total&&x.priceAvailable)?x.valueTRY/total*100:null);
+    return {rows,total,totalPartial:locked,missing,estimated,locked,allMarketPriced:missing===0&&estimated===0};
   };
 
   function ensurePortfolioNotice(){
@@ -65,12 +70,13 @@
     if(ps.missing)flags.push(`${ps.missing} pozisyonda fiyat yok`);
     box.innerHTML=`<div class="priceNoticeTop"><div><b>Broker bağlantısı yok · ${f.text}</b><span>${esc(f.detail)}</span></div><span class="priceStatusBadge ${f.cls}">ANLIK DEĞİL</span></div>
       <p>MIC, Osmanlı Menkul hesabına bağlı değildir. Adet ve ortalama maliyet tarayıcıdaki portföy kaydından; fiyatlar GitHub üzerinde periyodik yenilenen piyasa snapshot’ından gelir.</p>
-      ${flags.length?`<div class="priceWarning">${flags.map(esc).join(' · ')}. Bu nedenle toplam değer tahmini olabilir.</div>`:'<div class="priceInfo">Tüm pozisyonlarda piyasa snapshot fiyatı bulundu; yine de değerler broker terminalindeki anlık fiyatlarla birebir eşleşmeyebilir.</div>'}`;
+      ${ps.locked?`<div class="priceWarning"><b>PORTFÖY AĞIRLIĞI HESAPLANAMADI.</b> ${flags.map(esc).join(' · ')}. Toplam değer kısmidir; ağırlık, konsantrasyon ve lot kararları eksik fiyat(lar) giderilene kadar üretilmez.</div>`:flags.length?`<div class="priceWarning">${flags.map(esc).join(' · ')}. Bu nedenle toplam değer tahmini olabilir.</div>`:'<div class="priceInfo">Tüm pozisyonlarda piyasa snapshot fiyatı bulundu; yine de değerler broker terminalindeki anlık fiyatlarla birebir eşleşmeyebilir.</div>'}`;
   }
 
   renderPortfolio=function(){
     const ps=portfolioStats();
-    $('totalValue').textContent=money(ps.total,'TRY');$('positionCount').textContent=ps.rows.length;
+    $('totalValue').textContent=(ps.totalPartial?'~':'')+money(ps.total,'TRY')+(ps.totalPartial?' (kısmi)':'');
+    $('positionCount').textContent=ps.rows.length;
     renderPriceNotice(ps);
     const box=$('portfolioList');
     if(!ps.rows.length){box.innerHTML='<div class="card empty">Portföy boş. Araştırma ekranından varlık ekle.</div>';return}
@@ -78,10 +84,11 @@
       const pnl=p.priceAvailable?(p.price-p.avgCost)*p.quantity*fxRate(p.currency):null;
       const s=scoreAsset(p),d=decision(p,s),f=freshnessLabel(p.priceAsOf,p.priceDateOnly);
       const priceText=p.priceAvailable?money(p.price,p.currency):'Fiyat yok';
-      return `<div class="portfolioItem"><div class="assetTop"><div><div class="symbol">${esc(p.symbol)}</div><div class="assetName">${esc(p.name)}</div></div><span class="badge">%${num(p.weight)}</span></div>
+      const weightText=p.weight===null||p.weight===undefined?'HESAPLANAMADI':`%${num(p.weight)}`;
+      return `<div class="portfolioItem"><div class="assetTop"><div><div class="symbol">${esc(p.symbol)}</div><div class="assetName">${esc(p.name)}</div></div><span class="badge">${weightText}</span></div>
         <div class="small"><div><span>Adet</span><strong>${num(p.quantity,6)}</strong></div><div><span>Fiyat</span><strong>${priceText}</strong></div><div><span>Açık K/Z</span><strong class="${pnl===null?'':pnl>=0?'positive':'negative'}">${pnl===null?'Hesaplanamadı':money(pnl,'TRY')}</strong></div></div>
         <div class="priceProvenance ${p.priceEstimated?'estimated':''}"><b>${esc(p.priceSource)}</b><span>${esc(f.detail)} · ${p.priceEstimated?'anlık piyasa fiyatı değil':'piyasa snapshot fiyatı'}</span></div>
-        <div class="hint"><b>${esc(d.action)}</b> · ${esc(d.summary)}</div><div class="portfolioBtns"><button data-a="analyze" data-i="${i}">Analiz</button><button data-a="chart" data-i="${i}">Grafik</button><button data-a="delete" data-i="${i}">Sil</button></div></div>`;
+        <div class="hint"><b>${esc(d.action)}</b> · ${esc(d.summary)}</div><div class="portfolioBtns"><button data-a="analyze" data-i="${i}">Analiz</button><button data-a="chart" data-i="${i}">Grafik</button><button data-a="scenario" data-i="${i}">Senaryo</button><button data-a="delete" data-i="${i}">Sil</button></div></div>`;
     }).join('');
   };
 

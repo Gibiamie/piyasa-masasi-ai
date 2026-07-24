@@ -26,9 +26,23 @@ For each of the following, this file will record: command executed, result, date
 ```text
 git clone --bare --depth 1 https://github.com/Gibiamie/Gibiamie.github.io.git   (read-only inspection, 2026-07-24)
 git ls-tree / git show / git archive                                            (file inventory + extraction, 2026-07-24)
+node --check legacy-import/mic/app-main.js                                      (syntax check, 2026-07-24, PASS)
+node --check legacy-import/mic/price-integrity-v18.js                           (syntax check, 2026-07-24, PASS)
+node quality/automation/verify_p0-001_p0-002.logic.js                           (logic-level check, 2026-07-24, 11/11 PASS)
 ```
 
-No application code has been executed or browser-tested yet in this session. No claim of a working feature is made until it has been.
+### MIC-P0-001 / MIC-P0-002 logic-level verification (2026-07-24)
+
+`quality/automation/verify_p0-001_p0-002.logic.js` loads the real `app-main.js` and `price-integrity-v18.js` in a stubbed sandbox (no real DOM/browser — a `vm` context standing in for `$`, `state`, `market`, etc.) and calls `portfolioStats()`, `decision()`, and `calculateConcentrationScenario()` directly against two fixtures matching the audit's required scenarios:
+
+1. A TUPRS-style hard concentration breach with a sound price — asserts `decision()` no longer returns `DENGELE / AZALT` with a lot count, returns `KONSANTRASYON UYARISI` / `SATIŞ SİNYALİ DEĞİLDİR` instead, and that the explicit opt-in scenario calculator still produces a lot number only when called directly.
+2. A two-position portfolio where one position has no live price — asserts `portfolioStats()` reports `missing`/`locked`/`totalPartial`, that the priced position's `weight` is `null` (not silently computed against an undercounted total), that `decision()` returns `PORTFÖY AĞIRLIĞI HESAPLANAMADI` instead of any weight-based output, and that the scenario calculator also refuses to run.
+
+Result: **11/11 checks passed** on 2026-07-24 (see script for exact assertions).
+
+**What this evidence does and does not cover:** this confirms the pure calculation/decision logic behaves per the audit's acceptance criteria. It does **not** cover the actual browser UI (the new "Senaryo" button, DOM rendering, the price-notice banner), real market data files, service worker behavior, or cross-viewport layout — those remain open per `docs/RELEASE_CHECKLIST.md` and require the full Playwright suite (MIC-P0-006), which has not been built yet. This fix was implemented and logic-tested in the same pass by the same assistant; per `organization/authority-matrix.yaml` it must still receive an independent review pass before `docs/REMEDIATION_REGISTER.md` marks MIC-P0-001/MIC-P0-002 as fully Closed.
+
+No other application code has been executed or browser-tested yet in this session. No claim of a working feature is made until it has been.
 
 ## Browser/viewport matrix (required, not yet run)
 

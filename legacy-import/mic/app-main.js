@@ -32,14 +32,17 @@ function profileCap(a){
 }
 function decision(a,s){
   if(!profileComplete())return {action:'PROFİL GEREKLİ',summary:'Önce 7 soruluk profil tamamlanmalıdır.',details:['Profil olmadan AL/AZALT/SAT veya lot önerisi yapılmaz.'],cls:'warn'};
-  const ps=portfolioStats(),held=ps.rows.find(x=>x.symbol===a.symbol&&x.type===a.type),weight=held?.weight||0,cap=profileCap(a),band=+state.profile.rebalanceBand;
+  const ps=portfolioStats();
+  if(ps.missing>0){
+    return {action:'PORTFÖY AĞIRLIĞI HESAPLANAMADI',summary:`${ps.missing} pozisyonda fiyat eksik — ağırlık ve konsantrasyon kararı kilitli`,details:['Bir veya daha fazla pozisyonun güncel fiyatı yok. Eksik fiyat sıfır değer sayılmaz; bu nedenle ağırlık, konsantrasyon ve lot hesapları üretilmez.','Eksik fiyat(lar) giderilene veya tarihli/tahmini olarak açıkça onaylanana kadar bu ekran karar üretmeyecektir.'],cls:'warn'};
+  }
+  const held=ps.rows.find(x=>x.symbol===a.symbol&&x.type===a.type),weight=held?.weight||0,cap=profileCap(a),band=+state.profile.rebalanceBand;
   const details=[`MIC puanı ${s.score}/100; veri güveni %${s.confidence}.`,`Profil: ${riskLabel(state.profile.risk)} risk; azami pozisyon %${num(cap)}; tolerans ±%${num(band)}.`];
   if(held&&weight>cap+band){
-    const targetValue=ps.total*cap/100,reduceTRY=Math.max(0,held.valueTRY-targetValue),unitTRY=held.price*fxRate(held.currency);
-    const sellQty=unitTRY>0?Math.min(held.quantity,Math.ceil(reduceTRY/unitTRY)):0;
     details.push(`Mevcut ağırlık %${num(weight)}; limit+tolerans %${num(cap+band)}.`);
-    details.push(`${num(sellQty,6)} adet/lot sat, ${num(held.quantity-sellQty,6)} adet/lot tut; yaklaşık ${money(sellQty*unitTRY,'TRY')} azalt.`);
-    return {action:'DENGELE / AZALT',summary:`${num(sellQty,6)} adet/lot azalt`,details,cls:'warn'};
+    details.push('Portföy ağırlığı tek başına satış sinyali değildir. Şirket tezi, temettü/gelir sağlığı ve kullanıcı stratejisi ayrı ayrı değerlendirilmelidir.');
+    details.push('Lot bazlı azaltma rakamı görmek isterseniz "Konsantrasyonu azaltma senaryosunu hesapla" düğmesini kullanın — bu bir tavsiye değil, matematiksel bir senaryodur.');
+    return {action:'KONSANTRASYON UYARISI',summary:'SATIŞ SİNYALİ DEĞİLDİR',details,cls:'warn'};
   }
   if(s.known<2){
     details.push('Temel/teknik veri kapsamı karar için yetersiz.');
@@ -57,6 +60,27 @@ function decision(a,s){
     return {action:'ADAY / KADEMELİ EKLE',summary:qty>0?`${num(qty,6)} adet/lot üst sınır`:'Miktar hesaplanamadı',details,cls:''};
   }
   return {action:'İZLE',summary:'Yeni pozisyon açma',details,cls:'warn'};
+}
+function calculateConcentrationScenario(a){
+  const ps=portfolioStats();
+  if(ps.missing>0)return {error:`PORTFÖY AĞIRLIĞI HESAPLANAMADI: ${ps.missing} pozisyonda fiyat eksik. Senaryo hesaplanamaz.`};
+  const held=ps.rows.find(x=>x.symbol===a.symbol&&x.type===a.type);
+  if(!held)return {error:'Bu varlık gerçek portföyde bulunamadı.'};
+  const cap=profileCap(a),targetValue=ps.total*cap/100,reduceTRY=Math.max(0,held.valueTRY-targetValue),unitTRY=held.price*fxRate(held.currency);
+  const scenarioQty=unitTRY>0?Math.min(held.quantity,Math.ceil(reduceTRY/unitTRY)):0;
+  return {isScenario:true,symbol:held.symbol,currentWeight:held.weight,targetWeight:cap,scenarioQty,keepQty:held.quantity-scenarioQty,approxReduceTRY:scenarioQty*unitTRY,unit:held.priceUnitLabel||'adet/lot'};
+}
+function renderConcentrationScenario(a){
+  const r=calculateConcentrationScenario(a);
+  $('analysisPanel').classList.remove('hidden');
+  if(r.error){$('analysisPanel').innerHTML=`<div class="decision warn"><div class="decisionTitle">SENARYO HESAPLANAMADI</div><div>${esc(r.error)}</div></div>`;return}
+  $('analysisPanel').innerHTML=`<div class="decision warn"><div class="decisionTitle">MATEMATİKSEL SENARYO — TAVSİYE DEĞİLDİR</div>
+    <div>${esc(r.symbol)}: mevcut ağırlık %${num(r.currentWeight)}, hedef ağırlık %${num(r.targetWeight)}.</div>
+    <ul class="reason">
+      <li>Hedefe ulaşmak için yaklaşık ${num(r.scenarioQty,6)} ${esc(r.unit)} azaltma gerekir; ${num(r.keepQty,6)} ${esc(r.unit)} elde kalır.</li>
+      <li>Yaklaşık ${money(r.approxReduceTRY,'TRY')} azaltma tutarı.</li>
+      <li>Bu bir emir veya tavsiye değildir; yalnızca kullanıcının açık isteğiyle hesaplanan bir matematik senaryosudur. Şirket tezi, temettü stratejisi ve vergi/komisyon etkisi burada değerlendirilmez.</li>
+    </ul></div>`;
 }
 function analyzeAsset(a){
   const s=scoreAsset(a),d=decision(a,s);
@@ -77,13 +101,14 @@ function renderPortfolio(){
   if(!ps.rows.length){box.innerHTML='<div class="card empty">Portföy boş. Araştırma ekranından varlık ekle.</div>';return}
   box.innerHTML=ps.rows.map((p,i)=>{
     const pnl=(p.price-p.avgCost)*p.quantity*fxRate(p.currency),s=scoreAsset(p),d=decision(p,s);
-    return `<div class="portfolioItem"><div class="assetTop"><div><div class="symbol">${esc(p.symbol)}</div><div class="assetName">${esc(p.name)}</div></div><span class="badge">%${num(p.weight)}</span></div><div class="small"><div><span>Adet</span><strong>${num(p.quantity,6)}</strong></div><div><span>Fiyat</span><strong>${money(p.price,p.currency)}</strong></div><div><span>Açık K/Z</span><strong class="${pnl>=0?'positive':'negative'}">${money(pnl,'TRY')}</strong></div></div><div class="hint"><b>${esc(d.action)}</b> · ${esc(d.summary)}</div><div class="portfolioBtns"><button data-a="analyze" data-i="${i}">Analiz</button><button data-a="chart" data-i="${i}">Grafik</button><button data-a="delete" data-i="${i}">Sil</button></div></div>`;
+    return `<div class="portfolioItem"><div class="assetTop"><div><div class="symbol">${esc(p.symbol)}</div><div class="assetName">${esc(p.name)}</div></div><span class="badge">%${num(p.weight)}</span></div><div class="small"><div><span>Adet</span><strong>${num(p.quantity,6)}</strong></div><div><span>Fiyat</span><strong>${money(p.price,p.currency)}</strong></div><div><span>Açık K/Z</span><strong class="${pnl>=0?'positive':'negative'}">${money(pnl,'TRY')}</strong></div></div><div class="hint"><b>${esc(d.action)}</b> · ${esc(d.summary)}</div><div class="portfolioBtns"><button data-a="analyze" data-i="${i}">Analiz</button><button data-a="chart" data-i="${i}">Grafik</button><button data-a="scenario" data-i="${i}">Senaryo</button><button data-a="delete" data-i="${i}">Sil</button></div></div>`;
   }).join('');
 }
 $('portfolioList').onclick=e=>{
   const b=e.target.closest('[data-a]');if(!b)return;const p=portfolioStats().rows[+b.dataset.i];
   if(b.dataset.a==='delete'){if(confirm(p.symbol+' silinsin mi?')){state.portfolio=state.portfolio.filter(x=>!(x.symbol===p.symbol&&x.type===p.type));save()}}
   else if(b.dataset.a==='chart')openChart(p);
+  else if(b.dataset.a==='scenario')renderConcentrationScenario(p);
   else{selected=p;nav('search');renderSelected();analyzeAsset(p)}
 };
 $('samplePortfolio').onclick=()=>{
