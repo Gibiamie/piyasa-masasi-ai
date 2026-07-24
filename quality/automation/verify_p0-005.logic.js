@@ -13,7 +13,7 @@ function check(name, cond, detail) {
 }
 
 // --- Part A: the static data file itself must carry no personal decision fields ---
-const DATA_PATH = path.join(__dirname, '../../legacy-import/mic/data/ipo-calendar.json');
+const DATA_PATH = path.join(__dirname, '../../mic/data/ipo-calendar.json');
 const data = JSON.parse(fs.readFileSync(DATA_PATH, 'utf8'));
 const forbiddenFields = ['mic_view', 'suggested_order', 'max_budget', 'score'];
 for (const item of data.items) {
@@ -38,7 +38,7 @@ function makeStubEl() {
   return new Proxy({}, handler);
 }
 
-const IPO_JS = path.join(__dirname, '../../legacy-import/mic/ipo-calendar-v26.js');
+const IPO_JS = path.join(__dirname, '../../mic/ipo-calendar-v26.js');
 const sandbox = (() => {
   const s = {
     console,

@@ -108,7 +108,7 @@ $('portfolioList').onclick=e=>{
   const b=e.target.closest('[data-a]');if(!b)return;const p=portfolioStats().rows[+b.dataset.i];
   if(b.dataset.a==='delete'){if(confirm(p.symbol+' silinsin mi?')){state.portfolio=state.portfolio.filter(x=>!(x.symbol===p.symbol&&x.type===p.type));save()}}
   else if(b.dataset.a==='chart')openChart(p);
-  else if(b.dataset.a==='scenario')renderConcentrationScenario(p);
+  else if(b.dataset.a==='scenario'){nav('search');renderConcentrationScenario(p);}
   else{selected=p;nav('search');renderSelected();analyzeAsset(p)}
 };
 $('samplePortfolio').onclick=()=>{

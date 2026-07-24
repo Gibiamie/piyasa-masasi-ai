@@ -18,7 +18,7 @@
     if(String(a.exchange||'').toUpperCase().includes('BIST'))return 'BIST';
     return 'US';
   }
-  function gateway(){return state.settings.marketGateway}
+  function gateway(){return state.settings.marketGateway||{}}
   function intradayKey(a,interval){return `${marketKind(a)}:${a.symbol}:${interval}`}
   function normalizeSymbol(a){
     if(a.type==='crypto')return String(a.symbol).includes('/')?a.symbol:`${a.symbol}/USD`;

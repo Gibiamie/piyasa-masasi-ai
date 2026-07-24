@@ -1,0 +1,13 @@
+{
+  "name": "piyasa-masasi-ai",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Repo-root test tooling for the MIC-P0-006 Playwright E2E suite. Application code under mic/ and mic-desktop/ ships with zero dependencies and is unaffected by this file.",
+  "scripts": {
+    "test:e2e": "playwright test",
+    "test:e2e:report": "playwright show-report quality/automation/e2e/report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.0"
+  }
+}

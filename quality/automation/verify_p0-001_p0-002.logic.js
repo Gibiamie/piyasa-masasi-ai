@@ -24,8 +24,8 @@ function makeStubEl() {
   return new Proxy({}, handler);
 }
 
-const APP_MAIN = 'C:\\Users\\Mert\\Desktop\\Mert\\claude\\MIC_Borsa\\legacy-import\\mic\\app-main.js';
-const PRICE_INTEGRITY = 'C:\\Users\\Mert\\Desktop\\Mert\\claude\\MIC_Borsa\\legacy-import\\mic\\price-integrity-v18.js';
+const APP_MAIN = path.join(__dirname, '../../mic/app-main.js');
+const PRICE_INTEGRITY = path.join(__dirname, '../../mic/price-integrity-v18.js');
 
 const sandbox = (() => {
   const s = {

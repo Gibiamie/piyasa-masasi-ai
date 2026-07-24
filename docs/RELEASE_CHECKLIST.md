@@ -4,20 +4,20 @@ Mirrors the Part I §17 final acceptance gates and Part II §23 Definition of Do
 
 ## Part I — Safe baseline gate (must pass before any public traffic)
 
-- [ ] `Gibiamie/piyasa-masasi-ai` exists as a separate public repository — **blocked on `gh` CLI auth / owner go-ahead**
+- [ ] `Gibiamie/piyasa-masasi-ai` exists as a separate public repository — **blocked on owner go-ahead** (`gh` CLI is installed and authenticated as `Gibiamie`; tooling is no longer the blocker)
 - [x] `Gibiamie/Gibiamie.github.io` remains intact (read-only bare clone used for inspection; nothing pushed or altered)
-- [ ] App opens at `https://gibiamie.github.io/piyasa-masasi-ai/` with no `/mic/` suffix required
-- [ ] Missing prices lock weight and action decisions (MIC-P0-002)
-- [ ] Portfolio weight alone never produces an automatic sale quantity (MIC-P0-001)
-- [ ] Static IPO data contains no personalized buy/join instruction (MIC-P0-005)
-- [ ] Desktop/tablet navigation works at and below 820px (MIC-P0-003)
-- [ ] Technical Methods loads with zero uncaught errors (MIC-P0-004)
-- [ ] Mobile navigation needs no hidden horizontal scroll (MIC-P1-005)
-- [ ] Current Playwright/E2E suite passes (MIC-P0-006)
-- [ ] Visual regression evidence captured across the required viewport matrix
-- [ ] PWA paths + service worker verified under `/piyasa-masasi-ai/`
+- [ ] App opens at `https://gibiamie.github.io/piyasa-masasi-ai/` with no `/mic/` suffix required — code (`index.html` redirect) exists locally; unverifiable until deployed
+- [x] Missing prices lock weight and action decisions (MIC-P0-002) — browser-verified 2026-07-25, `docs/TEST_EVIDENCE.md`
+- [x] Portfolio weight alone never produces an automatic sale quantity (MIC-P0-001) — browser-verified 2026-07-25, `docs/TEST_EVIDENCE.md`
+- [x] Static IPO data contains no personalized buy/join instruction (MIC-P0-005) — browser-verified 2026-07-25, `docs/TEST_EVIDENCE.md`
+- [x] Desktop/tablet navigation works at and below 820px (MIC-P0-003) — browser-verified across full viewport matrix, 2026-07-25
+- [x] Technical Methods loads with zero uncaught errors (MIC-P0-004) — browser-verified 2026-07-25; required fixing two newly-found defects, MIC-P0-007/008
+- [ ] Mobile navigation needs no hidden horizontal scroll (MIC-P1-005) — still Open (P1, not covered by this pass; note the viewport suite does check zero horizontal *document* overflow on mic-desktop, but MIC-P1-005 is specifically about the 8-item mobile nav bar itself)
+- [x] Current Playwright/E2E suite passes (MIC-P0-006) — 23/23 local, `quality/automation/e2e/`; **not yet wired into CI**
+- [x] Visual regression evidence captured across the required viewport matrix — Chromium only, 2026-07-25; Firefox/Safari/Samsung Internet still require a real device or BrowserStack-class service
+- [ ] PWA paths + service worker verified under `/piyasa-masasi-ai/` — cannot be verified until deployed to that exact path
 - [ ] No secrets committed (checked: `.env.example` only, `backend/market-gateway/.env.example` carries no real keys)
-- [ ] Remediation register fully updated
+- [x] Remediation register fully updated — 2026-07-25 (status/commit columns corrected, MIC-P0-007/008 added)
 - [ ] GitHub Pages deployment green
 - [ ] Final commit SHA and deployment URL reported
 

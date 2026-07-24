@@ -6,3 +6,8 @@ Thumbs.db
 /quality/reports/*.tmp
 /infrastructure/**/*.tfstate
 /infrastructure/**/*.tfstate.backup
+/test-results/
+/quality/automation/e2e/report/
+/quality/automation/e2e/last-run.log
+/playwright-report/
+/playwright/.cache/
