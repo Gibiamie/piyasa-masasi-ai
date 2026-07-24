@@ -1,0 +1,18 @@
+/* MIC v13 chart corrections */
+.chartToolbarV13{position:static!important;top:auto!important;z-index:auto!important;background:transparent!important;padding:0 0 10px!important}
+.desktopApp .chartToolbarV13{position:static!important;top:auto!important;background:transparent!important}
+.chartToolbarV13 .chartToolbarRow{position:relative;z-index:4}
+.chartToolbarV13 .chartIntervalButtons{display:flex;flex-wrap:wrap;gap:6px}
+.chartToolbarV13 .chartToolV10{min-height:40px}
+#chartDataClassV13{margin-top:0}
+#intradayGatewayCard .apiButtons{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+#intradayGatewayCard label{display:flex;flex-direction:column;gap:7px;color:#d3deed;font-size:13px;font-weight:750}
+#chartLegendV13 i{min-width:20px}
+@media(max-width:760px){
+  .chartToolbarV13 .chartToolbarRow{display:grid;grid-template-columns:1fr;align-items:stretch}
+  .chartToolbarV13 .chartTypeGroup,.chartToolbarV13 .chartIntervalButtons{width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .chartToolbarV13 .chartIntervalButtons{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .chartToolbarV13 .chartToolV10{width:100%;padding:10px 7px}
+  .chartToolbarV13 .indicatorMenuWrapV10{width:100%;margin-left:0}
+  #intradayGatewayCard .apiButtons{grid-template-columns:1fr}
+}

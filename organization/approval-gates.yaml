@@ -1,0 +1,14 @@
+version: 1
+gates:
+  on_code_change: [format, lint, typecheck, secret-scan, unit-tests]
+  on_api_change: [contract-tests, compatibility-check, api-docs-check]
+  on_financial_logic_change: [full-golden-dataset-suite, independent-formula-comparison, rounding-edge-case-tests]
+  on_dependency_change: [vulnerability-scan, license-scan, supply-chain-check]
+  on_database_change: [migration-validation, rollback-validation, data-loss-risk-check, backup-compatibility-check]
+  on_release_candidate: [full-regression, security-scan, compliance-scan, performance-test, clean-build, clean-install, staging-smoke-test, backup-restore-test, rollback-test]
+  on_production_deployment:
+    required_approvals: [product, qa, financial-validation, data-quality, security, compliance, operational-readiness, independent-go-no-go]
+    rule: "Deployment is blocked if any required approval is missing or failed. No exceptions for schedule."
+current_status:
+  on_code_change: not_yet_running (no CI configured in new repo yet — see docs/RELEASE_CHECKLIST.md)
+  on_production_deployment: blocked (public repo not yet created — see docs/REMEDIATION_REGISTER.md tooling/permission blocker)

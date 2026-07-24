@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#081321">
+<title>MIC Laptop Web Beta v12</title>
+<link rel="stylesheet" href="../mic/style.css?v=12">
+<link rel="stylesheet" href="../mic/indicators.css?v=12">
+<link rel="stylesheet" href="../mic/chart-workspace-v10.css?v=12" data-mic-chart-workspace="1">
+<link rel="stylesheet" href="../mic/data-governance-v11.css?v=12" data-mic-data-governance="1">
+<link rel="stylesheet" href="desktop.css?v=12">
+</head>
+<body class="desktopApp">
+<header class="top desktopTop">
+  <div><div class="brand">MIC</div><div class="sub">Laptop web · yatırım karar desteği · v12</div></div>
+  <div class="desktopTopRight"><span class="platformBadge">WEB</span><div id="dataStatus" class="pill warn">VERİ YÜKLENİYOR</div></div>
+</header>
+<div class="desktopShell">
+  <aside class="sidebar">
+    <div class="sideTitle">MIC Investment Committee</div>
+    <nav class="sideNav">
+      <button class="nav active" data-view="home"><b>⌂</b><span>Ana Panel</span></button>
+      <button class="nav" data-view="search"><b>⌕</b><span>Araştırma</span></button>
+      <button class="nav" data-view="portfolio"><b>▤</b><span>Portföyler</span></button>
+      <button class="nav" data-view="chart"><b>⌁</b><span>Grafik ve Sinyaller</span></button>
+      <button class="nav" data-view="profile"><b>◎</b><span>Yatırımcı Profili</span></button>
+      <button class="nav" data-view="settings"><b>⚙</b><span>Ayarlar</span></button>
+    </nav>
+    <div class="sideNote">Gerçek portföy ile 100.000 USD sanal portföy ayrı tutulur; ikisi de aynı puanlama, risk limiti ve karar kurallarıyla değerlendirilir.</div>
+  </aside>
+  <main>
+    <section id="home" class="view active">
+      <div class="card hero desktopHero"><div class="source">Karar desteği · yatırım tavsiyesi değildir</div><h1>Ne yapacağını değil, neden ve ne kadar yapacağını görünür kıl.</h1><p>Karar motoru yatırımcı profili, portföy ağırlığı, veri kalitesi ve varlık puanını birlikte kullanır. Profil olmadan AL/AZALT/SAT kararı üretmez.</p></div>
+      <div class="grid3">
+        <div class="card metric"><span>Yatırımcı profili</span><strong id="homeProfile">Eksik</strong></div>
+        <div class="card metric"><span>Gerçek portföy</span><strong id="homePortfolio">0 varlık</strong></div>
+        <div class="card metric"><span>100.000 USD sanal</span><strong id="homeVirtual">Başlatılmadı</strong></div>
+      </div>
+      <div class="desktopActions"><button id="createProfileCta" class="primary">Yatırımcı profilimi oluştur</button><button id="startVirtualCta" class="ghost">100.000 USD sanal portföyü başlat</button></div>
+      <div class="card"><h3>Son karar</h3><div id="lastDecision" class="muted" style="margin-top:10px">Henüz analiz yapılmadı.</div></div>
+    </section>
+
+    <section id="search" class="view">
+      <div class="section"><h2>Araştırma ve Akıllı Arama</h2><span class="source" id="feedTime"></span></div>
+      <div class="desktopSearchGrid">
+        <div class="card search">
+          <div class="chips" id="chips"></div>
+          <label>Hisse, ETF, kripto veya diğer varlığı ara<input id="searchInput" autocomplete="off" placeholder="En az 3 karakter: FRO, ESEN, BTC..."></label>
+          <div class="hint">Seçtiğin yatırım aracı türüne uymayan sonuçlar gösterilmez.</div>
+          <div id="results" class="dropdown hidden"></div>
+        </div>
+        <div id="selectedCard" class="card hidden"></div>
+      </div>
+      <div id="analysisPanel" class="card hidden"></div>
+    </section>
+
+    <section id="portfolio" class="view">
+      <div class="section"><h2>Portföyler</h2></div>
+      <div class="portfolioModes">
+        <button id="realMode" class="mode active" data-portfolio-mode="real">Gerçek Portföy</button>
+        <button id="virtualMode" class="mode" data-portfolio-mode="virtual">Sanal · 100.000 USD</button>
+      </div>
+      <div id="realPortfolioPanel">
+        <div class="section subSection"><span class="source">Kullanıcının kendi işlemleri</span><button class="ghost" id="samplePortfolio">Örnek yükle</button></div>
+        <div class="grid2"><div class="card metric"><span>Toplam değer</span><strong id="totalValue">₺0</strong></div><div class="card metric"><span>Pozisyon</span><strong id="positionCount">0</strong></div></div>
+        <div id="portfolioList" class="desktopPortfolioGrid"></div>
+      </div>
+      <div id="virtualPortfolioPanel" class="hidden">
+        <div id="virtualEmpty" class="card virtualWelcome">
+          <div class="virtualAmount">$100.000</div><h3>Sanal yatırım hesabı</h3><p class="muted">Gerçek para kullanmadan piyasa fiyatlarıyla alım-satım yap, portföy ağırlıklarını ve performansını ölç.</p><button id="startVirtualPortfolio" class="primary">Sanal portföyü başlat</button>
+        </div>
+        <div id="virtualActive" class="hidden">
+          <div class="grid4">
+            <div class="card metric"><span>Toplam değer</span><strong id="virtualEquity">$100.000</strong></div>
+            <div class="card metric"><span>Nakit</span><strong id="virtualCash">$100.000</strong></div>
+            <div class="card metric"><span>Yatırılmış</span><strong id="virtualInvested">$0</strong></div>
+            <div class="card metric"><span>Toplam K/Z</span><strong id="virtualPnl">$0</strong></div>
+          </div>
+          <div class="virtualToolbar"><button id="virtualFindAsset" class="primary">Varlık ara ve al</button><button id="resetVirtualPortfolio" class="danger">Sıfırla</button></div>
+          <div id="virtualPortfolioList" class="desktopPortfolioGrid"></div>
+          <div class="card"><div class="section"><h3>Son sanal işlemler</h3><span id="virtualReturn" class="badge">%0,00</span></div><div id="virtualTransactions" class="transactionList"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="chart" class="view">
+      <div class="section"><h2>Grafik ve Teknik Sinyaller</h2><span id="chartTitle" class="muted"></span></div>
+      <div class="desktopChartGrid">
+        <div class="card chartCard desktopChart">
+          <div class="chartHeader"><span id="chartInfo" class="source"></span></div>
+          <div id="chartPeriods" class="periods">
+            <button class="period" data-period="1H">1H</button><button class="period active" data-period="1A">1A</button><button class="period" data-period="3A">3A</button><button class="period" data-period="6A">6A</button><button class="period" data-period="1Y">1Y</button><button class="period" data-period="YTD">YTD</button>
+          </div>
+          <div id="performanceSummary" class="performanceSummary hidden"></div>
+          <canvas id="chartCanvas" class="chartCanvas"></canvas>
+          <div id="chartMessage" class="empty hidden"></div>
+          <button id="loadChartData" class="primary chartApi">Günlük fiyat grafiğini yenile</button>
+        </div>
+
+        <div id="indicatorLab" class="card indicatorLab desktopIndicatorLab">
+          <div class="section"><div><h3>Teknik Sinyal Laboratuvarı</h3><span id="indicatorSymbol" class="source">Günlük fiyat verisi</span></div></div>
+          <p class="muted indicatorNotice">Göstergeleri seç. Sonuç yalnızca seçili teknik göstergelerin kesin sayımlı oyudur; MIC profil ve temel analiz kararının yerine geçmez.</p>
+          <div class="indicatorActions"><button id="indicatorAll" class="ghost">Tümünü seç</button><button id="indicatorClear" class="ghost">Temizle</button></div>
+          <div id="indicatorOptions" class="indicatorOptions"></div>
+          <div id="indicatorConsensus"></div>
+          <div id="indicatorResults" class="indicatorResults"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="profile" class="view">
+      <div class="section"><h2>Yatırımcı Profili</h2><span id="profileProgress" class="pill warn">0/7</span></div>
+      <div class="card profileIntro"><h3>Profil nasıl oluşur?</h3><p class="muted">Aşağıdaki 7 soruya cevap ver. Sistem risk seviyeni kendisi hesaplar; doğrudan “düşük/orta/yüksek” seçmen gerekmez.</p></div>
+      <div class="card"><div class="form">
+        <label class="full">1. Yatırım amacı<select id="objective"><option value="">Seç</option><option value="preserve">Sermayeyi koruma</option><option value="income">Düzenli gelir</option><option value="balanced">Dengeli büyüme</option><option value="growth">Uzun vadeli büyüme</option><option value="speculative">Yüksek büyüme / spekülatif</option></select><small>Önceliğin sermayeyi korumak mı, gelir mi, büyüme mi?</small></label>
+        <label>2. Yatırım ufku<select id="horizon"><option value="">Seç</option><option value="1">0–1 yıl</option><option value="3">1–3 yıl</option><option value="5">3–5 yıl</option><option value="10">5+ yıl</option></select></label>
+        <label>3. Paraya ihtiyaç süresi<select id="liquidity"><option value="">Seç</option><option value="soon">12 ay içinde gerekebilir</option><option value="medium">1–3 yıl içinde gerekebilir</option><option value="long">3 yıldan uzun süre gerekmez</option></select></label>
+        <label>4. Portföy %20 düşerse<select id="lossReaction"><option value="">Seç</option><option value="sell">Tamamını satarım</option><option value="reduce">Bir kısmını satarım</option><option value="hold">Beklerim</option><option value="buy">Uygunsa eklerim</option></select></label>
+        <label>5. Yatırım deneyimi<select id="experience"><option value="">Seç</option><option value="beginner">0–2 yıl</option><option value="intermediate">2–5 yıl</option><option value="advanced">5+ yıl</option></select></label>
+        <label>6. Gelir istikrarı<select id="incomeStability"><option value="">Seç</option><option value="low">Düzensiz / belirsiz</option><option value="medium">Kısmen istikrarlı</option><option value="high">İstikrarlı</option></select></label>
+        <label>7. Kabul edilen azami düşüş (%)<input id="maxDrawdown" type="number" min="5" max="60" step="5" value="20"></label>
+        <label>Tek pozisyon azami ağırlığı (%)<input id="maxPosition" type="number" min="1" max="40" value="10"></label>
+        <label>Rebalance toleransı (%)<input id="rebalanceBand" type="number" min="0.5" max="10" step="0.5" value="2"></label>
+        <label class="full">Aylık yeni yatırım tutarı (TRY)<input id="monthlyContribution" type="number" min="0" value="0"></label>
+        <button id="saveProfile" class="primary full">Profili hesapla ve kaydet</button>
+      </div></div>
+      <div id="profileResult" class="card hidden"></div>
+    </section>
+
+    <section id="settings" class="view">
+      <div class="section"><h2>Ayarlar</h2></div>
+      <div class="desktopSettingsGrid">
+        <div class="card"><h3>Grafik verisi</h3><p class="muted">API anahtarı gerekmez. Günlük fiyat serileri GitHub üzerinde hazırlanır ve seçilen varlık açıldığında otomatik yüklenir.</p><div id="historyStatus" class="hint">Henüz grafik verisi istenmedi.</div></div>
+        <div class="card"><h3>GitHub piyasa verisi</h3><p class="muted">BIST sembol, son fiyat, performans ve temel oranları GitHub veri akışından okunur.</p><button id="refreshData" class="primary">Veriyi şimdi yenile</button><div id="settingsStatus" class="hint"></div></div>
+        <div class="card"><h3>Yerel veriler</h3><p class="muted">Profil, gerçek portföy ve sanal portföy bu tarayıcıda saklanır.</p><button id="clearData" class="danger">Tarayıcı verilerini temizle</button></div>
+      </div>
+    </section>
+  </main>
+</div>
+<div id="toast" class="toast hidden"></div>
+<script>
+(() => {
+  const originalFetch = window.fetch.bind(window);
+  window.fetch = (input, init) => {
+    if (typeof input === 'string' && input.startsWith('data/')) input = '../mic/' + input;
+    return originalFetch(input, init);
+  };
+})();
+</script>
+<script src="../mic/app-core.js?v=12" defer></script>
+<script src="../mic/app-main.js?v=12" defer></script>
+<script src="../mic/virtual.js?v=12" defer></script>
+<script src="../mic/indicators.js?v=12" defer></script>
+<script src="../mic/indicators-v10-patch.js?v=12" defer data-mic-indicators-patch="1"></script>
+<script src="../mic/chart-workspace-v10.js?v=12" defer data-mic-chart-workspace="1"></script>
+<script src="../mic/data-governance-v11.js?v=12" defer data-mic-data-governance="1"></script>
+</body></html>

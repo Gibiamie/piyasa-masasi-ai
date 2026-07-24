@@ -1,0 +1,51 @@
+version: 1
+rule: >
+  Work performed by a given role must not be marked Closed/Approved by that
+  same role in the same pass without recorded, checkable evidence. The
+  reviewer column defines what must independently exist before Closed status
+  in docs/REMEDIATION_REGISTER.md is valid.
+separations:
+  - work: product-requirement
+    reviewer: product-audit
+    evidence_required: [acceptance-criteria-doc]
+  - work: ux
+    reviewer: usability-audit
+    evidence_required: [viewport-matrix-screenshots]
+  - work: ui
+    reviewer: design-consistency
+    evidence_required: [design-system-diff]
+  - work: backend
+    reviewer: backend-review
+    evidence_required: [code-diff, test-run]
+  - work: mobile
+    reviewer: mobile-review-qa
+    evidence_required: [device-or-viewport-test]
+  - work: database
+    reviewer: data-architecture-review
+    evidence_required: [migration-test, rollback-test]
+  - work: quantitative
+    reviewer: financial-validation
+    evidence_required: [golden-dataset-result]
+  - work: portfolio-calculation
+    reviewer: golden-dataset-validation
+    evidence_required: [golden-dataset-result]
+  - work: market-data-integration
+    reviewer: market-data-quality
+    evidence_required: [source-timestamp-check]
+  - work: security-implementation
+    reviewer: red-team
+    evidence_required: [finding-retest]
+  - work: compliance-authoring
+    reviewer: independent-compliance-audit
+    evidence_required: [prohibited-language-scan]
+  - work: devops
+    reviewer: operational-readiness
+    evidence_required: [staging-smoke-test]
+  - work: release
+    reviewer: independent-go-no-go
+    evidence_required: [checklist-in-release-checklist-md]
+absolute_rules:
+  - "Portfolio weight alone must never produce an automatic sale quantity, in any release, without exception."
+  - "A missing/untimestamped price must lock weight and decision output, never default to zero value."
+  - "No P0 item closes without a linked commit and linked entry in docs/TEST_EVIDENCE.md."
+  - "No agent/role may suppress a failing test or finding to make status look GREEN."

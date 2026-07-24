@@ -1,0 +1,33 @@
+name: MIC static regression tests
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'mic/**'
+      - 'mic-desktop/**'
+      - '.github/workflows/mic-static-tests.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: JavaScript syntax
+        run: |
+          find mic mic-desktop -type f -name '*.js' -print0 | xargs -0 -n1 node --check
+      - name: v13 regression assertions
+        run: |
+          grep -q 'data-interval="1H"' mic/chart-workspace-v13.js
+          grep -q 'data-interval="4H"' mic/chart-workspace-v13.js
+          grep -q 'Supertrend 10 hl2 3' mic/indicators-v13-patch.js
+          grep -q 'position:static!important' mic/chart-workspace-v13.css
+          grep -q 'chart-workspace-v13.js' mic/chart-workspace-v10.js

@@ -1,0 +1,47 @@
+version: 1
+product: "Piyasa Masası AI"
+executive:
+  - role: AI-CEO
+    owns: [program-status, sequencing, owner-communication]
+    outputs_dir: organization/
+  - role: AI-CPO
+    owns: [prd, scope, mvp]
+    outputs_dir: product/
+  - role: AI-CTO
+    owns: [architecture, stack-selection, threat-model]
+    outputs_dir: architecture/
+  - role: AI-CMDO
+    owns: [data-sourcing, data-quality, licensing]
+    outputs_dir: financial-governance/
+  - role: AI-CRCO
+    owns: [regulatory-register, content-compliance]
+    outputs_dir: compliance/
+  - role: AI-CQSO
+    owns: [test-strategy, security]
+    outputs_dir: quality/
+  - role: AI-COO
+    owns: [ci-cd, releases, cost-control]
+    outputs_dir: operations/
+departments:
+  product:
+    roles: [senior-business-analyst, product-research, ux-architecture, ui-design-system, product-analytics, accessibility-review]
+    outputs_dir: product/
+  market_and_financial:
+    roles: [market-data-sourcing, market-data-licensing, market-data-quality, quantitative-analysis, fundamental-analysis, technical-analysis, portfolio-calculation, news-evidence-verification, financial-content-editor]
+    outputs_dir: financial-governance/
+  technology:
+    roles: [solution-architecture, backend-engineering, mobile-application, web-application, administration-platform, database-engineering, ai-retrieval-engineering, integration-engineering]
+    outputs_dir: applications/
+  compliance:
+    roles: [financial-communication-compliance, privacy-data-governance, third-party-licensing, app-store-compliance, regulatory-research]
+    outputs_dir: compliance/
+  quality_and_security:
+    roles: [test-architecture, qa-automation, financial-calculation-validation, data-integrity-validation, application-security, mobile-security, api-security, adversarial-red-team, performance-resilience, usability-audit]
+    outputs_dir: quality/
+  operations:
+    roles: [devops-cloud, ci-cd, release-manager, sre, incident-response, documentation-handover, cost-control]
+    outputs_dir: operations/
+note: >
+  Roles are process/accountability boundaries executed by a single AI assistant
+  across sequential passes, not independently running agent processes. See
+  organization/charter.md for how separation-of-duties is actually enforced.
