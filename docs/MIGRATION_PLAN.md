@@ -25,17 +25,20 @@
 | `mic-gateway/` (root-level, Render-based) | Superseded prototype. Uses CommonJS, `express`+`cors`+`ccxt`, `render.yaml` Blueprint deploy, Alpaca-only. Not referenced by any active CI workflow. `backend/market-gateway/` is the gateway actually checked by CI and described as current in its own README. Kept **out** of the import; flagged for the owner/CTO-agent to confirm formal deprecation before deletion from the legacy repo (which we do not touch). |
 | `css/`, `js/`, `fonts/`, `images/`, `firststep/`, `about.html`, `contact.html`, `process.html`, `why.html`, root `index.html` | Unrelated personal-site content, not part of MIC. |
 
-## Old → new path map (planned, applied on `remediation/v30-audit`)
+## Old → new path map — actual decision taken on `remediation/v30-audit`
+
+Originally planned to rename `mic/` → `legacy-mobile/` and `mic-desktop/` → `desktop/`. **Changed after inspecting the code**: `chart-workspace-v10.js`, `ipo-calendar-v26.js`, `quality-fixes-v17.js`, and `mic-version-loader.js` all hard-detect the literal string `"mic-desktop"` in `location.pathname` to decide the relative asset base path (`const desktop=location.pathname.includes('mic-desktop');const base=desktop?'../mic/':'';`). Renaming the folders would silently break that detection in multiple minified files with no browser test yet in place to catch it. Decision: **keep `mic/` and `mic-desktop/` as-is** at the repository root (identical relative structure to the legacy repo, so the copied workflows needed zero path edits), and add a root `index.html` instead:
 
 | Old (GitHub Pages path) | New (project root) |
 |---|---|
-| `/mic/...` | `/legacy-mobile/...` (compatibility route) and shared modules under a new single entry point |
-| `/mic-desktop/...` | `/desktop/...` (compatibility route) sharing the same modules |
-| (new) | `/` → single responsive `index.html` entry point, so the app opens directly at `https://gibiamie.github.io/piyasa-masasi-ai/` with no `/mic/` suffix |
-| `backend/market-gateway/` | unchanged path, `.env.example`/CORS/allowlist updated for the new origin |
-| `.github/workflows/mic-*.yml` | rewritten to reference the new repo's paths and to output into the new Pages workflow |
+| `/mic/...` | unchanged, now also served at repo root as `mic/...` |
+| `/mic-desktop/...` | unchanged, now also served at repo root as `mic-desktop/...` |
+| (new) | `/index.html` — interim static landing page, viewport-based redirect (`matchMedia('(max-width:820px)')`) to `mic/` or `mic-desktop/`, with manual fallback links and a visible "beta" label. This satisfies the "no `/mic/` suffix required" gate without touching the fragile path-detection logic. It is explicitly **not** the final single responsive entry point described in Part I §6 — that remains Phase 2 architecture work (tracked under MIC-P1-001), so this is a knowingly interim, lower-risk substitute, not a claim that the responsive rebuild is done. |
+| `backend/market-gateway/` | unchanged path |
+| `.github/workflows/mic-*.yml` | copied unmodified — repo-root-relative paths inside them (`mic/data/...`, `scripts/...`, `backend/market-gateway/**`) already match the new repo's structure exactly |
+| (new) | `.github/workflows/pages-deploy.yml` — official `actions/configure-pages` + `upload-pages-artifact` + `deploy-pages`, deploying the whole repo root as a static site |
 
-All asset/manifest/service-worker/fetch paths must be re-verified as project-relative (not root-absolute) once the responsive entry point exists, per the audit's PWA findings (P2-017) and the master instruction's path-sensitivity checklist.
+Manifest/service-worker/fetch paths were **not** re-audited for correctness under the new project path in this pass — they were already relative in the legacy code (`fetch('data/market.json')`, `sw.js` registered without a leading slash) and should behave the same whether served from `Gibiamie.github.io/mic/` or `piyasa-masasi-ai/mic/`, but this has not been confirmed with an actual deployed-page browser check yet. Flagged as an open verification item, not assumed correct.
 
 ## Rollback plan
 
