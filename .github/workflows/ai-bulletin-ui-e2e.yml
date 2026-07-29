@@ -1,0 +1,42 @@
+name: AI Bulletin Original UI E2E
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [remediation/v30-audit]
+    paths:
+      - "ai-infrastructure-bulletin/**"
+      - "quality/automation/e2e/ai-infrastructure-bulletin-ui.spec.js"
+      - ".github/workflows/ai-bulletin-ui-e2e.yml"
+  push:
+    branches: [remediation/v30-audit]
+    paths:
+      - "ai-infrastructure-bulletin/**"
+      - "quality/automation/e2e/ai-infrastructure-bulletin-ui.spec.js"
+      - ".github/workflows/ai-bulletin-ui-e2e.yml"
+
+jobs:
+  ui-e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium firefox webkit
+      - name: Validate original responsive workspace
+        run: npx playwright test quality/automation/e2e/ai-infrastructure-bulletin-ui.spec.js
+      - name: Upload report on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ai-bulletin-ui-failure
+          path: |
+            quality/automation/e2e/report
+            test-results
+          retention-days: 7
