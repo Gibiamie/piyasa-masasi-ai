@@ -38,15 +38,21 @@ jobs:
 
       - name: Check application syntax
         run: |
+          node --check ai-infrastructure-bulletin/portfolio-engine.js
           node --check ai-infrastructure-bulletin/app.js
+          node --check ai-infrastructure-bulletin/app-bilingual-patch.js
+          node --check ai-infrastructure-bulletin/sw.js
           python -m py_compile ai-infrastructure-bulletin/scripts/update_bulletin.py
           python -m py_compile ai-infrastructure-bulletin/scripts/update_prices.py
           python -m py_compile ai-infrastructure-bulletin/scripts/add_ticker_from_issue.py
 
-      - name: Generate company-specific news evaluation
+      - name: Validate portfolio accounting engine
+        run: node ai-infrastructure-bulletin/tests/portfolio-engine.test.js
+
+      - name: Generate bilingual company-specific news evaluation
         run: python ai-infrastructure-bulletin/scripts/update_bulletin.py
 
-      - name: Generate prices and one evaluation per company
+      - name: Generate prices and one bilingual evaluation per company
         run: python ai-infrastructure-bulletin/scripts/update_prices.py
 
       - name: Validate generated report
@@ -60,7 +66,7 @@ jobs:
             exit 0
           fi
           git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.email "4189820+github-actions[bot]@users.noreply.github.com"
           git add ai-infrastructure-bulletin/data/report.json
-          git commit -m "chore: refresh full company evaluation"
+          git commit -m "chore: refresh bilingual company evaluation"
           git push
