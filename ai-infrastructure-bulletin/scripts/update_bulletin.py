@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
-import csv
 import hashlib
-import io
 import json
 import re
 import sys
@@ -22,38 +20,77 @@ DATA_DIR = ROOT / "data"
 REPORT_PATH = DATA_DIR / "report.json"
 WATCHLIST_PATH = DATA_DIR / "watchlist.json"
 MUSCAT = ZoneInfo("Asia/Muscat")
-USER_AGENT = "AIInfrastructureBulletin/1.0 (+https://github.com/Gibiamie/piyasa-masasi-ai)"
+USER_AGENT = "TTRAK-LUNR-Bulletin/1.1 (+https://github.com/Gibiamie/piyasa-masasi-ai)"
+FOCUS_TICKERS = ("TTRAK", "LUNR")
 
-THEMES = {
-    "Yapay Zeka": '"artificial intelligence" model launch regulation enterprise AI',
-    "Veri Merkezi Kapasitesi": '"AI data center" capacity megawatt gigawatt construction',
-    "Enerji ve Güç Altyapısı": '"data center power" grid turbine electricity AI',
-    "GPU ve Özel Çipler": "Nvidia AMD AI GPU ASIC HBM data center",
-    "Soğutma Teknolojileri": '"data center cooling" liquid cooling immersion AI',
-    "Nükleer ve Yenilenebilir": "AI data center nuclear SMR PPA renewable energy",
-    "Bulut Yatırımları": "AWS Azure Google Cloud AI infrastructure capex",
+COMPANIES: dict[str, dict[str, str]] = {
+    "TTRAK": {
+        "company": "Türk Traktör",
+        "query": '("Türk Traktör" OR TurkTraktor OR TTRAK) (bilanço OR satış OR üretim OR ihracat OR yatırım OR temettü OR tractor OR earnings OR guidance)',
+        "hl": "tr",
+        "gl": "TR",
+        "ceid": "TR:tr",
+        "risk_badge": "ESTABLISHED",
+    },
+    "LUNR": {
+        "company": "Intuitive Machines",
+        "query": '("Intuitive Machines" OR LUNR) (NASA OR contract OR mission OR launch OR earnings OR guidance OR financing OR spacecraft)',
+        "hl": "en-US",
+        "gl": "US",
+        "ceid": "US:en",
+        "risk_badge": "SPECULATIVE",
+    },
 }
+
 MATERIAL_TERMS = {
     "billion": 3,
+    "million": 1,
     "gigawatt": 4,
     "megawatt": 2,
-    "contract": 2,
+    "contract": 3,
     "partnership": 2,
     "investment": 2,
     "capacity": 2,
     "acquisition": 3,
-    "earnings": 2,
+    "earnings": 3,
     "guidance": 3,
-    "regulation": 2,
-    "grid": 2,
-    "power": 1,
-    "data center": 2,
-    "gpu": 1,
-    "hbm": 2,
+    "revenue": 2,
+    "margin": 2,
+    "launch": 2,
+    "mission": 2,
+    "nasa": 2,
+    "financing": 3,
+    "offering": 3,
+    "dilution": 3,
+    "bilanço": 3,
+    "satış": 2,
+    "üretim": 2,
+    "ihracat": 2,
+    "yatırım": 2,
+    "temettü": 3,
+    "sözleşme": 3,
+    "sipariş": 2,
+    "net kâr": 3,
+    "net kar": 3,
+    "zarar": 3,
+    "türk traktör": 2,
+    "turktraktor": 2,
+    "intuitive machines": 2,
+    "lunr": 2,
 }
-POSITIVE_TERMS = {"expand", "partnership", "contract", "investment", "growth", "record", "launch", "capacity"}
-NEGATIVE_TERMS = {"delay", "cancel", "loss", "investigation", "ban", "shortage", "downgrade", "decline"}
-TRUSTED_PUBLISHERS = {"Reuters", "Associated Press", "Bloomberg", "Financial Times", "The Wall Street Journal"}
+
+POSITIVE_TERMS = {
+    "expand", "partnership", "contract", "growth", "record", "launch success", "award",
+    "increase", "beat", "profit", "büyüme", "artış", "rekor", "kâr", "kar", "ihracat artışı",
+}
+NEGATIVE_TERMS = {
+    "delay", "cancel", "loss", "investigation", "downgrade", "decline", "failure", "dilution",
+    "offering", "cut", "düşüş", "azalış", "zarar", "iptal", "erteleme", "üretim duruşu",
+}
+TRUSTED_PUBLISHERS = {
+    "Reuters", "Associated Press", "Bloomberg", "Financial Times", "The Wall Street Journal",
+    "KAP", "Nasdaq", "NASA", "Intuitive Machines", "TürkTraktör",
+}
 
 
 @dataclass(frozen=True)
@@ -62,7 +99,9 @@ class NewsItem:
     link: str
     publisher: str
     published_at: datetime
-    theme: str
+    ticker: str
+    company: str
+    risk_badge: str
 
 
 def request_text(url: str, timeout: int = 30) -> str:
@@ -71,9 +110,14 @@ def request_text(url: str, timeout: int = 30) -> str:
         return response.read().decode("utf-8", errors="replace")
 
 
-def google_news(theme: str, query: str, now: datetime) -> list[NewsItem]:
-    encoded = urllib.parse.quote_plus(f"{query} when:1d")
-    url = f"https://news.google.com/rss/search?q={encoded}&hl=en-US&gl=US&ceid=US:en"
+def google_news(ticker: str, config: dict[str, str], now: datetime) -> list[NewsItem]:
+    encoded = urllib.parse.quote_plus(f"{config['query']} when:1d")
+    url = (
+        "https://news.google.com/rss/search?"
+        f"q={encoded}&hl={urllib.parse.quote_plus(config['hl'])}"
+        f"&gl={urllib.parse.quote_plus(config['gl'])}"
+        f"&ceid={urllib.parse.quote_plus(config['ceid'])}"
+    )
     root = ET.fromstring(request_text(url))
     items: list[NewsItem] = []
     for node in root.findall("./channel/item"):
@@ -87,12 +131,20 @@ def google_news(theme: str, query: str, now: datetime) -> list[NewsItem]:
         except (TypeError, ValueError):
             continue
         if now - published <= timedelta(hours=30):
-            items.append(NewsItem(title, link, publisher, published, theme))
+            items.append(NewsItem(
+                title=title,
+                link=link,
+                publisher=publisher,
+                published_at=published,
+                ticker=ticker,
+                company=config["company"],
+                risk_badge=config["risk_badge"],
+            ))
     return items
 
 
 def normalize_title(title: str) -> str:
-    return re.sub(r"[^a-z0-9]+", " ", title.lower()).strip()
+    return re.sub(r"[^a-z0-9çğıöşü]+", " ", title.lower()).strip()
 
 
 def material_score(title: str) -> int:
@@ -111,54 +163,65 @@ def sentiment(title: str) -> str:
     return "NEUTRAL"
 
 
+def company_context(ticker: str) -> tuple[str, str]:
+    if ticker == "TTRAK":
+        return (
+            "Türk Traktör için iç pazar talebi, ihracat, üretim adedi, fiyatlama gücü ve marjlar yatırım tezinin ana sürücüleridir.",
+            "Tarım makinesi döngüsü, kur, faiz, çiftçi finansmanı ve ihracat talebi birlikte izlenmelidir.",
+        )
+    return (
+        "Intuitive Machines için NASA sözleşmeleri, görev başarısı, fırlatma takvimi, nakit tüketimi ve yeni finansman ihtiyacı yatırım tezinin ana sürücüleridir.",
+        "Görev gecikmesi veya başarısızlığı, yüksek volatilite ve sermaye sulanması riski birlikte izlenmelidir.",
+    )
+
+
 def event_from_item(item: NewsItem) -> dict[str, Any]:
     rating = sentiment(item.title)
     event_id = "evt-" + hashlib.sha256(
-        f"{normalize_title(item.title)}|{item.published_at.date()}".encode()
+        f"{item.ticker}|{normalize_title(item.title)}|{item.published_at.date()}".encode()
     ).hexdigest()[:14]
     confidence = "HIGH" if item.publisher in TRUSTED_PUBLISHERS else "MEDIUM"
+    why_it_matters, core_risk = company_context(item.ticker)
     investment_meaning = {
-        "POSITIVE": "Araştırma görünümü pozitif; finansal büyüklük, uygulama takvimi ve değerleme teyidi izlenmelidir.",
-        "NEGATIVE": "Araştırma görünümü negatif; etkinin geçici mi yapısal mı olduğu resmî açıklamalarla kontrol edilmelidir.",
-        "NEUTRAL": "Gelişme izlenmeli; tek başına kişisel alım veya satım kararı üretmek için yeterli değildir.",
+        "POSITIVE": "Araştırma görünümü pozitif yönde değişti; fiyatlama, bilanço etkisi ve uygulama takvimi teyit edilmelidir.",
+        "NEGATIVE": "Araştırma görünümü zayıfladı; etkinin geçici mi yapısal mı olduğu resmî açıklamalarla kontrol edilmelidir.",
+        "NEUTRAL": "Gelişme izlenmeli; tek başına pozisyon artırma veya azaltma kararı üretmek için yeterli değildir.",
     }[rating]
     return {
         "event_id": event_id,
-        "primary_theme": item.theme,
+        "primary_theme": item.ticker,
         "related_themes": [],
-        "companies": [],
+        "companies": [item.ticker],
         "headline": item.title,
         "event_time": item.published_at.isoformat(),
         "published_time": item.published_at.isoformat(),
         "retrieved_time": datetime.now(timezone.utc).isoformat(),
         "facts": [item.title],
-        "why_it_matters": f"{item.theme} temasında maddi önem filtresini geçen güncel bir gelişmedir. Sayısal ayrıntılar kaynak üzerinden doğrulanmalıdır.",
+        "why_it_matters": why_it_matters,
         "investment_meaning": investment_meaning,
-        "thesis_impact": "THESIS_STRENGTHENED" if rating == "POSITIVE" else "THESIS_WEAKENED" if rating == "NEGATIVE" else "THESIS_UNCHANGED",
+        "thesis_impact": (
+            "THESIS_STRENGTHENED" if rating == "POSITIVE"
+            else "THESIS_WEAKENED" if rating == "NEGATIVE"
+            else "THESIS_UNCHANGED"
+        ),
         "research_view": {
             "rating": rating,
             "time_horizon": "Orta-Uzun vadeli",
             "summary": investment_meaning,
-            "reasons": ["Maddi gelişme filtresini geçti"],
-            "risks": ["Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"],
+            "reasons": [f"{item.company} için son 24 saatte önem filtresini geçen gelişme"],
+            "risks": [core_risk, "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"],
         },
-        "risk_badge": "STANDARD",
+        "risk_badge": item.risk_badge,
         "confidence": confidence,
         "sources": [{
-            "source_type": "REPUTABLE_NEWS" if confidence == "HIGH" else "SECONDARY_NEWS",
+            "source_type": "PRIMARY_OR_TRUSTED" if confidence == "HIGH" else "SECONDARY_NEWS",
             "publisher": item.publisher,
             "title": item.title,
             "published_at": item.published_at.isoformat(),
             "url": item.link,
-            "primary_source": False,
+            "primary_source": item.publisher in {"KAP", "NASA", "Intuitive Machines", "TürkTraktör"},
         }],
     }
-
-
-def stooq_history(symbol: str) -> list[dict[str, str]]:
-    url = f"https://stooq.com/q/d/l/?s={urllib.parse.quote(symbol)}&i=d"
-    rows = list(csv.DictReader(io.StringIO(request_text(url))))
-    return [row for row in rows if row.get("Close") not in (None, "", "N/D")]
 
 
 def pct_change(current: float, previous: float) -> float | None:
@@ -167,11 +230,12 @@ def pct_change(current: float, previous: float) -> float | None:
     return round((current / previous - 1) * 100, 2)
 
 
-def market_row(item: dict[str, Any]) -> dict[str, Any]:
-    output: dict[str, Any] = {
+def empty_market_row(item: dict[str, Any]) -> dict[str, Any]:
+    return {
         "ticker": item["ticker"],
+        "provider_symbol": item.get("provider_symbol", item["ticker"]),
         "company": item["company"],
-        "currency": "USD",
+        "currency": item.get("currency", "USD"),
         "price": None,
         "return_1d_pct": None,
         "return_21d_pct": None,
@@ -180,24 +244,6 @@ def market_row(item: dict[str, Any]) -> dict[str, Any]:
         "price_as_of": None,
         "risk_badge": item["risk_badge"],
     }
-    try:
-        rows = stooq_history(item["stooq"])
-        closes = [float(row["Close"]) for row in rows]
-        if len(closes) < 2:
-            return output
-        current = closes[-1]
-        output["price"] = round(current, 2)
-        output["price_as_of"] = rows[-1]["Date"]
-        output["return_1d_pct"] = pct_change(current, closes[-2])
-        if len(closes) >= 22:
-            output["return_21d_pct"] = pct_change(current, closes[-22])
-        if len(closes) >= 253:
-            output["return_252d_pct"] = pct_change(current, closes[-253])
-        recent = closes[-252:] if len(closes) >= 252 else closes
-        output["distance_from_52w_high_pct"] = pct_change(current, max(recent))
-    except Exception as exc:
-        output["data_error"] = type(exc).__name__
-    return output
 
 
 def build_report() -> dict[str, Any]:
@@ -205,29 +251,30 @@ def build_report() -> dict[str, Any]:
     now_muscat = now_utc.astimezone(MUSCAT)
     all_items: list[NewsItem] = []
     warnings: list[str] = []
-    for theme, query in THEMES.items():
+    for ticker, config in COMPANIES.items():
         try:
-            all_items.extend(google_news(theme, query, now_utc))
+            all_items.extend(google_news(ticker, config, now_utc))
         except Exception as exc:
-            warnings.append(f"{theme} haber akışı alınamadı: {type(exc).__name__}")
+            warnings.append(f"{ticker} haber akışı alınamadı: {type(exc).__name__}")
 
     seen: set[str] = set()
     selected: list[NewsItem] = []
     ranked = sorted(all_items, key=lambda item: (material_score(item.title), item.published_at), reverse=True)
+    per_company: dict[str, int] = {ticker: 0 for ticker in FOCUS_TICKERS}
     for item in ranked:
-        key = normalize_title(item.title)
+        key = f"{item.ticker}|{normalize_title(item.title)}"
         if not key or key in seen or material_score(item.title) < 2:
+            continue
+        if per_company[item.ticker] >= 5:
             continue
         seen.add(key)
         selected.append(item)
-        if len(selected) >= 16:
-            break
+        per_company[item.ticker] += 1
 
     events = [event_from_item(item) for item in selected]
     config = json.loads(WATCHLIST_PATH.read_text(encoding="utf-8"))
-    watchlist = [market_row(item) for item in config["tickers"]]
-    market_dates = [row["price_as_of"] for row in watchlist if row.get("price_as_of")]
-    dominant = events[0]["primary_theme"] if events else "Önemli gelişme yok"
+    watchlist = [empty_market_row(item) for item in config["tickers"]]
+    dominant = events[0]["primary_theme"] if events else "TTRAK & LUNR"
 
     return {
         "report": {
@@ -236,24 +283,29 @@ def build_report() -> dict[str, Any]:
             "timezone": "Asia/Muscat",
             "window_start": (now_muscat - timedelta(hours=24)).isoformat(),
             "window_end": now_muscat.isoformat(),
-            "market_data_as_of": max(market_dates) if market_dates else None,
+            "market_data_as_of": None,
             "material_event_count": len(events),
             "headline_status": "MATERIAL_NEWS_FOUND" if events else "NO_MATERIAL_NEWS",
             "data_mode": "automated_public_sources",
         },
         "executive_summary": {
-            "headline": "Önem eşiğini geçen gelişmeler" if events else "Önemli yeni gelişme bulunmadı",
-            "market_regime": "Otomatik günlük tarama",
+            "headline": "TTRAK ve LUNR için önem eşiğini geçen gelişmeler" if events else "Önemli yeni gelişme bulunmadı",
+            "market_regime": "İki şirket odaklı günlük tarama",
             "dominant_theme": dominant,
-            "main_positive_driver": "Kapasite, sipariş ve yatırım büyümesi",
-            "main_risk": "Kaynak doğrulaması, uygulama ve değerleme riski",
-            "summary": f"Son 24 saatte {len(events)} maddi gelişme tespit edildi. Kartlar kaynak kalitesi ve önem filtresine göre sıralandı." if events else "Bugün önem eşiğini geçen yeni bir gelişme bulunmadı. Bülteni doldurmak için düşük önem seviyeli içerik eklenmedi.",
+            "main_positive_driver": "TTRAK için operasyonel performans; LUNR için sözleşme ve görev icrası",
+            "main_risk": "TTRAK için döngüsel talep; LUNR için görev, nakit ve sulanma riski",
+            "summary": (
+                f"Son 24 saatte TTRAK ve LUNR için {len(events)} maddi gelişme tespit edildi. "
+                "Yalnız bu iki şirket değerlendirme kapsamındadır."
+                if events else
+                "Bugün TTRAK ve LUNR için önem eşiğini geçen yeni bir gelişme bulunmadı."
+            ),
         },
         "events": events,
         "watchlist": watchlist,
-        "no_material_news_themes": [theme for theme in THEMES if not any(event["primary_theme"] == theme for event in events)],
+        "no_material_news_themes": [ticker for ticker in FOCUS_TICKERS if per_company[ticker] == 0],
         "data_quality_warnings": warnings,
-        "general_assessment": "Araştırma sınıfları kişisel işlem emri değildir.",
+        "general_assessment": "Değerlendirme yalnızca TTRAK ve LUNR içindir; araştırma sınıfları kişisel işlem emri değildir.",
     }
 
 
@@ -273,13 +325,18 @@ def validate_report(report: dict[str, Any]) -> None:
             raise ValueError(f"Event has no source: {event['event_id']}")
         if event.get("research_view", {}).get("rating") not in allowed:
             raise ValueError(f"Invalid rating: {event['event_id']}")
+        if not set(event.get("companies", [])).issubset(FOCUS_TICKERS):
+            raise ValueError(f"Out-of-scope company: {event['event_id']}")
+    watchlist_tickers = [item.get("ticker") for item in report["watchlist"]]
+    if watchlist_tickers != list(FOCUS_TICKERS):
+        raise ValueError(f"Watchlist scope must be {list(FOCUS_TICKERS)}")
 
 
 def main() -> int:
     report = build_report()
     validate_report(report)
     REPORT_PATH.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"Wrote {REPORT_PATH} with {len(report['events'])} events")
+    print(f"Wrote {REPORT_PATH} with {len(report['events'])} TTRAK/LUNR events")
     return 0
 
 
