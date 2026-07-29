@@ -1,8 +1,9 @@
 {
-  "name": "AI Altyapısı Piyasa Bülteni",
-  "short_name": "AI Bülten",
+  "name": "AI Infrastructure Market Bulletin / AI Altyapısı Piyasa Bülteni",
+  "short_name": "AI Market",
   "start_url": "./",
   "display": "standalone",
+  "lang": "tr",
   "background_color": "#060a12",
   "theme_color": "#09101d",
   "icons": [{"src":"./icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
