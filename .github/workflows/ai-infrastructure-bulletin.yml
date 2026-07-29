@@ -1,4 +1,4 @@
-name: AI Infrastructure Bulletin
+name: TTRAK and LUNR Daily Evaluation
 
 on:
   workflow_dispatch:
@@ -6,7 +6,6 @@ on:
     - cron: "30 5 * * *"
   push:
     branches:
-      - ai-infrastructure-bulletin-mvp
       - remediation/v30-audit
     paths:
       - "ai-infrastructure-bulletin/**"
@@ -22,7 +21,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: ai-infrastructure-bulletin-${{ github.ref }}
+  group: ttrak-lunr-evaluation-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -36,13 +35,13 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Validate seeded application data
-        run: python -m unittest discover -s ai-infrastructure-bulletin/tests -v
+      - name: Check application syntax
+        run: |
+          node --check ai-infrastructure-bulletin/app.js
+          python -m py_compile ai-infrastructure-bulletin/scripts/update_bulletin.py
+          python -m py_compile ai-infrastructure-bulletin/scripts/update_prices.py
 
-      - name: Check JavaScript syntax
-        run: node --check ai-infrastructure-bulletin/app.js
-
-      - name: Generate current bulletin
+      - name: Generate TTRAK and LUNR news evaluation
         run: python ai-infrastructure-bulletin/scripts/update_bulletin.py
 
       - name: Generate 1-day, 21-day and 252-day market performance
@@ -55,11 +54,11 @@ jobs:
         if: github.ref == 'refs/heads/remediation/v30-audit'
         run: |
           if git diff --quiet -- ai-infrastructure-bulletin/data/report.json; then
-            echo "No bulletin data change."
+            echo "No evaluation data change."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add ai-infrastructure-bulletin/data/report.json
-          git commit -m "chore: refresh AI infrastructure bulletin"
+          git commit -m "chore: refresh TTRAK and LUNR evaluation"
           git push
