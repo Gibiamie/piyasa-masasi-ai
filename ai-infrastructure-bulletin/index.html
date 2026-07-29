@@ -22,13 +22,11 @@
           <p class="subtitle" data-i18n="appSubtitle">Takip listesindeki her varlığı haber, fiyat trendi, temel sürücüler ve risklerle değerlendirir; kişisel portföyde gerçek işlem maliyetini takip eder.</p>
         </div>
       </div>
-      <div class="topbar-tools">
-        <div class="actions">
-          <button id="languageToggle" class="button language-button" type="button" aria-label="Switch language">EN</button>
-          <span id="freshness" class="badge neutral" data-i18n="loading">Yükleniyor</span>
-          <button id="refresh" class="button primary" data-i18n="refresh">Yenile</button>
-        </div>
-      </div>
+      <div class="topbar-tools"><div class="actions">
+        <button id="languageToggle" class="button language-button" type="button" aria-label="Switch language">EN</button>
+        <span id="freshness" class="badge neutral" data-i18n="loading">Yükleniyor</span>
+        <button id="refresh" class="button primary" data-i18n="refresh">Yenile</button>
+      </div></div>
     </header>
 
     <nav class="tabs" aria-label="Ana bölümler">
@@ -51,10 +49,7 @@
           <div><p class="eyebrow" data-i18n="generalAssessment">GENEL DEĞERLENDİRME</p><h2 id="summaryTitle" data-i18n="preparingEvaluation">Değerlendirme hazırlanıyor</h2></div>
           <div><p id="summaryText" data-i18n="loadingData">Veri yükleniyor.</p><p class="hint"><strong data-i18n="mainRisk">Ana risk:</strong> <span id="mainRiskValue">—</span></p></div>
         </article>
-        <div class="heading">
-          <div><p class="eyebrow" data-i18n="byCompany">ŞİRKET BAZINDA</p><h2 data-i18n="dailyResearchViews">Günlük araştırma görüşleri</h2></div>
-          <div id="filters" class="filters"></div>
-        </div>
+        <div class="heading"><div><p class="eyebrow" data-i18n="byCompany">ŞİRKET BAZINDA</p><h2 data-i18n="dailyResearchViews">Günlük araştırma görüşleri</h2></div><div id="filters" class="filters"></div></div>
         <div id="evaluations" class="events" aria-live="polite"></div>
         <div class="heading"><div><p class="eyebrow" data-i18n="last24Hours">SON 24 SAAT</p><h2 data-i18n="companyMaterialEvents">Şirkete özgü maddi gelişmeler</h2></div></div>
         <div id="events" class="events" aria-live="polite"></div>
@@ -62,24 +57,12 @@
       </section>
 
       <section id="watchlistView" class="view">
-        <div class="heading">
-          <div><p class="eyebrow" data-i18n="fullUniverse">TÜM TAKİP EVRENİ</p><h2 data-i18n="companyPerformance">Şirket performansı</h2></div>
-          <p id="marketAsOf" class="hint" data-i18n="marketDataLoading">Piyasa verisi yükleniyor.</p>
-        </div>
-        <div class="table-wrap"><table><thead><tr>
-          <th data-i18n="company">Şirket</th><th data-i18n="price">Fiyat</th><th data-i18n="oneDay">1 Gün</th><th data-i18n="twentyOneDays">21 Gün</th><th data-i18n="twoFiftyTwoDays">252 Gün</th><th data-i18n="fiftyTwoWeekHigh">52H Zirve</th><th data-i18n="risk">Risk</th>
-        </tr></thead><tbody id="watchlistBody"></tbody></table></div>
+        <div class="heading"><div><p class="eyebrow" data-i18n="fullUniverse">TÜM TAKİP EVRENİ</p><h2 data-i18n="companyPerformance">Şirket performansı</h2></div><p id="marketAsOf" class="hint" data-i18n="marketDataLoading">Piyasa verisi yükleniyor.</p></div>
+        <div class="table-wrap"><table><thead><tr><th data-i18n="company">Şirket</th><th data-i18n="price">Fiyat</th><th data-i18n="oneDay">1 Gün</th><th data-i18n="twentyOneDays">21 Gün</th><th data-i18n="twoFiftyTwoDays">252 Gün</th><th data-i18n="fiftyTwoWeekHigh">52H Zirve</th><th data-i18n="risk">Risk</th></tr></thead><tbody id="watchlistBody"></tbody></table></div>
       </section>
 
       <section id="portfolioView" class="view">
-        <div class="heading portfolio-heading">
-          <div><p class="eyebrow" data-i18n="personalPortfolio">KİŞİSEL PORTFÖY</p><h2 data-i18n="portfolioTitle">Sepetim ve işlem defterim</h2></div>
-          <div class="actions">
-            <button id="exportPortfolio" class="button" type="button" data-i18n="exportBackup">Yedeği indir</button>
-            <button id="importPortfolioBtn" class="button" type="button" data-i18n="importBackup">Yedek yükle</button>
-            <input id="importPortfolioFile" class="hidden" type="file" accept="application/json">
-          </div>
-        </div>
+        <div class="heading portfolio-heading"><div><p class="eyebrow" data-i18n="personalPortfolio">KİŞİSEL PORTFÖY</p><h2 data-i18n="portfolioTitle">Sepetim ve işlem defterim</h2></div><div class="actions"><button id="exportPortfolio" class="button" type="button" data-i18n="exportBackup">Yedeği indir</button><button id="importPortfolioBtn" class="button" type="button" data-i18n="importBackup">Yedek yükle</button><input id="importPortfolioFile" class="hidden" type="file" accept="application/json"></div></div>
         <p class="privacy-note" data-i18n="privacyNote">Portföy verileri bu cihazın tarayıcısında saklanır; GitHub'a veya haber raporuna gönderilmez.</p>
         <div class="metrics portfolio-metrics">
           <article><span data-i18n="remainingCost">Kalan maliyet</span><strong id="portfolioCostTotals">—</strong></article>
@@ -90,15 +73,9 @@
 
         <div class="portfolio-layout">
           <article class="panel portfolio-form-panel">
-            <p class="eyebrow" data-i18n="newTransaction">YENİ İŞLEM</p>
-            <h2 data-i18n="recordBuySell">Alış veya satış kaydet</h2>
-            <p class="hint" data-i18n="costMethodNote">Maliyet yöntemi: komisyon dahil hareketli ağırlıklı ortalama. Satış, kalan ortalama maliyeti değiştirmez.</p>
+            <p class="eyebrow" data-i18n="newTransaction">YENİ İŞLEM</p><h2 data-i18n="recordBuySell">Alış veya satış kaydet</h2><p class="hint" data-i18n="costMethodNote">Maliyet yöntemi: komisyon dahil hareketli ağırlıklı ortalama. Satış, kalan ortalama maliyeti değiştirmez.</p>
             <form id="transactionForm" class="form-grid">
-              <label><span data-i18n="assetType">Varlık türü</span>
-                <select id="txAssetType" required>
-                  <option value="STOCK" data-i18n="assetStock">Hisse</option><option value="ETF" data-i18n="assetEtf">ETF</option><option value="FUND" data-i18n="assetFund">Fon</option><option value="COMMODITY" data-i18n="assetCommodity">Emtia</option><option value="CRYPTO" data-i18n="assetCrypto">Kripto</option><option value="FX" data-i18n="assetFx">Döviz</option><option value="OTHER" data-i18n="assetOther">Diğer</option>
-                </select>
-              </label>
+              <label><span data-i18n="assetType">Varlık türü</span><select id="txAssetType" required><option value="STOCK" data-i18n="assetStock">Hisse</option><option value="ETF" data-i18n="assetEtf">ETF</option><option value="FUND" data-i18n="assetFund">Fon</option><option value="COMMODITY" data-i18n="assetCommodity">Emtia</option><option value="CRYPTO" data-i18n="assetCrypto">Kripto</option><option value="FX" data-i18n="assetFx">Döviz</option><option value="OTHER" data-i18n="assetOther">Diğer</option></select></label>
               <label><span data-i18n="symbol">Sembol</span><input id="txSymbol" maxlength="20" placeholder="TTRAK.IS / LUNR / BTC-USD" required></label>
               <label><span data-i18n="assetName">Varlık adı</span><input id="txName" maxlength="100" placeholder="Türk Traktör / Bitcoin"></label>
               <label><span data-i18n="currency">Para birimi</span><input id="txCurrency" maxlength="5" value="TRY" required></label>
@@ -116,8 +93,7 @@
           </article>
 
           <article class="panel portfolio-form-panel">
-            <p class="eyebrow" data-i18n="manualPrice">MANUEL PİYASA FİYATI</p><h2 data-i18n="updateUnsupportedPrice">Otomatik verisi olmayan varlığı güncelle</h2>
-            <p class="hint" data-i18n="manualPriceDetail">Takip raporunda bulunan sembollerin fiyatı otomatik kullanılır. Emtia, kripto veya desteklenmeyen semboller için fiyatı manuel kaydedebilirsiniz.</p>
+            <p class="eyebrow" data-i18n="manualPrice">MANUEL PİYASA FİYATI</p><h2 data-i18n="updateUnsupportedPrice">Otomatik verisi olmayan varlığı güncelle</h2><p class="hint" data-i18n="manualPriceDetail">Takip raporunda bulunan sembollerin fiyatı otomatik kullanılır. Emtia, kripto veya desteklenmeyen semboller için fiyatı manuel kaydedebilirsiniz.</p>
             <form id="priceForm" class="form-grid compact-form">
               <label><span data-i18n="symbol">Sembol</span><input id="priceSymbol" maxlength="20" required></label><label><span data-i18n="currency">Para birimi</span><input id="priceCurrency" maxlength="5" value="USD" required></label><label><span data-i18n="unit">Birim</span><input id="priceUnit" maxlength="20" value="unit" required></label><label><span data-i18n="currentPrice">Güncel fiyat</span><input id="priceValue" type="number" min="0" step="any" inputmode="decimal" required></label><label><span data-i18n="priceDate">Fiyat tarihi</span><input id="priceDate" type="date" required></label>
               <div class="span-all form-actions"><button class="button" type="submit" data-i18n="savePrice">Fiyatı kaydet</button><span id="priceFormStatus" class="hint" aria-live="polite"></span></div>
@@ -129,29 +105,15 @@
         <div class="heading"><div><p class="eyebrow" data-i18n="openPositions">AÇIK POZİSYONLAR</p><h2 data-i18n="portfolioHoldings">Portföy varlıkları</h2></div></div>
         <div class="table-wrap"><table class="portfolio-table"><thead><tr><th data-i18n="asset">Varlık</th><th data-i18n="type">Tür</th><th data-i18n="quantity">Adet / lot</th><th data-i18n="averageCost">Ort. maliyet</th><th data-i18n="currentPrice">Güncel fiyat</th><th data-i18n="remainingCost">Kalan maliyet</th><th data-i18n="marketValue">Piyasa değeri</th><th data-i18n="unrealizedPnl">Gerçekleşmemiş K/Z</th><th data-i18n="realizedPnl">Gerçekleşen K/Z</th></tr></thead><tbody id="portfolioHoldingsBody"></tbody></table></div>
         <div id="portfolioEmpty" class="empty"><h3 data-i18n="emptyPortfolio">Portföy henüz boş</h3><p data-i18n="emptyPortfolioDetail">İlk alış işleminizi yukarıdaki formdan kaydedin.</p></div>
-
         <div class="heading"><div><p class="eyebrow" data-i18n="transactionLedger">İŞLEM DEFTERİ</p><h2 data-i18n="allBuysSells">Tüm alış ve satışlar</h2></div></div>
         <div class="table-wrap"><table class="transaction-table"><thead><tr><th data-i18n="date">Tarih</th><th data-i18n="transactionType">İşlem türü</th><th data-i18n="asset">Varlık</th><th data-i18n="quantity">Adet / lot</th><th data-i18n="unitPrice">Birim fiyat</th><th data-i18n="fee">Komisyon</th><th data-i18n="grossValue">Brüt tutar</th><th data-i18n="realizedPnl">Gerçekleşen K/Z</th><th data-i18n="action">İşlem</th></tr></thead><tbody id="portfolioTransactionsBody"></tbody></table></div>
       </section>
 
-      <section id="sourcesView" class="view">
-        <div class="heading"><div><p class="eyebrow" data-i18n="evidenceChain">KANIT ZİNCİRİ</p><h2 data-i18n="newsSources">Şirket haber kaynakları</h2></div></div>
-        <div id="sourcesList" class="sources"></div>
-      </section>
+      <section id="sourcesView" class="view"><div class="heading"><div><p class="eyebrow" data-i18n="evidenceChain">KANIT ZİNCİRİ</p><h2 data-i18n="newsSources">Şirket haber kaynakları</h2></div></div><div id="sourcesList" class="sources"></div></section>
 
       <section id="settingsView" class="view">
         <div class="settings">
-          <article class="panel">
-            <p class="eyebrow" data-i18n="addNewStock">YENİ HİSSE EKLE</p><h2 data-i18n="centralUniverse">Merkezî değerlendirme evreni</h2>
-            <form id="tickerForm">
-              <label for="ticker" data-i18n="providerSymbol">Sağlayıcı sembolü</label>
-              <input id="ticker" maxlength="15" placeholder="Örn. AVGO veya THYAO.IS" required>
-              <label for="company" data-i18n="companyName">Şirket adı</label>
-              <div class="inline"><input id="company" maxlength="80" placeholder="Örn. Broadcom"><button class="button primary" data-i18n="requestAddition">Ekleme Talebi</button></div>
-            </form>
-            <div id="tickerChips" class="chips"></div>
-            <p id="tickerStatus" class="hint" data-i18n="universeLoading">Takip evreni yükleniyor.</p>
-          </article>
+          <article class="panel"><p class="eyebrow" data-i18n="addNewStock">YENİ HİSSE EKLE</p><h2 data-i18n="centralUniverse">Merkezî değerlendirme evreni</h2><form id="tickerForm"><label for="ticker" data-i18n="providerSymbol">Sağlayıcı sembolü</label><input id="ticker" maxlength="15" placeholder="Örn. AVGO veya THYAO.IS" required><label for="company" data-i18n="companyName">Şirket adı</label><div class="inline"><input id="company" maxlength="80" placeholder="Örn. Broadcom"><button class="button primary" data-i18n="requestAddition">Ekleme Talebi</button></div></form><div id="tickerChips" class="chips"></div><p id="tickerStatus" class="hint" data-i18n="universeLoading">Takip evreni yükleniyor.</p></article>
           <article class="panel"><p class="eyebrow" data-i18n="evaluationLogic">DEĞERLENDİRME MANTIĞI</p><h2 data-i18n="eachAssetSeparate">Her varlık ayrı incelenir</h2><p data-i18n="evaluationLogicDetail">Her şirket için 1, 21 ve 252 işlem günlük trend, son haberler, şirketin temel sürücüleri, özel riskleri ve tez etkisi birlikte değerlendirilir.</p></article>
           <article class="panel"><p class="eyebrow" data-i18n="riskLanguage">RİSK DİLİ</p><h2 data-i18n="researchNotOrder">Araştırma görüşü, emir değildir</h2><p data-i18n="riskLanguageDetail">Uygulama güçlü pozitif, pozitif, nötr, negatif ve yüksek belirsizlik sınıfları üretir. Kullanıcı profili olmadan kişisel al/sat emri oluşturmaz.</p></article>
         </div>
@@ -162,5 +124,6 @@
   </div>
   <script src="./portfolio-engine.js"></script>
   <script src="./app.js" defer></script>
+  <script src="./app-bilingual-patch.js" defer></script>
 </body>
 </html>
