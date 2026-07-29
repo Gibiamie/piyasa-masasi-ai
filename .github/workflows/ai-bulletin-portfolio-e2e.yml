@@ -1,0 +1,52 @@
+name: AI Bulletin Portfolio E2E
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - remediation/v30-audit
+    paths:
+      - "ai-infrastructure-bulletin/**"
+      - "quality/automation/e2e/ai-infrastructure-bulletin.spec.js"
+      - ".github/workflows/ai-bulletin-portfolio-e2e.yml"
+  pull_request:
+    branches:
+      - remediation/v30-audit
+    paths:
+      - "ai-infrastructure-bulletin/**"
+      - "quality/automation/e2e/ai-infrastructure-bulletin.spec.js"
+      - ".github/workflows/ai-bulletin-portfolio-e2e.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ai-bulletin-portfolio-e2e-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  portfolio-e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium firefox webkit
+      - name: Run portfolio scenario in Chromium, Firefox and WebKit
+        run: npx playwright test quality/automation/e2e/ai-infrastructure-bulletin.spec.js
+      - name: Upload Playwright report on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ai-bulletin-portfolio-playwright-report
+          path: |
+            quality/automation/e2e/report
+            test-results
+          if-no-files-found: ignore
+          retention-days: 7
