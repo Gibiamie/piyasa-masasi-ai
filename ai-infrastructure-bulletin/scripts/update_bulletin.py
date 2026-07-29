@@ -16,72 +16,23 @@ from typing import Any
 from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA_DIR = ROOT / "data"
-REPORT_PATH = DATA_DIR / "report.json"
-WATCHLIST_PATH = DATA_DIR / "watchlist.json"
+REPORT_PATH = ROOT / "data" / "report.json"
+WATCHLIST_PATH = ROOT / "data" / "watchlist.json"
 MUSCAT = ZoneInfo("Asia/Muscat")
-USER_AGENT = "TTRAK-LUNR-Bulletin/1.1 (+https://github.com/Gibiamie/piyasa-masasi-ai)"
-FOCUS_TICKERS = ("TTRAK", "LUNR")
-
-COMPANIES: dict[str, dict[str, str]] = {
-    "TTRAK": {
-        "company": "Türk Traktör",
-        "query": '("Türk Traktör" OR TurkTraktor OR TTRAK) (bilanço OR satış OR üretim OR ihracat OR yatırım OR temettü OR tractor OR earnings OR guidance)',
-        "hl": "tr",
-        "gl": "TR",
-        "ceid": "TR:tr",
-        "risk_badge": "ESTABLISHED",
-    },
-    "LUNR": {
-        "company": "Intuitive Machines",
-        "query": '("Intuitive Machines" OR LUNR) (NASA OR contract OR mission OR launch OR earnings OR guidance OR financing OR spacecraft)',
-        "hl": "en-US",
-        "gl": "US",
-        "ceid": "US:en",
-        "risk_badge": "SPECULATIVE",
-    },
-}
+USER_AGENT = "AI-Infrastructure-Market-Bulletin/2.0 (+https://github.com/Gibiamie/piyasa-masasi-ai)"
 
 MATERIAL_TERMS = {
-    "billion": 3,
-    "million": 1,
-    "gigawatt": 4,
-    "megawatt": 2,
-    "contract": 3,
-    "partnership": 2,
-    "investment": 2,
-    "capacity": 2,
-    "acquisition": 3,
-    "earnings": 3,
-    "guidance": 3,
-    "revenue": 2,
-    "margin": 2,
-    "launch": 2,
-    "mission": 2,
-    "nasa": 2,
-    "financing": 3,
-    "offering": 3,
-    "dilution": 3,
-    "bilanço": 3,
-    "satış": 2,
-    "üretim": 2,
-    "ihracat": 2,
-    "yatırım": 2,
-    "temettü": 3,
-    "sözleşme": 3,
-    "sipariş": 2,
-    "net kâr": 3,
-    "net kar": 3,
-    "zarar": 3,
-    "türk traktör": 2,
-    "turktraktor": 2,
-    "intuitive machines": 2,
-    "lunr": 2,
+    "billion": 3, "million": 1, "milyar": 3, "milyon": 1,
+    "contract": 3, "sözleşme": 3, "partnership": 2, "investment": 2, "yatırım": 2,
+    "capacity": 2, "acquisition": 3, "earnings": 3, "bilanço": 3, "guidance": 3,
+    "revenue": 2, "gelir": 2, "margin": 2, "marj": 2, "launch": 2, "mission": 2,
+    "financing": 3, "offering": 3, "dilution": 3, "temettü": 3, "production": 2,
+    "üretim": 2, "sales": 2, "satış": 2, "export": 2, "ihracat": 2, "order": 2,
+    "sipariş": 2, "profit": 2, "kâr": 2, "kar": 2, "loss": 2, "zarar": 2,
 }
-
 POSITIVE_TERMS = {
-    "expand", "partnership", "contract", "growth", "record", "launch success", "award",
-    "increase", "beat", "profit", "büyüme", "artış", "rekor", "kâr", "kar", "ihracat artışı",
+    "expand", "partnership", "contract", "growth", "record", "award", "increase", "beat",
+    "profit", "upgrade", "büyüme", "artış", "rekor", "kâr", "kar", "ihracat artışı",
 }
 NEGATIVE_TERMS = {
     "delay", "cancel", "loss", "investigation", "downgrade", "decline", "failure", "dilution",
@@ -89,7 +40,7 @@ NEGATIVE_TERMS = {
 }
 TRUSTED_PUBLISHERS = {
     "Reuters", "Associated Press", "Bloomberg", "Financial Times", "The Wall Street Journal",
-    "KAP", "Nasdaq", "NASA", "Intuitive Machines", "TürkTraktör",
+    "KAP", "Nasdaq", "NASA", "SEC", "Borsa İstanbul",
 }
 
 
@@ -102,6 +53,8 @@ class NewsItem:
     ticker: str
     company: str
     risk_badge: str
+    key_drivers: tuple[str, ...]
+    key_risks: tuple[str, ...]
 
 
 def request_text(url: str, timeout: int = 30) -> str:
@@ -110,13 +63,37 @@ def request_text(url: str, timeout: int = 30) -> str:
         return response.read().decode("utf-8", errors="replace")
 
 
-def google_news(ticker: str, config: dict[str, str], now: datetime) -> list[NewsItem]:
-    encoded = urllib.parse.quote_plus(f"{config['query']} when:1d")
+def locale_for(item: dict[str, Any]) -> dict[str, str]:
+    configured = item.get("locale") or {}
+    if configured:
+        return {
+            "hl": str(configured.get("hl") or "en-US"),
+            "gl": str(configured.get("gl") or "US"),
+            "ceid": str(configured.get("ceid") or "US:en"),
+        }
+    if str(item.get("provider_symbol", "")).upper().endswith(".IS"):
+        return {"hl": "tr", "gl": "TR", "ceid": "TR:tr"}
+    return {"hl": "en-US", "gl": "US", "ceid": "US:en"}
+
+
+def default_query(item: dict[str, Any]) -> str:
+    ticker = str(item["ticker"])
+    company = str(item.get("company") or ticker)
+    return (
+        f'(\"{company}\" OR {ticker}) '
+        "(earnings OR guidance OR revenue OR contract OR investment OR production OR sales OR dividend)"
+    )
+
+
+def google_news(item: dict[str, Any], now: datetime) -> list[NewsItem]:
+    locale = locale_for(item)
+    query = str(item.get("news_query") or default_query(item))
+    encoded = urllib.parse.quote_plus(f"{query} when:1d")
     url = (
         "https://news.google.com/rss/search?"
-        f"q={encoded}&hl={urllib.parse.quote_plus(config['hl'])}"
-        f"&gl={urllib.parse.quote_plus(config['gl'])}"
-        f"&ceid={urllib.parse.quote_plus(config['ceid'])}"
+        f"q={encoded}&hl={urllib.parse.quote_plus(locale['hl'])}"
+        f"&gl={urllib.parse.quote_plus(locale['gl'])}"
+        f"&ceid={urllib.parse.quote_plus(locale['ceid'])}"
     )
     root = ET.fromstring(request_text(url))
     items: list[NewsItem] = []
@@ -125,21 +102,23 @@ def google_news(ticker: str, config: dict[str, str], now: datetime) -> list[News
         link = (node.findtext("link") or "").strip()
         source = node.find("source")
         publisher = (source.text or "").strip() if source is not None else "Unknown"
-        raw_date = node.findtext("pubDate") or ""
         try:
-            published = parsedate_to_datetime(raw_date).astimezone(timezone.utc)
+            published = parsedate_to_datetime(node.findtext("pubDate") or "").astimezone(timezone.utc)
         except (TypeError, ValueError):
             continue
-        if now - published <= timedelta(hours=30):
-            items.append(NewsItem(
-                title=title,
-                link=link,
-                publisher=publisher,
-                published_at=published,
-                ticker=ticker,
-                company=config["company"],
-                risk_badge=config["risk_badge"],
-            ))
+        if now - published > timedelta(hours=30):
+            continue
+        items.append(NewsItem(
+            title=title,
+            link=link,
+            publisher=publisher,
+            published_at=published,
+            ticker=str(item["ticker"]),
+            company=str(item.get("company") or item["ticker"]),
+            risk_badge=str(item.get("risk_badge") or "GROWTH"),
+            key_drivers=tuple(str(value) for value in item.get("key_drivers", [])),
+            key_risks=tuple(str(value) for value in item.get("key_risks", [])),
+        ))
     return items
 
 
@@ -163,29 +142,18 @@ def sentiment(title: str) -> str:
     return "NEUTRAL"
 
 
-def company_context(ticker: str) -> tuple[str, str]:
-    if ticker == "TTRAK":
-        return (
-            "Türk Traktör için iç pazar talebi, ihracat, üretim adedi, fiyatlama gücü ve marjlar yatırım tezinin ana sürücüleridir.",
-            "Tarım makinesi döngüsü, kur, faiz, çiftçi finansmanı ve ihracat talebi birlikte izlenmelidir.",
-        )
-    return (
-        "Intuitive Machines için NASA sözleşmeleri, görev başarısı, fırlatma takvimi, nakit tüketimi ve yeni finansman ihtiyacı yatırım tezinin ana sürücüleridir.",
-        "Görev gecikmesi veya başarısızlığı, yüksek volatilite ve sermaye sulanması riski birlikte izlenmelidir.",
-    )
-
-
 def event_from_item(item: NewsItem) -> dict[str, Any]:
     rating = sentiment(item.title)
     event_id = "evt-" + hashlib.sha256(
         f"{item.ticker}|{normalize_title(item.title)}|{item.published_at.date()}".encode()
     ).hexdigest()[:14]
     confidence = "HIGH" if item.publisher in TRUSTED_PUBLISHERS else "MEDIUM"
-    why_it_matters, core_risk = company_context(item.ticker)
+    drivers = list(item.key_drivers) or [f"{item.company} için gelir, kârlılık ve stratejik uygulama"]
+    risks = list(item.key_risks) or ["Şirkete özgü finansal ve operasyonel riskler"]
     investment_meaning = {
-        "POSITIVE": "Araştırma görünümü pozitif yönde değişti; fiyatlama, bilanço etkisi ve uygulama takvimi teyit edilmelidir.",
-        "NEGATIVE": "Araştırma görünümü zayıfladı; etkinin geçici mi yapısal mı olduğu resmî açıklamalarla kontrol edilmelidir.",
-        "NEUTRAL": "Gelişme izlenmeli; tek başına pozisyon artırma veya azaltma kararı üretmek için yeterli değildir.",
+        "POSITIVE": "Araştırma görünümü pozitif yönde değişti; finansal etki ve değerleme teyit edilmelidir.",
+        "NEGATIVE": "Araştırma görünümü zayıfladı; etkinin geçici mi yapısal mı olduğu resmî kaynaklarla kontrol edilmelidir.",
+        "NEUTRAL": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
     }[rating]
     return {
         "event_id": event_id,
@@ -197,7 +165,7 @@ def event_from_item(item: NewsItem) -> dict[str, Any]:
         "published_time": item.published_at.isoformat(),
         "retrieved_time": datetime.now(timezone.utc).isoformat(),
         "facts": [item.title],
-        "why_it_matters": why_it_matters,
+        "why_it_matters": f"{item.company} yatırım tezinin ana sürücüleri: " + "; ".join(drivers[:3]) + ".",
         "investment_meaning": investment_meaning,
         "thesis_impact": (
             "THESIS_STRENGTHENED" if rating == "POSITIVE"
@@ -209,7 +177,7 @@ def event_from_item(item: NewsItem) -> dict[str, Any]:
             "time_horizon": "Orta-Uzun vadeli",
             "summary": investment_meaning,
             "reasons": [f"{item.company} için son 24 saatte önem filtresini geçen gelişme"],
-            "risks": [core_risk, "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"],
+            "risks": risks[:3] + ["Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"],
         },
         "risk_badge": item.risk_badge,
         "confidence": confidence,
@@ -219,22 +187,16 @@ def event_from_item(item: NewsItem) -> dict[str, Any]:
             "title": item.title,
             "published_at": item.published_at.isoformat(),
             "url": item.link,
-            "primary_source": item.publisher in {"KAP", "NASA", "Intuitive Machines", "TürkTraktör"},
+            "primary_source": item.publisher in TRUSTED_PUBLISHERS,
         }],
     }
-
-
-def pct_change(current: float, previous: float) -> float | None:
-    if previous == 0:
-        return None
-    return round((current / previous - 1) * 100, 2)
 
 
 def empty_market_row(item: dict[str, Any]) -> dict[str, Any]:
     return {
         "ticker": item["ticker"],
         "provider_symbol": item.get("provider_symbol", item["ticker"]),
-        "company": item["company"],
+        "company": item.get("company", item["ticker"]),
         "currency": item.get("currency", "USD"),
         "price": None,
         "return_1d_pct": None,
@@ -242,40 +204,39 @@ def empty_market_row(item: dict[str, Any]) -> dict[str, Any]:
         "return_252d_pct": None,
         "distance_from_52w_high_pct": None,
         "price_as_of": None,
-        "risk_badge": item["risk_badge"],
+        "risk_badge": item.get("risk_badge", "GROWTH"),
+        "sector": item.get("sector", "Diğer"),
     }
 
 
 def build_report() -> dict[str, Any]:
     now_utc = datetime.now(timezone.utc)
     now_muscat = now_utc.astimezone(MUSCAT)
+    config = json.loads(WATCHLIST_PATH.read_text(encoding="utf-8"))
+    companies = config.get("tickers") or []
     all_items: list[NewsItem] = []
     warnings: list[str] = []
-    for ticker, config in COMPANIES.items():
+    for company in companies:
         try:
-            all_items.extend(google_news(ticker, config, now_utc))
+            all_items.extend(google_news(company, now_utc))
         except Exception as exc:
-            warnings.append(f"{ticker} haber akışı alınamadı: {type(exc).__name__}")
+            warnings.append(f"{company.get('ticker', '?')} haber akışı alınamadı: {type(exc).__name__}")
 
+    ranked = sorted(all_items, key=lambda value: (material_score(value.title), value.published_at), reverse=True)
     seen: set[str] = set()
     selected: list[NewsItem] = []
-    ranked = sorted(all_items, key=lambda item: (material_score(item.title), item.published_at), reverse=True)
-    per_company: dict[str, int] = {ticker: 0 for ticker in FOCUS_TICKERS}
+    per_company: dict[str, int] = {str(item["ticker"]): 0 for item in companies}
     for item in ranked:
         key = f"{item.ticker}|{normalize_title(item.title)}"
-        if not key or key in seen or material_score(item.title) < 2:
-            continue
-        if per_company[item.ticker] >= 5:
+        if key in seen or material_score(item.title) < 2 or per_company.get(item.ticker, 0) >= 3:
             continue
         seen.add(key)
         selected.append(item)
-        per_company[item.ticker] += 1
+        per_company[item.ticker] = per_company.get(item.ticker, 0) + 1
 
     events = [event_from_item(item) for item in selected]
-    config = json.loads(WATCHLIST_PATH.read_text(encoding="utf-8"))
-    watchlist = [empty_market_row(item) for item in config["tickers"]]
-    dominant = events[0]["primary_theme"] if events else "TTRAK & LUNR"
-
+    watchlist = [empty_market_row(item) for item in companies]
+    companies_with_news = len({event["companies"][0] for event in events if event.get("companies")})
     return {
         "report": {
             "report_id": now_muscat.strftime("%Y-%m-%d-%H%M"),
@@ -285,32 +246,32 @@ def build_report() -> dict[str, Any]:
             "window_end": now_muscat.isoformat(),
             "market_data_as_of": None,
             "material_event_count": len(events),
+            "company_count": len(companies),
             "headline_status": "MATERIAL_NEWS_FOUND" if events else "NO_MATERIAL_NEWS",
             "data_mode": "automated_public_sources",
         },
         "executive_summary": {
-            "headline": "TTRAK ve LUNR için önem eşiğini geçen gelişmeler" if events else "Önemli yeni gelişme bulunmadı",
-            "market_regime": "İki şirket odaklı günlük tarama",
-            "dominant_theme": dominant,
-            "main_positive_driver": "TTRAK için operasyonel performans; LUNR için sözleşme ve görev icrası",
-            "main_risk": "TTRAK için döngüsel talep; LUNR için görev, nakit ve sulanma riski",
+            "headline": "Takip listesinin günlük şirket değerlendirmesi",
+            "market_regime": "Çok şirketli günlük tarama",
+            "dominant_theme": events[0]["primary_theme"] if events else "Önemli gelişme yok",
+            "main_positive_driver": "Şirket bazında gelir, kapasite, sipariş ve stratejik uygulama",
+            "main_risk": "Değerleme, finansman, döngü ve uygulama riski",
             "summary": (
-                f"Son 24 saatte TTRAK ve LUNR için {len(events)} maddi gelişme tespit edildi. "
-                "Yalnız bu iki şirket değerlendirme kapsamındadır."
-                if events else
-                "Bugün TTRAK ve LUNR için önem eşiğini geçen yeni bir gelişme bulunmadı."
+                f"{len(companies)} şirket değerlendirildi; son 24 saatte {companies_with_news} şirket için "
+                f"{len(events)} önem eşiğini geçen gelişme bulundu."
             ),
         },
         "events": events,
         "watchlist": watchlist,
-        "no_material_news_themes": [ticker for ticker in FOCUS_TICKERS if per_company[ticker] == 0],
+        "company_evaluations": [],
+        "no_material_news_tickers": [ticker for ticker, count in per_company.items() if count == 0],
         "data_quality_warnings": warnings,
-        "general_assessment": "Değerlendirme yalnızca TTRAK ve LUNR içindir; araştırma sınıfları kişisel işlem emri değildir.",
+        "general_assessment": "Her şirket ayrı fiyat, haber, temel sürücü ve risk bağlamında değerlendirilir; araştırma sınıfları kişisel işlem emri değildir.",
     }
 
 
 def validate_report(report: dict[str, Any]) -> None:
-    required = {"report", "executive_summary", "events", "watchlist"}
+    required = {"report", "executive_summary", "events", "watchlist", "company_evaluations"}
     missing = required - report.keys()
     if missing:
         raise ValueError(f"Missing report keys: {sorted(missing)}")
@@ -320,23 +281,21 @@ def validate_report(report: dict[str, Any]) -> None:
     if len(event_ids) != len(set(event_ids)):
         raise ValueError("Duplicate event IDs")
     allowed = {"STRONG_POSITIVE", "POSITIVE", "NEUTRAL", "NEGATIVE", "HIGH_UNCERTAINTY"}
+    tickers = {item["ticker"] for item in report["watchlist"]}
     for event in report["events"]:
         if not event.get("sources"):
             raise ValueError(f"Event has no source: {event['event_id']}")
         if event.get("research_view", {}).get("rating") not in allowed:
             raise ValueError(f"Invalid rating: {event['event_id']}")
-        if not set(event.get("companies", [])).issubset(FOCUS_TICKERS):
-            raise ValueError(f"Out-of-scope company: {event['event_id']}")
-    watchlist_tickers = [item.get("ticker") for item in report["watchlist"]]
-    if watchlist_tickers != list(FOCUS_TICKERS):
-        raise ValueError(f"Watchlist scope must be {list(FOCUS_TICKERS)}")
+        if not set(event.get("companies", [])).issubset(tickers):
+            raise ValueError(f"Event references unknown ticker: {event['event_id']}")
 
 
 def main() -> int:
     report = build_report()
     validate_report(report)
     REPORT_PATH.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"Wrote {REPORT_PATH} with {len(report['events'])} TTRAK/LUNR events")
+    print(f"Wrote {REPORT_PATH} with {len(report['watchlist'])} companies and {len(report['events'])} events")
     return 0
 
 
