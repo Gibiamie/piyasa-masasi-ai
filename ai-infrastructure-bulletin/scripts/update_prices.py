@@ -41,8 +41,8 @@ def fetch_json(url: str, timeout: int = 30) -> dict[str, Any]:
 
 
 def fetch_symbol(item: dict[str, Any]) -> tuple[str, dict[str, Any] | None, str | None]:
-    ticker = str(item["ticker"]).upper()
-    provider_symbol = ticker.replace(".", "-")
+    ticker = str(item["ticker"]).upper().strip()
+    provider_symbol = str(item.get("provider_symbol") or ticker.replace(".", "-")).strip()
     encoded = urllib.parse.quote(provider_symbol, safe="")
     last_error = "no response"
     for host in ("query1.finance.yahoo.com", "query2.finance.yahoo.com"):
@@ -56,6 +56,7 @@ def fetch_symbol(item: dict[str, Any]) -> tuple[str, dict[str, Any] | None, str 
             result = (chart.get("result") or [None])[0]
             if not result:
                 raise RuntimeError("empty chart result")
+            meta = result.get("meta") or {}
             timestamps = result.get("timestamp") or []
             quote = ((result.get("indicators") or {}).get("quote") or [{}])[0]
             closes = quote.get("close") or []
@@ -66,14 +67,17 @@ def fetch_symbol(item: dict[str, Any]) -> tuple[str, dict[str, Any] | None, str 
                     continue
                 date = datetime.fromtimestamp(timestamp, timezone.utc).date().isoformat()
                 history.append((date, close))
+            history = sorted(dict(history).items())
             if len(history) < 2:
                 raise RuntimeError(f"only {len(history)} valid rows")
             current = history[-1][1]
             recent = [close for _, close in history[-252:]]
+            currency = str(meta.get("currency") or item.get("currency") or "USD").upper()
             row: dict[str, Any] = {
                 "ticker": ticker,
+                "provider_symbol": provider_symbol,
                 "company": item["company"],
-                "currency": "USD",
+                "currency": currency,
                 "price": round(current, 2),
                 "return_1d_pct": pct_change(current, history[-2][1]),
                 "return_21d_pct": pct_change(current, history[-22][1]) if len(history) >= 22 else None,
@@ -108,7 +112,7 @@ def main() -> int:
     report["watchlist"] = [rows.get(item["ticker"], existing.get(item["ticker"], item)) for item in config["tickers"]]
     dates = [row.get("price_as_of") for row in rows.values() if row.get("price_as_of")]
     report["report"]["market_data_as_of"] = max(dates) if dates else None
-    warnings = [warning for warning in report.get("data_quality_warnings", []) if "Fiyat" not in warning]
+    warnings = [warning for warning in report.get("data_quality_warnings", []) if "ticker için fiyat" not in warning]
     if failures:
         warnings.append(f"{len(failures)} ticker için fiyat verisi alınamadı: " + ", ".join(item["ticker"] for item in failures))
     report["data_quality_warnings"] = warnings
