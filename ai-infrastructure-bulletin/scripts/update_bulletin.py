@@ -19,7 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 REPORT_PATH = ROOT / "data" / "report.json"
 WATCHLIST_PATH = ROOT / "data" / "watchlist.json"
 MUSCAT = ZoneInfo("Asia/Muscat")
-USER_AGENT = "AI-Infrastructure-Market-Bulletin/2.0 (+https://github.com/Gibiamie/piyasa-masasi-ai)"
+USER_AGENT = "AI-Infrastructure-Market-Bulletin/2.1 (+https://github.com/Gibiamie/piyasa-masasi-ai)"
 
 MATERIAL_TERMS = {
     "billion": 3, "million": 1, "milyar": 3, "milyon": 1,
@@ -54,7 +54,9 @@ class NewsItem:
     company: str
     risk_badge: str
     key_drivers: tuple[str, ...]
+    key_drivers_en: tuple[str, ...]
     key_risks: tuple[str, ...]
+    key_risks_en: tuple[str, ...]
 
 
 def request_text(url: str, timeout: int = 30) -> str:
@@ -117,7 +119,9 @@ def google_news(item: dict[str, Any], now: datetime) -> list[NewsItem]:
             company=str(item.get("company") or item["ticker"]),
             risk_badge=str(item.get("risk_badge") or "GROWTH"),
             key_drivers=tuple(str(value) for value in item.get("key_drivers", [])),
+            key_drivers_en=tuple(str(value) for value in item.get("key_drivers_en", item.get("key_drivers", []))),
             key_risks=tuple(str(value) for value in item.get("key_risks", [])),
+            key_risks_en=tuple(str(value) for value in item.get("key_risks_en", item.get("key_risks", []))),
         ))
     return items
 
@@ -149,11 +153,18 @@ def event_from_item(item: NewsItem) -> dict[str, Any]:
     ).hexdigest()[:14]
     confidence = "HIGH" if item.publisher in TRUSTED_PUBLISHERS else "MEDIUM"
     drivers = list(item.key_drivers) or [f"{item.company} için gelir, kârlılık ve stratejik uygulama"]
+    drivers_en = list(item.key_drivers_en) or [f"Revenue, profitability and strategic execution at {item.company}"]
     risks = list(item.key_risks) or ["Şirkete özgü finansal ve operasyonel riskler"]
+    risks_en = list(item.key_risks_en) or ["Company-specific financial and operating risks"]
     investment_meaning = {
         "POSITIVE": "Araştırma görünümü pozitif yönde değişti; finansal etki ve değerleme teyit edilmelidir.",
         "NEGATIVE": "Araştırma görünümü zayıfladı; etkinin geçici mi yapısal mı olduğu resmî kaynaklarla kontrol edilmelidir.",
         "NEUTRAL": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
+    }[rating]
+    investment_meaning_en = {
+        "POSITIVE": "The research view improved; the financial impact and valuation must still be confirmed.",
+        "NEGATIVE": "The research view weakened; official sources should determine whether the effect is temporary or structural.",
+        "NEUTRAL": "The development should be monitored; it is not sufficient on its own to determine a position decision.",
     }[rating]
     return {
         "event_id": event_id,
@@ -166,7 +177,9 @@ def event_from_item(item: NewsItem) -> dict[str, Any]:
         "retrieved_time": datetime.now(timezone.utc).isoformat(),
         "facts": [item.title],
         "why_it_matters": f"{item.company} yatırım tezinin ana sürücüleri: " + "; ".join(drivers[:3]) + ".",
+        "why_it_matters_en": f"Key drivers of the {item.company} investment thesis: " + "; ".join(drivers_en[:3]) + ".",
         "investment_meaning": investment_meaning,
+        "investment_meaning_en": investment_meaning_en,
         "thesis_impact": (
             "THESIS_STRENGTHENED" if rating == "POSITIVE"
             else "THESIS_WEAKENED" if rating == "NEGATIVE"
@@ -175,9 +188,13 @@ def event_from_item(item: NewsItem) -> dict[str, Any]:
         "research_view": {
             "rating": rating,
             "time_horizon": "Orta-Uzun vadeli",
+            "time_horizon_en": "Medium to long term",
             "summary": investment_meaning,
+            "summary_en": investment_meaning_en,
             "reasons": [f"{item.company} için son 24 saatte önem filtresini geçen gelişme"],
+            "reasons_en": [f"A development concerning {item.company} passed the materiality filter in the last 24 hours"],
             "risks": risks[:3] + ["Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"],
+            "risks_en": risks_en[:3] + ["A headline alone does not fully measure the financial effect"],
         },
         "risk_badge": item.risk_badge,
         "confidence": confidence,
@@ -206,6 +223,7 @@ def empty_market_row(item: dict[str, Any]) -> dict[str, Any]:
         "price_as_of": None,
         "risk_badge": item.get("risk_badge", "GROWTH"),
         "sector": item.get("sector", "Diğer"),
+        "sector_en": item.get("sector_en", item.get("sector", "Other")),
     }
 
 
@@ -252,13 +270,21 @@ def build_report() -> dict[str, Any]:
         },
         "executive_summary": {
             "headline": "Takip listesinin günlük şirket değerlendirmesi",
+            "headline_en": "Daily company assessment of the tracking universe",
             "market_regime": "Çok şirketli günlük tarama",
+            "market_regime_en": "Multi-company daily scan",
             "dominant_theme": events[0]["primary_theme"] if events else "Önemli gelişme yok",
             "main_positive_driver": "Şirket bazında gelir, kapasite, sipariş ve stratejik uygulama",
+            "main_positive_driver_en": "Company-specific revenue, capacity, orders and strategic execution",
             "main_risk": "Değerleme, finansman, döngü ve uygulama riski",
+            "main_risk_en": "Valuation, financing, cycle and execution risk",
             "summary": (
                 f"{len(companies)} şirket değerlendirildi; son 24 saatte {companies_with_news} şirket için "
                 f"{len(events)} önem eşiğini geçen gelişme bulundu."
+            ),
+            "summary_en": (
+                f"{len(companies)} companies were assessed; {len(events)} developments concerning "
+                f"{companies_with_news} companies passed the materiality threshold in the last 24 hours."
             ),
         },
         "events": events,
@@ -267,6 +293,7 @@ def build_report() -> dict[str, Any]:
         "no_material_news_tickers": [ticker for ticker, count in per_company.items() if count == 0],
         "data_quality_warnings": warnings,
         "general_assessment": "Her şirket ayrı fiyat, haber, temel sürücü ve risk bağlamında değerlendirilir; araştırma sınıfları kişisel işlem emri değildir.",
+        "general_assessment_en": "Each company is assessed using its own price, news, fundamental drivers and risks; research classifications are not personal execution orders.",
     }
 
 
@@ -289,6 +316,8 @@ def validate_report(report: dict[str, Any]) -> None:
             raise ValueError(f"Invalid rating: {event['event_id']}")
         if not set(event.get("companies", [])).issubset(tickers):
             raise ValueError(f"Event references unknown ticker: {event['event_id']}")
+        if not event.get("why_it_matters_en") or not event.get("investment_meaning_en"):
+            raise ValueError(f"Event is not bilingual: {event['event_id']}")
 
 
 def main() -> int:
