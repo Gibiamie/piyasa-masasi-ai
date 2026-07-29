@@ -46,6 +46,7 @@ jobs:
           mkdir contract-work
           unzip -q source.zip -d contract-work
           cp schema-contract-overrides/pyproject.toml contract-work/ai-research-schema-contract-final/pyproject.toml
+          cp schema-contract-overrides/invariant_validator.py contract-work/ai-research-schema-contract-final/src/ai_research_schema_contract/invariant_validator.py
           python - <<'PY'
           from pathlib import Path
           import hashlib
@@ -88,7 +89,7 @@ jobs:
                   info.external_attr = (0o644 & 0xFFFF) << 16
                   archive.writestr(info, path.read_bytes())
           PY
-          echo "3a5012259f251cbc80f5cb562ea321773dd1a58dbc21ecacea9016f0a6371a51  schema-contract.zip" | sha256sum --check --strict
+          echo "cab3c108a0bd0bb33131185ce8e0496bc4f43e2ec0f16a65cd2db71c841bccac  schema-contract.zip" | sha256sum --check --strict
 
       - name: Install package and quality tools
         working-directory: contract-work/ai-research-schema-contract-final
