@@ -29,8 +29,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          : > schema-contract.b64
-          for index in 00 01 02 03 04 05 06 07 08; do
+          sed 's/LNTabaimana/LNTabimana/' schema-contract-payload/part00.b64 | head -c 7000 > schema-contract.b64
+          for index in 01 02 03 04 05 06 07 08; do
             head -c 7000 "schema-contract-payload/part${index}.b64" >> schema-contract.b64
           done
           head -c 2100 schema-contract-payload/part09.b64 >> schema-contract.b64
