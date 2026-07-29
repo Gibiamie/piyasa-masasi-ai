@@ -42,6 +42,19 @@ class BulletinTests(unittest.TestCase):
         actual = {item["ticker"] for item in report["company_evaluations"]}
         self.assertEqual(actual, expected)
 
+    def test_research_content_is_bilingual(self):
+        report = self.load_report()
+        summary = report["executive_summary"]
+        self.assertTrue(summary.get("headline_en"))
+        self.assertTrue(summary.get("summary_en"))
+        self.assertTrue(summary.get("main_risk_en"))
+        self.assertTrue(all(event.get("why_it_matters_en") for event in report["events"]))
+        self.assertTrue(all(event.get("investment_meaning_en") for event in report["events"]))
+        self.assertTrue(all(event.get("research_view", {}).get("risks_en") for event in report["events"]))
+        self.assertTrue(all(item.get("summary_en") for item in report["company_evaluations"]))
+        self.assertTrue(all(item.get("key_drivers_en") for item in report["company_evaluations"]))
+        self.assertTrue(all(item.get("key_risks_en") for item in report["company_evaluations"]))
+
     def test_every_event_references_configured_company(self):
         report = self.load_report()
         expected = {item["ticker"] for item in self.load_config()}
@@ -50,8 +63,13 @@ class BulletinTests(unittest.TestCase):
     def test_duplicate_event_ids_are_rejected(self):
         report = self.load_report()
         event = report["events"][0] if report["events"] else {
-            "event_id": "evt-test", "primary_theme": "NVDA", "companies": ["NVDA"],
-            "research_view": {"rating": "NEUTRAL"}, "sources": [{"publisher": "test"}],
+            "event_id": "evt-test",
+            "primary_theme": "NVDA",
+            "companies": ["NVDA"],
+            "why_it_matters_en": "test",
+            "investment_meaning_en": "test",
+            "research_view": {"rating": "NEUTRAL"},
+            "sources": [{"publisher": "test"}],
         }
         report["events"] = [copy.deepcopy(event), copy.deepcopy(event)]
         report["report"]["material_event_count"] = 2
@@ -67,6 +85,12 @@ class BulletinTests(unittest.TestCase):
         self.assertEqual(PRICES.evaluation_rating(row, [], "ESTABLISHED"), "POSITIVE")
         volatile = {"price": 10, "return_21d_pct": -30, "return_252d_pct": -60}
         self.assertEqual(PRICES.evaluation_rating(volatile, [], "SPECULATIVE"), "HIGH_UNCERTAINTY")
+
+    def test_price_context_has_both_languages(self):
+        tr, en = PRICES.performance_context({"return_21d_pct": -5, "return_252d_pct": 20})
+        self.assertIn("252", tr)
+        self.assertIn("252", en)
+        self.assertNotEqual(tr, en)
 
 
 if __name__ == "__main__":
