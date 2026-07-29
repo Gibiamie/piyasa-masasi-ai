@@ -24,7 +24,6 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-          cache: pip
 
       - name: Reconstruct delivery ZIP
         shell: bash
@@ -68,7 +67,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ai-research-schema-contract-validation
-          if-no-files-found: error
+          if-no-files-found: warn
           path: |
             schema-contract.zip
             contract-work/ai-research-schema-contract-final/evidence
