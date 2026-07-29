@@ -89,7 +89,7 @@ jobs:
                   info.external_attr = (0o644 & 0xFFFF) << 16
                   archive.writestr(info, path.read_bytes())
           PY
-          echo "cab3c108a0bd0bb33131185ce8e0496bc4f43e2ec0f16a65cd2db71c841bccac  schema-contract.zip" | sha256sum --check --strict
+          echo "944500bbba4d9eda6f4dcd220d47d1efb1bf6a6730e13bfa44a06c807ba0d0d1  schema-contract.zip" | sha256sum --check --strict
 
       - name: Install package and quality tools
         working-directory: contract-work/ai-research-schema-contract-final
