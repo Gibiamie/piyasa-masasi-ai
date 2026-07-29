@@ -48,7 +48,7 @@ def fetch_symbol(item: dict[str, Any]) -> tuple[str, dict[str, Any] | None, str 
     for host in ("query1.finance.yahoo.com", "query2.finance.yahoo.com"):
         try:
             payload = fetch_json(
-                f"https://{host}/v8/finance/chart/{encoded}?range=1y&interval=1d&events=div%2Csplits"
+                f"https://{host}/v8/finance/chart/{encoded}?range=2y&interval=1d&events=div%2Csplits"
             )
             chart = payload.get("chart") or {}
             if chart.get("error"):
