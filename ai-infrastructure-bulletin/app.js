@@ -1,7 +1,7 @@
 const DATA_URL = "./data/report.json";
-const APP_VERSION = "2026.07.29.4";
-const FOCUS_TICKERS = ["TTRAK", "LUNR"];
-const state = { report: null, theme: "Tümü", tickers: [...FOCUS_TICKERS] };
+const APP_VERSION = "2026.07.29.5";
+const REPO_ISSUES_URL = "https://github.com/Gibiamie/piyasa-masasi-ai/issues/new";
+const state = { report: null, ticker: "Tümü" };
 const $ = selector => document.querySelector(selector);
 const $$ = selector => [...document.querySelectorAll(selector)];
 
@@ -68,8 +68,7 @@ async function load() {
   $("#freshness").className = "badge neutral";
   try {
     const response = await fetch(`${DATA_URL}?app=${APP_VERSION}&v=${Date.now()}`, {
-      cache: "no-store",
-      headers: { "Cache-Control": "no-cache" }
+      cache: "no-store", headers: { "Cache-Control": "no-cache" }
     });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     state.report = await response.json();
@@ -77,7 +76,7 @@ async function load() {
   } catch (error) {
     $("#freshness").textContent = "Veri hatası";
     $("#freshness").className = "badge negative";
-    $("#events").innerHTML = `<article class="card negative"><h3>Değerlendirme verisi açılamadı</h3><p>${esc(error.message)}</p></article>`;
+    $("#evaluations").innerHTML = `<article class="card negative"><h3>Değerlendirme verisi açılamadı</h3><p>${esc(error.message)}</p></article>`;
   }
 }
 
@@ -85,11 +84,11 @@ function render() {
   const data = state.report;
   const report = data.report;
   const summary = data.executive_summary;
-  const events = (data.events || []).filter(event =>
-    !event.companies?.length || event.companies.some(ticker => FOCUS_TICKERS.includes(ticker))
-  );
+  const events = data.events || [];
+  const evaluations = data.company_evaluations || [];
   $("#generatedAt").textContent = fmtDate(report.generated_at);
-  $("#eventCount").textContent = String(events.length);
+  $("#companyCount").textContent = String(report.company_count ?? evaluations.length ?? data.watchlist?.length ?? 0);
+  $("#eventCount").textContent = String(report.material_event_count ?? events.length);
   $("#dominantTheme").textContent = summary.dominant_theme || "—";
   $("#mainRisk").textContent = summary.main_risk || "—";
   $("#summaryTitle").textContent = summary.headline || "Günlük görünüm";
@@ -101,29 +100,50 @@ function render() {
   const ageHours = Number.isFinite(generatedAt) ? Math.max(0, (Date.now() - generatedAt) / 36e5) : Infinity;
   $("#freshness").textContent = ageHours <= 30 ? "Güncel veri" : "Veri eski olabilir";
   $("#freshness").className = `badge ${ageHours <= 30 ? "positive" : "warning"}`;
-  renderFilters(events);
+  renderTickerFilters(evaluations);
+  renderEvaluations(evaluations);
   renderEvents(events);
   renderWatchlist(data.watchlist || []);
   renderSources(events);
-  renderChips();
+  renderUniverse(data.watchlist || []);
 }
 
-function renderFilters(events) {
-  const themes = ["Tümü", ...new Set(events.map(event => event.primary_theme).filter(Boolean))];
-  $("#filters").innerHTML = themes.map(theme =>
-    `<button class="filter ${state.theme === theme ? "active" : ""}" data-theme="${esc(theme)}">${esc(theme)}</button>`
+function renderTickerFilters(evaluations) {
+  const tickers = ["Tümü", ...evaluations.map(item => item.ticker)];
+  $("#filters").innerHTML = tickers.map(ticker =>
+    `<button class="filter ${state.ticker === ticker ? "active" : ""}" data-ticker="${esc(ticker)}">${esc(ticker)}</button>`
   ).join("");
   $$("#filters .filter").forEach(button => {
     button.onclick = () => {
-      state.theme = button.dataset.theme;
-      renderFilters(events);
-      renderEvents(events);
+      state.ticker = button.dataset.ticker;
+      renderTickerFilters(evaluations);
+      renderEvaluations(evaluations);
+      renderEvents(state.report?.events || []);
     };
   });
 }
 
+function renderEvaluations(evaluations) {
+  const list = state.ticker === "Tümü" ? evaluations : evaluations.filter(item => item.ticker === state.ticker);
+  $("#evaluations").innerHTML = list.map(item => {
+    const [label, badgeClass] = ratingInfo(item.rating);
+    const drivers = (item.key_drivers || []).map(value => `<li>${esc(value)}</li>`).join("");
+    const risks = (item.key_risks || []).map(value => `<li>${esc(value)}</li>`).join("");
+    const price = item.price_context || {};
+    return `<article class="card ${cardClass(item.rating)}">
+      <div class="meta"><span>${esc(item.ticker)}</span><span>•</span><span>${esc(item.company)}</span><span>•</span><span>${esc(item.sector || "")}</span></div>
+      <h3>${esc(item.company)} — Günlük araştırma görüşü</h3>
+      <div class="badges"><span class="badge ${badgeClass}">${esc(label)}</span>${confidence(item.confidence)}<span class="badge ${item.risk_badge === "SPECULATIVE" ? "warning" : "neutral"}">${esc(item.risk_badge || "STANDARD")}</span></div>
+      <div class="section"><strong>FİYAT BAĞLAMI</strong><p>${esc(item.performance_context || item.summary || "")}</p><p class="meta">${esc(price.currency || "")} ${price.price == null ? "—" : Number(price.price).toFixed(2)} · 21G ${fmtPct(price.return_21d_pct)} · 252G ${fmtPct(price.return_252d_pct)} · Haber ${esc(item.material_event_count ?? 0)}</p></div>
+      <div class="section"><strong>ANA SÜRÜCÜLER</strong><ul>${drivers}</ul></div>
+      <div class="section"><strong>ANA RİSKLER</strong><ul>${risks}</ul></div>
+      <div class="section"><strong>DEĞERLENDİRME</strong><p>${esc(item.summary || "")}</p></div>
+    </article>`;
+  }).join("");
+}
+
 function renderEvents(events) {
-  const list = state.theme === "Tümü" ? events : events.filter(event => event.primary_theme === state.theme);
+  const list = state.ticker === "Tümü" ? events : events.filter(event => (event.companies || []).includes(state.ticker));
   $("#empty").classList.toggle("hidden", list.length > 0);
   $("#events").innerHTML = list.map(event => {
     const [ratingLabel, ratingClass] = ratingInfo(event.research_view?.rating);
@@ -131,7 +151,7 @@ function renderEvents(events) {
     const risks = (event.research_view?.risks || []).map(value => `<li>${esc(value)}</li>`).join("");
     const source = event.sources?.[0];
     return `<article class="card ${cardClass(event.research_view?.rating)}">
-      <div class="meta"><span>${esc(event.primary_theme)}</span><span>•</span><span>${esc(fmtDate(event.published_time))}</span></div>
+      <div class="meta"><span>${esc((event.companies || []).join(", ") || event.primary_theme)}</span><span>•</span><span>${esc(fmtDate(event.published_time))}</span></div>
       <h3>${esc(event.headline)}</h3>
       <div class="badges"><span class="badge ${ratingClass}">${esc(ratingLabel)}</span>${confidence(event.confidence)}<span class="badge neutral">${esc(event.risk_badge || "STANDARD")}</span></div>
       <div class="section"><strong>NE OLDU?</strong><ul>${facts}</ul></div>
@@ -143,14 +163,9 @@ function renderEvents(events) {
 }
 
 function renderWatchlist(items) {
-  const map = new Map(items.map(item => [item.ticker, item]));
-  $("#watchlistBody").innerHTML = FOCUS_TICKERS.map(ticker => {
-    const item = map.get(ticker);
-    const value = item || { ticker, company: ticker, risk_badge: "VERİ HAVUZUNDA YOK" };
-    const badgeClass = value.risk_badge === "SPECULATIVE" || !item ? "warning" : "neutral";
-    const detail = item?.price_as_of
-      ? `${value.company || ""} • ${fmtDateOnly(item.price_as_of)}`
-      : value.company || "Veri bulunamadı";
+  $("#watchlistBody").innerHTML = items.map(value => {
+    const badgeClass = value.risk_badge === "SPECULATIVE" ? "warning" : "neutral";
+    const detail = value.price_as_of ? `${value.company || ""} • ${fmtDateOnly(value.price_as_of)}` : value.company || "Veri bulunamadı";
     return `<tr>
       <td><div class="ticker-name"><strong>${esc(value.ticker)}</strong><span>${esc(detail)}</span></div></td>
       <td>${value.price == null ? "—" : `${esc(value.currency || "USD")} ${Number(value.price).toFixed(2)}`}</td>
@@ -165,17 +180,17 @@ function renderWatchlist(items) {
 
 function renderSources(events) {
   const sources = [];
-  events.forEach(event => (event.sources || []).forEach(source => sources.push({ ...source, event: event.headline })));
+  events.forEach(event => (event.sources || []).forEach(source => sources.push({ ...source, event: event.headline, tickers: event.companies || [] })));
   $("#sourcesList").innerHTML = sources.length ? sources.map(source => `<article class="source">
-    <div class="meta"><span>${esc(source.source_type || "SECONDARY")}</span><span>•</span><span>${esc(source.publisher || "")}</span><span>•</span><span>${esc(fmtDate(source.published_at))}</span></div>
+    <div class="meta"><span>${esc(source.tickers.join(", "))}</span><span>•</span><span>${esc(source.source_type || "SECONDARY")}</span><span>•</span><span>${esc(source.publisher || "")}</span><span>•</span><span>${esc(fmtDate(source.published_at))}</span></div>
     <h3>${esc(source.title)}</h3><p>${esc(source.event)}</p>
     <a href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">Kaynağı aç ↗</a>
   </article>`).join("") : `<div class="empty"><h3>Kaynak bulunamadı</h3></div>`;
 }
 
-function renderChips() {
-  $("#tickerChips").innerHTML = FOCUS_TICKERS.map(ticker => `<span class="chip">${esc(ticker)}</span>`).join("");
-  if ($("#tickerStatus")) $("#tickerStatus").textContent = "Değerlendirme kapsamı sabittir: yalnızca TTRAK ve LUNR.";
+function renderUniverse(items) {
+  $("#tickerChips").innerHTML = items.map(item => `<span class="chip">${esc(item.ticker)}</span>`).join("");
+  $("#tickerStatus").textContent = `${items.length} hisse merkezî değerlendirme evreninde. Yeni eklenen her hisse sonraki otomatik çalışmada aynı değerlendirmeden geçer.`;
 }
 
 $$('.tab').forEach(tab => {
@@ -192,6 +207,17 @@ $("#refresh").onclick = async () => {
     await Promise.all(registrations.map(registration => registration.update().catch(() => null)));
   }
   await load();
+};
+
+$("#tickerForm").onsubmit = event => {
+  event.preventDefault();
+  const providerSymbol = $("#ticker").value.trim().toUpperCase().replace(/[^A-Z0-9.^=-]/g, "");
+  const company = $("#company").value.trim();
+  if (!providerSymbol) return;
+  const title = `[AI-BULLETIN] ADD ${providerSymbol}`;
+  const body = `Provider symbol: ${providerSymbol}\nCompany: ${company || providerSymbol}\n\nPlease add this stock to the central evaluation universe.`;
+  window.open(`${REPO_ISSUES_URL}?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`, "_blank", "noopener");
+  $("#tickerStatus").textContent = `${providerSymbol} için GitHub ekleme talebi açıldı. Talep gönderildiğinde otomasyon hisseyi kalıcı evrene ekler ve değerlendirmeyi üretir.`;
 };
 
 if ("serviceWorker" in navigator) {
