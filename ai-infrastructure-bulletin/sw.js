@@ -1,4 +1,4 @@
-const CACHE = "ai-infra-bulletin-v6";
+const CACHE = "ai-infra-bulletin-v7";
 const STATIC = [
   "./",
   "./index.html",
