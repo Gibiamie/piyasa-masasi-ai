@@ -29,7 +29,16 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cat schema-contract-payload/part*.b64 | base64 --decode > schema-contract.zip
+          wc -c schema-contract-payload/part*.b64
+          sha256sum schema-contract-payload/part*.b64
+          cat schema-contract-payload/part*.b64 > schema-contract.b64
+          sha256sum schema-contract.b64
+          python - <<'PY'
+          from pathlib import Path
+          import base64
+          data = Path('schema-contract.b64').read_text(encoding='ascii')
+          Path('schema-contract.zip').write_bytes(base64.b64decode(data, validate=True))
+          PY
           echo "d5de93d5f82d3c560677593e3f52acbf8e31443ea4a19a1e7aa715681a2adab0  schema-contract.zip" | sha256sum --check --strict
           mkdir contract-work
           unzip -q schema-contract.zip -d contract-work
@@ -70,5 +79,6 @@ jobs:
           if-no-files-found: warn
           path: |
             schema-contract.zip
+            schema-contract.b64
             contract-work/ai-research-schema-contract-final/evidence
             contract-work/ai-research-schema-contract-final/release-report.json
