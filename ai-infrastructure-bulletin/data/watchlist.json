@@ -1,0 +1,21 @@
+{
+  "timezone": "Asia/Muscat",
+  "tickers": [
+    {"ticker":"NVDA","company":"Nvidia","stooq":"nvda.us","risk_badge":"ESTABLISHED"},
+    {"ticker":"TSLA","company":"Tesla","stooq":"tsla.us","risk_badge":"GROWTH"},
+    {"ticker":"GOOGL","company":"Alphabet","stooq":"googl.us","risk_badge":"ESTABLISHED"},
+    {"ticker":"AMZN","company":"Amazon","stooq":"amzn.us","risk_badge":"ESTABLISHED"},
+    {"ticker":"AMD","company":"AMD","stooq":"amd.us","risk_badge":"GROWTH"},
+    {"ticker":"MRVL","company":"Marvell Technology","stooq":"mrvl.us","risk_badge":"GROWTH"},
+    {"ticker":"LRCX","company":"Lam Research","stooq":"lrcx.us","risk_badge":"ESTABLISHED"},
+    {"ticker":"PLTR","company":"Palantir","stooq":"pltr.us","risk_badge":"GROWTH"},
+    {"ticker":"EQIX","company":"Equinix","stooq":"eqix.us","risk_badge":"ESTABLISHED"},
+    {"ticker":"DLR","company":"Digital Realty","stooq":"dlr.us","risk_badge":"ESTABLISHED"},
+    {"ticker":"SNDK","company":"SanDisk","stooq":"sndk.us","risk_badge":"GROWTH"},
+    {"ticker":"VRT","company":"Vertiv","stooq":"vrt.us","risk_badge":"GROWTH"},
+    {"ticker":"CEG","company":"Constellation Energy","stooq":"ceg.us","risk_badge":"ESTABLISHED"},
+    {"ticker":"VST","company":"Vistra","stooq":"vst.us","risk_badge":"ESTABLISHED"},
+    {"ticker":"SMR","company":"NuScale Power","stooq":"smr.us","risk_badge":"SPECULATIVE"},
+    {"ticker":"TSM","company":"TSMC","stooq":"tsm.us","risk_badge":"ESTABLISHED"}
+  ]
+}

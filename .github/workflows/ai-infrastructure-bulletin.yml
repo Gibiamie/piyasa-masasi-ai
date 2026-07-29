@@ -1,0 +1,62 @@
+name: AI Infrastructure Bulletin
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "30 5 * * *"
+  push:
+    branches:
+      - ai-infrastructure-bulletin-mvp
+      - remediation/v30-audit
+    paths:
+      - "ai-infrastructure-bulletin/**"
+      - ".github/workflows/ai-infrastructure-bulletin.yml"
+  pull_request:
+    branches:
+      - remediation/v30-audit
+    paths:
+      - "ai-infrastructure-bulletin/**"
+      - ".github/workflows/ai-infrastructure-bulletin.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ai-infrastructure-bulletin-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-and-refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate seeded application data
+        run: python -m unittest discover -s ai-infrastructure-bulletin/tests -v
+
+      - name: Check JavaScript syntax
+        run: node --check ai-infrastructure-bulletin/app.js
+
+      - name: Generate current bulletin and market performance
+        run: python ai-infrastructure-bulletin/scripts/update_bulletin.py
+
+      - name: Validate generated report
+        run: python -m unittest discover -s ai-infrastructure-bulletin/tests -v
+
+      - name: Commit refreshed report
+        if: github.ref == 'refs/heads/remediation/v30-audit'
+        run: |
+          if git diff --quiet -- ai-infrastructure-bulletin/data/report.json; then
+            echo "No bulletin data change."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ai-infrastructure-bulletin/data/report.json
+          git commit -m "chore: refresh AI infrastructure bulletin"
+          git push

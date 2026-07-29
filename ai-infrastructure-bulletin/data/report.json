@@ -1,0 +1,149 @@
+{
+  "report": {
+    "report_id": "2026-07-29-initial",
+    "generated_at": "2026-07-29T09:30:00+04:00",
+    "timezone": "Asia/Muscat",
+    "window_start": "2026-07-28T09:30:00+04:00",
+    "window_end": "2026-07-29T09:30:00+04:00",
+    "market_data_as_of": null,
+    "material_event_count": 3,
+    "headline_status": "MATERIAL_NEWS_FOUND",
+    "data_mode": "seeded_verified_news"
+  },
+  "executive_summary": {
+    "headline": "AI altyapısında kapasite ve finansman ölçeği yeniden büyüyor",
+    "market_regime": "Yüksek yatırım iştahı, artan finansman ve uygulama riski",
+    "dominant_theme": "Veri merkezi kapasitesi",
+    "main_positive_driver": "Gigawatt ölçekli uzun vadeli kapasite anlaşmaları",
+    "main_risk": "Yüksek sermaye ihtiyacı, borçlanma ve uygulama gecikmeleri",
+    "summary": "Son 24 saatte öne çıkan gelişmeler, AI talebinin artık yalnız GPU satışından değil; enerjiye erişim, uzun vadeli veri merkezi kapasitesi ve proje finansmanı üzerinden şekillendiğini gösteriyor. AMD’nin Core Scientific anlaşması rekabetçi AI altyapısı kurma yönünde stratejik bir adım. Meta–BlackRock ortaklığı ise hyperscaler sermaye harcamalarının alternatif finansman modellerine kaydığını gösteriyor. Nvidia ile ilişkilendirilen büyük Texas kapasite kiralaması şirket tarafından teyit edilmediği için daha düşük güvenle ele alınmalıdır."
+  },
+  "events": [
+    {
+      "event_id": "evt-20260728-amd-cors",
+      "primary_theme": "GPU ve Veri Merkezi",
+      "related_themes": ["Veri merkezi kapasitesi", "Enerji ve güç altyapısı"],
+      "companies": ["AMD"],
+      "headline": "AMD, Core Scientific ile 2,5 GW'a kadar AI veri merkezi kapasitesi anlaşması yaptı",
+      "event_time": "2026-07-28T12:00:00Z",
+      "published_time": "2026-07-28T12:00:00Z",
+      "retrieved_time": "2026-07-29T05:30:00Z",
+      "facts": [
+        "İlk aşamada 2027'de 500 MW AI-ready kapasite sağlanması planlanıyor.",
+        "Toplam genişleme seçeneği 2,5 GW'a kadar çıkabiliyor.",
+        "Taraflar fiziksel altyapı tasarımı, AMD çipleri ve yazılım dağıtımı üzerinde birlikte çalışacak."
+      ],
+      "why_it_matters": "AMD’nin rekabeti yalnız hızlandırıcı ürün özellikleriyle değil, müşterilerin erişebileceği fiziksel kapasiteyle de yürüttüğünü gösteriyor. Güç, arazi ve veri merkezi kullanılabilirliği AI hızlandırıcı satışlarının gerçek darboğazı haline geliyor.",
+      "investment_meaning": "Araştırma görünümü POZİTİF, ancak kısa vadeli fiyat tepkisi tek başına tez göstergesi değildir. Anlaşmanın finansal getirisi; doluluk, müşteri talebi, kurulum takvimi ve sermaye yükümlülükleri açıklandıkça yeniden değerlendirilmelidir.",
+      "thesis_impact": "THESIS_STRENGTHENED",
+      "research_view": {
+        "rating": "POSITIVE",
+        "time_horizon": "Orta-Uzun vadeli",
+        "summary": "AMD’nin AI ekosistemini ürün dışı kapasiteyle güçlendirmesi rekabetçi konumunu destekliyor.",
+        "reasons": ["Kapasite güvence altına alınıyor", "Müşteri dağıtım engeli azalabilir"],
+        "risks": ["2027 başlangıç tarihi uygulama riski taşır", "Finansal şartlar tam açıklanmadı"]
+      },
+      "risk_badge": "GROWTH",
+      "confidence": "HIGH",
+      "sources": [{
+        "source_type": "REPUTABLE_NEWS",
+        "publisher": "Reuters",
+        "title": "Core Scientific signs AI infrastructure deal with AMD",
+        "published_at": "2026-07-28T12:00:00Z",
+        "url": "https://www.reuters.com/business/core-scientific-signs-ai-infrastructure-deal-with-amd-2026-07-28/",
+        "primary_source": false
+      }]
+    },
+    {
+      "event_id": "evt-20260728-meta-blackrock",
+      "primary_theme": "Bulut ve Finansman",
+      "related_themes": ["Veri merkezi kapasitesi", "Enerji ve güç altyapısı"],
+      "companies": ["META"],
+      "headline": "Meta ve BlackRock, El Paso'da 14 milyar dolarlık veri merkezi ortaklığı kurdu",
+      "event_time": "2026-07-28T14:00:00Z",
+      "published_time": "2026-07-28T14:00:00Z",
+      "retrieved_time": "2026-07-29T05:30:00Z",
+      "facts": [
+        "Proje 1 GW bilgi işlem kapasitesine kadar planlanıyor.",
+        "BlackRock yönetimindeki fonların ortaklık payı %80, Meta'nın payı %20 olarak açıklandı.",
+        "Model, Meta'nın kapasiteyi doğrudan tam mülkiyetle finanse etmeden kullanmasına imkân veriyor."
+      ],
+      "why_it_matters": "AI sermaye harcamalarının büyüklüğü, hyperscaler şirketleri alternatif proje finansmanı ve ortaklık yapılarına yöneltiyor. Bu model veri merkezi yatırımlarının bilanço ve serbest nakit akışı üzerindeki etkisini değiştirebilir.",
+      "investment_meaning": "Sektör için POZİTİF kapasite sinyali; Meta açısından ise nötr-pozitif finansman gelişmesidir. Yatırımcıların yalnız proje büyüklüğüne değil, kira yükümlülükleri, getiri oranı ve kapasite kullanımına bakması gerekir.",
+      "thesis_impact": "THESIS_STRENGTHENED",
+      "research_view": {
+        "rating": "POSITIVE",
+        "time_horizon": "Uzun vadeli",
+        "summary": "Alternatif finansman modeli büyümeyi desteklerken nakit akışı baskısını kısmen dağıtabilir.",
+        "reasons": ["1 GW ölçek", "Finansman yükünün paylaşılması"],
+        "risks": ["Uzun vadeli kira/borç yükümlülükleri", "AI yatırım getirisinin henüz kanıtlanmamış olması"]
+      },
+      "risk_badge": "ESTABLISHED",
+      "confidence": "HIGH",
+      "sources": [{
+        "source_type": "REPUTABLE_NEWS",
+        "publisher": "Reuters",
+        "title": "Meta, BlackRock partner on $14 billion El Paso data center venture",
+        "published_at": "2026-07-28T14:00:00Z",
+        "url": "https://www.reuters.com/technology/meta-blackrock-partner-14-billion-el-paso-data-center-2026-07-28/",
+        "primary_source": false
+      }]
+    },
+    {
+      "event_id": "evt-20260728-nvda-hut8",
+      "primary_theme": "GPU ve Veri Merkezi",
+      "related_themes": ["Veri merkezi kapasitesi", "Bulut altyapısı"],
+      "companies": ["NVDA"],
+      "headline": "Nvidia'nın Texas'ta 50 milyar dolara kadar veri merkezi kiralamasıyla bağlantılı olduğu bildirildi",
+      "event_time": "2026-07-28T16:00:00Z",
+      "published_time": "2026-07-28T16:00:00Z",
+      "retrieved_time": "2026-07-29T05:30:00Z",
+      "facts": [
+        "Haber, Hut 8'in 1 GW Beacon Point kampüsündeki uzun vadeli sözleşmelere dayanıyor.",
+        "Kiracının Nvidia olduğu Financial Times kaynaklarına dayandırıldı.",
+        "Nvidia tarafı kiracı kimliğini doğrudan teyit etmedi."
+      ],
+      "why_it_matters": "Doğruysa Nvidia’nın GPU tedarikçisi rolünden kapasite organizatörü ve altyapı kiracısı rolüne daha fazla geçtiğini gösterebilir. Ancak şirket teyidi bulunmadığı için haber kesin kurumsal veri gibi ele alınmamalıdır.",
+      "investment_meaning": "YÜKSEK BELİRSİZLİK. Stratejik olarak olumlu olabilir; fakat 50 milyar dolarlık üst sınırın yenileme opsiyonlarını içerdiği ve kiracı kimliğinin resmen teyit edilmediği dikkate alınmalıdır.",
+      "thesis_impact": "INSUFFICIENT_EVIDENCE",
+      "research_view": {
+        "rating": "HIGH_UNCERTAINTY",
+        "time_horizon": "Uzun vadeli",
+        "summary": "Potansiyel kapasite ölçeği yüksek, fakat teyit seviyesi yatırım kararı için yetersiz.",
+        "reasons": ["1 GW kapasite iddiası", "Neocloud ekosistemini destekleme potansiyeli"],
+        "risks": ["Şirket teyidi yok", "Sözleşme üst sınırı yenileme opsiyonlarını içeriyor"]
+      },
+      "risk_badge": "UNCONFIRMED",
+      "confidence": "MEDIUM",
+      "sources": [{
+        "source_type": "REPUTABLE_NEWS",
+        "publisher": "Reuters",
+        "title": "Nvidia behind $50 billion lease on Texas data center, FT reports",
+        "published_at": "2026-07-28T16:00:00Z",
+        "url": "https://www.reuters.com/technology/nvidia-behind-50-billion-lease-texas-data-center-ft-reports-2026-07-28/",
+        "primary_source": false
+      }]
+    }
+  ],
+  "watchlist": [
+    {"ticker":"NVDA","company":"Nvidia","currency":"USD","price":null,"return_1d_pct":null,"return_21d_pct":null,"return_252d_pct":null,"distance_from_52w_high_pct":null,"risk_badge":"ESTABLISHED"},
+    {"ticker":"TSLA","company":"Tesla","currency":"USD","price":null,"return_1d_pct":null,"return_21d_pct":null,"return_252d_pct":null,"distance_from_52w_high_pct":null,"risk_badge":"GROWTH"},
+    {"ticker":"GOOGL","company":"Alphabet","currency":"USD","price":null,"return_1d_pct":null,"return_21d_pct":null,"return_252d_pct":null,"distance_from_52w_high_pct":null,"risk_badge":"ESTABLISHED"},
+    {"ticker":"AMZN","company":"Amazon","currency":"USD","price":null,"return_1d_pct":null,"return_21d_pct":null,"return_252d_pct":null,"distance_from_52w_high_pct":null,"risk_badge":"ESTABLISHED"},
+    {"ticker":"AMD","company":"AMD","currency":"USD","price":null,"return_1d_pct":null,"return_21d_pct":null,"return_252d_pct":null,"distance_from_52w_high_pct":null,"risk_badge":"GROWTH"},
+    {"ticker":"MRVL","company":"Marvell Technology","currency":"USD","price":null,"return_1d_pct":null,"return_21d_pct":null,"return_252d_pct":null,"distance_from_52w_high_pct":null,"risk_badge":"GROWTH"},
+    {"ticker":"LRCX","company":"Lam Research","currency":"USD","price":null,"return_1d_pct":null,"return_21d_pct":null,"return_252d_pct":null,"distance_from_52w_high_pct":null,"risk_badge":"ESTABLISHED"},
+    {"ticker":"PLTR","company":"Palantir","currency":"USD","price":null,"return_1d_pct":null,"return_21d_pct":null,"return_252d_pct":null,"distance_from_52w_high_pct":null,"risk_badge":"GROWTH"},
+    {"ticker":"EQIX","company":"Equinix","currency":"USD","price":null,"return_1d_pct":null,"return_21d_pct":null,"return_252d_pct":null,"distance_from_52w_high_pct":null,"risk_badge":"ESTABLISHED"},
+    {"ticker":"DLR","company":"Digital Realty","currency":"USD","price":null,"return_1d_pct":null,"return_21d_pct":null,"return_252d_pct":null,"distance_from_52w_high_pct":null,"risk_badge":"ESTABLISHED"},
+    {"ticker":"SNDK","company":"SanDisk","currency":"USD","price":null,"return_1d_pct":null,"return_21d_pct":null,"return_252d_pct":null,"distance_from_52w_high_pct":null,"risk_badge":"GROWTH"},
+    {"ticker":"VRT","company":"Vertiv","currency":"USD","price":null,"return_1d_pct":null,"return_21d_pct":null,"return_252d_pct":null,"distance_from_52w_high_pct":null,"risk_badge":"GROWTH"},
+    {"ticker":"CEG","company":"Constellation Energy","currency":"USD","price":null,"return_1d_pct":null,"return_21d_pct":null,"return_252d_pct":null,"distance_from_52w_high_pct":null,"risk_badge":"ESTABLISHED"},
+    {"ticker":"VST","company":"Vistra","currency":"USD","price":null,"return_1d_pct":null,"return_21d_pct":null,"return_252d_pct":null,"distance_from_52w_high_pct":null,"risk_badge":"ESTABLISHED"},
+    {"ticker":"SMR","company":"NuScale Power","currency":"USD","price":null,"return_1d_pct":null,"return_21d_pct":null,"return_252d_pct":null,"distance_from_52w_high_pct":null,"risk_badge":"SPECULATIVE"},
+    {"ticker":"TSM","company":"TSMC","currency":"USD","price":null,"return_1d_pct":null,"return_21d_pct":null,"return_252d_pct":null,"distance_from_52w_high_pct":null,"risk_badge":"ESTABLISHED"}
+  ],
+  "no_material_news_themes": ["Soğutma teknolojileri", "Nükleer/SMR"],
+  "data_quality_warnings": ["Fiyat verileri ilk günlük otomasyon çalışmasından sonra doldurulur."],
+  "general_assessment": "AI altyapısında talep güçlü; güç erişimi, finansman ve uygulama takvimi ana risklerdir."
+}
