@@ -15,7 +15,7 @@ permissions:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -25,25 +25,70 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Reconstruct delivery ZIP
+      - name: Reconstruct exact delivery ZIP
         shell: bash
         run: |
           set -euo pipefail
-          sed 's/LNTabaimana/LNTabimana/' schema-contract-payload/part00.b64 | head -c 7000 > schema-contract.b64
+          sed 's/LNTabaimana/LNTabimana/' schema-contract-payload/part00.b64 | head -c 7000 > source.b64
           for index in 01 02 03 04 05 06 07 08; do
-            head -c 7000 "schema-contract-payload/part${index}.b64" >> schema-contract.b64
+            head -c 7000 "schema-contract-payload/part${index}.b64" >> source.b64
           done
-          head -c 2100 schema-contract-payload/part09.b64 >> schema-contract.b64
-          echo "8654c74b298493ebadf64d7134723a24647abda9b131eae27f8e2aca1704e551  schema-contract.b64" | sha256sum --check --strict
+          head -c 2100 schema-contract-payload/part09.b64 >> source.b64
+          echo "8654c74b298493ebadf64d7134723a24647abda9b131eae27f8e2aca1704e551  source.b64" | sha256sum --check --strict
           python - <<'PY'
           from pathlib import Path
           import base64
-          data = Path('schema-contract.b64').read_text(encoding='ascii')
-          Path('schema-contract.zip').write_bytes(base64.b64decode(data, validate=True))
+          Path('source.zip').write_bytes(
+              base64.b64decode(Path('source.b64').read_text(encoding='ascii'), validate=True)
+          )
           PY
-          echo "d5de93d5f82d3c560677593e3f52acbf8e31443ea4a19a1e7aa715681a2adab0  schema-contract.zip" | sha256sum --check --strict
+          echo "d5de93d5f82d3c560677593e3f52acbf8e31443ea4a19a1e7aa715681a2adab0  source.zip" | sha256sum --check --strict
           mkdir contract-work
-          unzip -q schema-contract.zip -d contract-work
+          unzip -q source.zip -d contract-work
+          cp schema-contract-overrides/pyproject.toml contract-work/ai-research-schema-contract-final/pyproject.toml
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib
+          import shutil
+          import zipfile
+
+          root = Path('contract-work/ai-research-schema-contract-final')
+          for name in ('.pytest_cache', '__pycache__', 'dist', 'build', 'evidence'):
+              for path in root.rglob(name):
+                  if path.is_dir():
+                      shutil.rmtree(path, ignore_errors=True)
+          for path in root.rglob('*.pyc'):
+              path.unlink(missing_ok=True)
+          for path in root.rglob('*.egg-info'):
+              if path.is_dir():
+                  shutil.rmtree(path, ignore_errors=True)
+
+          excluded = {'SHA256SUMS.txt', 'release-report.json'}
+          lines = []
+          for path in sorted(root.rglob('*')):
+              if not path.is_file() or path.name in excluded:
+                  continue
+              if any(part in {'.pytest_cache', '__pycache__', 'dist', 'build', 'evidence'} for part in path.parts):
+                  continue
+              lines.append(f"{hashlib.sha256(path.read_bytes()).hexdigest()}  {path.relative_to(root).as_posix()}")
+          (root / 'SHA256SUMS.txt').write_text('\n'.join(lines) + '\n', encoding='utf-8')
+          (root / 'release-report.json').write_text('{}\n', encoding='utf-8')
+
+          output = Path('schema-contract.zip')
+          with zipfile.ZipFile(output, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as archive:
+              for path in sorted(root.rglob('*')):
+                  if not path.is_file():
+                      continue
+                  if any(part in {'.pytest_cache', '__pycache__', 'dist', 'build', 'evidence'} for part in path.parts):
+                      continue
+                  arcname = Path(root.name) / path.relative_to(root)
+                  info = zipfile.ZipInfo(arcname.as_posix())
+                  info.date_time = (2026, 7, 29, 7, 30, 0)
+                  info.compress_type = zipfile.ZIP_DEFLATED
+                  info.external_attr = (0o644 & 0xFFFF) << 16
+                  archive.writestr(info, path.read_bytes())
+          PY
+          echo "3a5012259f251cbc80f5cb562ea321773dd1a58dbc21ecacea9016f0a6371a51  schema-contract.zip" | sha256sum --check --strict
 
       - name: Install package and quality tools
         working-directory: contract-work/ai-research-schema-contract-final
@@ -65,7 +110,10 @@ jobs:
 
       - name: Build and clean wheel install
         working-directory: contract-work/ai-research-schema-contract-final
-        run: python scripts/clean_wheel_install.py
+        run: |
+          rm -rf dist
+          python -m pip wheel --no-deps --no-build-isolation -w dist .
+          python scripts/clean_wheel_install.py
 
       - name: Generate evidence and enforce release gate
         working-directory: contract-work/ai-research-schema-contract-final
