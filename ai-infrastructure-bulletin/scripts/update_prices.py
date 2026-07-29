@@ -89,6 +89,7 @@ def fetch_symbol(item: dict[str, Any]) -> tuple[str, dict[str, Any] | None, str 
                 "price_as_of": history[-1][0],
                 "risk_badge": item.get("risk_badge", "GROWTH"),
                 "sector": item.get("sector", "Diğer"),
+                "sector_en": item.get("sector_en", item.get("sector", "Other")),
                 "provider": "Yahoo Finance chart feed",
                 "data_status": "CURRENT",
             }, None
@@ -97,20 +98,38 @@ def fetch_symbol(item: dict[str, Any]) -> tuple[str, dict[str, Any] | None, str 
     return ticker, None, last_error
 
 
-def performance_context(row: dict[str, Any]) -> str:
+def performance_context(row: dict[str, Any]) -> tuple[str, str]:
     short = finite(row.get("return_21d_pct"))
     long = finite(row.get("return_252d_pct"))
     if short is None or long is None:
-        return "Trend karşılaştırması için yeterli fiyat geçmişi bulunmuyor."
+        return (
+            "Trend karşılaştırması için yeterli fiyat geçmişi bulunmuyor.",
+            "There is insufficient price history for a trend comparison.",
+        )
     if long > 0 and short < 0:
-        return "252 işlem günlük trend pozitif, son 21 işlem gününde düzeltme var; bunun kâr realizasyonu mu yoksa tez zayıflaması mı olduğu izlenmelidir."
+        return (
+            "252 işlem günlük trend pozitif, son 21 işlem gününde düzeltme var; bunun kâr realizasyonu mu yoksa tez zayıflaması mı olduğu izlenmelidir.",
+            "The 252-trading-day trend is positive, but the last 21 trading days show a correction; determine whether this is profit-taking or a weakening thesis.",
+        )
     if long > 0 and short > 0:
-        return "Hem 252 hem 21 işlem günlük trend pozitif; momentum güçlü, ancak değerleme ve haberin fiyatlanmış olma riski kontrol edilmelidir."
+        return (
+            "Hem 252 hem 21 işlem günlük trend pozitif; momentum güçlü, ancak değerleme ve haberin fiyatlanmış olma riski kontrol edilmelidir.",
+            "Both the 252- and 21-trading-day trends are positive; momentum is strong, but valuation and the risk that news is already priced in must be checked.",
+        )
     if long < 0 and short > 0:
-        return "252 işlem günlük trend negatif, son 21 işlem gününde tepki yükselişi var; kalıcı dönüş için temel teyit gerekir."
+        return (
+            "252 işlem günlük trend negatif, son 21 işlem gününde tepki yükselişi var; kalıcı dönüş için temel teyit gerekir.",
+            "The 252-trading-day trend is negative, while the last 21 trading days show a rebound; a durable reversal requires fundamental confirmation.",
+        )
     if long < 0 and short < 0:
-        return "Hem 252 hem 21 işlem günlük trend negatif; fiyat baskısı sürüyor ve tez yeniden doğrulanmalıdır."
-    return "Kısa ve uzun vadeli performans belirgin yön üretmiyor."
+        return (
+            "Hem 252 hem 21 işlem günlük trend negatif; fiyat baskısı sürüyor ve tez yeniden doğrulanmalıdır.",
+            "Both the 252- and 21-trading-day trends are negative; price pressure persists and the thesis should be revalidated.",
+        )
+    return (
+        "Kısa ve uzun vadeli performans belirgin yön üretmiyor.",
+        "Short- and long-term performance do not produce a clear directional signal.",
+    )
 
 
 def evaluation_rating(row: dict[str, Any], events: list[dict[str, Any]], risk_badge: str) -> str:
@@ -161,25 +180,37 @@ def build_evaluations(config: list[dict[str, Any]], rows: dict[str, dict[str, An
             "HIGH_UNCERTAINTY": "INSUFFICIENT_EVIDENCE",
             "NEUTRAL": "THESIS_UNCHANGED",
         }[rating]
+        context_tr, context_en = performance_context(row)
         news_text = (
             f"Son 24 saatte {len(company_events)} önem eşiğini geçen gelişme bulundu."
             if company_events
             else "Son 24 saatte önem eşiğini geçen şirkete özgü yeni gelişme bulunmadı."
         )
+        news_text_en = (
+            f"{len(company_events)} company-specific developments passed the materiality threshold in the last 24 hours."
+            if company_events
+            else "No new company-specific development passed the materiality threshold in the last 24 hours."
+        )
         evaluations.append({
             "ticker": ticker,
             "company": item.get("company", ticker),
             "sector": item.get("sector", "Diğer"),
+            "sector_en": item.get("sector_en", item.get("sector", "Other")),
             "rating": rating,
             "thesis_impact": thesis_impact,
             "time_horizon": "Orta-Uzun vadeli",
+            "time_horizon_en": "Medium to long term",
             "confidence": "LOW" if row.get("price") is None else "MEDIUM" if not company_events else "HIGH",
             "risk_badge": item.get("risk_badge", "GROWTH"),
-            "summary": f"{news_text} {performance_context(row)}",
-            "performance_context": performance_context(row),
+            "summary": f"{news_text} {context_tr}",
+            "summary_en": f"{news_text_en} {context_en}",
+            "performance_context": context_tr,
+            "performance_context_en": context_en,
             "material_event_count": len(company_events),
             "key_drivers": item.get("key_drivers", ["Gelir, kârlılık ve stratejik uygulama"]),
+            "key_drivers_en": item.get("key_drivers_en", ["Revenue, profitability and strategic execution"]),
             "key_risks": item.get("key_risks", ["Değerleme, finansman ve uygulama riski"]),
+            "key_risks_en": item.get("key_risks_en", ["Valuation, financing and execution risk"]),
             "latest_event_headlines": [event.get("headline") for event in company_events[:3]],
             "price_context": {
                 key: row.get(key)
@@ -219,6 +250,8 @@ def main() -> int:
                 "ticker": ticker,
                 "company": item.get("company", ticker),
                 "risk_badge": item.get("risk_badge", "GROWTH"),
+                "sector": item.get("sector", "Diğer"),
+                "sector_en": item.get("sector_en", item.get("sector", "Other")),
                 "data_status": "STALE_FALLBACK" if fallback.get("price") is not None else "UNAVAILABLE",
             })
             watchlist.append(fallback)
