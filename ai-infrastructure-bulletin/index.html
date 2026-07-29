@@ -52,7 +52,10 @@
       </section>
 
       <section id="watchlistView" class="view">
-        <div class="heading"><div><p class="eyebrow">DİNAMİK TAKİP LİSTESİ</p><h2>Şirket performansı</h2></div></div>
+        <div class="heading">
+          <div><p class="eyebrow">DİNAMİK TAKİP LİSTESİ</p><h2>Şirket performansı</h2></div>
+          <p id="marketAsOf" class="hint">Piyasa verisi yükleniyor.</p>
+        </div>
         <div class="table-wrap"><table><thead><tr><th>Şirket</th><th>Fiyat</th><th>1 Gün</th><th>21 Gün</th><th>252 Gün</th><th>52H Zirve</th><th>Risk</th></tr></thead><tbody id="watchlistBody"></tbody></table></div>
       </section>
 
@@ -65,9 +68,9 @@
         <div class="settings">
           <article class="panel">
             <p class="eyebrow">TAKİP LİSTESİ</p><h2>Şirket ekle veya çıkar</h2>
-            <form id="tickerForm"><label for="ticker">Ticker</label><div class="inline"><input id="ticker" maxlength="8" placeholder="Örn. AVGO"><button class="button primary">Ekle</button></div></form>
+            <form id="tickerForm"><label for="ticker">Ticker</label><div class="inline"><input id="ticker" maxlength="10" placeholder="Örn. AVGO"><button class="button primary">Ekle</button></div></form>
             <div id="tickerChips" class="chips"></div>
-            <p class="hint">Tercihler bu cihazda saklanır.</p>
+            <p id="tickerStatus" class="hint">Tercihler bu cihazda saklanır. Sunucu veri havuzunda olmayan tickerlar fiyat üretemez.</p>
           </article>
           <article class="panel"><p class="eyebrow">RİSK DİLİ</p><h2>Araştırma görüşü, emir değildir</h2><p>Uygulama pozitif, nötr, negatif ve yüksek belirsizlik sınıfları üretir. Kullanıcı profili olmadan kişisel al/sat emri oluşturmaz.</p></article>
           <article class="panel"><p class="eyebrow">GÜNCELLEME</p><h2>Her gün otomatik</h2><p>GitHub Actions haberleri ve fiyat performansını Asia/Muscat sabahında yeniler.</p></article>
