@@ -1,644 +1,314 @@
 {
   "report": {
-    "report_id": "2026-07-29-1417",
-    "generated_at": "2026-07-29T14:17:47.041217+04:00",
+    "report_id": "2026-07-29-1420",
+    "generated_at": "2026-07-29T14:20:50.382733+04:00",
     "timezone": "Asia/Muscat",
-    "window_start": "2026-07-28T14:17:47.041217+04:00",
-    "window_end": "2026-07-29T14:17:47.041217+04:00",
+    "window_start": "2026-07-28T14:20:50.382733+04:00",
+    "window_end": "2026-07-29T14:20:50.382733+04:00",
     "market_data_as_of": "2026-07-29",
-    "material_event_count": 16,
+    "material_event_count": 7,
     "headline_status": "MATERIAL_NEWS_FOUND",
     "data_mode": "automated_public_sources"
   },
   "executive_summary": {
-    "headline": "Önem eşiğini geçen gelişmeler",
-    "market_regime": "Otomatik günlük tarama",
-    "dominant_theme": "Veri Merkezi Kapasitesi",
-    "main_positive_driver": "Kapasite, sipariş ve yatırım büyümesi",
-    "main_risk": "Kaynak doğrulaması, uygulama ve değerleme riski",
-    "summary": "Son 24 saatte 16 maddi gelişme tespit edildi. Kartlar kaynak kalitesi ve önem filtresine göre sıralandı."
+    "headline": "TTRAK ve LUNR için önem eşiğini geçen gelişmeler",
+    "market_regime": "İki şirket odaklı günlük tarama",
+    "dominant_theme": "LUNR",
+    "main_positive_driver": "TTRAK için operasyonel performans; LUNR için sözleşme ve görev icrası",
+    "main_risk": "TTRAK için döngüsel talep; LUNR için görev, nakit ve sulanma riski",
+    "summary": "Son 24 saatte TTRAK ve LUNR için 7 maddi gelişme tespit edildi. Yalnız bu iki şirket değerlendirme kapsamındadır."
   },
   "events": [
     {
-      "event_id": "evt-53e65b24cc632e",
-      "primary_theme": "Veri Merkezi Kapasitesi",
+      "event_id": "evt-390cab0ced20d1",
+      "primary_theme": "LUNR",
       "related_themes": [],
-      "companies": [],
-      "headline": "Core Scientific And AMD Partner To Deploy Up To 2.5 Gigawatts Of AI Data Center Capacity - Pulse 2.0",
-      "event_time": "2026-07-28T18:09:37+00:00",
-      "published_time": "2026-07-28T18:09:37+00:00",
-      "retrieved_time": "2026-07-29T10:17:48.804777+00:00",
-      "facts": [
-        "Core Scientific And AMD Partner To Deploy Up To 2.5 Gigawatts Of AI Data Center Capacity - Pulse 2.0"
+      "companies": [
+        "LUNR"
       ],
-      "why_it_matters": "Veri Merkezi Kapasitesi temasında maddi önem filtresini geçen güncel bir gelişmedir. Sayısal ayrıntılar kaynak üzerinden doğrulanmalıdır.",
-      "investment_meaning": "Gelişme izlenmeli; tek başına kişisel alım veya satım kararı üretmek için yeterli değildir.",
+      "headline": "Renaissance Technologies LLC Makes New $35.90 Million Investment in Intuitive Machines, Inc. $LUNR - MarketBeat",
+      "event_time": "2026-07-29T10:04:32+00:00",
+      "published_time": "2026-07-29T10:04:32+00:00",
+      "retrieved_time": "2026-07-29T10:20:50.898731+00:00",
+      "facts": [
+        "Renaissance Technologies LLC Makes New $35.90 Million Investment in Intuitive Machines, Inc. $LUNR - MarketBeat"
+      ],
+      "why_it_matters": "Intuitive Machines için NASA sözleşmeleri, görev başarısı, fırlatma takvimi, nakit tüketimi ve yeni finansman ihtiyacı yatırım tezinin ana sürücüleridir.",
+      "investment_meaning": "Gelişme izlenmeli; tek başına pozisyon artırma veya azaltma kararı üretmek için yeterli değildir.",
       "thesis_impact": "THESIS_UNCHANGED",
       "research_view": {
         "rating": "NEUTRAL",
         "time_horizon": "Orta-Uzun vadeli",
-        "summary": "Gelişme izlenmeli; tek başına kişisel alım veya satım kararı üretmek için yeterli değildir.",
+        "summary": "Gelişme izlenmeli; tek başına pozisyon artırma veya azaltma kararı üretmek için yeterli değildir.",
         "reasons": [
-          "Maddi gelişme filtresini geçti"
+          "Intuitive Machines için son 24 saatte önem filtresini geçen gelişme"
         ],
         "risks": [
+          "Görev gecikmesi veya başarısızlığı, yüksek volatilite ve sermaye sulanması riski birlikte izlenmelidir.",
           "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
         ]
       },
-      "risk_badge": "STANDARD",
+      "risk_badge": "SPECULATIVE",
       "confidence": "MEDIUM",
       "sources": [
         {
           "source_type": "SECONDARY_NEWS",
-          "publisher": "Pulse 2.0",
-          "title": "Core Scientific And AMD Partner To Deploy Up To 2.5 Gigawatts Of AI Data Center Capacity - Pulse 2.0",
-          "published_at": "2026-07-28T18:09:37+00:00",
-          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNcFZXQ3RvTEpPUExlS0pTSUlMRE9yT0NQc2hJMGV2akFKc3lmRmhKM2dWcXJOMkZvc2lqWWJPS3R0aHA1WE9EVEtyVXQtWTdyY0VHaTFkcmhBaGd5QlFVNWVOSDN1NDN0Z2lERm0yQUM5d3pWX1VvT2djalNXU3Zaa1pqcXQ0Mi1jbDFvQ2ZuQk9VaVltei1lWlZ6ejZ5OWk2NzliQlE0eWxrRk5f0gGyAUFVX3lxTE92eE9pOTBjVzhoSE52XzJVZmF5dGVJWHlrMTRxNG93TjY5LXJnLTN0TDhvVUw2RU1LdkZKakRPM21MUHNPamJwb3NBay1mU2VCUFoxRXRZdmt0MFhWd2cxS1U0bnZVZVdCdTlWM0gzTUJEbHRoRWVoMmNDUUd6QTdDOFFuMGo5V1RpaWhCNFllbXFMQjlwdHFSQzRpZ2NFSnhsOFlmdU5RNWNNOHJzRlpGTFE?oc=5",
+          "publisher": "MarketBeat",
+          "title": "Renaissance Technologies LLC Makes New $35.90 Million Investment in Intuitive Machines, Inc. $LUNR - MarketBeat",
+          "published_at": "2026-07-29T10:04:32+00:00",
+          "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxNT0dSLW5LZHRIcVZHNHJBU2g2NXEtVzNnbVVNdUZJN3N6OWxEVHRoOEx3VGl6ZEcxNGxDN0VsX0pBSnB0dTNUX3BUc3ZiSVJIZHVZZnU2d2N0eHpGM1E5VnlQYk5lb3FHTWo5dnNWREZvUGQ1QTlMT3JwUXZjcVR4UmFvY05xbTN6M05CUEN5LVVlZzVkTUtqM19xZ1J2blZ1ZFBWNER5YUZyaTdZVGlSeDM5SHJGX1B3WnQ4U2FCR2JYMlVOVjNUTVhnZ1dIbFlzbjRodldZNlZLZy15Y0JpcGRhRExiSXcyakE?oc=5",
           "primary_source": false
         }
       ]
     },
     {
-      "event_id": "evt-6829a91e55d66e",
-      "primary_theme": "Veri Merkezi Kapasitesi",
+      "event_id": "evt-b9994d0554632e",
+      "primary_theme": "LUNR",
       "related_themes": [],
-      "companies": [],
-      "headline": "Meta and BlackRock form $14 billion venture for 1-gigawatt El Paso AI campus - Blockspace Media",
-      "event_time": "2026-07-28T13:55:39+00:00",
-      "published_time": "2026-07-28T13:55:39+00:00",
-      "retrieved_time": "2026-07-29T10:17:48.804806+00:00",
-      "facts": [
-        "Meta and BlackRock form $14 billion venture for 1-gigawatt El Paso AI campus - Blockspace Media"
+      "companies": [
+        "LUNR"
       ],
-      "why_it_matters": "Veri Merkezi Kapasitesi temasında maddi önem filtresini geçen güncel bir gelişmedir. Sayısal ayrıntılar kaynak üzerinden doğrulanmalıdır.",
-      "investment_meaning": "Gelişme izlenmeli; tek başına kişisel alım veya satım kararı üretmek için yeterli değildir.",
+      "headline": "LUNR Stock Hits 52-Week High Ahead Of Q1 Earnings This Week — Retail Says SpaceX IPO Will Fuel A Rally In Intuitive Machines Shares - Stocktwits",
+      "event_time": "2026-07-28T23:11:22+00:00",
+      "published_time": "2026-07-28T23:11:22+00:00",
+      "retrieved_time": "2026-07-29T10:20:50.898771+00:00",
+      "facts": [
+        "LUNR Stock Hits 52-Week High Ahead Of Q1 Earnings This Week — Retail Says SpaceX IPO Will Fuel A Rally In Intuitive Machines Shares - Stocktwits"
+      ],
+      "why_it_matters": "Intuitive Machines için NASA sözleşmeleri, görev başarısı, fırlatma takvimi, nakit tüketimi ve yeni finansman ihtiyacı yatırım tezinin ana sürücüleridir.",
+      "investment_meaning": "Gelişme izlenmeli; tek başına pozisyon artırma veya azaltma kararı üretmek için yeterli değildir.",
       "thesis_impact": "THESIS_UNCHANGED",
       "research_view": {
         "rating": "NEUTRAL",
         "time_horizon": "Orta-Uzun vadeli",
-        "summary": "Gelişme izlenmeli; tek başına kişisel alım veya satım kararı üretmek için yeterli değildir.",
+        "summary": "Gelişme izlenmeli; tek başına pozisyon artırma veya azaltma kararı üretmek için yeterli değildir.",
         "reasons": [
-          "Maddi gelişme filtresini geçti"
+          "Intuitive Machines için son 24 saatte önem filtresini geçen gelişme"
         ],
         "risks": [
+          "Görev gecikmesi veya başarısızlığı, yüksek volatilite ve sermaye sulanması riski birlikte izlenmelidir.",
           "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
         ]
       },
-      "risk_badge": "STANDARD",
+      "risk_badge": "SPECULATIVE",
       "confidence": "MEDIUM",
       "sources": [
         {
           "source_type": "SECONDARY_NEWS",
-          "publisher": "Blockspace Media",
-          "title": "Meta and BlackRock form $14 billion venture for 1-gigawatt El Paso AI campus - Blockspace Media",
-          "published_at": "2026-07-28T13:55:39+00:00",
-          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOdWtGTEpCYTFXR1JIS3ZaZWRmLUdEeThlSjVZZE50a1pqVWFRWU95TzlyWjRFa3dWaUh6Y0hVaEhsaFhLSk9KOVRHTlltc25vemgzb19DbWhOWDFqVTJLdHh0ZEdUUG5pUWhhXzZmYy1CTlV1dzJDMk9Ea3NhNDJVQ04yZ2hNOTFOcFE?oc=5",
+          "publisher": "Stocktwits",
+          "title": "LUNR Stock Hits 52-Week High Ahead Of Q1 Earnings This Week — Retail Says SpaceX IPO Will Fuel A Rally In Intuitive Machines Shares - Stocktwits",
+          "published_at": "2026-07-28T23:11:22+00:00",
+          "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNM01nLTZndkJPYWRzZGIzd1J3d1hXc1N5dndxWTJfQ3BQYUlXeDA1Y0Vza05yM3ZpT3NEYjZfcENhWE45eUdFU0lsWTZfbS1aS3dNSWJDdXRsaDhHN19MZlpkNndZaXM3cW1uNUJPSWZGV3pHZTdxSWp1VDVsZ05hbEVhaHlVOTFSYWliTFdBdzBmY0VrU1F5MFQ0M3pZT2pSamdLUWZFam5vWXU2MDRvem5QTkFhSEV4cEpYb2hDZ1doV1dxa2tKdGw5WEoxd01OQUE?oc=5",
           "primary_source": false
         }
       ]
     },
     {
-      "event_id": "evt-7abe0c50cd6df5",
-      "primary_theme": "GPU ve Özel Çipler",
+      "event_id": "evt-527da59d6e6fdd",
+      "primary_theme": "LUNR",
       "related_themes": [],
-      "companies": [],
-      "headline": "Data Center Semiconductor Market to Reach USD 265.8 Billion by 2029, Growing at 25.1% CAGR, Says MarketsandMarkets™ - Yahoo Finance Singapore",
-      "event_time": "2026-07-28T14:30:00+00:00",
-      "published_time": "2026-07-28T14:30:00+00:00",
-      "retrieved_time": "2026-07-29T10:17:48.804834+00:00",
-      "facts": [
-        "Data Center Semiconductor Market to Reach USD 265.8 Billion by 2029, Growing at 25.1% CAGR, Says MarketsandMarkets™ - Yahoo Finance Singapore"
+      "companies": [
+        "LUNR"
       ],
-      "why_it_matters": "GPU ve Özel Çipler temasında maddi önem filtresini geçen güncel bir gelişmedir. Sayısal ayrıntılar kaynak üzerinden doğrulanmalıdır.",
-      "investment_meaning": "Gelişme izlenmeli; tek başına kişisel alım veya satım kararı üretmek için yeterli değildir.",
-      "thesis_impact": "THESIS_UNCHANGED",
+      "headline": "Does Earnings Downgrade And Zacks Strong Sell Call Change The Bull Case For Intuitive Machines (LUNR)? - simplywall.st",
+      "event_time": "2026-07-28T13:24:30+00:00",
+      "published_time": "2026-07-28T13:24:30+00:00",
+      "retrieved_time": "2026-07-29T10:20:50.898796+00:00",
+      "facts": [
+        "Does Earnings Downgrade And Zacks Strong Sell Call Change The Bull Case For Intuitive Machines (LUNR)? - simplywall.st"
+      ],
+      "why_it_matters": "Intuitive Machines için NASA sözleşmeleri, görev başarısı, fırlatma takvimi, nakit tüketimi ve yeni finansman ihtiyacı yatırım tezinin ana sürücüleridir.",
+      "investment_meaning": "Araştırma görünümü zayıfladı; etkinin geçici mi yapısal mı olduğu resmî açıklamalarla kontrol edilmelidir.",
+      "thesis_impact": "THESIS_WEAKENED",
       "research_view": {
-        "rating": "NEUTRAL",
+        "rating": "NEGATIVE",
         "time_horizon": "Orta-Uzun vadeli",
-        "summary": "Gelişme izlenmeli; tek başına kişisel alım veya satım kararı üretmek için yeterli değildir.",
+        "summary": "Araştırma görünümü zayıfladı; etkinin geçici mi yapısal mı olduğu resmî açıklamalarla kontrol edilmelidir.",
         "reasons": [
-          "Maddi gelişme filtresini geçti"
+          "Intuitive Machines için son 24 saatte önem filtresini geçen gelişme"
         ],
         "risks": [
+          "Görev gecikmesi veya başarısızlığı, yüksek volatilite ve sermaye sulanması riski birlikte izlenmelidir.",
           "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
         ]
       },
-      "risk_badge": "STANDARD",
-      "confidence": "MEDIUM",
-      "sources": [
-        {
-          "source_type": "SECONDARY_NEWS",
-          "publisher": "Yahoo Finance Singapore",
-          "title": "Data Center Semiconductor Market to Reach USD 265.8 Billion by 2029, Growing at 25.1% CAGR, Says MarketsandMarkets™ - Yahoo Finance Singapore",
-          "published_at": "2026-07-28T14:30:00+00:00",
-          "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNaWRkRTNJbTI4Z0NSZnN1eF9vZnkwd1RjcWhDN2RDSDd1dlJ1MFl3RWVkcUJLWlM0RzVkT0tHNkhLYjhTd1hqb2RJdUs5ZEJvMjRYRXBvZlY5R2wzdXltbkdibl84SEotRXhLTF9GNE5Ld2d5cHlrbzdwMTZfY2JFTFlHSERheWh0MEkzSnlUeFA?oc=5",
-          "primary_source": false
-        }
-      ]
-    },
-    {
-      "event_id": "evt-e5083cf4097de8",
-      "primary_theme": "Enerji ve Güç Altyapısı",
-      "related_themes": [],
-      "companies": [],
-      "headline": "US AI Data Center Power Crunch Drives Korean Suppliers' Bloom Energy Orders - Seoul Economic Daily",
-      "event_time": "2026-07-29T09:24:27+00:00",
-      "published_time": "2026-07-29T09:24:27+00:00",
-      "retrieved_time": "2026-07-29T10:17:48.804854+00:00",
-      "facts": [
-        "US AI Data Center Power Crunch Drives Korean Suppliers' Bloom Energy Orders - Seoul Economic Daily"
-      ],
-      "why_it_matters": "Enerji ve Güç Altyapısı temasında maddi önem filtresini geçen güncel bir gelişmedir. Sayısal ayrıntılar kaynak üzerinden doğrulanmalıdır.",
-      "investment_meaning": "Gelişme izlenmeli; tek başına kişisel alım veya satım kararı üretmek için yeterli değildir.",
-      "thesis_impact": "THESIS_UNCHANGED",
-      "research_view": {
-        "rating": "NEUTRAL",
-        "time_horizon": "Orta-Uzun vadeli",
-        "summary": "Gelişme izlenmeli; tek başına kişisel alım veya satım kararı üretmek için yeterli değildir.",
-        "reasons": [
-          "Maddi gelişme filtresini geçti"
-        ],
-        "risks": [
-          "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
-        ]
-      },
-      "risk_badge": "STANDARD",
-      "confidence": "MEDIUM",
-      "sources": [
-        {
-          "source_type": "SECONDARY_NEWS",
-          "publisher": "Seoul Economic Daily",
-          "title": "US AI Data Center Power Crunch Drives Korean Suppliers' Bloom Energy Orders - Seoul Economic Daily",
-          "published_at": "2026-07-29T09:24:27+00:00",
-          "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQbHY3ajV5Yk1lSVZSVzNJLXZFS1p6S3dQbGdGd212SG5tcmRYcFUzM0pYM1NqWlRhdXNZUHIycGxBQ3piQ2NQc0N6NWR6UW5aMkhRYlhMVHVhdlVzMzhsd3dvRHZYaVBSODR4TzRVa3FfZDZQNGtoWXZQSlZPYTJTcUs4NW85TEl6VXJoTDNCOUJGcng1MTNqQlBGSy0?oc=5",
-          "primary_source": false
-        }
-      ]
-    },
-    {
-      "event_id": "evt-08a475ef6018b2",
-      "primary_theme": "Yapay Zeka",
-      "related_themes": [],
-      "companies": [],
-      "headline": "AI Model Monitoring Market to Reach USD 5.3 Billion by 2035 | AI Governance, MLOps & Generative AI Drive Growth - openPR.com",
-      "event_time": "2026-07-28T11:20:17+00:00",
-      "published_time": "2026-07-28T11:20:17+00:00",
-      "retrieved_time": "2026-07-29T10:17:48.804874+00:00",
-      "facts": [
-        "AI Model Monitoring Market to Reach USD 5.3 Billion by 2035 | AI Governance, MLOps & Generative AI Drive Growth - openPR.com"
-      ],
-      "why_it_matters": "Yapay Zeka temasında maddi önem filtresini geçen güncel bir gelişmedir. Sayısal ayrıntılar kaynak üzerinden doğrulanmalıdır.",
-      "investment_meaning": "Gelişme izlenmeli; tek başına kişisel alım veya satım kararı üretmek için yeterli değildir.",
-      "thesis_impact": "THESIS_UNCHANGED",
-      "research_view": {
-        "rating": "NEUTRAL",
-        "time_horizon": "Orta-Uzun vadeli",
-        "summary": "Gelişme izlenmeli; tek başına kişisel alım veya satım kararı üretmek için yeterli değildir.",
-        "reasons": [
-          "Maddi gelişme filtresini geçti"
-        ],
-        "risks": [
-          "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
-        ]
-      },
-      "risk_badge": "STANDARD",
-      "confidence": "MEDIUM",
-      "sources": [
-        {
-          "source_type": "SECONDARY_NEWS",
-          "publisher": "openPR.com",
-          "title": "AI Model Monitoring Market to Reach USD 5.3 Billion by 2035 | AI Governance, MLOps & Generative AI Drive Growth - openPR.com",
-          "published_at": "2026-07-28T11:20:17+00:00",
-          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOSFlWUml1c2VUeU9hbGRoVkJLVDhrUWl5RjFDRlFCODBJeVctOGpBRU9PVWJId2E3ZWNadjM5YVJqNkMzcHVYS3FvWWNjQ2djSHQtRlNzVEZOMl9mRVVDWXhDZnI1bWhJblhCT1BrYVJrdzk5ei02dU9aRGZIb2dIU05iU2FDbTlDNWxGUk0za05jdkhkdzZGdWlvX2pNWWs?oc=5",
-          "primary_source": false
-        }
-      ]
-    },
-    {
-      "event_id": "evt-8cbb0b90c9fcbf",
-      "primary_theme": "Veri Merkezi Kapasitesi",
-      "related_themes": [],
-      "companies": [],
-      "headline": "Nebius Plans 1.2 GW AI Data Center Campus in Pennsylvania - Indiatimes",
-      "event_time": "2026-07-29T09:28:29+00:00",
-      "published_time": "2026-07-29T09:28:29+00:00",
-      "retrieved_time": "2026-07-29T10:17:48.804893+00:00",
-      "facts": [
-        "Nebius Plans 1.2 GW AI Data Center Campus in Pennsylvania - Indiatimes"
-      ],
-      "why_it_matters": "Veri Merkezi Kapasitesi temasında maddi önem filtresini geçen güncel bir gelişmedir. Sayısal ayrıntılar kaynak üzerinden doğrulanmalıdır.",
-      "investment_meaning": "Gelişme izlenmeli; tek başına kişisel alım veya satım kararı üretmek için yeterli değildir.",
-      "thesis_impact": "THESIS_UNCHANGED",
-      "research_view": {
-        "rating": "NEUTRAL",
-        "time_horizon": "Orta-Uzun vadeli",
-        "summary": "Gelişme izlenmeli; tek başına kişisel alım veya satım kararı üretmek için yeterli değildir.",
-        "reasons": [
-          "Maddi gelişme filtresini geçti"
-        ],
-        "risks": [
-          "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
-        ]
-      },
-      "risk_badge": "STANDARD",
-      "confidence": "MEDIUM",
-      "sources": [
-        {
-          "source_type": "SECONDARY_NEWS",
-          "publisher": "Indiatimes",
-          "title": "Nebius Plans 1.2 GW AI Data Center Campus in Pennsylvania - Indiatimes",
-          "published_at": "2026-07-29T09:28:29+00:00",
-          "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQR0hMVXNjTUdtZy1qaWl5NkJLNmQxczYtV05Td3BkWVZtTHdkNTRPV1RCYnROSDFDRWZ1VlR6ZWNIMjIzS2NUN2lPck1lanRUTGRtRktzcm1PX2VZQldDdHRuRWl1MFhBY1FzSVBjRHZ6QTRpZEMxTTNCSmlGeUtBRk1iVVUtVDE0WktvcXlnTEdQWUVBbTVMdnVxN2JzTzJJd1Q5X25UR3ZyNjFrTzdiOFZtWl9zdWFpMHFpeWFycEl3VENrb0VfOVFNb0x1X05HZ2V4V2Y1ZGlmUWpKRnpBdUcwc3Bsdw?oc=5",
-          "primary_source": false
-        }
-      ]
-    },
-    {
-      "event_id": "evt-b4781d6f5002c0",
-      "primary_theme": "Enerji ve Güç Altyapısı",
-      "related_themes": [],
-      "companies": [],
-      "headline": "Hitachi Stock And 2 Japanese Nuclear Energy Picks Tied To Grid And AI Growth - simplywall.st",
-      "event_time": "2026-07-29T08:19:04+00:00",
-      "published_time": "2026-07-29T08:19:04+00:00",
-      "retrieved_time": "2026-07-29T10:17:48.804912+00:00",
-      "facts": [
-        "Hitachi Stock And 2 Japanese Nuclear Energy Picks Tied To Grid And AI Growth - simplywall.st"
-      ],
-      "why_it_matters": "Enerji ve Güç Altyapısı temasında maddi önem filtresini geçen güncel bir gelişmedir. Sayısal ayrıntılar kaynak üzerinden doğrulanmalıdır.",
-      "investment_meaning": "Gelişme izlenmeli; tek başına kişisel alım veya satım kararı üretmek için yeterli değildir.",
-      "thesis_impact": "THESIS_UNCHANGED",
-      "research_view": {
-        "rating": "NEUTRAL",
-        "time_horizon": "Orta-Uzun vadeli",
-        "summary": "Gelişme izlenmeli; tek başına kişisel alım veya satım kararı üretmek için yeterli değildir.",
-        "reasons": [
-          "Maddi gelişme filtresini geçti"
-        ],
-        "risks": [
-          "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
-        ]
-      },
-      "risk_badge": "STANDARD",
+      "risk_badge": "SPECULATIVE",
       "confidence": "MEDIUM",
       "sources": [
         {
           "source_type": "SECONDARY_NEWS",
           "publisher": "simplywall.st",
-          "title": "Hitachi Stock And 2 Japanese Nuclear Energy Picks Tied To Grid And AI Growth - simplywall.st",
-          "published_at": "2026-07-29T08:19:04+00:00",
-          "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxORzlvU3dreHF0eDdPQmptSUpSQVl5Uy1tRmJLYjFoTDdYNHR2eGUxYVk3Y2ZoNncyQzZPLWg5YURqYTJ3QlZ2cm5tYklKaXAyeUIxOGtDTmJocHFSWUdKTGRQcHVSSGdNd3JHb0djUzBOSnZETzBOUTVtYmFyaERFRmhHQU1VbHFTUmh1aGdUeEpMN0NfZm1zSFlRNWZ4MnFBVFp1VkRfM3NNYzJRdmoxUjA0Q2RGZDFUUDhGcUNPR2hKN1J5aUJBak9kRW9tWDZl0gHWAUFVX3lxTE5rc0xSY2tGTWttN2VqdWdfWm5QdnVyLXJqOTIzaE40X1E4UEpvNDhBNXZtc09QczRCNVd3dEJ3cHp3ZDNDa2xiQmFSdTY5MC1rSGJEWEdMUkI4ekhpbC05UjU3UlU3elEwMl91MGlxV1ZmUFFwc3pqWDNjckkyYjkzZmZSaURfMkdac2x6UmFDd1RZRlc5ajdLNnVvSTI4RXVVVVJuX3BlelM0Wm1YbHVKUG5fYUVIOHNCUjhxQnlHcS1yVEVtR0Q0c0ZTMWp6V2NkTG5vUWc?oc=5",
+          "title": "Does Earnings Downgrade And Zacks Strong Sell Call Change The Bull Case For Intuitive Machines (LUNR)? - simplywall.st",
+          "published_at": "2026-07-28T13:24:30+00:00",
+          "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPSDl5a3h3R0pzZ2N2RnItWlo3VmNhUmhTNXQ2UGhyZDlBR29UZDBZVUVGd1ZIaGhfdFZYVkwyaXlNb0RuZE81VnBsMUNkMmt1dlpvYXhHVDQxT3VOMXhYQThjTEotSno2eFo3Nmo2cUZ0Y0hiR1RNT3RsSUZDSUtpWmFVU2NSTHZjLVVqaV9iSnNCa3FlaEVxc0FuMVU4cDlNN0UwWDJCOWFONWdReXo0bVhsRkRVVnBrcWt4ZUtmMHRrby1HTGRJbmpIemJWd1VFRkNHWFRYeGdKZ9IB3wFBVV95cUxQVFVvSVdrLW5MMnYtNDBnWXpjYnRzTTNObUdDUXAycnFFRXhlQ0RLMUtURTk5S20zYUhiRG1KZlJfOFRxYkVqemZrTmVKcUMzVm0wZEF0WmZ6dXJWQ0lRUnNOdHc2aXgxTFNtTXZzMGtCbmlJenRxaUlIYUNIZWY0YkdhNmZFQk03R2pmLTdzV3BxNUhyWG1keXdkM200VmhSRmF0VVhMV2tVdXN4czczZEZ4SDBYSzRUUzk3d0dSTm0yWDlPem1LUFdXQXVsdGk3eFFlU3pTMWtXYjlsT3lR?oc=5",
           "primary_source": false
         }
       ]
     },
     {
-      "event_id": "evt-64506a0c973b8f",
-      "primary_theme": "Enerji ve Güç Altyapısı",
+      "event_id": "evt-f884214af36d56",
+      "primary_theme": "LUNR",
       "related_themes": [],
-      "companies": [],
-      "headline": "Datacentre projects could face fees for grid access to ease connection queue, Ofgem says - AOL.co.uk",
-      "event_time": "2026-07-29T07:54:49+00:00",
-      "published_time": "2026-07-29T07:54:49+00:00",
-      "retrieved_time": "2026-07-29T10:17:48.804930+00:00",
-      "facts": [
-        "Datacentre projects could face fees for grid access to ease connection queue, Ofgem says - AOL.co.uk"
+      "companies": [
+        "LUNR"
       ],
-      "why_it_matters": "Enerji ve Güç Altyapısı temasında maddi önem filtresini geçen güncel bir gelişmedir. Sayısal ayrıntılar kaynak üzerinden doğrulanmalıdır.",
-      "investment_meaning": "Gelişme izlenmeli; tek başına kişisel alım veya satım kararı üretmek için yeterli değildir.",
+      "headline": "Intuitive Machines Q2 Results: Earnings call set for Aug 13 - scanx.trade",
+      "event_time": "2026-07-28T22:12:53+00:00",
+      "published_time": "2026-07-28T22:12:53+00:00",
+      "retrieved_time": "2026-07-29T10:20:50.898816+00:00",
+      "facts": [
+        "Intuitive Machines Q2 Results: Earnings call set for Aug 13 - scanx.trade"
+      ],
+      "why_it_matters": "Intuitive Machines için NASA sözleşmeleri, görev başarısı, fırlatma takvimi, nakit tüketimi ve yeni finansman ihtiyacı yatırım tezinin ana sürücüleridir.",
+      "investment_meaning": "Gelişme izlenmeli; tek başına pozisyon artırma veya azaltma kararı üretmek için yeterli değildir.",
       "thesis_impact": "THESIS_UNCHANGED",
       "research_view": {
         "rating": "NEUTRAL",
         "time_horizon": "Orta-Uzun vadeli",
-        "summary": "Gelişme izlenmeli; tek başına kişisel alım veya satım kararı üretmek için yeterli değildir.",
+        "summary": "Gelişme izlenmeli; tek başına pozisyon artırma veya azaltma kararı üretmek için yeterli değildir.",
         "reasons": [
-          "Maddi gelişme filtresini geçti"
+          "Intuitive Machines için son 24 saatte önem filtresini geçen gelişme"
         ],
         "risks": [
+          "Görev gecikmesi veya başarısızlığı, yüksek volatilite ve sermaye sulanması riski birlikte izlenmelidir.",
           "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
         ]
       },
-      "risk_badge": "STANDARD",
+      "risk_badge": "SPECULATIVE",
       "confidence": "MEDIUM",
       "sources": [
         {
           "source_type": "SECONDARY_NEWS",
-          "publisher": "AOL.co.uk",
-          "title": "Datacentre projects could face fees for grid access to ease connection queue, Ofgem says - AOL.co.uk",
-          "published_at": "2026-07-29T07:54:49+00:00",
-          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNRHIxTDNMa0F3RFUzSjFMQ2p4eHB1ZXI0eTBEM0d6VFFuUkp2UU85anhSY3ozQ2Rkdk9RdGNUT2FlY1BMdVZ0LVVybkRQN3p2aWhTV3FCcTRpV2ZUd3ZPV29ieUx5YjM1REg3cTFBekdPcnd4N2hudFdvbE1aTm9BV0dnSXJhcmFM?oc=5",
+          "publisher": "scanx.trade",
+          "title": "Intuitive Machines Q2 Results: Earnings call set for Aug 13 - scanx.trade",
+          "published_at": "2026-07-28T22:12:53+00:00",
+          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOY0swYmFEUmRwbG5Xc0hTRi1pTzJsc2FDaEFRTW5nTDlfaUVES0RYazBXWkhaWlpXemlJdUNqbXpleTVybHJkMTdDZ1lkSGtIckFzckNLczc3SVRUbWEwcDJTQVBXZEJqc1l0Qk9DejR3QmVxcGtyOVNhLWU4WEdEWHVubVVibEQ1ZmRGcVE5LWZLREFOMmp4Q0xQbGxIbVROTVhHbjBmTzNaMTlPNDVROUdYalJqZw?oc=5",
           "primary_source": false
         }
       ]
     },
     {
-      "event_id": "evt-144bc89cffef22",
-      "primary_theme": "Bulut Yatırımları",
+      "event_id": "evt-e16531b17b9caf",
+      "primary_theme": "LUNR",
       "related_themes": [],
-      "companies": [],
-      "headline": "Big Earnings Week: Meta, Amazon and Microsoft in Spotlight - Investing.com",
-      "event_time": "2026-07-29T06:43:00+00:00",
-      "published_time": "2026-07-29T06:43:00+00:00",
-      "retrieved_time": "2026-07-29T10:17:48.804946+00:00",
-      "facts": [
-        "Big Earnings Week: Meta, Amazon and Microsoft in Spotlight - Investing.com"
+      "companies": [
+        "LUNR"
       ],
-      "why_it_matters": "Bulut Yatırımları temasında maddi önem filtresini geçen güncel bir gelişmedir. Sayısal ayrıntılar kaynak üzerinden doğrulanmalıdır.",
-      "investment_meaning": "Gelişme izlenmeli; tek başına kişisel alım veya satım kararı üretmek için yeterli değildir.",
+      "headline": "Trump Administration Moves To Strip Environmental Reviews For Commercial Rocket Launches, Putting RKLB, ASTS and LUNR In Focus - foreignpolicyjournal.com",
+      "event_time": "2026-07-29T02:03:00+00:00",
+      "published_time": "2026-07-29T02:03:00+00:00",
+      "retrieved_time": "2026-07-29T10:20:50.898839+00:00",
+      "facts": [
+        "Trump Administration Moves To Strip Environmental Reviews For Commercial Rocket Launches, Putting RKLB, ASTS and LUNR In Focus - foreignpolicyjournal.com"
+      ],
+      "why_it_matters": "Intuitive Machines için NASA sözleşmeleri, görev başarısı, fırlatma takvimi, nakit tüketimi ve yeni finansman ihtiyacı yatırım tezinin ana sürücüleridir.",
+      "investment_meaning": "Gelişme izlenmeli; tek başına pozisyon artırma veya azaltma kararı üretmek için yeterli değildir.",
       "thesis_impact": "THESIS_UNCHANGED",
       "research_view": {
         "rating": "NEUTRAL",
         "time_horizon": "Orta-Uzun vadeli",
-        "summary": "Gelişme izlenmeli; tek başına kişisel alım veya satım kararı üretmek için yeterli değildir.",
+        "summary": "Gelişme izlenmeli; tek başına pozisyon artırma veya azaltma kararı üretmek için yeterli değildir.",
         "reasons": [
-          "Maddi gelişme filtresini geçti"
+          "Intuitive Machines için son 24 saatte önem filtresini geçen gelişme"
         ],
         "risks": [
+          "Görev gecikmesi veya başarısızlığı, yüksek volatilite ve sermaye sulanması riski birlikte izlenmelidir.",
           "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
         ]
       },
-      "risk_badge": "STANDARD",
+      "risk_badge": "SPECULATIVE",
       "confidence": "MEDIUM",
       "sources": [
         {
           "source_type": "SECONDARY_NEWS",
-          "publisher": "Investing.com",
-          "title": "Big Earnings Week: Meta, Amazon and Microsoft in Spotlight - Investing.com",
-          "published_at": "2026-07-29T06:43:00+00:00",
-          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOdzdOT1BzNkpmOUNmTlBBelhpUzR2Q2J0eWE2Y0pBT1VLUnNKRk5FcXNrVnNVTzZoRHpGWEtWQVdoQ3RXaEdtMUo1Q1dqQ2lhU0F4ejhLOXJqN0JqMFRKZmpHVkRzaTljbnlPa2ZTekhjZWpYUkgtTXVNdDVVeklOTGdDd0lmZDg2N3NOVHR5NWZwd2tGQTdGaVZzQ1hWaVV3M0RGZ3ZrOEhhYWg2Znc?oc=5",
+          "publisher": "foreignpolicyjournal.com",
+          "title": "Trump Administration Moves To Strip Environmental Reviews For Commercial Rocket Launches, Putting RKLB, ASTS and LUNR In Focus - foreignpolicyjournal.com",
+          "published_at": "2026-07-29T02:03:00+00:00",
+          "url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxNSDZ6RnM3bW9yTTRhOWN5TkZKYkFZczlUcE5MUkpMY200c29QNE9IczNRTDBMWnlZeEoyTkxqbXRjaTZBZEdQeEZrWnhsVUZTd3oxUnBvOEdpU2lwWjhuOFNjdE5FbFZLOUZoeTZXUjRlR3p2b1FRZV9Sb244QUdjMGRPZURIVW9CRG9CRm0wTjVKSUhXYlBYVEZ3bl9Qd3lZSHhUVmpoaXJBSGViVXN0a1dwcmFQRm9DdEU0dlE5OHlHaTMyazlpQ2JqQllXT21WdUt6OER2ZlU0Vm14WVpHanVxZXpWS0NiclBUQU1Gd2lJRktWZGZTa29UQTJOWDlHR3lR?oc=5",
           "primary_source": false
         }
       ]
     },
     {
-      "event_id": "evt-28e999bdb853cf",
-      "primary_theme": "Enerji ve Güç Altyapısı",
+      "event_id": "evt-117c9f5ae5a3c9",
+      "primary_theme": "TTRAK",
       "related_themes": [],
-      "companies": [],
-      "headline": "Key Considerations for Data Center Development - Bipartisan Policy Center",
-      "event_time": "2026-07-29T02:34:17+00:00",
-      "published_time": "2026-07-29T02:34:17+00:00",
-      "retrieved_time": "2026-07-29T10:17:48.804962+00:00",
-      "facts": [
-        "Key Considerations for Data Center Development - Bipartisan Policy Center"
+      "companies": [
+        "TTRAK"
       ],
-      "why_it_matters": "Enerji ve Güç Altyapısı temasında maddi önem filtresini geçen güncel bir gelişmedir. Sayısal ayrıntılar kaynak üzerinden doğrulanmalıdır.",
-      "investment_meaning": "Gelişme izlenmeli; tek başına kişisel alım veya satım kararı üretmek için yeterli değildir.",
+      "headline": "Borsa İstanbul için bilanço beklentisi - hibya.com",
+      "event_time": "2026-07-29T07:05:30+00:00",
+      "published_time": "2026-07-29T07:05:30+00:00",
+      "retrieved_time": "2026-07-29T10:20:50.898865+00:00",
+      "facts": [
+        "Borsa İstanbul için bilanço beklentisi - hibya.com"
+      ],
+      "why_it_matters": "Türk Traktör için iç pazar talebi, ihracat, üretim adedi, fiyatlama gücü ve marjlar yatırım tezinin ana sürücüleridir.",
+      "investment_meaning": "Gelişme izlenmeli; tek başına pozisyon artırma veya azaltma kararı üretmek için yeterli değildir.",
       "thesis_impact": "THESIS_UNCHANGED",
       "research_view": {
         "rating": "NEUTRAL",
         "time_horizon": "Orta-Uzun vadeli",
-        "summary": "Gelişme izlenmeli; tek başına kişisel alım veya satım kararı üretmek için yeterli değildir.",
+        "summary": "Gelişme izlenmeli; tek başına pozisyon artırma veya azaltma kararı üretmek için yeterli değildir.",
         "reasons": [
-          "Maddi gelişme filtresini geçti"
+          "Türk Traktör için son 24 saatte önem filtresini geçen gelişme"
         ],
         "risks": [
+          "Tarım makinesi döngüsü, kur, faiz, çiftçi finansmanı ve ihracat talebi birlikte izlenmelidir.",
           "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
         ]
       },
-      "risk_badge": "STANDARD",
+      "risk_badge": "ESTABLISHED",
       "confidence": "MEDIUM",
       "sources": [
         {
           "source_type": "SECONDARY_NEWS",
-          "publisher": "Bipartisan Policy Center",
-          "title": "Key Considerations for Data Center Development - Bipartisan Policy Center",
-          "published_at": "2026-07-29T02:34:17+00:00",
-          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOazhlM2ZNcGhKRERiWkNTQzdQZFFzMjBqbVdwb21NQXlfZ1pWZE5KbjhUMWlBWElXNzBqQl93am54ZnVmbW40bDEzR2FWR3M1NUZOcDBaMXFVMzZUZGlXS2pZWUJOMFZKWXVVSVhhY1I0a1ZXeTY4OXY2cGVSeUQ2YnFwSTFlT1pvTmRV?oc=5",
+          "publisher": "hibya.com",
+          "title": "Borsa İstanbul için bilanço beklentisi - hibya.com",
+          "published_at": "2026-07-29T07:05:30+00:00",
+          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE4ycGJJeF82SVZUZFFISWljYV9rcHFfY0NpdGhHSTJTZVl3NnJMeHJLZUJVd1ZsV3dvNjRXeWNHZFpnYmhnVUNTcVk3ZEt5eXRXMk9iekNGWXZCajRwLWI0U1gzbVZ4SjBLLWZvM2xBdVk?oc=5",
           "primary_source": false
         }
       ]
     },
     {
-      "event_id": "evt-250f35ccd78a9f",
-      "primary_theme": "Veri Merkezi Kapasitesi",
+      "event_id": "evt-6ea4e7ce483bcf",
+      "primary_theme": "TTRAK",
       "related_themes": [],
-      "companies": [],
-      "headline": "Energy Vault Starts Building Crusoe Modular Data Center in Texas - Hart Energy",
-      "event_time": "2026-07-28T22:25:00+00:00",
-      "published_time": "2026-07-28T22:25:00+00:00",
-      "retrieved_time": "2026-07-29T10:17:48.804979+00:00",
-      "facts": [
-        "Energy Vault Starts Building Crusoe Modular Data Center in Texas - Hart Energy"
+      "companies": [
+        "TTRAK"
       ],
-      "why_it_matters": "Veri Merkezi Kapasitesi temasında maddi önem filtresini geçen güncel bir gelişmedir. Sayısal ayrıntılar kaynak üzerinden doğrulanmalıdır.",
-      "investment_meaning": "Gelişme izlenmeli; tek başına kişisel alım veya satım kararı üretmek için yeterli değildir.",
+      "headline": "HSBC, Türk Traktör (TTRAK) hisseleri için yeni hedef fiyatını açıkladı - Rota Borsa",
+      "event_time": "2026-07-28T10:55:39+00:00",
+      "published_time": "2026-07-28T10:55:39+00:00",
+      "retrieved_time": "2026-07-29T10:20:50.898887+00:00",
+      "facts": [
+        "HSBC, Türk Traktör (TTRAK) hisseleri için yeni hedef fiyatını açıkladı - Rota Borsa"
+      ],
+      "why_it_matters": "Türk Traktör için iç pazar talebi, ihracat, üretim adedi, fiyatlama gücü ve marjlar yatırım tezinin ana sürücüleridir.",
+      "investment_meaning": "Gelişme izlenmeli; tek başına pozisyon artırma veya azaltma kararı üretmek için yeterli değildir.",
       "thesis_impact": "THESIS_UNCHANGED",
       "research_view": {
         "rating": "NEUTRAL",
         "time_horizon": "Orta-Uzun vadeli",
-        "summary": "Gelişme izlenmeli; tek başına kişisel alım veya satım kararı üretmek için yeterli değildir.",
+        "summary": "Gelişme izlenmeli; tek başına pozisyon artırma veya azaltma kararı üretmek için yeterli değildir.",
         "reasons": [
-          "Maddi gelişme filtresini geçti"
+          "Türk Traktör için son 24 saatte önem filtresini geçen gelişme"
         ],
         "risks": [
+          "Tarım makinesi döngüsü, kur, faiz, çiftçi finansmanı ve ihracat talebi birlikte izlenmelidir.",
           "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
         ]
       },
-      "risk_badge": "STANDARD",
+      "risk_badge": "ESTABLISHED",
       "confidence": "MEDIUM",
       "sources": [
         {
           "source_type": "SECONDARY_NEWS",
-          "publisher": "Hart Energy",
-          "title": "Energy Vault Starts Building Crusoe Modular Data Center in Texas - Hart Energy",
-          "published_at": "2026-07-28T22:25:00+00:00",
-          "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOcW9xOXRBRWlHcDNtVU94aGVBaDR5alRXM3pPRkZhOE5kNjgtRFhBMjI4U05KVURuNFRDOElCaWFRcXdsdkxCaDh1S253aHVXRjliT3pONlA1N1YwRUY2NVBKTWt3STF0NUY5ckxfRW40d0lFVXFUcHZ2V2tYNDd0RDByaWNrMVI3Z3o1TmU1eFlWR0N4Q09NRWhjYw?oc=5",
-          "primary_source": false
-        }
-      ]
-    },
-    {
-      "event_id": "evt-67340552539c6d",
-      "primary_theme": "Veri Merkezi Kapasitesi",
-      "related_themes": [],
-      "companies": [],
-      "headline": "AMD’s $14B Data Center Bet on Core Scientific Targets Nvidia’s AI Infrastructure Lead - Tech Times",
-      "event_time": "2026-07-28T15:58:26+00:00",
-      "published_time": "2026-07-28T15:58:26+00:00",
-      "retrieved_time": "2026-07-29T10:17:48.805000+00:00",
-      "facts": [
-        "AMD’s $14B Data Center Bet on Core Scientific Targets Nvidia’s AI Infrastructure Lead - Tech Times"
-      ],
-      "why_it_matters": "Veri Merkezi Kapasitesi temasında maddi önem filtresini geçen güncel bir gelişmedir. Sayısal ayrıntılar kaynak üzerinden doğrulanmalıdır.",
-      "investment_meaning": "Gelişme izlenmeli; tek başına kişisel alım veya satım kararı üretmek için yeterli değildir.",
-      "thesis_impact": "THESIS_UNCHANGED",
-      "research_view": {
-        "rating": "NEUTRAL",
-        "time_horizon": "Orta-Uzun vadeli",
-        "summary": "Gelişme izlenmeli; tek başına kişisel alım veya satım kararı üretmek için yeterli değildir.",
-        "reasons": [
-          "Maddi gelişme filtresini geçti"
-        ],
-        "risks": [
-          "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
-        ]
-      },
-      "risk_badge": "STANDARD",
-      "confidence": "MEDIUM",
-      "sources": [
-        {
-          "source_type": "SECONDARY_NEWS",
-          "publisher": "Tech Times",
-          "title": "AMD’s $14B Data Center Bet on Core Scientific Targets Nvidia’s AI Infrastructure Lead - Tech Times",
-          "published_at": "2026-07-28T15:58:26+00:00",
-          "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQMUxjM2hiQXIwTFpfVXJLSkg1di1zSklvVGxiMUN2Si04a2x0V2VfZ2dzeDA1TklrdzNselBBZjJMYzFLWUptQ21nZlk1VUI4aHJrdFQ2RnVBQnVrNWFpS1hQSWlKOGJnSHFpTnFnNEdqeVBoUWt3NldKM1hvajJ1S0l5bERkQmpfSVNsXzRQTjVHNkNWMTlyN2lmbmJ0Q2VxRU5hVmo2dDRFdGdIWTVocGJLekpYR3ZwU1ZFQ0tUQm1hZHVnakgwOGZxbGpnc3c?oc=5",
-          "primary_source": false
-        }
-      ]
-    },
-    {
-      "event_id": "evt-834c51602ce143",
-      "primary_theme": "Bulut Yatırımları",
-      "related_themes": [],
-      "companies": [],
-      "headline": "Google Cloud Just Grew 82%. Here's Why Amazon and Microsoft Investors Should Pay Attention Before This Week's Earnings. - The Motley Fool",
-      "event_time": "2026-07-28T15:26:00+00:00",
-      "published_time": "2026-07-28T15:26:00+00:00",
-      "retrieved_time": "2026-07-29T10:17:48.805018+00:00",
-      "facts": [
-        "Google Cloud Just Grew 82%. Here's Why Amazon and Microsoft Investors Should Pay Attention Before This Week's Earnings. - The Motley Fool"
-      ],
-      "why_it_matters": "Bulut Yatırımları temasında maddi önem filtresini geçen güncel bir gelişmedir. Sayısal ayrıntılar kaynak üzerinden doğrulanmalıdır.",
-      "investment_meaning": "Gelişme izlenmeli; tek başına kişisel alım veya satım kararı üretmek için yeterli değildir.",
-      "thesis_impact": "THESIS_UNCHANGED",
-      "research_view": {
-        "rating": "NEUTRAL",
-        "time_horizon": "Orta-Uzun vadeli",
-        "summary": "Gelişme izlenmeli; tek başına kişisel alım veya satım kararı üretmek için yeterli değildir.",
-        "reasons": [
-          "Maddi gelişme filtresini geçti"
-        ],
-        "risks": [
-          "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
-        ]
-      },
-      "risk_badge": "STANDARD",
-      "confidence": "MEDIUM",
-      "sources": [
-        {
-          "source_type": "SECONDARY_NEWS",
-          "publisher": "The Motley Fool",
-          "title": "Google Cloud Just Grew 82%. Here's Why Amazon and Microsoft Investors Should Pay Attention Before This Week's Earnings. - The Motley Fool",
-          "published_at": "2026-07-28T15:26:00+00:00",
-          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPSXBMSjdRSlExV0YxOTZFV3Yxc3RvZUd4R2x6QWpnU1hSbDcxZ1YyTlBpajRfN1pMLWdTN0JITWc0a1B6UXhuRjBQV01odXZYVzZsMjYzQTRWM2d1NDNWSVVtMkFEQ0o3UnJPUklvU210M2JmRHZBb0NSSEVwUGx3aG12cTBjaFhLa2pOaE9ocjZiM3oyaVZhQg?oc=5",
-          "primary_source": false
-        }
-      ]
-    },
-    {
-      "event_id": "evt-e40c4c1e7e7eab",
-      "primary_theme": "Soğutma Teknolojileri",
-      "related_themes": [],
-      "companies": [],
-      "headline": "Johnson Controls releases absorption chiller reference design - Data Center Dynamics",
-      "event_time": "2026-07-28T15:03:46+00:00",
-      "published_time": "2026-07-28T15:03:46+00:00",
-      "retrieved_time": "2026-07-29T10:17:48.805034+00:00",
-      "facts": [
-        "Johnson Controls releases absorption chiller reference design - Data Center Dynamics"
-      ],
-      "why_it_matters": "Soğutma Teknolojileri temasında maddi önem filtresini geçen güncel bir gelişmedir. Sayısal ayrıntılar kaynak üzerinden doğrulanmalıdır.",
-      "investment_meaning": "Gelişme izlenmeli; tek başına kişisel alım veya satım kararı üretmek için yeterli değildir.",
-      "thesis_impact": "THESIS_UNCHANGED",
-      "research_view": {
-        "rating": "NEUTRAL",
-        "time_horizon": "Orta-Uzun vadeli",
-        "summary": "Gelişme izlenmeli; tek başına kişisel alım veya satım kararı üretmek için yeterli değildir.",
-        "reasons": [
-          "Maddi gelişme filtresini geçti"
-        ],
-        "risks": [
-          "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
-        ]
-      },
-      "risk_badge": "STANDARD",
-      "confidence": "MEDIUM",
-      "sources": [
-        {
-          "source_type": "SECONDARY_NEWS",
-          "publisher": "Data Center Dynamics",
-          "title": "Johnson Controls releases absorption chiller reference design - Data Center Dynamics",
-          "published_at": "2026-07-28T15:03:46+00:00",
-          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxONnJ0a3JfTDE1bmV6YXFNR1NxUWZkZlBYQ0FNdXZ3SXlvdDc1SVh1aHNDMjNlSnNoX0h4d3FlbnVMcWxlTEdjWmFkU0xSSC1vbHAxalNBcXBuRFRVNXM1cS14Z2xnYkFXdnVaRDFEeEtlR19LVDluVjkxLU5naUdjczBBYWJMc29nbjlBUUJoQ01WV1hwQmluT29uSTBLQ05WTmZrTFVzOWI?oc=5",
-          "primary_source": false
-        }
-      ]
-    },
-    {
-      "event_id": "evt-7e46aa96453e0b",
-      "primary_theme": "Bulut Yatırımları",
-      "related_themes": [],
-      "companies": [],
-      "headline": "Google Cloud Just Grew 82%. Here's Why Amazon and Microsoft Investors Should Pay Attention Before This Week's Earnings. - The Globe and Mail",
-      "event_time": "2026-07-28T14:49:36+00:00",
-      "published_time": "2026-07-28T14:49:36+00:00",
-      "retrieved_time": "2026-07-29T10:17:48.805061+00:00",
-      "facts": [
-        "Google Cloud Just Grew 82%. Here's Why Amazon and Microsoft Investors Should Pay Attention Before This Week's Earnings. - The Globe and Mail"
-      ],
-      "why_it_matters": "Bulut Yatırımları temasında maddi önem filtresini geçen güncel bir gelişmedir. Sayısal ayrıntılar kaynak üzerinden doğrulanmalıdır.",
-      "investment_meaning": "Gelişme izlenmeli; tek başına kişisel alım veya satım kararı üretmek için yeterli değildir.",
-      "thesis_impact": "THESIS_UNCHANGED",
-      "research_view": {
-        "rating": "NEUTRAL",
-        "time_horizon": "Orta-Uzun vadeli",
-        "summary": "Gelişme izlenmeli; tek başına kişisel alım veya satım kararı üretmek için yeterli değildir.",
-        "reasons": [
-          "Maddi gelişme filtresini geçti"
-        ],
-        "risks": [
-          "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
-        ]
-      },
-      "risk_badge": "STANDARD",
-      "confidence": "MEDIUM",
-      "sources": [
-        {
-          "source_type": "SECONDARY_NEWS",
-          "publisher": "The Globe and Mail",
-          "title": "Google Cloud Just Grew 82%. Here's Why Amazon and Microsoft Investors Should Pay Attention Before This Week's Earnings. - The Globe and Mail",
-          "published_at": "2026-07-28T14:49:36+00:00",
-          "url": "https://news.google.com/rss/articles/CBMirAJBVV95cUxOdmZXeHRXZTBNMVQ5RlJxM194ZVVXM3RSbE9ual9IakFhUEhNYUZaUFJheFhCSThOb1JQZUV0WVNjLXFGNmRMX3JrT1pWZHBNcXZoLWxZanU2OUJoanN6THJqVWpEeDF6S1hveXFjRS1HX1VjWm5KU2ZyZUJpSGNSQUxHTXFyS0xNTWJDNllzdk9VV19sbGhfMDZzS0NHeWJEeHEtazEyUzRNT3pfSlRsVVd2bkR6aGZ1N3V1TkpZa3R6ZGJTYW1mX2hZQms1ZHRFcDBWR2xQZjQ5OENjXzlSUVRmdDkweEpuSzlCOF9vc19fMndTQzNmTG1YVS1WWWR0VHQ4TkZmQ0Z3WW51R2lBUjRYR3FqYm4tNmZLN3hSYmhxaW5lNWI5R08yUkM?oc=5",
-          "primary_source": false
-        }
-      ]
-    },
-    {
-      "event_id": "evt-21933ba39aba36",
-      "primary_theme": "Veri Merkezi Kapasitesi",
-      "related_themes": [],
-      "companies": [],
-      "headline": "Core Scientific Q2 Earnings Call Highlights - TradingView",
-      "event_time": "2026-07-28T14:04:13+00:00",
-      "published_time": "2026-07-28T14:04:13+00:00",
-      "retrieved_time": "2026-07-29T10:17:48.805076+00:00",
-      "facts": [
-        "Core Scientific Q2 Earnings Call Highlights - TradingView"
-      ],
-      "why_it_matters": "Veri Merkezi Kapasitesi temasında maddi önem filtresini geçen güncel bir gelişmedir. Sayısal ayrıntılar kaynak üzerinden doğrulanmalıdır.",
-      "investment_meaning": "Gelişme izlenmeli; tek başına kişisel alım veya satım kararı üretmek için yeterli değildir.",
-      "thesis_impact": "THESIS_UNCHANGED",
-      "research_view": {
-        "rating": "NEUTRAL",
-        "time_horizon": "Orta-Uzun vadeli",
-        "summary": "Gelişme izlenmeli; tek başına kişisel alım veya satım kararı üretmek için yeterli değildir.",
-        "reasons": [
-          "Maddi gelişme filtresini geçti"
-        ],
-        "risks": [
-          "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
-        ]
-      },
-      "risk_badge": "STANDARD",
-      "confidence": "MEDIUM",
-      "sources": [
-        {
-          "source_type": "SECONDARY_NEWS",
-          "publisher": "TradingView",
-          "title": "Core Scientific Q2 Earnings Call Highlights - TradingView",
-          "published_at": "2026-07-28T14:04:13+00:00",
-          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxObDZhXzlqVmc3bUZmemNZZGVVaDZXQUJYOUFZQXo4R1VWaHdwNEV0akxkc3YzM1pVTHJMcEU2QTFPLXhFSEFpdjNwcF9UNkxSTHkxYU5fRWtIVFZCaUtNSzROWU5GR0daVi1sekVGRXlWTlpaQjNlZ3h6UTc5N2lQaFNlVXNpVGp2ZkJ1MUxlLV9OTE1GdDBhR0hRLTFfeXIwWWFaNXFzYw?oc=5",
+          "publisher": "Rota Borsa",
+          "title": "HSBC, Türk Traktör (TTRAK) hisseleri için yeni hedef fiyatını açıkladı - Rota Borsa",
+          "published_at": "2026-07-28T10:55:39+00:00",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPV1Rla1pEU0NCWGlzRUhDeDlzdG02SmlhemhoZC0tUHV5c283R2tqUGp4blgxeWRobVhxWWlwRXF1c3JET1BUc3NORkFKZ0J4MU9JdGprOUZONzNtTTVkTHZmSXNVc2s0cWw1Zy1vRzZLRTY4WjNGVFRQMXVoekNIWUY5U1JteFRyZDB2eVJSdXZZckIwQU4w?oc=5",
           "primary_source": false
         }
       ]
@@ -674,9 +344,7 @@
       "provider": "Yahoo Finance chart feed"
     }
   ],
-  "no_material_news_themes": [
-    "Nükleer ve Yenilenebilir"
-  ],
+  "no_material_news_themes": [],
   "data_quality_warnings": [],
-  "general_assessment": "Araştırma sınıfları kişisel işlem emri değildir."
+  "general_assessment": "Değerlendirme yalnızca TTRAK ve LUNR içindir; araştırma sınıfları kişisel işlem emri değildir."
 }
