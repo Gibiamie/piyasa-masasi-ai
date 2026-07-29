@@ -11,6 +11,12 @@ on:
     paths:
       - "ai-infrastructure-bulletin/**"
       - ".github/workflows/ai-infrastructure-bulletin.yml"
+  pull_request:
+    branches:
+      - remediation/v30-audit
+    paths:
+      - "ai-infrastructure-bulletin/**"
+      - ".github/workflows/ai-infrastructure-bulletin.yml"
 
 permissions:
   contents: write
