@@ -1,0 +1,67 @@
+name: Add Bulletin Ticker
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  add-ticker:
+    if: >-
+      github.event.issue.user.login == github.repository_owner &&
+      startsWith(github.event.issue.title, '[AI-BULLETIN] ADD ')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: remediation/v30-audit
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate and add requested ticker
+        env:
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: python ai-infrastructure-bulletin/scripts/add_ticker_from_issue.py
+
+      - name: Generate company-specific report
+        run: |
+          python ai-infrastructure-bulletin/scripts/update_bulletin.py
+          python ai-infrastructure-bulletin/scripts/update_prices.py
+          node --check ai-infrastructure-bulletin/app.js
+          python -m unittest discover -s ai-infrastructure-bulletin/tests -v
+
+      - name: Commit ticker and evaluation
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ai-infrastructure-bulletin/data/watchlist.json ai-infrastructure-bulletin/data/report.json
+          if git diff --cached --quiet; then
+            echo "No repository change required."
+          else
+            git commit -m "feat: add requested bulletin ticker"
+            git push origin HEAD:remediation/v30-audit
+          fi
+
+      - name: Confirm request
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: 'Ticker doğrulandı, merkezî değerlendirme evrenine eklendi ve rapor yenilendi.'
+            });
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              state: 'closed'
+            });
