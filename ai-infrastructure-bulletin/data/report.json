@@ -1,10 +1,10 @@
 {
   "report": {
-    "report_id": "2026-07-29-2123",
-    "generated_at": "2026-07-29T21:23:40.762058+04:00",
+    "report_id": "2026-07-29-2125",
+    "generated_at": "2026-07-29T21:25:00.484936+04:00",
     "timezone": "Asia/Muscat",
-    "window_start": "2026-07-28T21:23:40.762058+04:00",
-    "window_end": "2026-07-29T21:23:40.762058+04:00",
+    "window_start": "2026-07-28T21:25:00.484936+04:00",
+    "window_end": "2026-07-29T21:25:00.484936+04:00",
     "market_data_as_of": "2026-07-29",
     "material_event_count": 44,
     "company_count": 18,
@@ -14,12 +14,100 @@
   "executive_summary": {
     "headline": "Takip listesinin günlük şirket değerlendirmesi",
     "market_regime": "Çok şirketli günlük tarama",
-    "dominant_theme": "NVDA",
+    "dominant_theme": "TSLA",
     "main_positive_driver": "Şirket bazında gelir, kapasite, sipariş ve stratejik uygulama",
     "main_risk": "Değerleme, finansman, döngü ve uygulama riski",
     "summary": "18 şirket değerlendirildi; son 24 saatte 16 şirket için 44 önem eşiğini geçen gelişme bulundu."
   },
   "events": [
+    {
+      "event_id": "evt-5daa69e8c5cb1d",
+      "primary_theme": "TSLA",
+      "related_themes": [],
+      "companies": [
+        "TSLA"
+      ],
+      "headline": "Ford hikes full-year guidance, beats on Q2 earnings as profit growth blunts slowing sales - Yahoo Finance UK",
+      "event_time": "2026-07-28T20:07:05+00:00",
+      "published_time": "2026-07-28T20:07:05+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.466459+00:00",
+      "facts": [
+        "Ford hikes full-year guidance, beats on Q2 earnings as profit growth blunts slowing sales - Yahoo Finance UK"
+      ],
+      "why_it_matters": "Tesla yatırım tezinin ana sürücüleri: Araç teslimatları ve fiyatlama; Otonomi ve yapay zeka gelir potansiyeli; Enerji depolama büyümesi.",
+      "investment_meaning": "Araştırma görünümü pozitif yönde değişti; finansal etki ve değerleme teyit edilmelidir.",
+      "thesis_impact": "THESIS_STRENGTHENED",
+      "research_view": {
+        "rating": "POSITIVE",
+        "time_horizon": "Orta-Uzun vadeli",
+        "summary": "Araştırma görünümü pozitif yönde değişti; finansal etki ve değerleme teyit edilmelidir.",
+        "reasons": [
+          "Tesla için son 24 saatte önem filtresini geçen gelişme"
+        ],
+        "risks": [
+          "Marj baskısı",
+          "Talep ve rekabet",
+          "Regülasyon ve uygulama riski",
+          "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
+        ]
+      },
+      "risk_badge": "GROWTH",
+      "confidence": "MEDIUM",
+      "sources": [
+        {
+          "source_type": "SECONDARY_NEWS",
+          "publisher": "Yahoo Finance UK",
+          "title": "Ford hikes full-year guidance, beats on Q2 earnings as profit growth blunts slowing sales - Yahoo Finance UK",
+          "published_at": "2026-07-28T20:07:05+00:00",
+          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQLTVnUUdsbWRGVHRyaW8wYmVHek1WWnpab1FxcWxHb0NUdWxESkdvOGNfcVppbzNjVHdRajNMZkNrNkRzbTNaVFJsWnhOVmhZaE80VDYwNTd6ZWJ5ell0VWRWUXoySGlKZlV0S1Z5QTVrVUkxU2hLMGRXc05ybjF0WTBFNG5lN2owMklfTzlEdUFqbUdzYXlOVjg4RGZMM2kxWmFZLW9jaFFmQXRxVUJTZW81OGdSVWRlNTZpQmFvN29yal9kNFFiT1pWSFVKdGFTS3NZ?oc=5",
+          "primary_source": false
+        }
+      ]
+    },
+    {
+      "event_id": "evt-d1eba8e96ab997",
+      "primary_theme": "TSLA",
+      "related_themes": [],
+      "companies": [
+        "TSLA"
+      ],
+      "headline": "STX Q4 Earnings Top on 48% Sales Jump, AI-led Storage Demand Continues - Zacks Investment Research",
+      "event_time": "2026-07-29T12:54:11+00:00",
+      "published_time": "2026-07-29T12:54:11+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.466505+00:00",
+      "facts": [
+        "STX Q4 Earnings Top on 48% Sales Jump, AI-led Storage Demand Continues - Zacks Investment Research"
+      ],
+      "why_it_matters": "Tesla yatırım tezinin ana sürücüleri: Araç teslimatları ve fiyatlama; Otonomi ve yapay zeka gelir potansiyeli; Enerji depolama büyümesi.",
+      "investment_meaning": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
+      "thesis_impact": "THESIS_UNCHANGED",
+      "research_view": {
+        "rating": "NEUTRAL",
+        "time_horizon": "Orta-Uzun vadeli",
+        "summary": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
+        "reasons": [
+          "Tesla için son 24 saatte önem filtresini geçen gelişme"
+        ],
+        "risks": [
+          "Marj baskısı",
+          "Talep ve rekabet",
+          "Regülasyon ve uygulama riski",
+          "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
+        ]
+      },
+      "risk_badge": "GROWTH",
+      "confidence": "MEDIUM",
+      "sources": [
+        {
+          "source_type": "SECONDARY_NEWS",
+          "publisher": "Zacks Investment Research",
+          "title": "STX Q4 Earnings Top on 48% Sales Jump, AI-led Storage Demand Continues - Zacks Investment Research",
+          "published_at": "2026-07-29T12:54:11+00:00",
+          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPVFItUHU1YkZ1QXU1b0QwV25uSHV4VXUyMWRmbU56czRSclZOZmRYQThZcWllT0dzb1JUQWEyaEdTTTJFUl9iYkJ1eWRSUmxKVXBPS0NpdndITEFlWFA2RlgzS0JMWl95TTRIa1RLZlBtY0hVZ0oyQWdqeHNrSVQwZjBpaThHNzE4ZWVvbVlEbEdCQUsxaWhRdEFJQ2tPR3JYSS1jVXNVclRKU05sN3c?oc=5",
+          "primary_source": false
+        }
+      ]
+    },
     {
       "event_id": "evt-5e1f0154f7f456",
       "primary_theme": "NVDA",
@@ -30,7 +118,7 @@
       "headline": "Firebird AI Center Ready for Launch in Hrazdan, Investments Possible to Reach $5 Billion - Arkatelecom.",
       "event_time": "2026-07-29T09:59:01+00:00",
       "published_time": "2026-07-29T09:59:01+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.922477+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.466531+00:00",
       "facts": [
         "Firebird AI Center Ready for Launch in Hrazdan, Investments Possible to Reach $5 Billion - Arkatelecom."
       ],
@@ -74,7 +162,7 @@
       "headline": "Nvidia (NASDAQ:NVDA) shares fall following projected $238 billion loss amid scrutiny of AI investment - TechStock²",
       "event_time": "2026-07-29T08:54:12+00:00",
       "published_time": "2026-07-29T08:54:12+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.922517+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.466556+00:00",
       "facts": [
         "Nvidia (NASDAQ:NVDA) shares fall following projected $238 billion loss amid scrutiny of AI investment - TechStock²"
       ],
@@ -118,7 +206,7 @@
       "headline": "Billionaire Money Manager Christopher Begg Bought Google at 15x Earnings. Here's Why He Calls It the Best Business in the World - 24/7 Wall St.",
       "event_time": "2026-07-29T17:00:24+00:00",
       "published_time": "2026-07-29T17:00:24+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.922547+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.466581+00:00",
       "facts": [
         "Billionaire Money Manager Christopher Begg Bought Google at 15x Earnings. Here's Why He Calls It the Best Business in the World - 24/7 Wall St."
       ],
@@ -153,6 +241,50 @@
       ]
     },
     {
+      "event_id": "evt-28ae8462c0e2c2",
+      "primary_theme": "NVDA",
+      "related_themes": [],
+      "companies": [
+        "NVDA"
+      ],
+      "headline": "Nvidia Shares Slide Nearly 3% as AI Circular Financing Worries Deepen Ahead of Microsoft, Meta Earnings - International Business Times Australia",
+      "event_time": "2026-07-29T16:10:56+00:00",
+      "published_time": "2026-07-29T16:10:56+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.466609+00:00",
+      "facts": [
+        "Nvidia Shares Slide Nearly 3% as AI Circular Financing Worries Deepen Ahead of Microsoft, Meta Earnings - International Business Times Australia"
+      ],
+      "why_it_matters": "Nvidia yatırım tezinin ana sürücüleri: AI hızlandırıcı talebi; Veri merkezi geliri ve marjları; Yeni GPU platformlarının üretim takvimi.",
+      "investment_meaning": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
+      "thesis_impact": "THESIS_UNCHANGED",
+      "research_view": {
+        "rating": "NEUTRAL",
+        "time_horizon": "Orta-Uzun vadeli",
+        "summary": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
+        "reasons": [
+          "Nvidia için son 24 saatte önem filtresini geçen gelişme"
+        ],
+        "risks": [
+          "Değerleme ve beklenti riski",
+          "İhracat kısıtları",
+          "Tedarik ve müşteri yoğunlaşması",
+          "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
+        ]
+      },
+      "risk_badge": "ESTABLISHED",
+      "confidence": "MEDIUM",
+      "sources": [
+        {
+          "source_type": "SECONDARY_NEWS",
+          "publisher": "International Business Times Australia",
+          "title": "Nvidia Shares Slide Nearly 3% as AI Circular Financing Worries Deepen Ahead of Microsoft, Meta Earnings - International Business Times Australia",
+          "published_at": "2026-07-29T16:10:56+00:00",
+          "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQd0duNlJ3a1luaFBNbHlmQ1pWdVpoSXZQZGp2N284dEpJVUtPc2xwVlR5WmRjX01samhqOVFZb0hLci1sV0t5WDNwZ0Q5N1FDR283dEh0bVlxQ2NMcGtMMnI4ZXhOUzdSaTY0SXNDVHAzUldJWFVpd0F6dl9JTDFRai1RSG9HVVk?oc=5",
+          "primary_source": false
+        }
+      ]
+    },
+    {
       "event_id": "evt-d11f3c71166a19",
       "primary_theme": "TSM",
       "related_themes": [],
@@ -162,7 +294,7 @@
       "headline": "Microsoft’s Earnings Could Decide the Fate of a $700 Billion AI Spending Boom - 24/7 Wall St.",
       "event_time": "2026-07-29T15:03:53+00:00",
       "published_time": "2026-07-29T15:03:53+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.922575+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.466634+00:00",
       "facts": [
         "Microsoft’s Earnings Could Decide the Fate of a $700 Billion AI Spending Boom - 24/7 Wall St."
       ],
@@ -206,7 +338,7 @@
       "headline": "Ford Jumps 6%, Outstrips GM and Tesla on Q2 Earnings Beat, Raised 2026 Guidance, Citi Upgrade - 24/7 Wall St.",
       "event_time": "2026-07-29T13:19:22+00:00",
       "published_time": "2026-07-29T13:19:22+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.922597+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.466656+00:00",
       "facts": [
         "Ford Jumps 6%, Outstrips GM and Tesla on Q2 Earnings Beat, Raised 2026 Guidance, Citi Upgrade - 24/7 Wall St."
       ],
@@ -250,7 +382,7 @@
       "headline": "Vertiv (NYSE:VRT) Updates Q3 2026 Earnings Guidance - MarketBeat",
       "event_time": "2026-07-29T11:43:42+00:00",
       "published_time": "2026-07-29T11:43:42+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.922621+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.466676+00:00",
       "facts": [
         "Vertiv (NYSE:VRT) Updates Q3 2026 Earnings Guidance - MarketBeat"
       ],
@@ -294,7 +426,7 @@
       "headline": "Vertiv (NYSE:VRT) Releases FY 2026 Earnings Guidance - MarketBeat",
       "event_time": "2026-07-29T11:43:40+00:00",
       "published_time": "2026-07-29T11:43:40+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.922639+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.466693+00:00",
       "facts": [
         "Vertiv (NYSE:VRT) Releases FY 2026 Earnings Guidance - MarketBeat"
       ],
@@ -338,7 +470,7 @@
       "headline": "Vertiv reports Q2 2026 earnings with 53% EPS growth, raises full-year guidance again - cryptobriefing.com",
       "event_time": "2026-07-29T10:05:00+00:00",
       "published_time": "2026-07-29T10:05:00+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.922659+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.466713+00:00",
       "facts": [
         "Vertiv reports Q2 2026 earnings with 53% EPS growth, raises full-year guidance again - cryptobriefing.com"
       ],
@@ -373,50 +505,6 @@
       ]
     },
     {
-      "event_id": "evt-2fb0f8e060c61f",
-      "primary_theme": "NVDA",
-      "related_themes": [],
-      "companies": [
-        "NVDA"
-      ],
-      "headline": "Acryl Inks 3.3 Billion Won (approximately $2.3 Million) Premium AI Platform Deal with Hancom, Cumulative Orders Reach 5.5 Billion Won - finance.biggo.com",
-      "event_time": "2026-07-29T05:06:00+00:00",
-      "published_time": "2026-07-29T05:06:00+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.922696+00:00",
-      "facts": [
-        "Acryl Inks 3.3 Billion Won (approximately $2.3 Million) Premium AI Platform Deal with Hancom, Cumulative Orders Reach 5.5 Billion Won - finance.biggo.com"
-      ],
-      "why_it_matters": "Nvidia yatırım tezinin ana sürücüleri: AI hızlandırıcı talebi; Veri merkezi geliri ve marjları; Yeni GPU platformlarının üretim takvimi.",
-      "investment_meaning": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
-      "thesis_impact": "THESIS_UNCHANGED",
-      "research_view": {
-        "rating": "NEUTRAL",
-        "time_horizon": "Orta-Uzun vadeli",
-        "summary": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
-        "reasons": [
-          "Nvidia için son 24 saatte önem filtresini geçen gelişme"
-        ],
-        "risks": [
-          "Değerleme ve beklenti riski",
-          "İhracat kısıtları",
-          "Tedarik ve müşteri yoğunlaşması",
-          "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
-        ]
-      },
-      "risk_badge": "ESTABLISHED",
-      "confidence": "MEDIUM",
-      "sources": [
-        {
-          "source_type": "SECONDARY_NEWS",
-          "publisher": "finance.biggo.com",
-          "title": "Acryl Inks 3.3 Billion Won (approximately $2.3 Million) Premium AI Platform Deal with Hancom, Cumulative Orders Reach 5.5 Billion Won - finance.biggo.com",
-          "published_at": "2026-07-29T05:06:00+00:00",
-          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5NNmVuV2p5RzQ1TnlMY3hOZHIyakdmTnc5T0g2cXM2QW1rZUppSGlTaFZaVkF1RkhTTmRaTDVxLU1vWFNmeGc5emNWLVc2Qi1HWkdGMHRqeGtLR3RZdWpaTVByU1dQbDdxanZuUkxxUENhQWE2cEE?oc=5",
-          "primary_source": false
-        }
-      ]
-    },
-    {
       "event_id": "evt-1bcd2d5cf7922d",
       "primary_theme": "AMZN",
       "related_themes": [],
@@ -426,7 +514,7 @@
       "headline": "Top 20 by Trading Volume | Western Digital plunges 14%, SK Hynix and Micron drop 9%; Corning falls over 12% after earnings; Amazon doubles down on flagship AI model; Google secures up to $44 billion in data center lease guarantees - 富途牛牛",
       "event_time": "2026-07-28T22:30:54+00:00",
       "published_time": "2026-07-28T22:30:54+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.922757+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.466751+00:00",
       "facts": [
         "Top 20 by Trading Volume | Western Digital plunges 14%, SK Hynix and Micron drop 9%; Corning falls over 12% after earnings; Amazon doubles down on flagship AI model; Google secures up to $44 billion in data center lease guarantees - 富途牛牛"
       ],
@@ -470,7 +558,7 @@
       "headline": "Microsoft Could Swing $189 Billion in Value After Earnings - inkl",
       "event_time": "2026-07-28T19:30:23+00:00",
       "published_time": "2026-07-28T19:30:23+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.922777+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.466770+00:00",
       "facts": [
         "Microsoft Could Swing $189 Billion in Value After Earnings - inkl"
       ],
@@ -514,7 +602,7 @@
       "headline": "Amazon’s AWS Earnings Preview: 5 Big AI Sales, Anthropic And Nova Things To Know - crn.com",
       "event_time": "2026-07-29T15:30:00+00:00",
       "published_time": "2026-07-29T15:30:00+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.922801+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.466793+00:00",
       "facts": [
         "Amazon’s AWS Earnings Preview: 5 Big AI Sales, Anthropic And Nova Things To Know - crn.com"
       ],
@@ -549,50 +637,6 @@
       ]
     },
     {
-      "event_id": "evt-f3b898ac6a181d",
-      "primary_theme": "TSLA",
-      "related_themes": [],
-      "companies": [
-        "TSLA"
-      ],
-      "headline": "ABG Q2 Earnings Beat on Used-Vehicle Gains, Revenues Miss - TradingView",
-      "event_time": "2026-07-29T15:03:00+00:00",
-      "published_time": "2026-07-29T15:03:00+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.922820+00:00",
-      "facts": [
-        "ABG Q2 Earnings Beat on Used-Vehicle Gains, Revenues Miss - TradingView"
-      ],
-      "why_it_matters": "Tesla yatırım tezinin ana sürücüleri: Araç teslimatları ve fiyatlama; Otonomi ve yapay zeka gelir potansiyeli; Enerji depolama büyümesi.",
-      "investment_meaning": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
-      "thesis_impact": "THESIS_UNCHANGED",
-      "research_view": {
-        "rating": "NEUTRAL",
-        "time_horizon": "Orta-Uzun vadeli",
-        "summary": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
-        "reasons": [
-          "Tesla için son 24 saatte önem filtresini geçen gelişme"
-        ],
-        "risks": [
-          "Marj baskısı",
-          "Talep ve rekabet",
-          "Regülasyon ve uygulama riski",
-          "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
-        ]
-      },
-      "risk_badge": "GROWTH",
-      "confidence": "MEDIUM",
-      "sources": [
-        {
-          "source_type": "SECONDARY_NEWS",
-          "publisher": "TradingView",
-          "title": "ABG Q2 Earnings Beat on Used-Vehicle Gains, Revenues Miss - TradingView",
-          "published_at": "2026-07-29T15:03:00+00:00",
-          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPa1hZRmZmeHM1OVZETTA5UHduc3dUZG5zaVRzcDZsM21feXBJZGYzaWVGT2s3VmszTXo1dUxjOUsyMFNRUGhoeUtyWExUckNBMDVpWk9aMUlHVFYxM3dTeE5wNnk5RlNsRG53ZlZSWmg0ekdDQkp2MUFmNkVlbUd5Z1VscGtfWmpIMS10UXBhbG5ucjE0aHdzZ05MamtZdW1RNFU0dlE5T2xtdkdnaGRVek1n?oc=5",
-          "primary_source": false
-        }
-      ]
-    },
-    {
       "event_id": "evt-82377ccdba0770",
       "primary_theme": "DLR",
       "related_themes": [],
@@ -602,7 +646,7 @@
       "headline": "North America Data Center Construction Market Investment to Reach USD 158.20 Billion by 2031- Exclusive Insights by Arizton - PR Newswire UK",
       "event_time": "2026-07-29T14:22:00+00:00",
       "published_time": "2026-07-29T14:22:00+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.922846+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.466845+00:00",
       "facts": [
         "North America Data Center Construction Market Investment to Reach USD 158.20 Billion by 2031- Exclusive Insights by Arizton - PR Newswire UK"
       ],
@@ -646,7 +690,7 @@
       "headline": "Europe Hyperscale Data Center Market to Reach USD 139.90 Billion by 2031, Cloud, AI, and Infrastructure Investments Converge - Arizton - PR Newswire UK",
       "event_time": "2026-07-29T14:09:00+00:00",
       "published_time": "2026-07-29T14:09:00+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.922869+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.466871+00:00",
       "facts": [
         "Europe Hyperscale Data Center Market to Reach USD 139.90 Billion by 2031, Cloud, AI, and Infrastructure Investments Converge - Arizton - PR Newswire UK"
       ],
@@ -681,50 +725,6 @@
       ]
     },
     {
-      "event_id": "evt-028e1bd5359dc0",
-      "primary_theme": "TSLA",
-      "related_themes": [],
-      "companies": [
-        "TSLA"
-      ],
-      "headline": "Seagate Technology Q4 Earnings Call Highlights AI Storage Demand - Zacks Investment Research",
-      "event_time": "2026-07-29T13:04:11+00:00",
-      "published_time": "2026-07-29T13:04:11+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.922894+00:00",
-      "facts": [
-        "Seagate Technology Q4 Earnings Call Highlights AI Storage Demand - Zacks Investment Research"
-      ],
-      "why_it_matters": "Tesla yatırım tezinin ana sürücüleri: Araç teslimatları ve fiyatlama; Otonomi ve yapay zeka gelir potansiyeli; Enerji depolama büyümesi.",
-      "investment_meaning": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
-      "thesis_impact": "THESIS_UNCHANGED",
-      "research_view": {
-        "rating": "NEUTRAL",
-        "time_horizon": "Orta-Uzun vadeli",
-        "summary": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
-        "reasons": [
-          "Tesla için son 24 saatte önem filtresini geçen gelişme"
-        ],
-        "risks": [
-          "Marj baskısı",
-          "Talep ve rekabet",
-          "Regülasyon ve uygulama riski",
-          "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
-        ]
-      },
-      "risk_badge": "GROWTH",
-      "confidence": "MEDIUM",
-      "sources": [
-        {
-          "source_type": "SECONDARY_NEWS",
-          "publisher": "Zacks Investment Research",
-          "title": "Seagate Technology Q4 Earnings Call Highlights AI Storage Demand - Zacks Investment Research",
-          "published_at": "2026-07-29T13:04:11+00:00",
-          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNWVB0M1VMZ05USnhrUlB1RHJ0aFlhaUp2N200eXNKeklqYm1vdjRadVh1a19CUVBldXUzMFUxdWFVV1RlYlBvQkhXS0R4aU9xcE5rTGgyZHdXZ3p5aG9FMWpQVkNLWUxoek5VUEZUZ1BnRGQyU01jTjlrMHVfdEZSd09YaEVtQmN6VDlEOEdEdlRTNmV2d3JkYnZXOUJPd1ZnMmx6T2lvOXU?oc=5",
-          "primary_source": false
-        }
-      ]
-    },
-    {
       "event_id": "evt-dacd96ce5b99b7",
       "primary_theme": "GOOGL",
       "related_themes": [],
@@ -734,7 +734,7 @@
       "headline": "Verizon Strikes Fiber Deal With Google Worth Over $1B — CEO Says More Deals Worth Billions In Revenue To Be Announced By Year End - Stocktwits",
       "event_time": "2026-07-29T05:40:25+00:00",
       "published_time": "2026-07-29T05:40:25+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.922922+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.466897+00:00",
       "facts": [
         "Verizon Strikes Fiber Deal With Google Worth Over $1B — CEO Says More Deals Worth Billions In Revenue To Be Announced By Year End - Stocktwits"
       ],
@@ -778,7 +778,7 @@
       "headline": "IBRX Stock Extends 5-Day Losing Streak — Retail Traders Pin Hopes On ‘Incredibly Strong’ Anktiva Sales And Earnings Beat - Stocktwits",
       "event_time": "2026-07-28T23:19:53+00:00",
       "published_time": "2026-07-28T23:19:53+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.922947+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.466922+00:00",
       "facts": [
         "IBRX Stock Extends 5-Day Losing Streak — Retail Traders Pin Hopes On ‘Incredibly Strong’ Anktiva Sales And Earnings Beat - Stocktwits"
       ],
@@ -813,50 +813,6 @@
       ]
     },
     {
-      "event_id": "evt-2c0cafffe2d7e5",
-      "primary_theme": "AMD",
-      "related_themes": [],
-      "companies": [
-        "AMD"
-      ],
-      "headline": "[CORZ Q2 2026 Earnings Call] Core Scientific Inks $14B AMD Deal for 530 MW, Eyes 2.5 GW; Colocation Revenue Hits $137M - finance.biggo.com",
-      "event_time": "2026-07-28T22:05:00+00:00",
-      "published_time": "2026-07-28T22:05:00+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.922972+00:00",
-      "facts": [
-        "[CORZ Q2 2026 Earnings Call] Core Scientific Inks $14B AMD Deal for 530 MW, Eyes 2.5 GW; Colocation Revenue Hits $137M - finance.biggo.com"
-      ],
-      "why_it_matters": "AMD yatırım tezinin ana sürücüleri: Instinct hızlandırıcı satışları; Veri merkezi pazar payı; Ürün yol haritası ve tedarik.",
-      "investment_meaning": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
-      "thesis_impact": "THESIS_UNCHANGED",
-      "research_view": {
-        "rating": "NEUTRAL",
-        "time_horizon": "Orta-Uzun vadeli",
-        "summary": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
-        "reasons": [
-          "AMD için son 24 saatte önem filtresini geçen gelişme"
-        ],
-        "risks": [
-          "Nvidia rekabeti",
-          "Brüt marj baskısı",
-          "Ürün geçiş riski",
-          "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
-        ]
-      },
-      "risk_badge": "GROWTH",
-      "confidence": "MEDIUM",
-      "sources": [
-        {
-          "source_type": "SECONDARY_NEWS",
-          "publisher": "finance.biggo.com",
-          "title": "[CORZ Q2 2026 Earnings Call] Core Scientific Inks $14B AMD Deal for 530 MW, Eyes 2.5 GW; Colocation Revenue Hits $137M - finance.biggo.com",
-          "published_at": "2026-07-28T22:05:00+00:00",
-          "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBvaU1nS3dkci1wcFlBZG45TWlLMVpOQWt4S3o4a2JwejRJY0k2NW9HSWFaSWdHOWx1ajNBbFVBNmstR2Nha1BqRGNpdUp3eFNvTkZzd0NoWkY1U2JvRWc?oc=5",
-          "primary_source": false
-        }
-      ]
-    },
-    {
       "event_id": "evt-bce8e599aed12a",
       "primary_theme": "AMZN",
       "related_themes": [],
@@ -866,7 +822,7 @@
       "headline": "Amazon AWS AI outlook: $244B backlog and margin expansion ahead of earnings - Investing.com UK",
       "event_time": "2026-07-28T21:20:35+00:00",
       "published_time": "2026-07-28T21:20:35+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.922992+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.466945+00:00",
       "facts": [
         "Amazon AWS AI outlook: $244B backlog and margin expansion ahead of earnings - Investing.com UK"
       ],
@@ -910,7 +866,7 @@
       "headline": "Seagate Shares Jump 8% After AI Storage Boom Fuels $4.1 Billion Revenue Forecast - finance.biggo.com",
       "event_time": "2026-07-28T21:05:00+00:00",
       "published_time": "2026-07-28T21:05:00+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.923013+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.466965+00:00",
       "facts": [
         "Seagate Shares Jump 8% After AI Storage Boom Fuels $4.1 Billion Revenue Forecast - finance.biggo.com"
       ],
@@ -945,50 +901,6 @@
       ]
     },
     {
-      "event_id": "evt-13bbc0ea77d975",
-      "primary_theme": "MRVL",
-      "related_themes": [],
-      "companies": [
-        "MRVL"
-      ],
-      "headline": "Seagate Stock Rallies After Q4 Earnings: Record Cash Flow, Strong Margins - Benzinga",
-      "event_time": "2026-07-28T20:24:24+00:00",
-      "published_time": "2026-07-28T20:24:24+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.923031+00:00",
-      "facts": [
-        "Seagate Stock Rallies After Q4 Earnings: Record Cash Flow, Strong Margins - Benzinga"
-      ],
-      "why_it_matters": "Marvell Technology yatırım tezinin ana sürücüleri: Özel AI silikon siparişleri; Veri merkezi ağ ve optik talebi; Müşteri programlarının ölçeklenmesi.",
-      "investment_meaning": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
-      "thesis_impact": "THESIS_UNCHANGED",
-      "research_view": {
-        "rating": "NEUTRAL",
-        "time_horizon": "Orta-Uzun vadeli",
-        "summary": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
-        "reasons": [
-          "Marvell Technology için son 24 saatte önem filtresini geçen gelişme"
-        ],
-        "risks": [
-          "Müşteri yoğunlaşması",
-          "Program gecikmeleri",
-          "Yüksek beklenti ve değerleme",
-          "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
-        ]
-      },
-      "risk_badge": "GROWTH",
-      "confidence": "MEDIUM",
-      "sources": [
-        {
-          "source_type": "SECONDARY_NEWS",
-          "publisher": "Benzinga",
-          "title": "Seagate Stock Rallies After Q4 Earnings: Record Cash Flow, Strong Margins - Benzinga",
-          "published_at": "2026-07-28T20:24:24+00:00",
-          "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxONFFPNUZ6dUlMSVlvNHhqdW9lOXNER2JRa1prLTdTQlAzQ0Q4UzdIYjUwVTdLcDJwUWs3VzVTTnpVNXhtdnpLTGxCdTJNZDVuQ1RzX0MwVS1GS1h4cndrMXVtU1JXa096eVMwOFZIN0JrZndFaDVreGMwR3E5b21sN05CY0lRdklfRmdpaTN5M0JraW5vQTlLWGdGMF93WmEyakZrOUgtRldGUlJNU24zTFBxOTVSazdkSm4zLXZmSUtONW1rOURz?oc=5",
-          "primary_source": false
-        }
-      ]
-    },
-    {
       "event_id": "evt-8360d997252dab",
       "primary_theme": "AMD",
       "related_themes": [],
@@ -998,7 +910,7 @@
       "headline": "Core Scientific Inks $14 Billion AMD Deal as AI Hosting Revenue Doubles, Miners Pivot From Bitcoin - finance.biggo.com",
       "event_time": "2026-07-28T18:37:00+00:00",
       "published_time": "2026-07-28T18:37:00+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.923052+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.466986+00:00",
       "facts": [
         "Core Scientific Inks $14 Billion AMD Deal as AI Hosting Revenue Doubles, Miners Pivot From Bitcoin - finance.biggo.com"
       ],
@@ -1042,7 +954,7 @@
       "headline": "Eliyan raises $145 million at $1 billion valuation to ease AI chip data bottlenecks - WTVB",
       "event_time": "2026-07-29T13:23:56+00:00",
       "published_time": "2026-07-29T13:23:56+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.923071+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.467006+00:00",
       "facts": [
         "Eliyan raises $145 million at $1 billion valuation to ease AI chip data bottlenecks - WTVB"
       ],
@@ -1077,6 +989,50 @@
       ]
     },
     {
+      "event_id": "evt-bc29d443fce6ab",
+      "primary_theme": "AMD",
+      "related_themes": [],
+      "companies": [
+        "AMD"
+      ],
+      "headline": "Advanced Micro Devices, Inc. $AMD is Ma Investment Partnership LP's 4th Largest Position - MarketBeat",
+      "event_time": "2026-07-29T10:43:10+00:00",
+      "published_time": "2026-07-29T10:43:10+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.467028+00:00",
+      "facts": [
+        "Advanced Micro Devices, Inc. $AMD is Ma Investment Partnership LP's 4th Largest Position - MarketBeat"
+      ],
+      "why_it_matters": "AMD yatırım tezinin ana sürücüleri: Instinct hızlandırıcı satışları; Veri merkezi pazar payı; Ürün yol haritası ve tedarik.",
+      "investment_meaning": "Araştırma görünümü pozitif yönde değişti; finansal etki ve değerleme teyit edilmelidir.",
+      "thesis_impact": "THESIS_STRENGTHENED",
+      "research_view": {
+        "rating": "POSITIVE",
+        "time_horizon": "Orta-Uzun vadeli",
+        "summary": "Araştırma görünümü pozitif yönde değişti; finansal etki ve değerleme teyit edilmelidir.",
+        "reasons": [
+          "AMD için son 24 saatte önem filtresini geçen gelişme"
+        ],
+        "risks": [
+          "Nvidia rekabeti",
+          "Brüt marj baskısı",
+          "Ürün geçiş riski",
+          "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
+        ]
+      },
+      "risk_badge": "GROWTH",
+      "confidence": "MEDIUM",
+      "sources": [
+        {
+          "source_type": "SECONDARY_NEWS",
+          "publisher": "MarketBeat",
+          "title": "Advanced Micro Devices, Inc. $AMD is Ma Investment Partnership LP's 4th Largest Position - MarketBeat",
+          "published_at": "2026-07-29T10:43:10+00:00",
+          "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOdEtqSXA5alVFSUNXQ2pUQVR3NUhSOWgtdkl2UVpMZXRLcEpoSmlFT0ZXc1RJd0xzTWVJYjhvMmRaUUh3MExuZC1tdWdwNXNDYzM0UGNtNWlnNVFWUUhVQUdaSkt4MlU0N01qUHRvaDR2Nkp4blR5WXc4YmtxWjRWd2liR29WeU5maWcwRVRCX3AtTHptUzZTRGZKOUh2N1JBVElTZmdwVXg3X0hJTlhVb1pldDFKT0ZROVRONnBrWm5sbHdYY1ZXS2thNFItRnNrZTloU0p0RkJWUWEzbWc?oc=5",
+          "primary_source": false
+        }
+      ]
+    },
+    {
       "event_id": "evt-09f80533624aad",
       "primary_theme": "GOOGL",
       "related_themes": [],
@@ -1086,7 +1042,7 @@
       "headline": "KDDI, Google AI Futures Fund Launch Joint AI Startup Investment Program in Japan - The Fast Mode",
       "event_time": "2026-07-28T23:38:34+00:00",
       "published_time": "2026-07-28T23:38:34+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.923093+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.467050+00:00",
       "facts": [
         "KDDI, Google AI Futures Fund Launch Joint AI Startup Investment Program in Japan - The Fast Mode"
       ],
@@ -1130,7 +1086,7 @@
       "headline": "TPG Pursuing Data Center Company Acquisition for Up to $3B - The Real Deal",
       "event_time": "2026-07-29T16:31:00+00:00",
       "published_time": "2026-07-29T16:31:00+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.923116+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.467069+00:00",
       "facts": [
         "TPG Pursuing Data Center Company Acquisition for Up to $3B - The Real Deal"
       ],
@@ -1174,7 +1130,7 @@
       "headline": "SanDisk Stock Down 47% Before Aug 5 Earnings Call - memeburn.com",
       "event_time": "2026-07-29T16:10:10+00:00",
       "published_time": "2026-07-29T16:10:10+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.923134+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.467087+00:00",
       "facts": [
         "SanDisk Stock Down 47% Before Aug 5 Earnings Call - memeburn.com"
       ],
@@ -1218,7 +1174,7 @@
       "headline": "Q2 '26 Foundry/OSAT Earnings: Hit Or Miss? - Semiecosystem",
       "event_time": "2026-07-29T15:39:57+00:00",
       "published_time": "2026-07-29T15:39:57+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.923152+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.467105+00:00",
       "facts": [
         "Q2 '26 Foundry/OSAT Earnings: Hit Or Miss? - Semiecosystem"
       ],
@@ -1262,7 +1218,7 @@
       "headline": "Palantir Earnings Could Jolt This ETF - ETF Database",
       "event_time": "2026-07-29T15:06:12+00:00",
       "published_time": "2026-07-29T15:06:12+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.923172+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.467124+00:00",
       "facts": [
         "Palantir Earnings Could Jolt This ETF - ETF Database"
       ],
@@ -1306,7 +1262,7 @@
       "headline": "ARK Buys Millions In Falling Space Names. SpaceX Preps Classified Mission. - Investor's Business Daily",
       "event_time": "2026-07-29T14:44:00+00:00",
       "published_time": "2026-07-29T14:44:00+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.923191+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.467150+00:00",
       "facts": [
         "ARK Buys Millions In Falling Space Names. SpaceX Preps Classified Mission. - Investor's Business Daily"
       ],
@@ -1350,7 +1306,7 @@
       "headline": "Should You 'Buy' or 'Sell' Palantir Stock Before Aug. 3 Earnings? - TradingView",
       "event_time": "2026-07-29T13:29:12+00:00",
       "published_time": "2026-07-29T13:29:12+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.923212+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.467168+00:00",
       "facts": [
         "Should You 'Buy' or 'Sell' Palantir Stock Before Aug. 3 Earnings? - TradingView"
       ],
@@ -1394,7 +1350,7 @@
       "headline": "Intel Just Beat Its Own Guidance For The Seventh Time In A Row, Upgrade To Buy (NASDAQ:INTC) - Seeking Alpha",
       "event_time": "2026-07-29T13:25:20+00:00",
       "published_time": "2026-07-29T13:25:20+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.923233+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.467188+00:00",
       "facts": [
         "Intel Just Beat Its Own Guidance For The Seventh Time In A Row, Upgrade To Buy (NASDAQ:INTC) - Seeking Alpha"
       ],
@@ -1438,7 +1394,7 @@
       "headline": "Palantir Stock Price Forecast — Options Traders Expect a Large Swing in PLTR as Earnings Near - TipRanks",
       "event_time": "2026-07-29T13:23:10+00:00",
       "published_time": "2026-07-29T13:23:10+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.923257+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.467212+00:00",
       "facts": [
         "Palantir Stock Price Forecast — Options Traders Expect a Large Swing in PLTR as Earnings Near - TipRanks"
       ],
@@ -1482,7 +1438,7 @@
       "headline": "3 Reasons Lam Research Is Worth a Closer Look Before July 29 Q4 Earnings - AOL.com",
       "event_time": "2026-07-29T10:10:09+00:00",
       "published_time": "2026-07-29T10:10:09+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.923277+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.467231+00:00",
       "facts": [
         "3 Reasons Lam Research Is Worth a Closer Look Before July 29 Q4 Earnings - AOL.com"
       ],
@@ -1526,7 +1482,7 @@
       "headline": "Renaissance Technologies LLC Makes New $35.90 Million Investment in Intuitive Machines, Inc. $LUNR - MarketBeat",
       "event_time": "2026-07-29T10:04:32+00:00",
       "published_time": "2026-07-29T10:04:32+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.923302+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.467254+00:00",
       "facts": [
         "Renaissance Technologies LLC Makes New $35.90 Million Investment in Intuitive Machines, Inc. $LUNR - MarketBeat"
       ],
@@ -1570,7 +1526,7 @@
       "headline": "Türk Traktör’e 606.5 milyon liralık yatırım teşvik belgesi haberi - borsaningundemi.com",
       "event_time": "2026-07-29T09:51:04+00:00",
       "published_time": "2026-07-29T09:51:04+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.923329+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.467278+00:00",
       "facts": [
         "Türk Traktör’e 606.5 milyon liralık yatırım teşvik belgesi haberi - borsaningundemi.com"
       ],
@@ -1614,7 +1570,7 @@
       "headline": "Borsa İstanbul için bilanço beklentisi - tireboluhaber.net",
       "event_time": "2026-07-29T07:11:03+00:00",
       "published_time": "2026-07-29T07:11:03+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.923350+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.467298+00:00",
       "facts": [
         "Borsa İstanbul için bilanço beklentisi - tireboluhaber.net"
       ],
@@ -1658,7 +1614,7 @@
       "headline": "LUNR Stock Hits 52-Week High Ahead Of Q1 Earnings This Week — Retail Says SpaceX IPO Will Fuel A Rally In Intuitive Machines Shares - Stocktwits",
       "event_time": "2026-07-28T23:11:22+00:00",
       "published_time": "2026-07-28T23:11:22+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.923376+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.467324+00:00",
       "facts": [
         "LUNR Stock Hits 52-Week High Ahead Of Q1 Earnings This Week — Retail Says SpaceX IPO Will Fuel A Rally In Intuitive Machines Shares - Stocktwits"
       ],
@@ -1702,7 +1658,7 @@
       "headline": "Crypto hacks surpass $1 billion in first half of 2024; North Korean groups responsible for most thefts - CryptoRank",
       "event_time": "2026-07-28T22:16:39+00:00",
       "published_time": "2026-07-28T22:16:39+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.923397+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.467345+00:00",
       "facts": [
         "Crypto hacks surpass $1 billion in first half of 2024; North Korean groups responsible for most thefts - CryptoRank"
       ],
@@ -1746,7 +1702,7 @@
       "headline": "LRCX Looks 100.7% Overvalued on GF Value™ as Earnings Loom - GuruFocus",
       "event_time": "2026-07-28T22:11:53+00:00",
       "published_time": "2026-07-28T22:11:53+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.923418+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.467367+00:00",
       "facts": [
         "LRCX Looks 100.7% Overvalued on GF Value™ as Earnings Loom - GuruFocus"
       ],
@@ -1790,7 +1746,7 @@
       "headline": "Corning shares fall 18 percent after earnings, leading slide in optics stocks - 디지털투데이",
       "event_time": "2026-07-28T21:00:09+00:00",
       "published_time": "2026-07-28T21:00:09+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.923442+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.467391+00:00",
       "facts": [
         "Corning shares fall 18 percent after earnings, leading slide in optics stocks - 디지털투데이"
       ],
@@ -1834,7 +1790,7 @@
       "headline": "Marvell Technology (MRVL) Q1 2027 Earnings Call Transcript - Fortune",
       "event_time": "2026-07-28T20:58:04+00:00",
       "published_time": "2026-07-28T20:58:04+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.923461+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.467409+00:00",
       "facts": [
         "Marvell Technology (MRVL) Q1 2027 Earnings Call Transcript - Fortune"
       ],
@@ -1878,7 +1834,7 @@
       "headline": "Trade.xyz Will Cover Losses From SK Hynix Liquidation Anomaly on Hyperliquid - CryptoRank",
       "event_time": "2026-07-29T08:11:52+00:00",
       "published_time": "2026-07-29T08:11:52+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.923480+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.467428+00:00",
       "facts": [
         "Trade.xyz Will Cover Losses From SK Hynix Liquidation Anomaly on Hyperliquid - CryptoRank"
       ],
@@ -1922,7 +1878,7 @@
       "headline": "SK Innovation Proposes Phased LNG-SMR Energy Partnership in Vietnam to Jointly Tackle AI Power Crunch - finance.biggo.com",
       "event_time": "2026-07-29T06:25:00+00:00",
       "published_time": "2026-07-29T06:25:00+00:00",
-      "retrieved_time": "2026-07-29T17:23:46.923501+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.467448+00:00",
       "facts": [
         "SK Innovation Proposes Phased LNG-SMR Energy Partnership in Vietnam to Jointly Tackle AI Power Crunch - finance.biggo.com"
       ],
@@ -1955,6 +1911,50 @@
           "primary_source": false
         }
       ]
+    },
+    {
+      "event_id": "evt-cf0348d46ad209",
+      "primary_theme": "MRVL",
+      "related_themes": [],
+      "companies": [
+        "MRVL"
+      ],
+      "headline": "China Optoelectronics: Powering AI's Voracious Bandwidth Needs - Smartkarma",
+      "event_time": "2026-07-29T02:04:49+00:00",
+      "published_time": "2026-07-29T02:04:49+00:00",
+      "retrieved_time": "2026-07-29T17:25:06.467470+00:00",
+      "facts": [
+        "China Optoelectronics: Powering AI's Voracious Bandwidth Needs - Smartkarma"
+      ],
+      "why_it_matters": "Marvell Technology yatırım tezinin ana sürücüleri: Özel AI silikon siparişleri; Veri merkezi ağ ve optik talebi; Müşteri programlarının ölçeklenmesi.",
+      "investment_meaning": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
+      "thesis_impact": "THESIS_UNCHANGED",
+      "research_view": {
+        "rating": "NEUTRAL",
+        "time_horizon": "Orta-Uzun vadeli",
+        "summary": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
+        "reasons": [
+          "Marvell Technology için son 24 saatte önem filtresini geçen gelişme"
+        ],
+        "risks": [
+          "Müşteri yoğunlaşması",
+          "Program gecikmeleri",
+          "Yüksek beklenti ve değerleme",
+          "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
+        ]
+      },
+      "risk_badge": "GROWTH",
+      "confidence": "MEDIUM",
+      "sources": [
+        {
+          "source_type": "SECONDARY_NEWS",
+          "publisher": "Smartkarma",
+          "title": "China Optoelectronics: Powering AI's Voracious Bandwidth Needs - Smartkarma",
+          "published_at": "2026-07-29T02:04:49+00:00",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQN3lWR2t0aUVPeXRfdXE0RmVmRi1hazhYbEo2dV9GZDRpUC1FV1U2bnNjb0FwRTNGSHp3bVh0OGlFMjM5dXFTQ2Q4SFgyQW5ZNC0xT2hXeXVJaE9NbUdkVlU3OGpER0FuZ2RLTHVaMWtJam8tM2xjOGt1NktDOGd4akJMYlBfV2pqSHlEUVlkdHVJeG1kb1JEcmlWSGdJQQ?oc=5",
+          "primary_source": false
+        }
+      ]
     }
   ],
   "watchlist": [
@@ -1963,11 +1963,11 @@
       "provider_symbol": "NVDA",
       "company": "Nvidia",
       "currency": "USD",
-      "price": 192.77,
-      "return_1d_pct": -2.15,
-      "return_21d_pct": -1.13,
-      "return_252d_pct": 9.21,
-      "distance_from_52w_high_pct": -18.23,
+      "price": 192.59,
+      "return_1d_pct": -2.24,
+      "return_21d_pct": -1.22,
+      "return_252d_pct": 9.11,
+      "distance_from_52w_high_pct": -18.3,
       "price_as_of": "2026-07-29",
       "risk_badge": "ESTABLISHED",
       "sector": "GPU ve AI Çipleri",
@@ -1979,11 +1979,11 @@
       "provider_symbol": "TSLA",
       "company": "Tesla",
       "currency": "USD",
-      "price": 303.33,
-      "return_1d_pct": -1.34,
-      "return_21d_pct": -26.35,
-      "return_252d_pct": -6.84,
-      "distance_from_52w_high_pct": -38.08,
+      "price": 302.95,
+      "return_1d_pct": -1.46,
+      "return_21d_pct": -26.44,
+      "return_252d_pct": -6.96,
+      "distance_from_52w_high_pct": -38.16,
       "price_as_of": "2026-07-29",
       "risk_badge": "GROWTH",
       "sector": "Yapay Zeka ve Otomasyon",
@@ -1995,11 +1995,11 @@
       "provider_symbol": "GOOGL",
       "company": "Alphabet",
       "currency": "USD",
-      "price": 338.05,
-      "return_1d_pct": 1.3,
-      "return_21d_pct": -4.41,
-      "return_252d_pct": 76.04,
-      "distance_from_52w_high_pct": -16.04,
+      "price": 337.72,
+      "return_1d_pct": 1.2,
+      "return_21d_pct": -4.5,
+      "return_252d_pct": 75.87,
+      "distance_from_52w_high_pct": -16.12,
       "price_as_of": "2026-07-29",
       "risk_badge": "ESTABLISHED",
       "sector": "Bulut ve Yapay Zeka",
@@ -2011,11 +2011,11 @@
       "provider_symbol": "AMZN",
       "company": "Amazon",
       "currency": "USD",
-      "price": 230.6,
-      "return_1d_pct": -0.11,
-      "return_21d_pct": -3.97,
-      "return_252d_pct": -0.94,
-      "distance_from_52w_high_pct": -16.14,
+      "price": 230.51,
+      "return_1d_pct": -0.15,
+      "return_21d_pct": -4.01,
+      "return_252d_pct": -0.98,
+      "distance_from_52w_high_pct": -16.18,
       "price_as_of": "2026-07-29",
       "risk_badge": "ESTABLISHED",
       "sector": "Bulut ve Veri Merkezi",
@@ -2027,11 +2027,11 @@
       "provider_symbol": "AMD",
       "company": "AMD",
       "currency": "USD",
-      "price": 437.36,
-      "return_1d_pct": -3.8,
-      "return_21d_pct": -18.93,
-      "return_252d_pct": 151.85,
-      "distance_from_52w_high_pct": -24.71,
+      "price": 436.89,
+      "return_1d_pct": -3.9,
+      "return_21d_pct": -19.02,
+      "return_252d_pct": 151.57,
+      "distance_from_52w_high_pct": -24.79,
       "price_as_of": "2026-07-29",
       "risk_badge": "GROWTH",
       "sector": "GPU ve AI Çipleri",
@@ -2043,11 +2043,11 @@
       "provider_symbol": "MRVL",
       "company": "Marvell Technology",
       "currency": "USD",
-      "price": 167.75,
-      "return_1d_pct": -3.85,
-      "return_21d_pct": -39.59,
-      "return_252d_pct": 121.46,
-      "distance_from_52w_high_pct": -46.99,
+      "price": 167.22,
+      "return_1d_pct": -4.16,
+      "return_21d_pct": -39.78,
+      "return_252d_pct": 120.76,
+      "distance_from_52w_high_pct": -47.15,
       "price_as_of": "2026-07-29",
       "risk_badge": "GROWTH",
       "sector": "Özel AI Çipleri ve Ağ",
@@ -2059,11 +2059,11 @@
       "provider_symbol": "LRCX",
       "company": "Lam Research",
       "currency": "USD",
-      "price": 257.51,
-      "return_1d_pct": -4.49,
-      "return_21d_pct": -37.33,
-      "return_252d_pct": 162.56,
-      "distance_from_52w_high_pct": -40.57,
+      "price": 256.88,
+      "return_1d_pct": -4.72,
+      "return_21d_pct": -37.49,
+      "return_252d_pct": 161.92,
+      "distance_from_52w_high_pct": -40.72,
       "price_as_of": "2026-07-29",
       "risk_badge": "ESTABLISHED",
       "sector": "Yarı İletken Ekipmanı",
@@ -2075,11 +2075,11 @@
       "provider_symbol": "PLTR",
       "company": "Palantir",
       "currency": "USD",
-      "price": 125.74,
-      "return_1d_pct": 1.79,
-      "return_21d_pct": 8.68,
-      "return_252d_pct": -20.36,
-      "distance_from_52w_high_pct": -39.31,
+      "price": 125.54,
+      "return_1d_pct": 1.63,
+      "return_21d_pct": 8.5,
+      "return_252d_pct": -20.48,
+      "distance_from_52w_high_pct": -39.41,
       "price_as_of": "2026-07-29",
       "risk_badge": "GROWTH",
       "sector": "Kurumsal Yapay Zeka",
@@ -2091,11 +2091,11 @@
       "provider_symbol": "EQIX",
       "company": "Equinix",
       "currency": "USD",
-      "price": 1013.63,
-      "return_1d_pct": -2.05,
-      "return_21d_pct": -6.59,
-      "return_252d_pct": 30.63,
-      "distance_from_52w_high_pct": -9.17,
+      "price": 1013.14,
+      "return_1d_pct": -2.1,
+      "return_21d_pct": -6.64,
+      "return_252d_pct": 30.56,
+      "distance_from_52w_high_pct": -9.21,
       "price_as_of": "2026-07-29",
       "risk_badge": "ESTABLISHED",
       "sector": "Veri Merkezi REIT",
@@ -2107,11 +2107,11 @@
       "provider_symbol": "DLR",
       "company": "Digital Realty",
       "currency": "USD",
-      "price": 187.85,
-      "return_1d_pct": -2.76,
-      "return_21d_pct": -1.43,
-      "return_252d_pct": 9.99,
-      "distance_from_52w_high_pct": -7.88,
+      "price": 187.73,
+      "return_1d_pct": -2.82,
+      "return_21d_pct": -1.5,
+      "return_252d_pct": 9.92,
+      "distance_from_52w_high_pct": -7.93,
       "price_as_of": "2026-07-29",
       "risk_badge": "ESTABLISHED",
       "sector": "Veri Merkezi REIT",
@@ -2123,11 +2123,11 @@
       "provider_symbol": "SNDK",
       "company": "SanDisk",
       "currency": "USD",
-      "price": 1051.2,
-      "return_1d_pct": -4.1,
-      "return_21d_pct": -48.73,
-      "return_252d_pct": 2409.43,
-      "distance_from_52w_high_pct": -54.98,
+      "price": 1045.57,
+      "return_1d_pct": -4.61,
+      "return_21d_pct": -49.01,
+      "return_252d_pct": 2395.99,
+      "distance_from_52w_high_pct": -55.22,
       "price_as_of": "2026-07-29",
       "risk_badge": "GROWTH",
       "sector": "Depolama ve NAND",
@@ -2139,11 +2139,11 @@
       "provider_symbol": "VRT",
       "company": "Vertiv",
       "currency": "USD",
-      "price": 225.2,
-      "return_1d_pct": -16.46,
-      "return_21d_pct": -26.64,
-      "return_252d_pct": 58.15,
-      "distance_from_52w_high_pct": -40.14,
+      "price": 224.75,
+      "return_1d_pct": -16.62,
+      "return_21d_pct": -26.78,
+      "return_252d_pct": 57.84,
+      "distance_from_52w_high_pct": -40.26,
       "price_as_of": "2026-07-29",
       "risk_badge": "GROWTH",
       "sector": "Güç ve Soğutma",
@@ -2155,11 +2155,11 @@
       "provider_symbol": "CEG",
       "company": "Constellation Energy",
       "currency": "USD",
-      "price": 259.29,
-      "return_1d_pct": -0.2,
-      "return_21d_pct": -0.01,
-      "return_252d_pct": -20.69,
-      "distance_from_52w_high_pct": -35.81,
+      "price": 258.93,
+      "return_1d_pct": -0.34,
+      "return_21d_pct": -0.15,
+      "return_252d_pct": -20.8,
+      "distance_from_52w_high_pct": -35.9,
       "price_as_of": "2026-07-29",
       "risk_badge": "ESTABLISHED",
       "sector": "Nükleer Enerji",
@@ -2171,11 +2171,11 @@
       "provider_symbol": "VST",
       "company": "Vistra",
       "currency": "USD",
-      "price": 143.78,
-      "return_1d_pct": -3.27,
-      "return_21d_pct": -11.45,
-      "return_252d_pct": -26.21,
-      "distance_from_52w_high_pct": -34.02,
+      "price": 143.54,
+      "return_1d_pct": -3.43,
+      "return_21d_pct": -11.61,
+      "return_252d_pct": -26.34,
+      "distance_from_52w_high_pct": -34.13,
       "price_as_of": "2026-07-29",
       "risk_badge": "ESTABLISHED",
       "sector": "Elektrik Üretimi",
@@ -2187,11 +2187,11 @@
       "provider_symbol": "SMR",
       "company": "NuScale Power",
       "currency": "USD",
-      "price": 7.78,
-      "return_1d_pct": -5.29,
-      "return_21d_pct": -24.12,
-      "return_252d_pct": -84.73,
-      "distance_from_52w_high_pct": -85.43,
+      "price": 7.74,
+      "return_1d_pct": -5.78,
+      "return_21d_pct": -24.51,
+      "return_252d_pct": -84.81,
+      "distance_from_52w_high_pct": -85.5,
       "price_as_of": "2026-07-29",
       "risk_badge": "SPECULATIVE",
       "sector": "SMR Nükleer",
@@ -2203,11 +2203,11 @@
       "provider_symbol": "TSM",
       "company": "TSMC",
       "currency": "USD",
-      "price": 380.45,
-      "return_1d_pct": -3.02,
-      "return_21d_pct": -16.4,
-      "return_252d_pct": 58.46,
-      "distance_from_52w_high_pct": -20.34,
+      "price": 379.87,
+      "return_1d_pct": -3.17,
+      "return_21d_pct": -16.53,
+      "return_252d_pct": 58.22,
+      "distance_from_52w_high_pct": -20.46,
       "price_as_of": "2026-07-29",
       "risk_badge": "ESTABLISHED",
       "sector": "Yarı İletken Üretimi",
@@ -2235,11 +2235,11 @@
       "provider_symbol": "LUNR",
       "company": "Intuitive Machines",
       "currency": "USD",
-      "price": 11.82,
-      "return_1d_pct": -4.45,
-      "return_21d_pct": -43.63,
-      "return_252d_pct": -7.87,
-      "distance_from_52w_high_pct": -74.14,
+      "price": 11.78,
+      "return_1d_pct": -4.73,
+      "return_21d_pct": -43.8,
+      "return_252d_pct": -8.14,
+      "distance_from_52w_high_pct": -74.21,
       "price_as_of": "2026-07-29",
       "risk_badge": "SPECULATIVE",
       "sector": "Uzay Teknolojileri",
@@ -2273,15 +2273,15 @@
       "latest_event_headlines": [
         "Firebird AI Center Ready for Launch in Hrazdan, Investments Possible to Reach $5 Billion - Arkatelecom.",
         "Nvidia (NASDAQ:NVDA) shares fall following projected $238 billion loss amid scrutiny of AI investment - TechStock²",
-        "Acryl Inks 3.3 Billion Won (approximately $2.3 Million) Premium AI Platform Deal with Hancom, Cumulative Orders Reach 5.5 Billion Won - finance.biggo.com"
+        "Nvidia Shares Slide Nearly 3% as AI Circular Financing Worries Deepen Ahead of Microsoft, Meta Earnings - International Business Times Australia"
       ],
       "price_context": {
         "currency": "USD",
-        "price": 192.77,
-        "return_1d_pct": -2.15,
-        "return_21d_pct": -1.13,
-        "return_252d_pct": 9.21,
-        "distance_from_52w_high_pct": -18.23,
+        "price": 192.59,
+        "return_1d_pct": -2.24,
+        "return_21d_pct": -1.22,
+        "return_252d_pct": 9.11,
+        "distance_from_52w_high_pct": -18.3,
         "price_as_of": "2026-07-29",
         "data_status": "CURRENT"
       }
@@ -2290,8 +2290,8 @@
       "ticker": "TSLA",
       "company": "Tesla",
       "sector": "Yapay Zeka ve Otomasyon",
-      "rating": "NEUTRAL",
-      "thesis_impact": "THESIS_UNCHANGED",
+      "rating": "POSITIVE",
+      "thesis_impact": "THESIS_STRENGTHENED",
       "time_horizon": "Orta-Uzun vadeli",
       "confidence": "HIGH",
       "risk_badge": "GROWTH",
@@ -2309,17 +2309,17 @@
         "Regülasyon ve uygulama riski"
       ],
       "latest_event_headlines": [
-        "Ford Jumps 6%, Outstrips GM and Tesla on Q2 Earnings Beat, Raised 2026 Guidance, Citi Upgrade - 24/7 Wall St.",
-        "ABG Q2 Earnings Beat on Used-Vehicle Gains, Revenues Miss - TradingView",
-        "Seagate Technology Q4 Earnings Call Highlights AI Storage Demand - Zacks Investment Research"
+        "Ford hikes full-year guidance, beats on Q2 earnings as profit growth blunts slowing sales - Yahoo Finance UK",
+        "STX Q4 Earnings Top on 48% Sales Jump, AI-led Storage Demand Continues - Zacks Investment Research",
+        "Ford Jumps 6%, Outstrips GM and Tesla on Q2 Earnings Beat, Raised 2026 Guidance, Citi Upgrade - 24/7 Wall St."
       ],
       "price_context": {
         "currency": "USD",
-        "price": 303.33,
-        "return_1d_pct": -1.34,
-        "return_21d_pct": -26.35,
-        "return_252d_pct": -6.84,
-        "distance_from_52w_high_pct": -38.08,
+        "price": 302.95,
+        "return_1d_pct": -1.46,
+        "return_21d_pct": -26.44,
+        "return_252d_pct": -6.96,
+        "distance_from_52w_high_pct": -38.16,
         "price_as_of": "2026-07-29",
         "data_status": "CURRENT"
       }
@@ -2353,11 +2353,11 @@
       ],
       "price_context": {
         "currency": "USD",
-        "price": 338.05,
-        "return_1d_pct": 1.3,
-        "return_21d_pct": -4.41,
-        "return_252d_pct": 76.04,
-        "distance_from_52w_high_pct": -16.04,
+        "price": 337.72,
+        "return_1d_pct": 1.2,
+        "return_21d_pct": -4.5,
+        "return_252d_pct": 75.87,
+        "distance_from_52w_high_pct": -16.12,
         "price_as_of": "2026-07-29",
         "data_status": "CURRENT"
       }
@@ -2391,11 +2391,11 @@
       ],
       "price_context": {
         "currency": "USD",
-        "price": 230.6,
-        "return_1d_pct": -0.11,
-        "return_21d_pct": -3.97,
-        "return_252d_pct": -0.94,
-        "distance_from_52w_high_pct": -16.14,
+        "price": 230.51,
+        "return_1d_pct": -0.15,
+        "return_21d_pct": -4.01,
+        "return_252d_pct": -0.98,
+        "distance_from_52w_high_pct": -16.18,
         "price_as_of": "2026-07-29",
         "data_status": "CURRENT"
       }
@@ -2404,8 +2404,8 @@
       "ticker": "AMD",
       "company": "AMD",
       "sector": "GPU ve AI Çipleri",
-      "rating": "NEUTRAL",
-      "thesis_impact": "THESIS_UNCHANGED",
+      "rating": "POSITIVE",
+      "thesis_impact": "THESIS_STRENGTHENED",
       "time_horizon": "Orta-Uzun vadeli",
       "confidence": "HIGH",
       "risk_badge": "GROWTH",
@@ -2423,17 +2423,17 @@
         "Ürün geçiş riski"
       ],
       "latest_event_headlines": [
-        "[CORZ Q2 2026 Earnings Call] Core Scientific Inks $14B AMD Deal for 530 MW, Eyes 2.5 GW; Colocation Revenue Hits $137M - finance.biggo.com",
         "Core Scientific Inks $14 Billion AMD Deal as AI Hosting Revenue Doubles, Miners Pivot From Bitcoin - finance.biggo.com",
-        "Eliyan raises $145 million at $1 billion valuation to ease AI chip data bottlenecks - WTVB"
+        "Eliyan raises $145 million at $1 billion valuation to ease AI chip data bottlenecks - WTVB",
+        "Advanced Micro Devices, Inc. $AMD is Ma Investment Partnership LP's 4th Largest Position - MarketBeat"
       ],
       "price_context": {
         "currency": "USD",
-        "price": 437.36,
-        "return_1d_pct": -3.8,
-        "return_21d_pct": -18.93,
-        "return_252d_pct": 151.85,
-        "distance_from_52w_high_pct": -24.71,
+        "price": 436.89,
+        "return_1d_pct": -3.9,
+        "return_21d_pct": -19.02,
+        "return_252d_pct": 151.57,
+        "distance_from_52w_high_pct": -24.79,
         "price_as_of": "2026-07-29",
         "data_status": "CURRENT"
       }
@@ -2461,17 +2461,17 @@
         "Yüksek beklenti ve değerleme"
       ],
       "latest_event_headlines": [
-        "Seagate Stock Rallies After Q4 Earnings: Record Cash Flow, Strong Margins - Benzinga",
         "Corning shares fall 18 percent after earnings, leading slide in optics stocks - 디지털투데이",
-        "Marvell Technology (MRVL) Q1 2027 Earnings Call Transcript - Fortune"
+        "Marvell Technology (MRVL) Q1 2027 Earnings Call Transcript - Fortune",
+        "China Optoelectronics: Powering AI's Voracious Bandwidth Needs - Smartkarma"
       ],
       "price_context": {
         "currency": "USD",
-        "price": 167.75,
-        "return_1d_pct": -3.85,
-        "return_21d_pct": -39.59,
-        "return_252d_pct": 121.46,
-        "distance_from_52w_high_pct": -46.99,
+        "price": 167.22,
+        "return_1d_pct": -4.16,
+        "return_21d_pct": -39.78,
+        "return_252d_pct": 120.76,
+        "distance_from_52w_high_pct": -47.15,
         "price_as_of": "2026-07-29",
         "data_status": "CURRENT"
       }
@@ -2505,11 +2505,11 @@
       ],
       "price_context": {
         "currency": "USD",
-        "price": 257.51,
-        "return_1d_pct": -4.49,
-        "return_21d_pct": -37.33,
-        "return_252d_pct": 162.56,
-        "distance_from_52w_high_pct": -40.57,
+        "price": 256.88,
+        "return_1d_pct": -4.72,
+        "return_21d_pct": -37.49,
+        "return_252d_pct": 161.92,
+        "distance_from_52w_high_pct": -40.72,
         "price_as_of": "2026-07-29",
         "data_status": "CURRENT"
       }
@@ -2543,11 +2543,11 @@
       ],
       "price_context": {
         "currency": "USD",
-        "price": 125.74,
-        "return_1d_pct": 1.79,
-        "return_21d_pct": 8.68,
-        "return_252d_pct": -20.36,
-        "distance_from_52w_high_pct": -39.31,
+        "price": 125.54,
+        "return_1d_pct": 1.63,
+        "return_21d_pct": 8.5,
+        "return_252d_pct": -20.48,
+        "distance_from_52w_high_pct": -39.41,
         "price_as_of": "2026-07-29",
         "data_status": "CURRENT"
       }
@@ -2577,11 +2577,11 @@
       "latest_event_headlines": [],
       "price_context": {
         "currency": "USD",
-        "price": 1013.63,
-        "return_1d_pct": -2.05,
-        "return_21d_pct": -6.59,
-        "return_252d_pct": 30.63,
-        "distance_from_52w_high_pct": -9.17,
+        "price": 1013.14,
+        "return_1d_pct": -2.1,
+        "return_21d_pct": -6.64,
+        "return_252d_pct": 30.56,
+        "distance_from_52w_high_pct": -9.21,
         "price_as_of": "2026-07-29",
         "data_status": "CURRENT"
       }
@@ -2615,11 +2615,11 @@
       ],
       "price_context": {
         "currency": "USD",
-        "price": 187.85,
-        "return_1d_pct": -2.76,
-        "return_21d_pct": -1.43,
-        "return_252d_pct": 9.99,
-        "distance_from_52w_high_pct": -7.88,
+        "price": 187.73,
+        "return_1d_pct": -2.82,
+        "return_21d_pct": -1.5,
+        "return_252d_pct": 9.92,
+        "distance_from_52w_high_pct": -7.93,
         "price_as_of": "2026-07-29",
         "data_status": "CURRENT"
       }
@@ -2653,11 +2653,11 @@
       ],
       "price_context": {
         "currency": "USD",
-        "price": 1051.2,
-        "return_1d_pct": -4.1,
-        "return_21d_pct": -48.73,
-        "return_252d_pct": 2409.43,
-        "distance_from_52w_high_pct": -54.98,
+        "price": 1045.57,
+        "return_1d_pct": -4.61,
+        "return_21d_pct": -49.01,
+        "return_252d_pct": 2395.99,
+        "distance_from_52w_high_pct": -55.22,
         "price_as_of": "2026-07-29",
         "data_status": "CURRENT"
       }
@@ -2691,11 +2691,11 @@
       ],
       "price_context": {
         "currency": "USD",
-        "price": 225.2,
-        "return_1d_pct": -16.46,
-        "return_21d_pct": -26.64,
-        "return_252d_pct": 58.15,
-        "distance_from_52w_high_pct": -40.14,
+        "price": 224.75,
+        "return_1d_pct": -16.62,
+        "return_21d_pct": -26.78,
+        "return_252d_pct": 57.84,
+        "distance_from_52w_high_pct": -40.26,
         "price_as_of": "2026-07-29",
         "data_status": "CURRENT"
       }
@@ -2728,11 +2728,11 @@
       ],
       "price_context": {
         "currency": "USD",
-        "price": 259.29,
-        "return_1d_pct": -0.2,
-        "return_21d_pct": -0.01,
-        "return_252d_pct": -20.69,
-        "distance_from_52w_high_pct": -35.81,
+        "price": 258.93,
+        "return_1d_pct": -0.34,
+        "return_21d_pct": -0.15,
+        "return_252d_pct": -20.8,
+        "distance_from_52w_high_pct": -35.9,
         "price_as_of": "2026-07-29",
         "data_status": "CURRENT"
       }
@@ -2762,11 +2762,11 @@
       "latest_event_headlines": [],
       "price_context": {
         "currency": "USD",
-        "price": 143.78,
-        "return_1d_pct": -3.27,
-        "return_21d_pct": -11.45,
-        "return_252d_pct": -26.21,
-        "distance_from_52w_high_pct": -34.02,
+        "price": 143.54,
+        "return_1d_pct": -3.43,
+        "return_21d_pct": -11.61,
+        "return_252d_pct": -26.34,
+        "distance_from_52w_high_pct": -34.13,
         "price_as_of": "2026-07-29",
         "data_status": "CURRENT"
       }
@@ -2798,11 +2798,11 @@
       ],
       "price_context": {
         "currency": "USD",
-        "price": 7.78,
-        "return_1d_pct": -5.29,
-        "return_21d_pct": -24.12,
-        "return_252d_pct": -84.73,
-        "distance_from_52w_high_pct": -85.43,
+        "price": 7.74,
+        "return_1d_pct": -5.78,
+        "return_21d_pct": -24.51,
+        "return_252d_pct": -84.81,
+        "distance_from_52w_high_pct": -85.5,
         "price_as_of": "2026-07-29",
         "data_status": "CURRENT"
       }
@@ -2836,11 +2836,11 @@
       ],
       "price_context": {
         "currency": "USD",
-        "price": 380.45,
-        "return_1d_pct": -3.02,
-        "return_21d_pct": -16.4,
-        "return_252d_pct": 58.46,
-        "distance_from_52w_high_pct": -20.34,
+        "price": 379.87,
+        "return_1d_pct": -3.17,
+        "return_21d_pct": -16.53,
+        "return_252d_pct": 58.22,
+        "distance_from_52w_high_pct": -20.46,
         "price_as_of": "2026-07-29",
         "data_status": "CURRENT"
       }
@@ -2911,11 +2911,11 @@
       ],
       "price_context": {
         "currency": "USD",
-        "price": 11.82,
-        "return_1d_pct": -4.45,
-        "return_21d_pct": -43.63,
-        "return_252d_pct": -7.87,
-        "distance_from_52w_high_pct": -74.14,
+        "price": 11.78,
+        "return_1d_pct": -4.73,
+        "return_21d_pct": -43.8,
+        "return_252d_pct": -8.14,
+        "distance_from_52w_high_pct": -74.21,
         "price_as_of": "2026-07-29",
         "data_status": "CURRENT"
       }
