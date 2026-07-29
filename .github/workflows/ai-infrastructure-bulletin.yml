@@ -1,4 +1,4 @@
-name: TTRAK and LUNR Daily Evaluation
+name: AI Infrastructure Bulletin
 
 on:
   workflow_dispatch:
@@ -21,14 +21,14 @@ permissions:
   contents: write
 
 concurrency:
-  group: ttrak-lunr-evaluation-${{ github.ref }}
+  group: ai-infrastructure-bulletin-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
   validate-and-refresh:
     if: github.event_name != 'push' || github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
 
@@ -41,11 +41,12 @@ jobs:
           node --check ai-infrastructure-bulletin/app.js
           python -m py_compile ai-infrastructure-bulletin/scripts/update_bulletin.py
           python -m py_compile ai-infrastructure-bulletin/scripts/update_prices.py
+          python -m py_compile ai-infrastructure-bulletin/scripts/add_ticker_from_issue.py
 
-      - name: Generate TTRAK and LUNR news evaluation
+      - name: Generate company-specific news evaluation
         run: python ai-infrastructure-bulletin/scripts/update_bulletin.py
 
-      - name: Generate 1-day, 21-day and 252-day market performance
+      - name: Generate prices and one evaluation per company
         run: python ai-infrastructure-bulletin/scripts/update_prices.py
 
       - name: Validate generated report
@@ -61,5 +62,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add ai-infrastructure-bulletin/data/report.json
-          git commit -m "chore: refresh TTRAK and LUNR evaluation"
+          git commit -m "chore: refresh full company evaluation"
           git push
