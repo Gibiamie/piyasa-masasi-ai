@@ -1,25 +1,9 @@
 const DATA_URL = "./data/report.json";
-const APP_VERSION = "2026.07.29.3";
-const DEFAULT_TICKERS = [
-  "NVDA","TSLA","GOOGL","AMZN","AMD","MRVL","LRCX","PLTR","EQIX",
-  "DLR","SNDK","VRT","CEG","VST","SMR","TSM","LUNR","TTRAK"
-];
-const state = { report: null, theme: "Tümü", tickers: loadTickers() };
+const APP_VERSION = "2026.07.29.4";
+const FOCUS_TICKERS = ["TTRAK", "LUNR"];
+const state = { report: null, theme: "Tümü", tickers: [...FOCUS_TICKERS] };
 const $ = selector => document.querySelector(selector);
 const $$ = selector => [...document.querySelectorAll(selector)];
-
-function loadTickers() {
-  try {
-    const value = JSON.parse(localStorage.getItem("aiInfraWatchlist") || "null");
-    return Array.isArray(value) && value.length ? value : [...DEFAULT_TICKERS];
-  } catch {
-    return [...DEFAULT_TICKERS];
-  }
-}
-
-function saveTickers() {
-  localStorage.setItem("aiInfraWatchlist", JSON.stringify(state.tickers));
-}
 
 function esc(value) {
   return String(value ?? "").replace(/[&<>"']/g, character => ({
@@ -93,7 +77,7 @@ async function load() {
   } catch (error) {
     $("#freshness").textContent = "Veri hatası";
     $("#freshness").className = "badge negative";
-    $("#events").innerHTML = `<article class="card negative"><h3>Bülten verisi açılamadı</h3><p>${esc(error.message)}</p></article>`;
+    $("#events").innerHTML = `<article class="card negative"><h3>Değerlendirme verisi açılamadı</h3><p>${esc(error.message)}</p></article>`;
   }
 }
 
@@ -101,9 +85,11 @@ function render() {
   const data = state.report;
   const report = data.report;
   const summary = data.executive_summary;
-  const events = data.events || [];
+  const events = (data.events || []).filter(event =>
+    !event.companies?.length || event.companies.some(ticker => FOCUS_TICKERS.includes(ticker))
+  );
   $("#generatedAt").textContent = fmtDate(report.generated_at);
-  $("#eventCount").textContent = String(report.material_event_count ?? events.length);
+  $("#eventCount").textContent = String(events.length);
   $("#dominantTheme").textContent = summary.dominant_theme || "—";
   $("#mainRisk").textContent = summary.main_risk || "—";
   $("#summaryTitle").textContent = summary.headline || "Günlük görünüm";
@@ -158,13 +144,13 @@ function renderEvents(events) {
 
 function renderWatchlist(items) {
   const map = new Map(items.map(item => [item.ticker, item]));
-  $("#watchlistBody").innerHTML = state.tickers.map(ticker => {
+  $("#watchlistBody").innerHTML = FOCUS_TICKERS.map(ticker => {
     const item = map.get(ticker);
     const value = item || { ticker, company: ticker, risk_badge: "VERİ HAVUZUNDA YOK" };
     const badgeClass = value.risk_badge === "SPECULATIVE" || !item ? "warning" : "neutral";
     const detail = item?.price_as_of
       ? `${value.company || ""} • ${fmtDateOnly(item.price_as_of)}`
-      : value.company || "Sunucu veri havuzuna eklenmemiş ticker";
+      : value.company || "Veri bulunamadı";
     return `<tr>
       <td><div class="ticker-name"><strong>${esc(value.ticker)}</strong><span>${esc(detail)}</span></div></td>
       <td>${value.price == null ? "—" : `${esc(value.currency || "USD")} ${Number(value.price).toFixed(2)}`}</td>
@@ -188,17 +174,8 @@ function renderSources(events) {
 }
 
 function renderChips() {
-  $("#tickerChips").innerHTML = state.tickers.map(ticker =>
-    `<span class="chip">${esc(ticker)} <button data-remove="${esc(ticker)}" aria-label="${esc(ticker)} kaldır">×</button></span>`
-  ).join("");
-  $$('[data-remove]').forEach(button => {
-    button.onclick = () => {
-      state.tickers = state.tickers.filter(ticker => ticker !== button.dataset.remove);
-      saveTickers();
-      renderChips();
-      renderWatchlist(state.report?.watchlist || []);
-    };
-  });
+  $("#tickerChips").innerHTML = FOCUS_TICKERS.map(ticker => `<span class="chip">${esc(ticker)}</span>`).join("");
+  if ($("#tickerStatus")) $("#tickerStatus").textContent = "Değerlendirme kapsamı sabittir: yalnızca TTRAK ve LUNR.";
 }
 
 $$('.tab').forEach(tab => {
@@ -215,22 +192,6 @@ $("#refresh").onclick = async () => {
     await Promise.all(registrations.map(registration => registration.update().catch(() => null)));
   }
   await load();
-};
-
-$("#tickerForm").onsubmit = event => {
-  event.preventDefault();
-  const ticker = $("#ticker").value.trim().toUpperCase().replace(/[^A-Z0-9.-]/g, "");
-  if (ticker && !state.tickers.includes(ticker)) {
-    state.tickers.push(ticker);
-    saveTickers();
-    const supported = new Set((state.report?.watchlist || []).map(item => item.ticker));
-    $("#tickerStatus").textContent = supported.has(ticker)
-      ? `${ticker} takip listesine eklendi.`
-      : `${ticker} yerel listeye eklendi; fiyat için sunucu veri havuzuna ayrıca eklenmesi gerekir.`;
-    renderChips();
-    renderWatchlist(state.report?.watchlist || []);
-  }
-  $("#ticker").value = "";
 };
 
 if ("serviceWorker" in navigator) {
