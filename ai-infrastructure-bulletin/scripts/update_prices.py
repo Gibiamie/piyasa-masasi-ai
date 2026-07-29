@@ -47,9 +47,7 @@ def fetch_symbol(item: dict[str, Any]) -> tuple[str, dict[str, Any] | None, str 
     last_error = "no response"
     for host in ("query1.finance.yahoo.com", "query2.finance.yahoo.com"):
         try:
-            payload = fetch_json(
-                f"https://{host}/v8/finance/chart/{encoded}?range=2y&interval=1d&events=div%2Csplits"
-            )
+            payload = fetch_json(f"https://{host}/v8/finance/chart/{encoded}?range=2y&interval=1d&events=div%2Csplits")
             chart = payload.get("chart") or {}
             if chart.get("error"):
                 raise RuntimeError(str(chart["error"]))
@@ -58,48 +56,149 @@ def fetch_symbol(item: dict[str, Any]) -> tuple[str, dict[str, Any] | None, str 
                 raise RuntimeError("empty chart result")
             meta = result.get("meta") or {}
             timestamps = result.get("timestamp") or []
-            quote = ((result.get("indicators") or {}).get("quote") or [{}])[0]
+            indicators = result.get("indicators") or {}
+            quote = (indicators.get("quote") or [{}])[0]
+            adjclose = (indicators.get("adjclose") or [{}])[0].get("adjclose") or []
             closes = quote.get("close") or []
-            history: list[tuple[str, float]] = []
+            history: list[tuple[str, float, float]] = []
             for index, timestamp in enumerate(timestamps):
                 close = finite(closes[index] if index < len(closes) else None)
+                adjusted = finite(adjclose[index] if index < len(adjclose) else None)
                 if close is None:
                     continue
+                adjusted = adjusted if adjusted is not None else close
                 date = datetime.fromtimestamp(timestamp, timezone.utc).date().isoformat()
-                history.append((date, close))
-            history = sorted(dict(history).items())
+                history.append((date, close, adjusted))
+            by_date = {date: (close, adjusted) for date, close, adjusted in history}
+            history = [(date, values[0], values[1]) for date, values in sorted(by_date.items())]
             if len(history) < 2:
                 raise RuntimeError(f"only {len(history)} valid rows")
-            current = history[-1][1]
-            recent = [close for _, close in history[-252:]]
-            currency = str(meta.get("currency") or item.get("currency") or "USD").upper()
-            row: dict[str, Any] = {
+            current_close = history[-1][1]
+            current_adjusted = history[-1][2]
+            recent_closes = [close for _, close, _ in history[-252:]]
+            return ticker, {
                 "ticker": ticker,
                 "provider_symbol": provider_symbol,
-                "company": item["company"],
-                "currency": currency,
-                "price": round(current, 2),
-                "return_1d_pct": pct_change(current, history[-2][1]),
-                "return_21d_pct": pct_change(current, history[-22][1]) if len(history) >= 22 else None,
-                "return_252d_pct": pct_change(current, history[-253][1]) if len(history) >= 253 else None,
-                "distance_from_52w_high_pct": pct_change(current, max(recent)),
+                "company": item.get("company", ticker),
+                "currency": str(meta.get("currency") or item.get("currency") or "USD").upper(),
+                "price": round(current_close, 2),
+                "return_1d_pct": pct_change(current_adjusted, history[-2][2]),
+                "return_21d_pct": pct_change(current_adjusted, history[-22][2]) if len(history) >= 22 else None,
+                "return_252d_pct": pct_change(current_adjusted, history[-253][2]) if len(history) >= 253 else None,
+                "distance_from_52w_high_pct": pct_change(current_close, max(recent_closes)),
                 "price_as_of": history[-1][0],
-                "risk_badge": item["risk_badge"],
+                "risk_badge": item.get("risk_badge", "GROWTH"),
+                "sector": item.get("sector", "Diğer"),
                 "provider": "Yahoo Finance chart feed",
-            }
-            return ticker, row, None
+                "data_status": "CURRENT",
+            }, None
         except Exception as exc:
             last_error = f"{host}: {type(exc).__name__}: {exc}"
     return ticker, None, last_error
 
 
+def performance_context(row: dict[str, Any]) -> str:
+    short = finite(row.get("return_21d_pct"))
+    long = finite(row.get("return_252d_pct"))
+    if short is None or long is None:
+        return "Trend karşılaştırması için yeterli fiyat geçmişi bulunmuyor."
+    if long > 0 and short < 0:
+        return "252 işlem günlük trend pozitif, son 21 işlem gününde düzeltme var; bunun kâr realizasyonu mu yoksa tez zayıflaması mı olduğu izlenmelidir."
+    if long > 0 and short > 0:
+        return "Hem 252 hem 21 işlem günlük trend pozitif; momentum güçlü, ancak değerleme ve haberin fiyatlanmış olma riski kontrol edilmelidir."
+    if long < 0 and short > 0:
+        return "252 işlem günlük trend negatif, son 21 işlem gününde tepki yükselişi var; kalıcı dönüş için temel teyit gerekir."
+    if long < 0 and short < 0:
+        return "Hem 252 hem 21 işlem günlük trend negatif; fiyat baskısı sürüyor ve tez yeniden doğrulanmalıdır."
+    return "Kısa ve uzun vadeli performans belirgin yön üretmiyor."
+
+
+def evaluation_rating(row: dict[str, Any], events: list[dict[str, Any]], risk_badge: str) -> str:
+    if row.get("price") is None:
+        return "HIGH_UNCERTAINTY"
+    event_score = sum(
+        1 if event.get("research_view", {}).get("rating") in {"POSITIVE", "STRONG_POSITIVE"}
+        else -1 if event.get("research_view", {}).get("rating") == "NEGATIVE"
+        else 0
+        for event in events
+    )
+    short = finite(row.get("return_21d_pct")) or 0.0
+    long = finite(row.get("return_252d_pct")) or 0.0
+    score = event_score + (1 if short > 5 else -1 if short < -10 else 0) + (1 if long > 10 else -1 if long < -20 else 0)
+    if risk_badge == "SPECULATIVE" and (abs(short) >= 20 or abs(long) >= 50):
+        return "HIGH_UNCERTAINTY"
+    if score >= 3:
+        return "STRONG_POSITIVE"
+    if score >= 1:
+        return "POSITIVE"
+    if score <= -2:
+        return "NEGATIVE"
+    return "NEUTRAL"
+
+
+def build_evaluations(config: list[dict[str, Any]], rows: dict[str, dict[str, Any]], events: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    by_ticker: dict[str, list[dict[str, Any]]] = {}
+    for event in events:
+        for ticker in event.get("companies", []):
+            by_ticker.setdefault(ticker, []).append(event)
+    evaluations: list[dict[str, Any]] = []
+    for item in config:
+        ticker = str(item["ticker"])
+        row = rows.get(ticker) or {
+            "ticker": ticker,
+            "company": item.get("company", ticker),
+            "price": None,
+            "return_21d_pct": None,
+            "return_252d_pct": None,
+            "risk_badge": item.get("risk_badge", "GROWTH"),
+        }
+        company_events = by_ticker.get(ticker, [])
+        rating = evaluation_rating(row, company_events, str(item.get("risk_badge", "GROWTH")))
+        thesis_impact = {
+            "STRONG_POSITIVE": "THESIS_STRENGTHENED",
+            "POSITIVE": "THESIS_STRENGTHENED",
+            "NEGATIVE": "THESIS_WEAKENED",
+            "HIGH_UNCERTAINTY": "INSUFFICIENT_EVIDENCE",
+            "NEUTRAL": "THESIS_UNCHANGED",
+        }[rating]
+        news_text = (
+            f"Son 24 saatte {len(company_events)} önem eşiğini geçen gelişme bulundu."
+            if company_events
+            else "Son 24 saatte önem eşiğini geçen şirkete özgü yeni gelişme bulunmadı."
+        )
+        evaluations.append({
+            "ticker": ticker,
+            "company": item.get("company", ticker),
+            "sector": item.get("sector", "Diğer"),
+            "rating": rating,
+            "thesis_impact": thesis_impact,
+            "time_horizon": "Orta-Uzun vadeli",
+            "confidence": "LOW" if row.get("price") is None else "MEDIUM" if not company_events else "HIGH",
+            "risk_badge": item.get("risk_badge", "GROWTH"),
+            "summary": f"{news_text} {performance_context(row)}",
+            "performance_context": performance_context(row),
+            "material_event_count": len(company_events),
+            "key_drivers": item.get("key_drivers", ["Gelir, kârlılık ve stratejik uygulama"]),
+            "key_risks": item.get("key_risks", ["Değerleme, finansman ve uygulama riski"]),
+            "latest_event_headlines": [event.get("headline") for event in company_events[:3]],
+            "price_context": {
+                key: row.get(key)
+                for key in (
+                    "currency", "price", "return_1d_pct", "return_21d_pct", "return_252d_pct",
+                    "distance_from_52w_high_pct", "price_as_of", "data_status"
+                )
+            },
+        })
+    return evaluations
+
+
 def main() -> int:
     report = json.loads(REPORT_PATH.read_text(encoding="utf-8"))
-    config = json.loads(WATCHLIST_PATH.read_text(encoding="utf-8"))
+    config = json.loads(WATCHLIST_PATH.read_text(encoding="utf-8")).get("tickers") or []
     rows: dict[str, dict[str, Any]] = {}
     failures: list[dict[str, str]] = []
-    with ThreadPoolExecutor(max_workers=6) as pool:
-        jobs = {pool.submit(fetch_symbol, item): item for item in config["tickers"]}
+    with ThreadPoolExecutor(max_workers=8) as pool:
+        jobs = {pool.submit(fetch_symbol, item): item for item in config}
         for future in as_completed(jobs):
             ticker, row, error = future.result()
             if row:
@@ -109,15 +208,31 @@ def main() -> int:
     if not rows:
         raise RuntimeError("Yahoo price update produced no successful symbols")
     existing = {row["ticker"]: row for row in report.get("watchlist", [])}
-    report["watchlist"] = [rows.get(item["ticker"], existing.get(item["ticker"], item)) for item in config["tickers"]]
-    dates = [row.get("price_as_of") for row in rows.values() if row.get("price_as_of")]
+    watchlist: list[dict[str, Any]] = []
+    for item in config:
+        ticker = str(item["ticker"])
+        if ticker in rows:
+            watchlist.append(rows[ticker])
+        else:
+            fallback = existing.get(ticker, {}).copy()
+            fallback.update({
+                "ticker": ticker,
+                "company": item.get("company", ticker),
+                "risk_badge": item.get("risk_badge", "GROWTH"),
+                "data_status": "STALE_FALLBACK" if fallback.get("price") is not None else "UNAVAILABLE",
+            })
+            watchlist.append(fallback)
+    report["watchlist"] = watchlist
+    report["company_evaluations"] = build_evaluations(config, {row["ticker"]: row for row in watchlist}, report.get("events", []))
+    dates = [row.get("price_as_of") for row in watchlist if row.get("price_as_of")]
     report["report"]["market_data_as_of"] = max(dates) if dates else None
+    report["report"]["company_count"] = len(config)
     warnings = [warning for warning in report.get("data_quality_warnings", []) if "ticker için fiyat" not in warning]
     if failures:
         warnings.append(f"{len(failures)} ticker için fiyat verisi alınamadı: " + ", ".join(item["ticker"] for item in failures))
     report["data_quality_warnings"] = warnings
     REPORT_PATH.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"Yahoo prices: success={len(rows)} failed={len(failures)}")
+    print(f"Yahoo prices: success={len(rows)} failed={len(failures)} evaluations={len(report['company_evaluations'])}")
     return 0
 
 
