@@ -1,3 +1,4 @@
+import copy
 import importlib.util
 import json
 import sys
@@ -13,18 +14,27 @@ SPEC.loader.exec_module(MODULE)
 
 
 class BulletinTests(unittest.TestCase):
-    def test_seed_report_is_valid(self):
-        report = json.loads((ROOT / "data" / "report.json").read_text(encoding="utf-8"))
-        MODULE.validate_report(report)
+    def load_report(self):
+        return json.loads((ROOT / "data" / "report.json").read_text(encoding="utf-8"))
 
-    def test_material_score_rewards_capacity_numbers(self):
-        score = MODULE.material_score("Company signs 2 gigawatt AI data center capacity contract")
-        self.assertGreaterEqual(score, 8)
+    def test_generated_report_is_valid(self):
+        MODULE.validate_report(self.load_report())
+
+    def test_material_score_rewards_company_material_events(self):
+        self.assertGreaterEqual(MODULE.material_score("Türk Traktör satış ve ihracat bilanço açıklaması"), 7)
+        self.assertGreaterEqual(MODULE.material_score("Intuitive Machines wins NASA contract for LUNR mission"), 7)
 
     def test_duplicate_event_ids_are_rejected(self):
-        report = json.loads((ROOT / "data" / "report.json").read_text(encoding="utf-8"))
-        report["events"].append(report["events"][0])
-        report["report"]["material_event_count"] += 1
+        report = self.load_report()
+        event = report["events"][0] if report["events"] else {
+            "event_id": "evt-test",
+            "primary_theme": "TTRAK",
+            "companies": ["TTRAK"],
+            "research_view": {"rating": "NEUTRAL"},
+            "sources": [{"publisher": "test"}],
+        }
+        report["events"] = [copy.deepcopy(event), copy.deepcopy(event)]
+        report["report"]["material_event_count"] = 2
         with self.assertRaises(ValueError):
             MODULE.validate_report(report)
 
@@ -32,9 +42,14 @@ class BulletinTests(unittest.TestCase):
         self.assertEqual(MODULE.pct_change(110.0, 100.0), 10.0)
         self.assertIsNone(MODULE.pct_change(10.0, 0.0))
 
-    def test_all_seed_events_have_sources(self):
-        report = json.loads((ROOT / "data" / "report.json").read_text(encoding="utf-8"))
+    def test_all_events_have_sources(self):
+        report = self.load_report()
         self.assertTrue(all(event.get("sources") for event in report["events"]))
+
+    def test_scope_is_only_ttrak_and_lunr(self):
+        report = self.load_report()
+        self.assertEqual([item["ticker"] for item in report["watchlist"]], ["TTRAK", "LUNR"])
+        self.assertTrue(all(set(event.get("companies", [])).issubset({"TTRAK", "LUNR"}) for event in report["events"]))
 
 
 if __name__ == "__main__":
