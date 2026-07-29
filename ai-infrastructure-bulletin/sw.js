@@ -1,4 +1,4 @@
-const CACHE = "ai-infra-bulletin-v3";
+const CACHE = "ttrak-lunr-evaluation-v4";
 const STATIC = ["./", "./index.html", "./styles.css", "./app.js", "./manifest.webmanifest", "./icon.svg"];
 const REPORT = "./data/report.json";
 
@@ -34,7 +34,7 @@ self.addEventListener("fetch", event => {
     return;
   }
   event.respondWith(
-    fetch(event.request)
+    fetch(event.request, { cache: "no-cache" })
       .then(response => {
         if (response.ok) {
           const copy = response.clone();
