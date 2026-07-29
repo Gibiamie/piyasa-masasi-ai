@@ -29,10 +29,12 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          wc -c schema-contract-payload/part*.b64
-          sha256sum schema-contract-payload/part*.b64
-          cat schema-contract-payload/part*.b64 > schema-contract.b64
-          sha256sum schema-contract.b64
+          : > schema-contract.b64
+          for index in 00 01 02 03 04 05 06 07 08; do
+            head -c 7000 "schema-contract-payload/part${index}.b64" >> schema-contract.b64
+          done
+          head -c 2100 schema-contract-payload/part09.b64 >> schema-contract.b64
+          echo "8654c74b298493ebadf64d7134723a24647abda9b131eae27f8e2aca1704e551  schema-contract.b64" | sha256sum --check --strict
           python - <<'PY'
           from pathlib import Path
           import base64
@@ -79,6 +81,5 @@ jobs:
           if-no-files-found: warn
           path: |
             schema-contract.zip
-            schema-contract.b64
             contract-work/ai-research-schema-contract-final/evidence
             contract-work/ai-research-schema-contract-final/release-report.json
