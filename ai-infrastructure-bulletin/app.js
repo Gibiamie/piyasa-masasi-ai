@@ -1,24 +1,242 @@
-const DATA_URL="./data/report.json";
-const DEFAULT_TICKERS=["NVDA","TSLA","GOOGL","AMZN","AMD","MRVL","LRCX","PLTR","EQIX","DLR","SNDK","VRT","CEG","VST","SMR","TSM"];
-const state={report:null,theme:"Tümü",tickers:loadTickers()};
-const $=(s)=>document.querySelector(s);const $$=(s)=>[...document.querySelectorAll(s)];
-function loadTickers(){try{const x=JSON.parse(localStorage.getItem("aiInfraWatchlist")||"null");return Array.isArray(x)&&x.length?x:[...DEFAULT_TICKERS]}catch{return[...DEFAULT_TICKERS]}}
-function saveTickers(){localStorage.setItem("aiInfraWatchlist",JSON.stringify(state.tickers))}
-function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"})[c])}
-function fmtDate(v){if(!v)return"—";const d=new Date(v);return Number.isNaN(d.getTime())?v:new Intl.DateTimeFormat("tr-TR",{dateStyle:"medium",timeStyle:"short",timeZone:"Asia/Muscat"}).format(d)}
-function fmtPct(v){if(v===null||v===undefined||Number.isNaN(Number(v)))return"—";const n=Number(v);return`${n>0?"+":""}${n.toFixed(1)}%`}
-function pctClass(v){const n=Number(v);return Number.isFinite(n)&&n!==0?(n>0?"up":"down"):""}
-function ratingInfo(r){return({STRONG_POSITIVE:["Güçlü Pozitif","positive"],POSITIVE:["Pozitif","positive"],NEUTRAL:["Nötr","neutral"],NEGATIVE:["Negatif","negative"],HIGH_UNCERTAINTY:["Yüksek Belirsizlik","warning"]})[r]||[r||"Nötr","neutral"]}
-function cardClass(r){return["STRONG_POSITIVE","POSITIVE"].includes(r)?"positive":r==="NEGATIVE"?"negative":r==="HIGH_UNCERTAINTY"?"uncertain":""}
-function confidence(c){const label={HIGH:"Yüksek Güven",MEDIUM:"Orta Güven",LOW:"Düşük Güven",UNVERIFIED:"Doğrulanmadı"}[c]||c;const cls=c==="HIGH"?"blue":c==="LOW"||c==="UNVERIFIED"?"warning":"neutral";return`<span class="badge ${cls}">${esc(label)}</span>`}
-async function load(){$("#freshness").textContent="Yükleniyor";try{const r=await fetch(`${DATA_URL}?v=${Date.now()}`,{cache:"no-store"});if(!r.ok)throw new Error(`HTTP ${r.status}`);state.report=await r.json();render()}catch(e){$("#freshness").textContent="Veri hatası";$("#freshness").className="badge negative";$("#events").innerHTML=`<article class="card negative"><h3>Bülten verisi açılamadı</h3><p>${esc(e.message)}</p></article>`}}
-function render(){const d=state.report;const r=d.report,s=d.executive_summary,events=d.events||[];$("#generatedAt").textContent=fmtDate(r.generated_at);$("#eventCount").textContent=String(r.material_event_count??events.length);$("#dominantTheme").textContent=s.dominant_theme||"—";$("#mainRisk").textContent=s.main_risk||"—";$("#summaryTitle").textContent=s.headline||"Günlük görünüm";$("#summaryText").textContent=s.summary||"Önemli gelişme bulunmadı.";const age=Math.max(0,(Date.now()-new Date(r.generated_at).getTime())/36e5);$("#freshness").textContent=age<=30?"Güncel veri":"Veri eski olabilir";$("#freshness").className=`badge ${age<=30?"positive":"warning"}`;renderFilters(events);renderEvents(events);renderWatchlist(d.watchlist||[]);renderSources(events);renderChips()}
-function renderFilters(events){const themes=["Tümü",...new Set(events.map(e=>e.primary_theme).filter(Boolean))];$("#filters").innerHTML=themes.map(t=>`<button class="filter ${state.theme===t?"active":""}" data-theme="${esc(t)}">${esc(t)}</button>`).join("");$$("#filters .filter").forEach(b=>b.onclick=()=>{state.theme=b.dataset.theme;renderFilters(events);renderEvents(events)})}
-function renderEvents(events){const list=state.theme==="Tümü"?events:events.filter(e=>e.primary_theme===state.theme);$("#empty").classList.toggle("hidden",list.length>0);$("#events").innerHTML=list.map(e=>{const[rl,rc]=ratingInfo(e.research_view?.rating);const facts=(e.facts||[]).map(x=>`<li>${esc(x)}</li>`).join("");const risks=(e.research_view?.risks||[]).map(x=>`<li>${esc(x)}</li>`).join("");const src=e.sources?.[0];return`<article class="card ${cardClass(e.research_view?.rating)}"><div class="meta"><span>${esc(e.primary_theme)}</span><span>•</span><span>${esc(fmtDate(e.published_time))}</span></div><h3>${esc(e.headline)}</h3><div class="badges"><span class="badge ${rc}">${esc(rl)}</span>${confidence(e.confidence)}<span class="badge neutral">${esc(e.risk_badge||"STANDARD")}</span></div><div class="section"><strong>NE OLDU?</strong><ul>${facts}</ul></div><div class="section"><strong>NEDEN ÖNEMLİ?</strong><p>${esc(e.why_it_matters)}</p></div><div class="section"><strong>YATIRIM AÇISINDAN ANLAMI</strong><p>${esc(e.investment_meaning||e.research_view?.summary||"")}</p>${risks?`<ul>${risks}</ul>`:""}</div>${src?`<a class="source-link" href="${esc(src.url)}" target="_blank" rel="noopener noreferrer">Kaynağı aç ↗</a>`:""}</article>`}).join("")}
-function renderWatchlist(items){const map=new Map(items.map(x=>[x.ticker,x]));$("#watchlistBody").innerHTML=state.tickers.map(t=>{const x=map.get(t)||{ticker:t,company:t,risk_badge:"VERİ BEKLENİYOR"};return`<tr><td><div class="ticker-name"><strong>${esc(x.ticker)}</strong><span>${esc(x.company||"")}</span></div></td><td>${x.price==null?"—":`${esc(x.currency||"USD")} ${Number(x.price).toFixed(2)}`}</td><td class="${pctClass(x.return_1d_pct)}">${fmtPct(x.return_1d_pct)}</td><td class="${pctClass(x.return_21d_pct)}">${fmtPct(x.return_21d_pct)}</td><td class="${pctClass(x.return_252d_pct)}">${fmtPct(x.return_252d_pct)}</td><td class="${pctClass(x.distance_from_52w_high_pct)}">${fmtPct(x.distance_from_52w_high_pct)}</td><td><span class="badge ${x.risk_badge==="SPECULATIVE"?"warning":"neutral"}">${esc(x.risk_badge||"STANDARD")}</span></td></tr>`}).join("")}
-function renderSources(events){const out=[];events.forEach(e=>(e.sources||[]).forEach(s=>out.push({...s,event:e.headline})));$("#sourcesList").innerHTML=out.length?out.map(s=>`<article class="source"><div class="meta"><span>${esc(s.source_type||"SECONDARY")}</span><span>•</span><span>${esc(s.publisher||"")}</span><span>•</span><span>${esc(fmtDate(s.published_at))}</span></div><h3>${esc(s.title)}</h3><p>${esc(s.event)}</p><a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">Kaynağı aç ↗</a></article>`).join(""):`<div class="empty"><h3>Kaynak bulunamadı</h3></div>`}
-function renderChips(){$("#tickerChips").innerHTML=state.tickers.map(t=>`<span class="chip">${esc(t)} <button data-remove="${esc(t)}" aria-label="${esc(t)} kaldır">×</button></span>`).join("");$$('[data-remove]').forEach(b=>b.onclick=()=>{state.tickers=state.tickers.filter(t=>t!==b.dataset.remove);saveTickers();renderChips();renderWatchlist(state.report?.watchlist||[])})}
-$$('.tab').forEach(t=>t.onclick=()=>{$$('.tab').forEach(x=>x.classList.toggle('active',x===t));$$('.view').forEach(v=>v.classList.remove('active'));$(`#${t.dataset.view}View`).classList.add('active')});
-$("#refresh").onclick=load;$("#tickerForm").onsubmit=e=>{e.preventDefault();const t=$("#ticker").value.trim().toUpperCase().replace(/[^A-Z.-]/g,"");if(t&&!state.tickers.includes(t)){state.tickers.push(t);saveTickers();renderChips();renderWatchlist(state.report?.watchlist||[])}$("#ticker").value=""};
-if("serviceWorker"in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
+const DATA_URL = "./data/report.json";
+const APP_VERSION = "2026.07.29.3";
+const DEFAULT_TICKERS = [
+  "NVDA","TSLA","GOOGL","AMZN","AMD","MRVL","LRCX","PLTR","EQIX",
+  "DLR","SNDK","VRT","CEG","VST","SMR","TSM","LUNR","TTRAK"
+];
+const state = { report: null, theme: "Tümü", tickers: loadTickers() };
+const $ = selector => document.querySelector(selector);
+const $$ = selector => [...document.querySelectorAll(selector)];
+
+function loadTickers() {
+  try {
+    const value = JSON.parse(localStorage.getItem("aiInfraWatchlist") || "null");
+    return Array.isArray(value) && value.length ? value : [...DEFAULT_TICKERS];
+  } catch {
+    return [...DEFAULT_TICKERS];
+  }
+}
+
+function saveTickers() {
+  localStorage.setItem("aiInfraWatchlist", JSON.stringify(state.tickers));
+}
+
+function esc(value) {
+  return String(value ?? "").replace(/[&<>"']/g, character => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;"
+  })[character]);
+}
+
+function fmtDate(value) {
+  if (!value) return "—";
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? value : new Intl.DateTimeFormat("tr-TR", {
+    dateStyle: "medium", timeStyle: "short", timeZone: "Asia/Muscat"
+  }).format(date);
+}
+
+function fmtDateOnly(value) {
+  if (!value) return "—";
+  const date = /^\d{4}-\d{2}-\d{2}$/.test(value) ? new Date(`${value}T12:00:00Z`) : new Date(value);
+  return Number.isNaN(date.getTime()) ? value : new Intl.DateTimeFormat("tr-TR", {
+    dateStyle: "medium", timeZone: "UTC"
+  }).format(date);
+}
+
+function fmtPct(value) {
+  if (value === null || value === undefined || Number.isNaN(Number(value))) return "—";
+  const number = Number(value);
+  return `${number > 0 ? "+" : ""}${number.toFixed(1)}%`;
+}
+
+function pctClass(value) {
+  const number = Number(value);
+  return Number.isFinite(number) && number !== 0 ? (number > 0 ? "up" : "down") : "";
+}
+
+function ratingInfo(rating) {
+  return ({
+    STRONG_POSITIVE: ["Güçlü Pozitif", "positive"],
+    POSITIVE: ["Pozitif", "positive"],
+    NEUTRAL: ["Nötr", "neutral"],
+    NEGATIVE: ["Negatif", "negative"],
+    HIGH_UNCERTAINTY: ["Yüksek Belirsizlik", "warning"]
+  })[rating] || [rating || "Nötr", "neutral"];
+}
+
+function cardClass(rating) {
+  if (["STRONG_POSITIVE", "POSITIVE"].includes(rating)) return "positive";
+  if (rating === "NEGATIVE") return "negative";
+  if (rating === "HIGH_UNCERTAINTY") return "uncertain";
+  return "";
+}
+
+function confidence(value) {
+  const label = {
+    HIGH: "Yüksek Güven", MEDIUM: "Orta Güven", LOW: "Düşük Güven", UNVERIFIED: "Doğrulanmadı"
+  }[value] || value;
+  const className = value === "HIGH" ? "blue" : value === "LOW" || value === "UNVERIFIED" ? "warning" : "neutral";
+  return `<span class="badge ${className}">${esc(label)}</span>`;
+}
+
+async function load() {
+  $("#freshness").textContent = "Yükleniyor";
+  $("#freshness").className = "badge neutral";
+  try {
+    const response = await fetch(`${DATA_URL}?app=${APP_VERSION}&v=${Date.now()}`, {
+      cache: "no-store",
+      headers: { "Cache-Control": "no-cache" }
+    });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    state.report = await response.json();
+    render();
+  } catch (error) {
+    $("#freshness").textContent = "Veri hatası";
+    $("#freshness").className = "badge negative";
+    $("#events").innerHTML = `<article class="card negative"><h3>Bülten verisi açılamadı</h3><p>${esc(error.message)}</p></article>`;
+  }
+}
+
+function render() {
+  const data = state.report;
+  const report = data.report;
+  const summary = data.executive_summary;
+  const events = data.events || [];
+  $("#generatedAt").textContent = fmtDate(report.generated_at);
+  $("#eventCount").textContent = String(report.material_event_count ?? events.length);
+  $("#dominantTheme").textContent = summary.dominant_theme || "—";
+  $("#mainRisk").textContent = summary.main_risk || "—";
+  $("#summaryTitle").textContent = summary.headline || "Günlük görünüm";
+  $("#summaryText").textContent = summary.summary || "Önemli gelişme bulunmadı.";
+  $("#marketAsOf").textContent = report.market_data_as_of
+    ? `Piyasa kapanış verisi: ${fmtDateOnly(report.market_data_as_of)}`
+    : "Piyasa verisi mevcut değil.";
+  const generatedAt = new Date(report.generated_at).getTime();
+  const ageHours = Number.isFinite(generatedAt) ? Math.max(0, (Date.now() - generatedAt) / 36e5) : Infinity;
+  $("#freshness").textContent = ageHours <= 30 ? "Güncel veri" : "Veri eski olabilir";
+  $("#freshness").className = `badge ${ageHours <= 30 ? "positive" : "warning"}`;
+  renderFilters(events);
+  renderEvents(events);
+  renderWatchlist(data.watchlist || []);
+  renderSources(events);
+  renderChips();
+}
+
+function renderFilters(events) {
+  const themes = ["Tümü", ...new Set(events.map(event => event.primary_theme).filter(Boolean))];
+  $("#filters").innerHTML = themes.map(theme =>
+    `<button class="filter ${state.theme === theme ? "active" : ""}" data-theme="${esc(theme)}">${esc(theme)}</button>`
+  ).join("");
+  $$("#filters .filter").forEach(button => {
+    button.onclick = () => {
+      state.theme = button.dataset.theme;
+      renderFilters(events);
+      renderEvents(events);
+    };
+  });
+}
+
+function renderEvents(events) {
+  const list = state.theme === "Tümü" ? events : events.filter(event => event.primary_theme === state.theme);
+  $("#empty").classList.toggle("hidden", list.length > 0);
+  $("#events").innerHTML = list.map(event => {
+    const [ratingLabel, ratingClass] = ratingInfo(event.research_view?.rating);
+    const facts = (event.facts || []).map(value => `<li>${esc(value)}</li>`).join("");
+    const risks = (event.research_view?.risks || []).map(value => `<li>${esc(value)}</li>`).join("");
+    const source = event.sources?.[0];
+    return `<article class="card ${cardClass(event.research_view?.rating)}">
+      <div class="meta"><span>${esc(event.primary_theme)}</span><span>•</span><span>${esc(fmtDate(event.published_time))}</span></div>
+      <h3>${esc(event.headline)}</h3>
+      <div class="badges"><span class="badge ${ratingClass}">${esc(ratingLabel)}</span>${confidence(event.confidence)}<span class="badge neutral">${esc(event.risk_badge || "STANDARD")}</span></div>
+      <div class="section"><strong>NE OLDU?</strong><ul>${facts}</ul></div>
+      <div class="section"><strong>NEDEN ÖNEMLİ?</strong><p>${esc(event.why_it_matters)}</p></div>
+      <div class="section"><strong>YATIRIM AÇISINDAN ANLAMI</strong><p>${esc(event.investment_meaning || event.research_view?.summary || "")}</p>${risks ? `<ul>${risks}</ul>` : ""}</div>
+      ${source ? `<a class="source-link" href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">Kaynağı aç ↗</a>` : ""}
+    </article>`;
+  }).join("");
+}
+
+function renderWatchlist(items) {
+  const map = new Map(items.map(item => [item.ticker, item]));
+  $("#watchlistBody").innerHTML = state.tickers.map(ticker => {
+    const item = map.get(ticker);
+    const value = item || { ticker, company: ticker, risk_badge: "VERİ HAVUZUNDA YOK" };
+    const badgeClass = value.risk_badge === "SPECULATIVE" || !item ? "warning" : "neutral";
+    const detail = item?.price_as_of
+      ? `${value.company || ""} • ${fmtDateOnly(item.price_as_of)}`
+      : value.company || "Sunucu veri havuzuna eklenmemiş ticker";
+    return `<tr>
+      <td><div class="ticker-name"><strong>${esc(value.ticker)}</strong><span>${esc(detail)}</span></div></td>
+      <td>${value.price == null ? "—" : `${esc(value.currency || "USD")} ${Number(value.price).toFixed(2)}`}</td>
+      <td class="${pctClass(value.return_1d_pct)}">${fmtPct(value.return_1d_pct)}</td>
+      <td class="${pctClass(value.return_21d_pct)}">${fmtPct(value.return_21d_pct)}</td>
+      <td class="${pctClass(value.return_252d_pct)}">${fmtPct(value.return_252d_pct)}</td>
+      <td class="${pctClass(value.distance_from_52w_high_pct)}">${fmtPct(value.distance_from_52w_high_pct)}</td>
+      <td><span class="badge ${badgeClass}">${esc(value.risk_badge || "STANDARD")}</span></td>
+    </tr>`;
+  }).join("");
+}
+
+function renderSources(events) {
+  const sources = [];
+  events.forEach(event => (event.sources || []).forEach(source => sources.push({ ...source, event: event.headline })));
+  $("#sourcesList").innerHTML = sources.length ? sources.map(source => `<article class="source">
+    <div class="meta"><span>${esc(source.source_type || "SECONDARY")}</span><span>•</span><span>${esc(source.publisher || "")}</span><span>•</span><span>${esc(fmtDate(source.published_at))}</span></div>
+    <h3>${esc(source.title)}</h3><p>${esc(source.event)}</p>
+    <a href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">Kaynağı aç ↗</a>
+  </article>`).join("") : `<div class="empty"><h3>Kaynak bulunamadı</h3></div>`;
+}
+
+function renderChips() {
+  $("#tickerChips").innerHTML = state.tickers.map(ticker =>
+    `<span class="chip">${esc(ticker)} <button data-remove="${esc(ticker)}" aria-label="${esc(ticker)} kaldır">×</button></span>`
+  ).join("");
+  $$('[data-remove]').forEach(button => {
+    button.onclick = () => {
+      state.tickers = state.tickers.filter(ticker => ticker !== button.dataset.remove);
+      saveTickers();
+      renderChips();
+      renderWatchlist(state.report?.watchlist || []);
+    };
+  });
+}
+
+$$('.tab').forEach(tab => {
+  tab.onclick = () => {
+    $$('.tab').forEach(item => item.classList.toggle('active', item === tab));
+    $$('.view').forEach(view => view.classList.remove('active'));
+    $(`#${tab.dataset.view}View`).classList.add('active');
+  };
+});
+
+$("#refresh").onclick = async () => {
+  if ("serviceWorker" in navigator) {
+    const registrations = await navigator.serviceWorker.getRegistrations();
+    await Promise.all(registrations.map(registration => registration.update().catch(() => null)));
+  }
+  await load();
+};
+
+$("#tickerForm").onsubmit = event => {
+  event.preventDefault();
+  const ticker = $("#ticker").value.trim().toUpperCase().replace(/[^A-Z0-9.-]/g, "");
+  if (ticker && !state.tickers.includes(ticker)) {
+    state.tickers.push(ticker);
+    saveTickers();
+    const supported = new Set((state.report?.watchlist || []).map(item => item.ticker));
+    $("#tickerStatus").textContent = supported.has(ticker)
+      ? `${ticker} takip listesine eklendi.`
+      : `${ticker} yerel listeye eklendi; fiyat için sunucu veri havuzuna ayrıca eklenmesi gerekir.`;
+    renderChips();
+    renderWatchlist(state.report?.watchlist || []);
+  }
+  $("#ticker").value = "";
+};
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js")
+    .then(registration => registration.update())
+    .catch(() => null));
+}
+
 load();
