@@ -30,11 +30,14 @@ jobs:
           ISSUE_BODY: ${{ github.event.issue.body }}
         run: python ai-infrastructure-bulletin/scripts/add_ticker_from_issue.py
 
-      - name: Generate company-specific report
+      - name: Generate bilingual company-specific report
         run: |
           python ai-infrastructure-bulletin/scripts/update_bulletin.py
           python ai-infrastructure-bulletin/scripts/update_prices.py
+          node --check ai-infrastructure-bulletin/portfolio-engine.js
           node --check ai-infrastructure-bulletin/app.js
+          node --check ai-infrastructure-bulletin/app-bilingual-patch.js
+          node ai-infrastructure-bulletin/tests/portfolio-engine.test.js
           python -m unittest discover -s ai-infrastructure-bulletin/tests -v
 
       - name: Commit ticker and evaluation
@@ -45,7 +48,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No repository change required."
           else
-            git commit -m "feat: add requested bulletin ticker"
+            git commit -m "feat: add requested bilingual bulletin ticker"
             git push origin HEAD:remediation/v30-audit
           fi
 
@@ -57,7 +60,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
-              body: 'Ticker doğrulandı, merkezî değerlendirme evrenine eklendi ve rapor yenilendi.'
+              body: 'Ticker doğrulandı, iki dilli merkezî değerlendirme evrenine eklendi ve rapor yenilendi.'
             });
             await github.rest.issues.update({
               owner: context.repo.owner,
