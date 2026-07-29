@@ -1,23 +1,19 @@
 {
   "timezone": "Asia/Muscat",
   "tickers": [
-    {"ticker":"NVDA","company":"Nvidia","risk_badge":"ESTABLISHED"},
-    {"ticker":"TSLA","company":"Tesla","risk_badge":"GROWTH"},
-    {"ticker":"GOOGL","company":"Alphabet","risk_badge":"ESTABLISHED"},
-    {"ticker":"AMZN","company":"Amazon","risk_badge":"ESTABLISHED"},
-    {"ticker":"AMD","company":"AMD","risk_badge":"GROWTH"},
-    {"ticker":"MRVL","company":"Marvell Technology","risk_badge":"GROWTH"},
-    {"ticker":"LRCX","company":"Lam Research","risk_badge":"ESTABLISHED"},
-    {"ticker":"PLTR","company":"Palantir","risk_badge":"GROWTH"},
-    {"ticker":"EQIX","company":"Equinix","risk_badge":"ESTABLISHED"},
-    {"ticker":"DLR","company":"Digital Realty","risk_badge":"ESTABLISHED"},
-    {"ticker":"SNDK","company":"SanDisk","risk_badge":"GROWTH"},
-    {"ticker":"VRT","company":"Vertiv","risk_badge":"GROWTH"},
-    {"ticker":"CEG","company":"Constellation Energy","risk_badge":"ESTABLISHED"},
-    {"ticker":"VST","company":"Vistra","risk_badge":"ESTABLISHED"},
-    {"ticker":"SMR","company":"NuScale Power","risk_badge":"SPECULATIVE"},
-    {"ticker":"TSM","company":"TSMC","risk_badge":"ESTABLISHED"},
-    {"ticker":"LUNR","company":"Intuitive Machines","risk_badge":"SPECULATIVE"},
-    {"ticker":"TTRAK","provider_symbol":"TTRAK.IS","company":"Türk Traktör","risk_badge":"ESTABLISHED"}
+    {
+      "ticker": "TTRAK",
+      "provider_symbol": "TTRAK.IS",
+      "company": "Türk Traktör",
+      "currency": "TRY",
+      "risk_badge": "ESTABLISHED"
+    },
+    {
+      "ticker": "LUNR",
+      "provider_symbol": "LUNR",
+      "company": "Intuitive Machines",
+      "currency": "USD",
+      "risk_badge": "SPECULATIVE"
+    }
   ]
 }
