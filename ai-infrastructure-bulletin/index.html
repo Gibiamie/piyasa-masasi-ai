@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#09101d">
-  <meta name="description" content="AI altyapısı, veri merkezi, enerji, GPU ve bulut yatırımları için günlük piyasa araştırma bülteni.">
-  <title>AI Altyapısı Piyasa Bülteni</title>
+  <meta name="description" content="TTRAK ve LUNR için günlük haber, fiyat performansı, risk ve yatırım tezi değerlendirmesi.">
+  <title>TTRAK & LUNR Piyasa Değerlendirmesi</title>
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" href="./icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./styles.css">
@@ -14,9 +14,9 @@
   <div class="shell">
     <header class="topbar">
       <div>
-        <p class="eyebrow">AI INFRASTRUCTURE MARKET INTELLIGENCE</p>
-        <h1>AI Altyapısı Piyasa Bülteni</h1>
-        <p class="subtitle">Veri merkezi, enerji, GPU, soğutma, nükleer ve bulut yatırımlarını her gün izleyen ayrı uygulama.</p>
+        <p class="eyebrow">FOCUSED MARKET INTELLIGENCE</p>
+        <h1>TTRAK & LUNR Piyasa Değerlendirmesi</h1>
+        <p class="subtitle">Türk Traktör ve Intuitive Machines için günlük haber, fiyat performansı, risk ve yatırım tezi takibi.</p>
       </div>
       <div class="actions">
         <span id="freshness" class="badge neutral">Yükleniyor</span>
@@ -25,10 +25,10 @@
     </header>
 
     <nav class="tabs" aria-label="Ana bölümler">
-      <button class="tab active" data-view="briefing">Bugünün Bülteni</button>
-      <button class="tab" data-view="watchlist">Takip Listesi</button>
-      <button class="tab" data-view="sources">Kaynak Merkezi</button>
-      <button class="tab" data-view="settings">Ayarlar</button>
+      <button class="tab active" data-view="briefing">Günlük Değerlendirme</button>
+      <button class="tab" data-view="watchlist">TTRAK & LUNR</button>
+      <button class="tab" data-view="sources">Kaynaklar</button>
+      <button class="tab" data-view="settings">Kapsam</button>
     </nav>
 
     <main>
@@ -36,15 +36,15 @@
         <div class="metrics">
           <article><span>Rapor zamanı</span><strong id="generatedAt">—</strong></article>
           <article><span>Önemli gelişme</span><strong id="eventCount">—</strong></article>
-          <article><span>Ana tema</span><strong id="dominantTheme">—</strong></article>
+          <article><span>Öne çıkan şirket</span><strong id="dominantTheme">—</strong></article>
           <article><span>Ana risk</span><strong id="mainRisk">—</strong></article>
         </div>
         <article class="summary">
-          <div><p class="eyebrow">GENEL DEĞERLENDİRME</p><h2 id="summaryTitle">Bülten hazırlanıyor</h2></div>
+          <div><p class="eyebrow">GENEL DEĞERLENDİRME</p><h2 id="summaryTitle">Değerlendirme hazırlanıyor</h2></div>
           <p id="summaryText">Veri yükleniyor.</p>
         </article>
         <div class="heading">
-          <div><p class="eyebrow">SON 24 SAAT</p><h2>Maddi gelişmeler</h2></div>
+          <div><p class="eyebrow">SON 24 SAAT</p><h2>TTRAK ve LUNR gelişmeleri</h2></div>
           <div id="filters" class="filters"></div>
         </div>
         <div id="events" class="events" aria-live="polite"></div>
@@ -53,27 +53,26 @@
 
       <section id="watchlistView" class="view">
         <div class="heading">
-          <div><p class="eyebrow">DİNAMİK TAKİP LİSTESİ</p><h2>Şirket performansı</h2></div>
+          <div><p class="eyebrow">SABİT DEĞERLENDİRME EVRENİ</p><h2>TTRAK ve LUNR performansı</h2></div>
           <p id="marketAsOf" class="hint">Piyasa verisi yükleniyor.</p>
         </div>
         <div class="table-wrap"><table><thead><tr><th>Şirket</th><th>Fiyat</th><th>1 Gün</th><th>21 Gün</th><th>252 Gün</th><th>52H Zirve</th><th>Risk</th></tr></thead><tbody id="watchlistBody"></tbody></table></div>
       </section>
 
       <section id="sourcesView" class="view">
-        <div class="heading"><div><p class="eyebrow">KANIT ZİNCİRİ</p><h2>Kaynak Merkezi</h2></div></div>
+        <div class="heading"><div><p class="eyebrow">KANIT ZİNCİRİ</p><h2>TTRAK ve LUNR kaynakları</h2></div></div>
         <div id="sourcesList" class="sources"></div>
       </section>
 
       <section id="settingsView" class="view">
         <div class="settings">
           <article class="panel">
-            <p class="eyebrow">TAKİP LİSTESİ</p><h2>Şirket ekle veya çıkar</h2>
-            <form id="tickerForm"><label for="ticker">Ticker</label><div class="inline"><input id="ticker" maxlength="10" placeholder="Örn. AVGO"><button class="button primary">Ekle</button></div></form>
+            <p class="eyebrow">DEĞERLENDİRME KAPSAMI</p><h2>Yalnızca iki şirket</h2>
             <div id="tickerChips" class="chips"></div>
-            <p id="tickerStatus" class="hint">Tercihler bu cihazda saklanır. Sunucu veri havuzunda olmayan tickerlar fiyat üretemez.</p>
+            <p id="tickerStatus" class="hint">Değerlendirme kapsamı sabittir: yalnızca TTRAK ve LUNR.</p>
           </article>
           <article class="panel"><p class="eyebrow">RİSK DİLİ</p><h2>Araştırma görüşü, emir değildir</h2><p>Uygulama pozitif, nötr, negatif ve yüksek belirsizlik sınıfları üretir. Kullanıcı profili olmadan kişisel al/sat emri oluşturmaz.</p></article>
-          <article class="panel"><p class="eyebrow">GÜNCELLEME</p><h2>Her gün otomatik</h2><p>GitHub Actions haberleri ve fiyat performansını Asia/Muscat sabahında yeniler.</p></article>
+          <article class="panel"><p class="eyebrow">GÜNCELLEME</p><h2>Her gün otomatik</h2><p>Haberler ve 1, 21 ve 252 işlem günlük fiyat performansları Asia/Muscat zamanına göre yenilenir.</p></article>
         </div>
       </section>
     </main>
