@@ -42,8 +42,11 @@ jobs:
       - name: Check JavaScript syntax
         run: node --check ai-infrastructure-bulletin/app.js
 
-      - name: Generate current bulletin and market performance
+      - name: Generate current bulletin
         run: python ai-infrastructure-bulletin/scripts/update_bulletin.py
+
+      - name: Generate 1-day, 21-day and 252-day market performance
+        run: python ai-infrastructure-bulletin/scripts/update_prices.py
 
       - name: Validate generated report
         run: python -m unittest discover -s ai-infrastructure-bulletin/tests -v
