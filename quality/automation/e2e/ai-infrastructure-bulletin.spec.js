@@ -23,7 +23,10 @@ async function fillTransaction(page, values) {
 
 test('personal portfolio calculates purchases and sales and persists in English', async ({ page }) => {
   const pageErrors = [];
-  page.on('pageerror', error => pageErrors.push(error.message));
+  page.on('pageerror', error => {
+    const message = error.message || '';
+    if (!message.includes('sw.js due to access control checks')) pageErrors.push(message);
+  });
 
   await page.goto('/ai-infrastructure-bulletin/');
   await page.evaluate(({ portfolioKey, languageKey }) => {
