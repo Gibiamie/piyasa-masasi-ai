@@ -32,11 +32,11 @@
     </header>
 
     <nav class="tabs" aria-label="Ana bölümler">
-      <button class="tab active" data-view="briefing" data-i18n="tabBriefing"><span class="nav-index">01</span>Günlük Değerlendirme</button>
-      <button class="tab" data-view="watchlist" data-i18n="tabPerformance"><span class="nav-index">02</span>Fiyat Performansı</button>
-      <button class="tab" data-view="portfolio" data-i18n="tabPortfolio"><span class="nav-index">03</span>Portföyüm</button>
-      <button class="tab" data-view="sources" data-i18n="tabSources"><span class="nav-index">04</span>Kaynaklar</button>
-      <button class="tab" data-view="settings" data-i18n="tabUniverse"><span class="nav-index">05</span>Takip Evreni</button>
+      <button class="tab active" data-view="briefing" data-i18n="tabBriefing">Günlük Değerlendirme</button>
+      <button class="tab" data-view="watchlist" data-i18n="tabPerformance">Fiyat Performansı</button>
+      <button class="tab" data-view="portfolio" data-i18n="tabPortfolio">Portföyüm</button>
+      <button class="tab" data-view="sources" data-i18n="tabSources">Kaynaklar</button>
+      <button class="tab" data-view="settings" data-i18n="tabUniverse">Takip Evreni</button>
     </nav>
 
     <main>
@@ -131,11 +131,11 @@
         <div id="portfolioEmpty" class="empty"><h3 data-i18n="emptyPortfolio">Portföy henüz boş</h3><p data-i18n="emptyPortfolioDetail">İlk alış işleminizi yukarıdaki formdan kaydedin.</p></div>
 
         <div class="heading"><div><p class="eyebrow" data-i18n="transactionLedger">İŞLEM DEFTERİ</p><h2 data-i18n="allBuysSells">Tüm alış ve satışlar</h2></div></div>
-        <div class="table-wrap"><table class="transaction-table"><thead><tr><th data-i18n="date">Tarih</th><th data-i18n="asset">Varlık</th><th data-i18n="transactionType">İşlem türü</th><th data-i18n="quantity">Adet / lot</th><th data-i18n="unitPrice">Birim fiyat</th><th data-i18n="fee">Komisyon</th><th data-i18n="grossAmount">Brüt tutar</th><th data-i18n="realizedPnl">Gerçekleşen K/Z</th><th></th></tr></thead><tbody id="transactionBody"></tbody></table></div>
+        <div class="table-wrap"><table class="transaction-table"><thead><tr><th data-i18n="date">Tarih</th><th data-i18n="transactionType">İşlem türü</th><th data-i18n="asset">Varlık</th><th data-i18n="quantity">Adet / lot</th><th data-i18n="unitPrice">Birim fiyat</th><th data-i18n="fee">Komisyon</th><th data-i18n="grossValue">Brüt tutar</th><th data-i18n="realizedPnl">Gerçekleşen K/Z</th><th data-i18n="action">İşlem</th></tr></thead><tbody id="portfolioTransactionsBody"></tbody></table></div>
       </section>
 
       <section id="sourcesView" class="view">
-        <div class="heading"><div><p class="eyebrow" data-i18n="evidenceChain">KANIT ZİNCİRİ</p><h2 data-i18n="companySources">Şirket haber kaynakları</h2></div></div>
+        <div class="heading"><div><p class="eyebrow" data-i18n="evidenceChain">KANIT ZİNCİRİ</p><h2 data-i18n="newsSources">Şirket haber kaynakları</h2></div></div>
         <div id="sourcesList" class="sources"></div>
       </section>
 
@@ -146,19 +146,19 @@
             <form id="tickerForm">
               <label for="ticker" data-i18n="providerSymbol">Sağlayıcı sembolü</label>
               <input id="ticker" maxlength="15" placeholder="Örn. AVGO veya THYAO.IS" required>
-              <label for="company" data-i18n="assetName">Şirket adı</label>
-              <div class="inline"><input id="company" maxlength="80" placeholder="Örn. Broadcom"><button class="button primary" data-i18n="additionRequest">Ekleme Talebi</button></div>
+              <label for="company" data-i18n="companyName">Şirket adı</label>
+              <div class="inline"><input id="company" maxlength="80" placeholder="Örn. Broadcom"><button class="button primary" data-i18n="requestAddition">Ekleme Talebi</button></div>
             </form>
             <div id="tickerChips" class="chips"></div>
             <p id="tickerStatus" class="hint" data-i18n="universeLoading">Takip evreni yükleniyor.</p>
           </article>
-          <article class="panel"><p class="eyebrow" data-i18n="evaluationLogic">DEĞERLENDİRME MANTIĞI</p><h2 data-i18n="everyAssetSeparate">Her varlık ayrı incelenir</h2><p data-i18n="evaluationLogicDetail">Her şirket için 1, 21 ve 252 işlem günlük trend, son haberler, şirketin temel sürücüleri, özel riskleri ve tez etkisi birlikte değerlendirilir.</p></article>
+          <article class="panel"><p class="eyebrow" data-i18n="evaluationLogic">DEĞERLENDİRME MANTIĞI</p><h2 data-i18n="eachAssetSeparate">Her varlık ayrı incelenir</h2><p data-i18n="evaluationLogicDetail">Her şirket için 1, 21 ve 252 işlem günlük trend, son haberler, şirketin temel sürücüleri, özel riskleri ve tez etkisi birlikte değerlendirilir.</p></article>
           <article class="panel"><p class="eyebrow" data-i18n="riskLanguage">RİSK DİLİ</p><h2 data-i18n="researchNotOrder">Araştırma görüşü, emir değildir</h2><p data-i18n="riskLanguageDetail">Uygulama güçlü pozitif, pozitif, nötr, negatif ve yüksek belirsizlik sınıfları üretir. Kullanıcı profili olmadan kişisel al/sat emri oluşturmaz.</p></article>
         </div>
       </section>
     </main>
 
-    <footer data-i18n="footerDisclaimer">Yatırım araştırması ve finansal okuryazarlık içindir; kişiselleştirilmiş yatırım danışmanlığı veya işlem emri vermez.</footer>
+    <footer data-i18n="footer">Yatırım araştırması ve finansal okuryazarlık içindir; kişiselleştirilmiş yatırım danışmanlığı veya işlem emri vermez.</footer>
   </div>
   <script src="./portfolio-engine.js"></script>
   <script src="./app.js" defer></script>
