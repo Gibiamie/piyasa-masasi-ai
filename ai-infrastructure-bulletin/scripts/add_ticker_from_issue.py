@@ -79,12 +79,15 @@ def main() -> int:
         "currency": currency,
         "risk_badge": "GROWTH",
         "sector": "Kullanıcı Tarafından Eklenen",
+        "sector_en": "User-Added Asset",
         "news_query": (
             f'(\"{company}\" OR {display_ticker}) '
             + ("(bilanço OR satış OR üretim OR ihracat OR yatırım OR temettü)" if is_bist else "(earnings OR guidance OR revenue OR contract OR investment OR production OR sales)")
         ),
         "key_drivers": ["Gelir ve kârlılık gelişimi", "Şirketin ana faaliyet göstergeleri", "Stratejik yatırım ve uygulama"],
+        "key_drivers_en": ["Revenue and profitability development", "Core operating indicators", "Strategic investment and execution"],
         "key_risks": ["Değerleme riski", "Finansman ve bilanço riski", "Sektörel ve operasyonel riskler"],
+        "key_risks_en": ["Valuation risk", "Financing and balance-sheet risk", "Sector and operating risks"],
     }
     if is_bist:
         item["locale"] = {"hl": "tr", "gl": "TR", "ceid": "TR:tr"}
