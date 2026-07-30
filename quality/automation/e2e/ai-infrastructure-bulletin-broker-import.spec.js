@@ -29,8 +29,9 @@ test.describe('Broker portfolio import center', () => {
 
     await expect(page.locator('#brokerImportReview')).toBeVisible();
     await expect(page.locator('#brokerPreviewBody tr')).toHaveCount(2);
-    await expect(page.locator('#brokerPreviewBody')).toContainText('ALFA');
-    await expect(page.locator('#brokerPreviewBody')).toContainText('BETA');
+    const symbols = page.locator('#brokerPreviewBody [data-field="symbol"]');
+    await expect(symbols.nth(0)).toHaveValue('ALFA');
+    await expect(symbols.nth(1)).toHaveValue('BETA');
     await expect(page.locator('#selectedPositionCount')).toHaveText('2');
 
     await page.locator('#confirmBrokerImport').click();
@@ -84,7 +85,7 @@ test.describe('Broker portfolio import center', () => {
       buffer: Buffer.from(JSON.stringify(backup), 'utf8')
     });
     await expect(page.locator('#brokerImportReview')).toBeVisible();
-    await expect(page.locator('#brokerPreviewBody')).toContainText('GAMMA');
+    await expect(page.locator('#brokerPreviewBody [data-field="symbol"]')).toHaveValue('GAMMA');
     await page.locator('#confirmBrokerImport').click();
     await expect(page.locator('#portfolioHoldingsBody')).toContainText('GAMMA');
     await expect(page.locator('#portfolioMarketTotals')).toContainText(/350/);
