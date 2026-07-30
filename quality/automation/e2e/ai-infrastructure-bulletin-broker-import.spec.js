@@ -3,6 +3,7 @@ const { test, expect } = require('@playwright/test');
 const URL = '/ai-infrastructure-bulletin/#portfolio';
 const PORTFOLIO_KEY = 'ai-infrastructure-bulletin.portfolio.v1';
 
+// Synthetic fixtures only: no user portfolio data is committed to the repository.
 const CSV = [
   'Rapor Tarihi;05/07/2026',
   'Kod;Varlık Adı;Adet;Maliyet;Fiyat;Tutar;Para Birimi',
