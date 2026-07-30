@@ -5,8 +5,9 @@ const EXPERIENCE_KEY = 'piyasa-masasi-ai.experience-level';
 
 test.describe('AI bulletin interactive controls', () => {
   test.beforeEach(async ({ page }) => {
-    await page.addInitScript(key => localStorage.removeItem(key), EXPERIENCE_KEY);
     await page.goto(URL);
+    await page.evaluate(key => localStorage.removeItem(key), EXPERIENCE_KEY);
+    await page.reload();
     await expect(page.locator('#freshness')).not.toHaveText(/Yükleniyor|Loading/, { timeout: 25000 });
   });
 
