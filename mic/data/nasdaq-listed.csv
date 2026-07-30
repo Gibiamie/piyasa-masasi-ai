@@ -298,7 +298,7 @@ AMRN,Amarin Corporation plc - American Depositary Shares,stock,Depositary Share,
 AMRX,"Amneal Pharmaceuticals, Inc. - Class A Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 AMSC,American Superconductor Corporation - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 AMSF,"AMERISAFE, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
-AMSS,AMASS Brands Inc. - Common Stock,stock,Common Stock,Nasdaq Global Market,N,100
+AMSS,AMASS Brands Inc. - Common Stock,stock,Common Stock,Nasdaq Global Market,D,100
 AMST,Amesite Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 AMTX,"Aemetis, Inc - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
 AMUN,abrdn Ultra Short Municipal Income Active ETF,etf,ETF,Nasdaq Global Market,N,100
@@ -1472,7 +1472,7 @@ DUKH,Ocean Park High Income ETF,etf,ETF,Nasdaq Global Market,N,100
 DUKR,DUKE Robotics Corp. - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 DUKRW,DUKE Robotics Corp. - Warrant,stock,Warrant,Nasdaq Capital Market,N,100
 DUKX,Ocean Park International ETF,etf,ETF,Nasdaq Global Market,N,100
-DUO,Fangdd Network Group Ltd. - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
+DUO,Fangdd Network Group Ltd. - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,D,100
 DUOG,Leverage Shares 2X Long DUOL Daily ETF,etf,ETF,Nasdaq Global Market,N,100
 DUOL,"Duolingo, Inc. - Class A Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 DUOT,"Duos Technologies Group, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
@@ -1727,7 +1727,7 @@ FBIOP,"Fortress Biotech, Inc. - 9.375% Series A Cumulative Redeemable Perpetual 
 FBIZ,"First Business Financial Services, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 FBL,GraniteShares 2x Long META Daily ETF,etf,ETF,Nasdaq Global Market,N,100
 FBLA,"FB Bancorp, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
-FBLG,"FibroBiologics, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
+FBLG,"FibroBiologics, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
 FBNC,First Bancorp - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 FBOT,Fidelity Disruptive Automation ETF,etf,ETF,Nasdaq Global Market,N,100
 FBRX,"Forte Biosciences, Inc.  - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
@@ -1885,8 +1885,8 @@ FOSL,"Fossil Group, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select
 FOX,Fox Corporation - Class B Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 FOXA,Fox Corporation - Class A Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 FOXF,Fox Factory Holding Corp. - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
-FOXX,Foxx Development Holdings Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
-FOXXW,Foxx Development Holdings Inc. - Warrant,stock,Warrant,Nasdaq Capital Market,N,100
+FOXX,Foxx Development Holdings Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,D,100
+FOXXW,Foxx Development Holdings Inc. - Warrant,stock,Warrant,Nasdaq Capital Market,D,100
 FPA,First Trust Asia Pacific Ex-Japan AlphaDEX Fund,etf,ETF,Nasdaq Global Market,N,100
 FPXE,First Trust IPOX Europe Equity Opportunities ETF,etf,ETF,Nasdaq Global Market,N,100
 FPXI,First Trust International Equity Opportunities ETF,etf,ETF,Nasdaq Global Market,N,100
@@ -2018,7 +2018,7 @@ GCLWW,GCL Global Holdings Ltd - Warrants,stock,Warrant,Nasdaq Global Select Mark
 GCMG,GCM Grosvenor Inc. - Class A Common Stock,stock,Common Stock,Nasdaq Global Market,N,100
 GCT,GigaCloud Technology Inc - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Global Market,N,100
 GCTK,"GlucoTrack, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
-GDC,GD Culture Group Limited - Common Stock,stock,Common Stock,Nasdaq Capital Market,D,100
+GDC,GD Culture Group Limited - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 GDEV,GDEV Inc. - Ordinary Shares,stock,Ordinary Share,Nasdaq Global Market,N,100
 GDEVW,GDEV Inc. - Warrant,stock,Warrant,Nasdaq Global Market,N,100
 GDHG,Golden Heaven Group Holdings Ltd.  - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
@@ -2829,7 +2829,7 @@ KYMR,"Kymera Therapeutics, Inc. - Common Stock",stock,Common Stock,Nasdaq Global
 KYNB,"Kyntra Bio, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,D,100
 KYTX,"Kyverna Therapeutics, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 KZIA,Kazia Therapeutics Limited - American Depositary Shares,stock,Depositary Share,Nasdaq Capital Market,N,100
-LAB,Standard BioTools Inc. - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
+LAB,Standard BioTools Inc. - Common Stock,stock,Common Stock,Nasdaq Global Select Market,D,100
 LABT,Lakewood-Amedex Biotherapeutics Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 LAES,SEALSQ Corp - Ordinary Shares,stock,Ordinary Share,Nasdaq Global Select Market,N,100
 LAFA,LaFayette Acquisition Corp. - Ordinary Share,stock,Ordinary Share,Nasdaq Global Market,N,100
@@ -5196,7 +5196,7 @@ VIAV,Viavi Solutions Inc. - Common Stock,stock,Common Stock,Nasdaq Global Select
 VICR,Vicor Corporation - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 VIGI,Vanguard International Dividend Appreciation ETF,etf,ETF,Nasdaq Global Market,N,100
 VINP,Vinci Compass Investments Ltd. - Class A Common Shares,stock,Common Stock,Nasdaq Global Select Market,N,100
-VIOT,"Viomi Technology Co., Ltd - American Depositary Shares",stock,Depositary Share,Nasdaq Global Select Market,N,100
+VIOT,"Viomi Technology Co., Ltd - American Depositary Shares",stock,Depositary Share,Nasdaq Global Select Market,D,100
 VIP,Vulcan Infrastructure and Power Inc. - Class A Common Stock,stock,Common Stock,Nasdaq Global Select Market,D,100
 VIR,"Vir Biotechnology, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 VIRC,Virco Manufacturing Corporation - Common Stock,stock,Common Stock,Nasdaq Global Market,N,100
