@@ -1,0 +1,44 @@
+name: Apply broker import bilingual copy fix
+
+on:
+  push:
+    branches:
+      - feature/broker-portfolio-import
+    paths:
+      - .github/workflows/_apply-broker-copy-fix.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/broker-portfolio-import
+          fetch-depth: 0
+      - name: Make the import-center identity bilingual
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('ai-infrastructure-bulletin/portfolio-import-ui.js')
+          text = path.read_text(encoding='utf-8')
+          text = text.replace('<p class="eyebrow">PORTFÖY AKTARIM MERKEZİ</p>', '<p id="brokerImportEyebrow" class="eyebrow"></p>')
+          needle = 'if (legacyButton) legacyButton.textContent = c("importButton");'
+          addition = '''if (legacyButton) legacyButton.textContent = c("importButton");
+    const eyebrow = document.getElementById("brokerImportEyebrow");
+    if (eyebrow) eyebrow.textContent = language() === "en" ? "PORTFOLIO IMPORT CENTER" : "PORTFÖY AKTARIM MERKEZİ";
+    document.querySelector(".broker-import-close")?.setAttribute("aria-label", c("close"));'''
+          if 'PORTFOLIO IMPORT CENTER' not in text:
+              text = text.replace(needle, addition)
+          path.write_text(text, encoding='utf-8')
+          Path('.github/workflows/_apply-broker-copy-fix.yml').unlink(missing_ok=True)
+          PY
+      - name: Commit copy correction
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "fix: keep the broker import center fully bilingual"
+          git push origin HEAD:feature/broker-portfolio-import
