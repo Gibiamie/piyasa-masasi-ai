@@ -182,3 +182,25 @@
   const originalApplyLanguage = applyLanguage;
   applyLanguage = function applyLanguageWithControls() { originalApplyLanguage(); renderExperienceStatus(); document.getElementById("globalSearchResults")?.setAttribute("aria-label", copy().searchResults); };
 })();
+
+
+(function loadBrokerPortfolioImport() {
+  if (document.querySelector("script[data-broker-import-core]")) return;
+  const core = document.createElement("script");
+  core.src = "./broker-import.js?v=2026.07.30.3";
+  core.dataset.brokerImportCore = "true";
+  core.onload = () => {
+    const csv = document.createElement("script");
+    csv.src = "./broker-import-csv.js?v=2026.07.30.3";
+    csv.dataset.brokerImportCsv = "true";
+    csv.onload = () => {
+      if (document.querySelector("script[data-broker-import-ui]")) return;
+      const ui = document.createElement("script");
+      ui.src = "./portfolio-import-ui.js?v=2026.07.30.3";
+      ui.dataset.brokerImportUi = "true";
+      document.head.appendChild(ui);
+    };
+    document.head.appendChild(csv);
+  };
+  document.head.appendChild(core);
+})();
