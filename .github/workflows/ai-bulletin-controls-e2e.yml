@@ -1,0 +1,39 @@
+name: AI Bulletin Controls E2E
+
+on:
+  pull_request:
+    branches: [remediation/v30-audit]
+    paths:
+      - 'ai-infrastructure-bulletin/**'
+      - 'quality/automation/e2e/ai-infrastructure-bulletin-controls.spec.js'
+      - '.github/workflows/ai-bulletin-controls-e2e.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  controls-e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium firefox webkit
+      - name: Validate search and experience controls
+        run: npx playwright test quality/automation/e2e/ai-infrastructure-bulletin-controls.spec.js
+      - name: Upload report on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ai-bulletin-controls-report
+          path: |
+            quality/automation/e2e/report
+            test-results
+          if-no-files-found: ignore
