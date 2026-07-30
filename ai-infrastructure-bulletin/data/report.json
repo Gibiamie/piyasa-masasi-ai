@@ -1,12 +1,12 @@
 {
   "report": {
-    "report_id": "2026-07-30-0919",
-    "generated_at": "2026-07-30T09:19:13.930524+04:00",
+    "report_id": "2026-07-30-0941",
+    "generated_at": "2026-07-30T09:41:49.994030+04:00",
     "timezone": "Asia/Muscat",
-    "window_start": "2026-07-29T09:19:13.930524+04:00",
-    "window_end": "2026-07-30T09:19:13.930524+04:00",
+    "window_start": "2026-07-29T09:41:49.994030+04:00",
+    "window_end": "2026-07-30T09:41:49.994030+04:00",
     "market_data_as_of": "2026-07-29",
-    "material_event_count": 44,
+    "material_event_count": 45,
     "company_count": 18,
     "headline_status": "MATERIAL_NEWS_FOUND",
     "data_mode": "automated_public_sources"
@@ -21,8 +21,8 @@
     "main_positive_driver_en": "Company-specific revenue, capacity, orders and strategic execution",
     "main_risk": "Değerleme, finansman, döngü ve uygulama riski",
     "main_risk_en": "Valuation, financing, cycle and execution risk",
-    "summary": "18 şirket değerlendirildi; son 24 saatte 17 şirket için 44 önem eşiğini geçen gelişme bulundu.",
-    "summary_en": "18 companies were assessed; 44 developments concerning 17 companies passed the materiality threshold in the last 24 hours."
+    "summary": "18 şirket değerlendirildi; son 24 saatte 17 şirket için 45 önem eşiğini geçen gelişme bulundu.",
+    "summary_en": "18 companies were assessed; 45 developments concerning 17 companies passed the materiality threshold in the last 24 hours."
   },
   "events": [
     {
@@ -35,7 +35,7 @@
       "headline": "Tesla Just Crossed $100 Billion in Revenue. Its Operating Profit Got Cut By More Than Half. - The Auto Wire",
       "event_time": "2026-07-29T13:02:58+00:00",
       "published_time": "2026-07-29T13:02:58+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.597178+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.470418+00:00",
       "facts": [
         "Tesla Just Crossed $100 Billion in Revenue. Its Operating Profit Got Cut By More Than Half. - The Auto Wire"
       ],
@@ -92,7 +92,7 @@
       "headline": "STX Q4 Earnings Top on 48% Sales Jump, AI-led Storage Demand Continues - Zacks Investment Research",
       "event_time": "2026-07-29T12:54:11+00:00",
       "published_time": "2026-07-29T12:54:11+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.597220+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.470459+00:00",
       "facts": [
         "STX Q4 Earnings Top on 48% Sales Jump, AI-led Storage Demand Continues - Zacks Investment Research"
       ],
@@ -149,7 +149,7 @@
       "headline": "Firebird AI Center Ready for Launch in Hrazdan, Investments Possible to Reach $5 Billion - Arkatelecom.",
       "event_time": "2026-07-29T09:59:01+00:00",
       "published_time": "2026-07-29T09:59:01+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.597255+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.470493+00:00",
       "facts": [
         "Firebird AI Center Ready for Launch in Hrazdan, Investments Possible to Reach $5 Billion - Arkatelecom."
       ],
@@ -206,7 +206,7 @@
       "headline": "Nvidia (NASDAQ:NVDA) shares fall following projected $238 billion loss amid scrutiny of AI investment - TechStock²",
       "event_time": "2026-07-29T08:54:12+00:00",
       "published_time": "2026-07-29T08:54:12+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.597285+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.470520+00:00",
       "facts": [
         "Nvidia (NASDAQ:NVDA) shares fall following projected $238 billion loss amid scrutiny of AI investment - TechStock²"
       ],
@@ -263,7 +263,7 @@
       "headline": "Lam Research Guidance Blows Past Analysts by $1 Billion as AI Chip Demand Surges - Tech Times",
       "event_time": "2026-07-29T21:27:15+00:00",
       "published_time": "2026-07-29T21:27:15+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.597309+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.470543+00:00",
       "facts": [
         "Lam Research Guidance Blows Past Analysts by $1 Billion as AI Chip Demand Surges - Tech Times"
       ],
@@ -320,7 +320,7 @@
       "headline": "Vertiv Holdings Co Stock (VRT) Opinions on Q2 Earnings and Guidance Raise - Quiver Quantitative",
       "event_time": "2026-07-29T17:33:00+00:00",
       "published_time": "2026-07-29T17:33:00+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.597333+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.470566+00:00",
       "facts": [
         "Vertiv Holdings Co Stock (VRT) Opinions on Q2 Earnings and Guidance Raise - Quiver Quantitative"
       ],
@@ -377,7 +377,7 @@
       "headline": "Billionaire Money Manager Christopher Begg Bought Google at 15x Earnings. Here's Why He Calls It the Best Business in the World - 24/7 Wall St.",
       "event_time": "2026-07-29T17:00:24+00:00",
       "published_time": "2026-07-29T17:00:24+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.597359+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.470595+00:00",
       "facts": [
         "Billionaire Money Manager Christopher Begg Bought Google at 15x Earnings. Here's Why He Calls It the Best Business in the World - 24/7 Wall St."
       ],
@@ -434,7 +434,7 @@
       "headline": "Nvidia Shares Slide Nearly 3% as AI Circular Financing Worries Deepen Ahead of Microsoft, Meta Earnings - International Business Times Australia",
       "event_time": "2026-07-29T16:10:56+00:00",
       "published_time": "2026-07-29T16:10:56+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.597384+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.470622+00:00",
       "facts": [
         "Nvidia Shares Slide Nearly 3% as AI Circular Financing Worries Deepen Ahead of Microsoft, Meta Earnings - International Business Times Australia"
       ],
@@ -491,7 +491,7 @@
       "headline": "Microsoft’s Earnings Could Decide the Fate of a $700 Billion AI Spending Boom - Yahoo Finance",
       "event_time": "2026-07-29T15:03:53+00:00",
       "published_time": "2026-07-29T15:03:53+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.597415+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.470648+00:00",
       "facts": [
         "Microsoft’s Earnings Could Decide the Fate of a $700 Billion AI Spending Boom - Yahoo Finance"
       ],
@@ -548,7 +548,7 @@
       "headline": "Microsoft’s Earnings Could Decide the Fate of a $700 Billion AI Spending Boom - 24/7 Wall St.",
       "event_time": "2026-07-29T15:03:53+00:00",
       "published_time": "2026-07-29T15:03:53+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.597444+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.470672+00:00",
       "facts": [
         "Microsoft’s Earnings Could Decide the Fate of a $700 Billion AI Spending Boom - 24/7 Wall St."
       ],
@@ -605,7 +605,7 @@
       "headline": "Ford Jumps 6%, Outstrips GM and Tesla on Q2 Earnings Beat, Raised 2026 Guidance, Citi Upgrade - 24/7 Wall St.",
       "event_time": "2026-07-29T13:19:22+00:00",
       "published_time": "2026-07-29T13:19:22+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.597472+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.470696+00:00",
       "facts": [
         "Ford Jumps 6%, Outstrips GM and Tesla on Q2 Earnings Beat, Raised 2026 Guidance, Citi Upgrade - 24/7 Wall St."
       ],
@@ -662,7 +662,7 @@
       "headline": "Vertiv reports Q2 2026 earnings with 53% EPS growth, raises full-year guidance again - Crypto Briefing",
       "event_time": "2026-07-29T10:05:00+00:00",
       "published_time": "2026-07-29T10:05:00+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.597498+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.470721+00:00",
       "facts": [
         "Vertiv reports Q2 2026 earnings with 53% EPS growth, raises full-year guidance again - Crypto Briefing"
       ],
@@ -719,7 +719,7 @@
       "headline": "[LRCX Q4 2026 Earnings Call] Lam Research Sees ‘Extraordinary’ 2027 as AI Fuels Record $6.72B Revenue, Guides $8.1B Next Quarter - finance.biggo.com",
       "event_time": "2026-07-29T23:24:00+00:00",
       "published_time": "2026-07-29T23:24:00+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.597532+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.470755+00:00",
       "facts": [
         "[LRCX Q4 2026 Earnings Call] Lam Research Sees ‘Extraordinary’ 2027 as AI Fuels Record $6.72B Revenue, Guides $8.1B Next Quarter - finance.biggo.com"
       ],
@@ -776,7 +776,7 @@
       "headline": "Lam Research beats Q4 earnings on record revenue, AI demand surge - eciks.org",
       "event_time": "2026-07-29T21:16:29+00:00",
       "published_time": "2026-07-29T21:16:29+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.597554+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.470777+00:00",
       "facts": [
         "Lam Research beats Q4 earnings on record revenue, AI demand surge - eciks.org"
       ],
@@ -833,7 +833,7 @@
       "headline": "HVAC stocks sink as earnings, margin pressure, data-center qualms trigger selloff (TT:NYSE) - Seeking Alpha",
       "event_time": "2026-07-29T17:18:03+00:00",
       "published_time": "2026-07-29T17:18:03+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.597576+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.470806+00:00",
       "facts": [
         "HVAC stocks sink as earnings, margin pressure, data-center qualms trigger selloff (TT:NYSE) - Seeking Alpha"
       ],
@@ -890,7 +890,7 @@
       "headline": "Amazon’s AWS Earnings Preview: 5 Big AI Sales, Anthropic And Nova Things To Know - crn.com",
       "event_time": "2026-07-29T15:30:00+00:00",
       "published_time": "2026-07-29T15:30:00+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.597602+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.470841+00:00",
       "facts": [
         "Amazon’s AWS Earnings Preview: 5 Big AI Sales, Anthropic And Nova Things To Know - crn.com"
       ],
@@ -947,7 +947,7 @@
       "headline": "North America Data Center Construction Market Investment to Reach USD 158.20 Billion by 2031- Exclusive Insights by Arizton - PR Newswire UK",
       "event_time": "2026-07-29T14:22:00+00:00",
       "published_time": "2026-07-29T14:22:00+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.597626+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.470868+00:00",
       "facts": [
         "North America Data Center Construction Market Investment to Reach USD 158.20 Billion by 2031- Exclusive Insights by Arizton - PR Newswire UK"
       ],
@@ -1004,7 +1004,7 @@
       "headline": "Europe Hyperscale Data Center Market to Reach USD 139.90 Billion by 2031, Cloud, AI, and Infrastructure Investments Converge - Arizton - PR Newswire",
       "event_time": "2026-07-29T14:09:00+00:00",
       "published_time": "2026-07-29T14:09:00+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.597654+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.470893+00:00",
       "facts": [
         "Europe Hyperscale Data Center Market to Reach USD 139.90 Billion by 2031, Cloud, AI, and Infrastructure Investments Converge - Arizton - PR Newswire"
       ],
@@ -1061,7 +1061,7 @@
       "headline": "İlk 19 bilançoda öne çıkan kâr tablosu! Banka ve sigorta şirketleri ilk yarıya damga vurdu haberi - borsaningundemi.com",
       "event_time": "2026-07-29T12:24:40+00:00",
       "published_time": "2026-07-29T12:24:40+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.597688+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.470920+00:00",
       "facts": [
         "İlk 19 bilançoda öne çıkan kâr tablosu! Banka ve sigorta şirketleri ilk yarıya damga vurdu haberi - borsaningundemi.com"
       ],
@@ -1118,7 +1118,7 @@
       "headline": "The Week Ahead: Jobs Data, Top 10 Earnings Reports to Watch - Schaeffer's Investment Research",
       "event_time": "2026-07-29T07:27:35+00:00",
       "published_time": "2026-07-29T07:27:35+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.597715+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.470943+00:00",
       "facts": [
         "The Week Ahead: Jobs Data, Top 10 Earnings Reports to Watch - Schaeffer's Investment Research"
       ],
@@ -1166,18 +1166,18 @@
       ]
     },
     {
-      "event_id": "evt-9db18c78d38da8",
+      "event_id": "evt-bc280571f0a955",
       "primary_theme": "TSM",
       "related_themes": [],
       "companies": [
         "TSM"
       ],
-      "headline": "[News] Mass Production and Capacity Expansion Accelerate, Reshaping the Foundry Landscape in Silicon Photonics - TrendForce",
+      "headline": "[News] Mass Production and Capacity Expansion Accelerate, Reshaping the Foundry Landscape in Silicon Photonics - trendforce.com",
       "event_time": "2026-07-30T02:18:52+00:00",
       "published_time": "2026-07-30T02:18:52+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.597740+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.470968+00:00",
       "facts": [
-        "[News] Mass Production and Capacity Expansion Accelerate, Reshaping the Foundry Landscape in Silicon Photonics - TrendForce"
+        "[News] Mass Production and Capacity Expansion Accelerate, Reshaping the Foundry Landscape in Silicon Photonics - trendforce.com"
       ],
       "why_it_matters": "TSMC yatırım tezinin ana sürücüleri: AI çip talebi; İleri düğüm ve paketleme kapasitesi; Sermaye harcaması getirisi.",
       "why_it_matters_en": "Key drivers of the TSMC investment thesis: AI-chip demand; Advanced-node and packaging capacity; Return on capital expenditure.",
@@ -1214,8 +1214,8 @@
       "sources": [
         {
           "source_type": "SECONDARY_NEWS",
-          "publisher": "TrendForce",
-          "title": "[News] Mass Production and Capacity Expansion Accelerate, Reshaping the Foundry Landscape in Silicon Photonics - TrendForce",
+          "publisher": "trendforce.com",
+          "title": "[News] Mass Production and Capacity Expansion Accelerate, Reshaping the Foundry Landscape in Silicon Photonics - trendforce.com",
           "published_at": "2026-07-30T02:18:52+00:00",
           "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPVFVhZ0pRdWUwUG9KdklHRGhYb2d6a2paYy1CNnRjZDY1TUdEWjh4NE9RVjlZcFFFTHFfYmlSUGxGY2pYTzFycjZ0OXVQcFUzaE8yZDRfcGc0VUoxZjhiTTFyb1h4aGoxdUxTT3p1WVlITWpGcGllaTFYQTZtN1ZEZGZjZ0hvbFRtQkpuWkxQaHprYkhsc2ZDOU1KMllFblczcnI2bXJLQl8yc3J5ZG9JUkRES2lSNGNLZHV0aFdVZDduNkZjay1iUXhBZ3lEdzQ1NjUyNHJfd3VGU2d3NlRsQTVPOEMyQQ?oc=5",
           "primary_source": false
@@ -1232,7 +1232,7 @@
       "headline": "Eliyan raises $145 million at $1 billion valuation to ease AI chip data bottlenecks - WTVB",
       "event_time": "2026-07-29T13:23:56+00:00",
       "published_time": "2026-07-29T13:23:56+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.597762+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.470992+00:00",
       "facts": [
         "Eliyan raises $145 million at $1 billion valuation to ease AI chip data bottlenecks - WTVB"
       ],
@@ -1289,7 +1289,7 @@
       "headline": "Advanced Micro Devices, Inc. $AMD is Ma Investment Partnership LP's 4th Largest Position - MarketBeat",
       "event_time": "2026-07-29T10:43:10+00:00",
       "published_time": "2026-07-29T10:43:10+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.597787+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.471014+00:00",
       "facts": [
         "Advanced Micro Devices, Inc. $AMD is Ma Investment Partnership LP's 4th Largest Position - MarketBeat"
       ],
@@ -1346,7 +1346,7 @@
       "headline": "Meta, Microsoft, Alphabet: What Big Tech earnings reveal about the AI spending race - India Today",
       "event_time": "2026-07-30T03:39:45+00:00",
       "published_time": "2026-07-30T03:39:45+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.597808+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.471035+00:00",
       "facts": [
         "Meta, Microsoft, Alphabet: What Big Tech earnings reveal about the AI spending race - India Today"
       ],
@@ -1403,7 +1403,7 @@
       "headline": "Storage sector loses $43 billion in a single day amid fears of expansion - KuCoin",
       "event_time": "2026-07-30T03:07:15+00:00",
       "published_time": "2026-07-30T03:07:15+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.597830+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.471055+00:00",
       "facts": [
         "Storage sector loses $43 billion in a single day amid fears of expansion - KuCoin"
       ],
@@ -1460,7 +1460,7 @@
       "headline": "Colgate-Palmolive Earnings: What To Look For From CL - TradingView",
       "event_time": "2026-07-30T03:03:00+00:00",
       "published_time": "2026-07-30T03:03:00+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.597850+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.471077+00:00",
       "facts": [
         "Colgate-Palmolive Earnings: What To Look For From CL - TradingView"
       ],
@@ -1517,7 +1517,7 @@
       "headline": "Carter's Earnings: What To Look For From CRI - TradingView",
       "event_time": "2026-07-30T03:02:00+00:00",
       "published_time": "2026-07-30T03:02:00+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.597870+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.471099+00:00",
       "facts": [
         "Carter's Earnings: What To Look For From CRI - TradingView"
       ],
@@ -1574,7 +1574,7 @@
       "headline": "AMD (AMD) Locks In $14 Billion Core Scientific AI Data Center Deal - simplywall.st",
       "event_time": "2026-07-30T02:26:24+00:00",
       "published_time": "2026-07-30T02:26:24+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.597898+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.471120+00:00",
       "facts": [
         "AMD (AMD) Locks In $14 Billion Core Scientific AI Data Center Deal - simplywall.st"
       ],
@@ -1622,6 +1622,63 @@
       ]
     },
     {
+      "event_id": "evt-37372d77d2d5e2",
+      "primary_theme": "MRVL",
+      "related_themes": [],
+      "companies": [
+        "MRVL"
+      ],
+      "headline": "Marvell plans US$250 million India investment to expand semiconductor R&D - digitimes",
+      "event_time": "2026-07-30T02:15:48+00:00",
+      "published_time": "2026-07-30T02:15:48+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.471145+00:00",
+      "facts": [
+        "Marvell plans US$250 million India investment to expand semiconductor R&D - digitimes"
+      ],
+      "why_it_matters": "Marvell Technology yatırım tezinin ana sürücüleri: Özel AI silikon siparişleri; Veri merkezi ağ ve optik talebi; Müşteri programlarının ölçeklenmesi.",
+      "why_it_matters_en": "Key drivers of the Marvell Technology investment thesis: Custom AI silicon orders; Data-center networking and optical demand; Scaling of customer programs.",
+      "investment_meaning": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
+      "investment_meaning_en": "The development should be monitored; it is not sufficient on its own to determine a position decision.",
+      "thesis_impact": "THESIS_UNCHANGED",
+      "research_view": {
+        "rating": "NEUTRAL",
+        "time_horizon": "Orta-Uzun vadeli",
+        "time_horizon_en": "Medium to long term",
+        "summary": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
+        "summary_en": "The development should be monitored; it is not sufficient on its own to determine a position decision.",
+        "reasons": [
+          "Marvell Technology için son 24 saatte önem filtresini geçen gelişme"
+        ],
+        "reasons_en": [
+          "A development concerning Marvell Technology passed the materiality filter in the last 24 hours"
+        ],
+        "risks": [
+          "Müşteri yoğunlaşması",
+          "Program gecikmeleri",
+          "Yüksek beklenti ve değerleme",
+          "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
+        ],
+        "risks_en": [
+          "Customer concentration",
+          "Program delays",
+          "High expectations and valuation",
+          "A headline alone does not fully measure the financial effect"
+        ]
+      },
+      "risk_badge": "GROWTH",
+      "confidence": "MEDIUM",
+      "sources": [
+        {
+          "source_type": "SECONDARY_NEWS",
+          "publisher": "digitimes",
+          "title": "Marvell plans US$250 million India investment to expand semiconductor R&D - digitimes",
+          "published_at": "2026-07-30T02:15:48+00:00",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQcksyUC1SbS1OT1NPZWtkTVktVVpDXy1wVHQ5d2laSVREYkdEekpoM3g2MnU2X3lJQ1hBaF9hQlJHR1hmX29uSWJEZTg4UUFqM1V4Zk9KR3NfVThlN2VYeFh1azNSdTZKQjQtM0l1UEgxN1JPUVhfWE1hQXBsenFHbnhHQU9tOVc3b0cxQnpFV3hycDE4RzFxbEg2Ym1HbjA2bmRoam5lcTRfdw?oc=5",
+          "primary_source": false
+        }
+      ]
+    },
+    {
       "event_id": "evt-4aab15a1190308",
       "primary_theme": "GOOGL",
       "related_themes": [],
@@ -1631,7 +1688,7 @@
       "headline": "Is Microsoft a Buy After Its Latest Earnings Report? - The Motley Fool",
       "event_time": "2026-07-30T02:12:00+00:00",
       "published_time": "2026-07-30T02:12:00+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.597921+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.471166+00:00",
       "facts": [
         "Is Microsoft a Buy After Its Latest Earnings Report? - The Motley Fool"
       ],
@@ -1688,7 +1745,7 @@
       "headline": "Earnings calendar peaks this week with Meta, Microsoft, Apple reporting - eciks.org",
       "event_time": "2026-07-30T00:37:38+00:00",
       "published_time": "2026-07-30T00:37:38+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.597944+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.471191+00:00",
       "facts": [
         "Earnings calendar peaks this week with Meta, Microsoft, Apple reporting - eciks.org"
       ],
@@ -1745,7 +1802,7 @@
       "headline": "Lam Research Q4 Earnings Call Highlights - MarketBeat",
       "event_time": "2026-07-30T00:09:12+00:00",
       "published_time": "2026-07-30T00:09:12+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.597963+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.471209+00:00",
       "facts": [
         "Lam Research Q4 Earnings Call Highlights - MarketBeat"
       ],
@@ -1802,7 +1859,7 @@
       "headline": "CTO Realty Growth Q2 Earnings Call Highlights - Yahoo Finance",
       "event_time": "2026-07-29T21:04:02+00:00",
       "published_time": "2026-07-29T21:04:02+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.597984+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.471229+00:00",
       "facts": [
         "CTO Realty Growth Q2 Earnings Call Highlights - Yahoo Finance"
       ],
@@ -1859,7 +1916,7 @@
       "headline": "SanDisk SNDK Stock Breaks $1,000 as Earnings Anxiety Builds – Rebound or Breakdown? - FXLeaders",
       "event_time": "2026-07-29T21:00:46+00:00",
       "published_time": "2026-07-29T21:00:46+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.598029+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.471253+00:00",
       "facts": [
         "SanDisk SNDK Stock Breaks $1,000 as Earnings Anxiety Builds – Rebound or Breakdown? - FXLeaders"
       ],
@@ -1916,7 +1973,7 @@
       "headline": "ARK Buys Millions In Falling Space Names. SpaceX Preps Classified Mission. - Investor's Business Daily",
       "event_time": "2026-07-29T20:13:00+00:00",
       "published_time": "2026-07-29T20:13:00+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.598052+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.471276+00:00",
       "facts": [
         "ARK Buys Millions In Falling Space Names. SpaceX Preps Classified Mission. - Investor's Business Daily"
       ],
@@ -1973,7 +2030,7 @@
       "headline": "ETFs in the Crosshairs Ahead of Microsoft & Meta Earnings - ETF Database",
       "event_time": "2026-07-29T19:07:09+00:00",
       "published_time": "2026-07-29T19:07:09+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.598073+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.471297+00:00",
       "facts": [
         "ETFs in the Crosshairs Ahead of Microsoft & Meta Earnings - ETF Database"
       ],
@@ -2030,7 +2087,7 @@
       "headline": "Equinix earnings on deck: Can bookings sustain AI data center boom? - Investing.com UK",
       "event_time": "2026-07-29T17:37:54+00:00",
       "published_time": "2026-07-29T17:37:54+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.598098+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.471320+00:00",
       "facts": [
         "Equinix earnings on deck: Can bookings sustain AI data center boom? - Investing.com UK"
       ],
@@ -2078,18 +2135,18 @@
       ]
     },
     {
-      "event_id": "evt-6d2aa897cec8d1",
+      "event_id": "evt-6f412cd16c59c1",
       "primary_theme": "SNDK",
       "related_themes": [],
       "companies": [
         "SNDK"
       ],
-      "headline": "SanDisk Stock Down 47% Before Aug 5 Earnings Call - memeburn.com",
+      "headline": "SanDisk Stock Down 47% Before Aug 5 Earnings Call - Memeburn",
       "event_time": "2026-07-29T16:10:10+00:00",
       "published_time": "2026-07-29T16:10:10+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.598120+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.471338+00:00",
       "facts": [
-        "SanDisk Stock Down 47% Before Aug 5 Earnings Call - memeburn.com"
+        "SanDisk Stock Down 47% Before Aug 5 Earnings Call - Memeburn"
       ],
       "why_it_matters": "SanDisk yatırım tezinin ana sürücüleri: NAND fiyat döngüsü; Kurumsal depolama talebi; Ürün karması.",
       "why_it_matters_en": "Key drivers of the SanDisk investment thesis: NAND pricing cycle; Enterprise-storage demand; Product mix.",
@@ -2126,8 +2183,8 @@
       "sources": [
         {
           "source_type": "SECONDARY_NEWS",
-          "publisher": "memeburn.com",
-          "title": "SanDisk Stock Down 47% Before Aug 5 Earnings Call - memeburn.com",
+          "publisher": "Memeburn",
+          "title": "SanDisk Stock Down 47% Before Aug 5 Earnings Call - Memeburn",
           "published_at": "2026-07-29T16:10:10+00:00",
           "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBZcVhqdkZwRW1MQTZsdE5YV1FFN1RJX1BkNGJ0Z081UUc4cG94Q2tNdENFeGhaQURETTlub2FwODJEM19SbVA4NUl0S19sZ2tuVk1NYkhR?oc=5",
           "primary_source": false
@@ -2144,7 +2201,7 @@
       "headline": "LUNR Stock Falls 16% As $175M Dilution Deal Weighs On Shares – Retail Calls The Dip An ‘Overreaction’ - Stocktwits",
       "event_time": "2026-07-29T15:16:38+00:00",
       "published_time": "2026-07-29T15:16:38+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.598147+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.471365+00:00",
       "facts": [
         "LUNR Stock Falls 16% As $175M Dilution Deal Weighs On Shares – Retail Calls The Dip An ‘Overreaction’ - Stocktwits"
       ],
@@ -2192,6 +2249,63 @@
       ]
     },
     {
+      "event_id": "evt-79046280cf9224",
+      "primary_theme": "CEG",
+      "related_themes": [],
+      "companies": [
+        "CEG"
+      ],
+      "headline": "Bitcoin miners pour billions into AI – but the pivot could leave them regretting it within a year - CryptoRank",
+      "event_time": "2026-07-29T12:36:32+00:00",
+      "published_time": "2026-07-29T12:36:32+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.471395+00:00",
+      "facts": [
+        "Bitcoin miners pour billions into AI – but the pivot could leave them regretting it within a year - CryptoRank"
+      ],
+      "why_it_matters": "Constellation Energy yatırım tezinin ana sürücüleri: Nükleer üretim ve kapasite fiyatları; Veri merkezi PPA anlaşmaları; Elektrik talep artışı.",
+      "why_it_matters_en": "Key drivers of the Constellation Energy investment thesis: Nuclear generation and capacity pricing; Data-center PPA agreements; Growth in electricity demand.",
+      "investment_meaning": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
+      "investment_meaning_en": "The development should be monitored; it is not sufficient on its own to determine a position decision.",
+      "thesis_impact": "THESIS_UNCHANGED",
+      "research_view": {
+        "rating": "NEUTRAL",
+        "time_horizon": "Orta-Uzun vadeli",
+        "time_horizon_en": "Medium to long term",
+        "summary": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
+        "summary_en": "The development should be monitored; it is not sufficient on its own to determine a position decision.",
+        "reasons": [
+          "Constellation Energy için son 24 saatte önem filtresini geçen gelişme"
+        ],
+        "reasons_en": [
+          "A development concerning Constellation Energy passed the materiality filter in the last 24 hours"
+        ],
+        "risks": [
+          "Regülasyon ve santral kesintileri",
+          "Emtia ve kapasite fiyatları",
+          "Sözleşme onayları",
+          "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
+        ],
+        "risks_en": [
+          "Regulation and plant outages",
+          "Commodity and capacity prices",
+          "Contract approvals",
+          "A headline alone does not fully measure the financial effect"
+        ]
+      },
+      "risk_badge": "ESTABLISHED",
+      "confidence": "MEDIUM",
+      "sources": [
+        {
+          "source_type": "SECONDARY_NEWS",
+          "publisher": "CryptoRank",
+          "title": "Bitcoin miners pour billions into AI – but the pivot could leave them regretting it within a year - CryptoRank",
+          "published_at": "2026-07-29T12:36:32+00:00",
+          "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxORUVDTDl4SVJKRGlFbUFRai1oMTVvVG1hYmx6QlRKYnd1bUJqTV9JQUpNR0VKMl9KZHBlcE55cGU1eXQ4MGJRNWhZaDlXLWNzMXV3Rk5tNndLSzF2dW0zZGd2eEh6b3lHN2dtbEVIZHdoMTNsNkk4UG15dFZYYzRIYWxHbzFzd1hTdzhsX29lR0psanZES3NFYXlhSW1JUlJpY2FhcUJuZmlmQzlYRGlCZTZYVTlaRHk4Sy03cXVOMHR1UGllSUFmT2FSQjhmUQ?oc=5",
+          "primary_source": false
+        }
+      ]
+    },
+    {
       "event_id": "evt-fb610926f16836",
       "primary_theme": "TTRAK",
       "related_themes": [],
@@ -2201,7 +2315,7 @@
       "headline": "Türk Traktör’e 606.5 milyon liralık yatırım teşvik belgesi haberi - borsaningundemi.com",
       "event_time": "2026-07-29T09:51:04+00:00",
       "published_time": "2026-07-29T09:51:04+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.598178+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.471420+00:00",
       "facts": [
         "Türk Traktör’e 606.5 milyon liralık yatırım teşvik belgesi haberi - borsaningundemi.com"
       ],
@@ -2249,63 +2363,6 @@
       ]
     },
     {
-      "event_id": "evt-0b3002ae22041d",
-      "primary_theme": "MRVL",
-      "related_themes": [],
-      "companies": [
-        "MRVL"
-      ],
-      "headline": "HPQ Beats Q2 Estimates But Lowers FY26 Guidance - Stocktwits",
-      "event_time": "2026-07-29T07:35:27+00:00",
-      "published_time": "2026-07-29T07:35:27+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.598202+00:00",
-      "facts": [
-        "HPQ Beats Q2 Estimates But Lowers FY26 Guidance - Stocktwits"
-      ],
-      "why_it_matters": "Marvell Technology yatırım tezinin ana sürücüleri: Özel AI silikon siparişleri; Veri merkezi ağ ve optik talebi; Müşteri programlarının ölçeklenmesi.",
-      "why_it_matters_en": "Key drivers of the Marvell Technology investment thesis: Custom AI silicon orders; Data-center networking and optical demand; Scaling of customer programs.",
-      "investment_meaning": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
-      "investment_meaning_en": "The development should be monitored; it is not sufficient on its own to determine a position decision.",
-      "thesis_impact": "THESIS_UNCHANGED",
-      "research_view": {
-        "rating": "NEUTRAL",
-        "time_horizon": "Orta-Uzun vadeli",
-        "time_horizon_en": "Medium to long term",
-        "summary": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
-        "summary_en": "The development should be monitored; it is not sufficient on its own to determine a position decision.",
-        "reasons": [
-          "Marvell Technology için son 24 saatte önem filtresini geçen gelişme"
-        ],
-        "reasons_en": [
-          "A development concerning Marvell Technology passed the materiality filter in the last 24 hours"
-        ],
-        "risks": [
-          "Müşteri yoğunlaşması",
-          "Program gecikmeleri",
-          "Yüksek beklenti ve değerleme",
-          "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
-        ],
-        "risks_en": [
-          "Customer concentration",
-          "Program delays",
-          "High expectations and valuation",
-          "A headline alone does not fully measure the financial effect"
-        ]
-      },
-      "risk_badge": "GROWTH",
-      "confidence": "MEDIUM",
-      "sources": [
-        {
-          "source_type": "SECONDARY_NEWS",
-          "publisher": "Stocktwits",
-          "title": "HPQ Beats Q2 Estimates But Lowers FY26 Guidance - Stocktwits",
-          "published_at": "2026-07-29T07:35:27+00:00",
-          "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQMy1mdVdLWkVybVBEZXkyb1JXWllnTmp4MXRmTFFUMzQ1Z1ExaWdVeElnVEFPTEh3UnMyaWZ0YjBnZ29nWVlWQzlvX2YzbGZXNHZaZWsteGlHYzNkcjRGd3RiV3VpRTdELUdNVFc1LVFjRUlGNnVKUGpHNlV5cW5YUmhJLWMtVUxjOHNycEJPdFJvTzVmWXE1TE9BWFVKLUZfVnQ5WHBxUzFIN0ZiY2MwT2dLS2tjSC1KbXR4Ul9DelpPVHEw?oc=5",
-          "primary_source": false
-        }
-      ]
-    },
-    {
       "event_id": "evt-2a6ef5e9653693",
       "primary_theme": "TTRAK",
       "related_themes": [],
@@ -2315,7 +2372,7 @@
       "headline": "Borsa İstanbul için bilanço beklentisi - RHA Ajans",
       "event_time": "2026-07-29T07:11:15+00:00",
       "published_time": "2026-07-29T07:11:15+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.598225+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.471441+00:00",
       "facts": [
         "Borsa İstanbul için bilanço beklentisi - RHA Ajans"
       ],
@@ -2363,18 +2420,18 @@
       ]
     },
     {
-      "event_id": "evt-1b3af9d57f1877",
+      "event_id": "evt-abdf35fcedbbea",
       "primary_theme": "SMR",
       "related_themes": [],
       "companies": [
         "SMR"
       ],
-      "headline": "Bill Gates to visit Korea for SMR partnership talks - mkbn.mk.co.kr",
+      "headline": "Bill Gates to visit Korea for SMR partnership talks - 매일경제",
       "event_time": "2026-07-30T05:07:51+00:00",
       "published_time": "2026-07-30T05:07:51+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.598246+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.471465+00:00",
       "facts": [
-        "Bill Gates to visit Korea for SMR partnership talks - mkbn.mk.co.kr"
+        "Bill Gates to visit Korea for SMR partnership talks - 매일경제"
       ],
       "why_it_matters": "NuScale Power yatırım tezinin ana sürücüleri: Ticari proje sözleşmeleri; Regülasyon ve lisans ilerlemesi; Finansman ve müşteri kazanımı.",
       "why_it_matters_en": "Key drivers of the NuScale Power investment thesis: Commercial project contracts; Regulatory and licensing progress; Financing and customer acquisition.",
@@ -2411,10 +2468,10 @@
       "sources": [
         {
           "source_type": "SECONDARY_NEWS",
-          "publisher": "mkbn.mk.co.kr",
-          "title": "Bill Gates to visit Korea for SMR partnership talks - mkbn.mk.co.kr",
+          "publisher": "매일경제",
+          "title": "Bill Gates to visit Korea for SMR partnership talks - 매일경제",
           "published_at": "2026-07-30T05:07:51+00:00",
-          "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1zY3JOSlNXdnZJTlJYSW0zeV8zdlJKbDRfN1ZjNWNQZVpfMk5HTzVveDlqN3JCVEFMNW1mUUZ0d2VwNmhzcU9jcmVBWU5CT3JWbzYtcnp3?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE8tUWZ1NmpqbktraXBnbEtfdjVwbE8tR2tDaHBocjhlMkRmUDBuVXhqbUo1cFBBLVJETjF4R3BXRkdjUEQyMTcyN0pXWFdoTFpOZGpmQg?oc=5",
           "primary_source": false
         }
       ]
@@ -2429,7 +2486,7 @@
       "headline": "Robinhood Crypto Revenue Tops Estimates Despite 38% Drop, How Will Stock React? - CryptoRank",
       "event_time": "2026-07-29T23:24:58+00:00",
       "published_time": "2026-07-29T23:24:58+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.598268+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.471486+00:00",
       "facts": [
         "Robinhood Crypto Revenue Tops Estimates Despite 38% Drop, How Will Stock React? - CryptoRank"
       ],
@@ -2477,58 +2534,58 @@
       ]
     },
     {
-      "event_id": "evt-f328a0e982ef60",
-      "primary_theme": "CEG",
+      "event_id": "evt-827fc5d70673ac",
+      "primary_theme": "MRVL",
       "related_themes": [],
       "companies": [
-        "CEG"
+        "MRVL"
       ],
-      "headline": "Core Scientific lost 56% on Bitcoin mining but $80M in profit from its pivot to AI hosting - CryptoRank",
-      "event_time": "2026-07-29T16:09:57+00:00",
-      "published_time": "2026-07-29T16:09:57+00:00",
-      "retrieved_time": "2026-07-30T05:19:19.598294+00:00",
+      "headline": "POET Stock Retail Bulls Hold Firm After Marvell Cancels Orders: ‘Not A Scam Company’ - Stocktwits",
+      "event_time": "2026-07-29T06:56:15+00:00",
+      "published_time": "2026-07-29T06:56:15+00:00",
+      "retrieved_time": "2026-07-30T05:41:55.471510+00:00",
       "facts": [
-        "Core Scientific lost 56% on Bitcoin mining but $80M in profit from its pivot to AI hosting - CryptoRank"
+        "POET Stock Retail Bulls Hold Firm After Marvell Cancels Orders: ‘Not A Scam Company’ - Stocktwits"
       ],
-      "why_it_matters": "Constellation Energy yatırım tezinin ana sürücüleri: Nükleer üretim ve kapasite fiyatları; Veri merkezi PPA anlaşmaları; Elektrik talep artışı.",
-      "why_it_matters_en": "Key drivers of the Constellation Energy investment thesis: Nuclear generation and capacity pricing; Data-center PPA agreements; Growth in electricity demand.",
-      "investment_meaning": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
-      "investment_meaning_en": "The development should be monitored; it is not sufficient on its own to determine a position decision.",
-      "thesis_impact": "THESIS_UNCHANGED",
+      "why_it_matters": "Marvell Technology yatırım tezinin ana sürücüleri: Özel AI silikon siparişleri; Veri merkezi ağ ve optik talebi; Müşteri programlarının ölçeklenmesi.",
+      "why_it_matters_en": "Key drivers of the Marvell Technology investment thesis: Custom AI silicon orders; Data-center networking and optical demand; Scaling of customer programs.",
+      "investment_meaning": "Araştırma görünümü zayıfladı; etkinin geçici mi yapısal mı olduğu resmî kaynaklarla kontrol edilmelidir.",
+      "investment_meaning_en": "The research view weakened; official sources should determine whether the effect is temporary or structural.",
+      "thesis_impact": "THESIS_WEAKENED",
       "research_view": {
-        "rating": "NEUTRAL",
+        "rating": "NEGATIVE",
         "time_horizon": "Orta-Uzun vadeli",
         "time_horizon_en": "Medium to long term",
-        "summary": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
-        "summary_en": "The development should be monitored; it is not sufficient on its own to determine a position decision.",
+        "summary": "Araştırma görünümü zayıfladı; etkinin geçici mi yapısal mı olduğu resmî kaynaklarla kontrol edilmelidir.",
+        "summary_en": "The research view weakened; official sources should determine whether the effect is temporary or structural.",
         "reasons": [
-          "Constellation Energy için son 24 saatte önem filtresini geçen gelişme"
+          "Marvell Technology için son 24 saatte önem filtresini geçen gelişme"
         ],
         "reasons_en": [
-          "A development concerning Constellation Energy passed the materiality filter in the last 24 hours"
+          "A development concerning Marvell Technology passed the materiality filter in the last 24 hours"
         ],
         "risks": [
-          "Regülasyon ve santral kesintileri",
-          "Emtia ve kapasite fiyatları",
-          "Sözleşme onayları",
+          "Müşteri yoğunlaşması",
+          "Program gecikmeleri",
+          "Yüksek beklenti ve değerleme",
           "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
         ],
         "risks_en": [
-          "Regulation and plant outages",
-          "Commodity and capacity prices",
-          "Contract approvals",
+          "Customer concentration",
+          "Program delays",
+          "High expectations and valuation",
           "A headline alone does not fully measure the financial effect"
         ]
       },
-      "risk_badge": "ESTABLISHED",
+      "risk_badge": "GROWTH",
       "confidence": "MEDIUM",
       "sources": [
         {
           "source_type": "SECONDARY_NEWS",
-          "publisher": "CryptoRank",
-          "title": "Core Scientific lost 56% on Bitcoin mining but $80M in profit from its pivot to AI hosting - CryptoRank",
-          "published_at": "2026-07-29T16:09:57+00:00",
-          "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQdmMyY1BxZ3VfSktJQWFOMHpobXdQMHhsZ3JaVFlTWDBzT1dYNGZkLWZDMDlFU3pTbVc1TTlKVXEzakQ3VUhSVVdobG1ERnRmUUlzSUJmYzZWb052LWFzSmpvMUF4aHBrX0pLRFgxS3JOYUsxV2laTU0tend4NmZ0N2FXbkpqTU5oOUxtNy1KRWhLMGctUnhNZDlxVkp2WjM5bERxTkNkY3VnWDZvTFp4QWZtcnp5R3VFSW40QTFmMnU4bXhE?oc=5",
+          "publisher": "Stocktwits",
+          "title": "POET Stock Retail Bulls Hold Firm After Marvell Cancels Orders: ‘Not A Scam Company’ - Stocktwits",
+          "published_at": "2026-07-29T06:56:15+00:00",
+          "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPcTZ1SlNJUW5ocGZxRDF4X3h3RjhxcDBEeWVwS3hGZTVMcktST1dfU05CS0tFNDIyUTRQU2ZrdVJxVXVlaXgtWFhFTkpXSXZBVjlGZ3pCQjlOWEN5WlU5eXM2VWxvT3RyX0tZa1BJRTBKWDV3YzRUdEpwQWxGNllSbnpyRTNvNmtmZ1c0ZmgxOE9iS1VvbXJRV0tIUG5LVVdIWTVPMXl6V3BxM1pxTEpNQnQwUDVNd0FIbmdKWjhGQjlWTkE5eDdwMXFGcDZVM1FsR1VQQlBKckRFckFXdHc?oc=5",
           "primary_source": false
         }
       ]
@@ -3114,11 +3171,11 @@
       "time_horizon_en": "Medium to long term",
       "confidence": "HIGH",
       "risk_badge": "GROWTH",
-      "summary": "Son 24 saatte 2 önem eşiğini geçen gelişme bulundu. 252 işlem günlük trend pozitif, son 21 işlem gününde düzeltme var; bunun kâr realizasyonu mu yoksa tez zayıflaması mı olduğu izlenmelidir.",
-      "summary_en": "2 company-specific developments passed the materiality threshold in the last 24 hours. The 252-trading-day trend is positive, but the last 21 trading days show a correction; determine whether this is profit-taking or a weakening thesis.",
+      "summary": "Son 24 saatte 3 önem eşiğini geçen gelişme bulundu. 252 işlem günlük trend pozitif, son 21 işlem gününde düzeltme var; bunun kâr realizasyonu mu yoksa tez zayıflaması mı olduğu izlenmelidir.",
+      "summary_en": "3 company-specific developments passed the materiality threshold in the last 24 hours. The 252-trading-day trend is positive, but the last 21 trading days show a correction; determine whether this is profit-taking or a weakening thesis.",
       "performance_context": "252 işlem günlük trend pozitif, son 21 işlem gününde düzeltme var; bunun kâr realizasyonu mu yoksa tez zayıflaması mı olduğu izlenmelidir.",
       "performance_context_en": "The 252-trading-day trend is positive, but the last 21 trading days show a correction; determine whether this is profit-taking or a weakening thesis.",
-      "material_event_count": 2,
+      "material_event_count": 3,
       "key_drivers": [
         "Özel AI silikon siparişleri",
         "Veri merkezi ağ ve optik talebi",
@@ -3141,7 +3198,8 @@
       ],
       "latest_event_headlines": [
         "Microsoft’s Earnings Could Decide the Fate of a $700 Billion AI Spending Boom - Yahoo Finance",
-        "HPQ Beats Q2 Estimates But Lowers FY26 Guidance - Stocktwits"
+        "Marvell plans US$250 million India investment to expand semiconductor R&D - digitimes",
+        "POET Stock Retail Bulls Hold Firm After Marvell Cancels Orders: ‘Not A Scam Company’ - Stocktwits"
       ],
       "price_context": {
         "currency": "USD",
@@ -3399,7 +3457,7 @@
       "latest_event_headlines": [
         "Storage sector loses $43 billion in a single day amid fears of expansion - KuCoin",
         "SanDisk SNDK Stock Breaks $1,000 as Earnings Anxiety Builds – Rebound or Breakdown? - FXLeaders",
-        "SanDisk Stock Down 47% Before Aug 5 Earnings Call - memeburn.com"
+        "SanDisk Stock Down 47% Before Aug 5 Earnings Call - Memeburn"
       ],
       "price_context": {
         "currency": "USD",
@@ -3501,8 +3559,8 @@
         "Contract approvals"
       ],
       "latest_event_headlines": [
-        "Robinhood Crypto Revenue Tops Estimates Despite 38% Drop, How Will Stock React? - CryptoRank",
-        "Core Scientific lost 56% on Bitcoin mining but $80M in profit from its pivot to AI hosting - CryptoRank"
+        "Bitcoin miners pour billions into AI – but the pivot could leave them regretting it within a year - CryptoRank",
+        "Robinhood Crypto Revenue Tops Estimates Despite 38% Drop, How Will Stock React? - CryptoRank"
       ],
       "price_context": {
         "currency": "USD",
@@ -3600,7 +3658,7 @@
         "Equity dilution"
       ],
       "latest_event_headlines": [
-        "Bill Gates to visit Korea for SMR partnership talks - mkbn.mk.co.kr"
+        "Bill Gates to visit Korea for SMR partnership talks - 매일경제"
       ],
       "price_context": {
         "currency": "USD",
@@ -3652,7 +3710,7 @@
       "latest_event_headlines": [
         "Microsoft’s Earnings Could Decide the Fate of a $700 Billion AI Spending Boom - 24/7 Wall St.",
         "Lam Research beats Q4 earnings on record revenue, AI demand surge - eciks.org",
-        "[News] Mass Production and Capacity Expansion Accelerate, Reshaping the Foundry Landscape in Silicon Photonics - TrendForce"
+        "[News] Mass Production and Capacity Expansion Accelerate, Reshaping the Foundry Landscape in Silicon Photonics - trendforce.com"
       ],
       "price_context": {
         "currency": "USD",
