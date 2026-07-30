@@ -8,7 +8,7 @@ async function dismissServiceWorker(page) {
   });
 }
 
-test.describe('calm original bulletin interface', () => {
+test.describe('calm professional market workspace', () => {
   test.beforeEach(async ({ page }) => {
     await dismissServiceWorker(page);
   });
@@ -23,7 +23,7 @@ test.describe('calm original bulletin interface', () => {
     expect(navBox).not.toBeNull();
     expect(mainBox).not.toBeNull();
     expect(navBox.x).toBeLessThan(mainBox.x);
-    await page.getByRole('button', { name: 'Portföyüm' }).click();
+    await page.locator('.tab[data-view="portfolio"]').click();
     await expect(page.locator('#transactionForm')).toBeVisible();
     await expect(page.locator('#portfolioView .table-wrap').first()).toBeVisible();
   });
@@ -41,7 +41,7 @@ test.describe('calm original bulletin interface', () => {
       const box = await nav.boundingBox();
       expect(box).not.toBeNull();
       expect(box.y + box.height).toBeLessThanOrEqual(viewport.height);
-      await page.getByRole('button', { name: 'Portföyüm' }).click();
+      await page.locator('.tab[data-view="portfolio"]').click();
       await expect(page.locator('#portfolioView')).toHaveClass(/active/);
       const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
       expect(overflow).toBeLessThanOrEqual(2);
@@ -52,8 +52,8 @@ test.describe('calm original bulletin interface', () => {
     await page.setViewportSize({ width: 1280, height: 900 });
     await page.goto(URL);
     await page.locator('#languageToggle').click();
-    await expect(page.getByRole('button', { name: 'My Portfolio' })).toBeVisible();
-    await page.getByRole('button', { name: 'My Portfolio' }).click();
+    await expect(page.locator('.tab[data-view="portfolio"]')).toContainText('My Portfolio');
+    await page.locator('.tab[data-view="portfolio"]').click();
     await expect(page.getByText('My basket and transaction ledger')).toBeVisible();
   });
 });

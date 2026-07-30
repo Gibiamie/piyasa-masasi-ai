@@ -1,0 +1,50 @@
+name: Piyasa Masasi Workspace E2E
+
+on:
+  pull_request:
+    branches:
+      - remediation/v30-audit
+    paths:
+      - "ai-infrastructure-bulletin/**"
+      - "quality/automation/e2e/piyasa-masasi-professional-workspace.spec.js"
+      - ".github/workflows/piyasa-masasi-workspace-e2e.yml"
+  push:
+    branches:
+      - remediation/v30-audit
+    paths:
+      - "ai-infrastructure-bulletin/**"
+      - "quality/automation/e2e/piyasa-masasi-professional-workspace.spec.js"
+      - ".github/workflows/piyasa-masasi-workspace-e2e.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: piyasa-masasi-workspace-e2e-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  workspace-e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install test dependencies
+        run: npm ci
+      - name: Install browsers
+        run: npx playwright install --with-deps chromium firefox webkit
+      - name: Validate professional workspace
+        run: npx playwright test quality/automation/e2e/piyasa-masasi-professional-workspace.spec.js
+      - name: Upload report on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: piyasa-masasi-workspace-e2e-report
+          path: |
+            quality/automation/e2e/report
+            test-results
+          if-no-files-found: ignore

@@ -1,7 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Calm market intelligence mark">
-  <rect width="128" height="128" rx="34" fill="#1f4c42"/>
-  <path d="M64 96C45 83 34 67 34 49c0-9 7-16 16-16 7 0 12 4 14 10 2-6 7-10 14-10 9 0 16 7 16 16 0 18-11 34-30 47Z" fill="#f5f1e8" opacity=".96"/>
-  <path d="M64 86V43" stroke="#2e6659" stroke-width="7" stroke-linecap="round"/>
-  <path d="M64 62 49 48M64 71l17-16" stroke="#d88d73" stroke-width="7" stroke-linecap="round"/>
-  <circle cx="64" cy="96" r="5" fill="#d88d73"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <rect width="128" height="128" rx="32" fill="#173a33"/>
+  <path d="M24 79C43 43 63 31 83 42c13 7 20 20 22 37" fill="none" stroke="#f2e7cf" stroke-width="9" stroke-linecap="round"/>
+  <path d="M27 96c21-21 41-28 57-19 10 5 16 12 19 19" fill="none" stroke="#9bbdca" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="31" cy="43" r="9" fill="#d57c67" stroke="#f2e7cf" stroke-width="4"/>
+  <circle cx="95" cy="30" r="8" fill="#e7c78f" stroke="#f2e7cf" stroke-width="4"/>
+  <circle cx="96" cy="97" r="8" fill="#9cb5a6" stroke="#f2e7cf" stroke-width="4"/>
 </svg>

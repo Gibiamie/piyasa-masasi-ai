@@ -1,4 +1,4 @@
-name: AI Infrastructure Bulletin
+name: Piyasa Masasi AI Research Data
 
 on:
   workflow_dispatch:
@@ -21,7 +21,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: ai-infrastructure-bulletin-${{ github.ref }}
+  group: piyasa-masasi-research-data-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -40,7 +40,6 @@ jobs:
         run: |
           node --check ai-infrastructure-bulletin/portfolio-engine.js
           node --check ai-infrastructure-bulletin/app.js
-          node --check ai-infrastructure-bulletin/app-bilingual-patch.js
           node --check ai-infrastructure-bulletin/sw.js
           python -m py_compile ai-infrastructure-bulletin/scripts/update_bulletin.py
           python -m py_compile ai-infrastructure-bulletin/scripts/update_prices.py
@@ -49,10 +48,10 @@ jobs:
       - name: Validate portfolio accounting engine
         run: node ai-infrastructure-bulletin/tests/portfolio-engine.test.js
 
-      - name: Generate bilingual company-specific news evaluation
+      - name: Generate bilingual asset-specific research
         run: python ai-infrastructure-bulletin/scripts/update_bulletin.py
 
-      - name: Generate prices and one bilingual evaluation per company
+      - name: Generate prices and one bilingual evaluation per asset
         run: python ai-infrastructure-bulletin/scripts/update_prices.py
 
       - name: Validate generated report
@@ -68,5 +67,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add ai-infrastructure-bulletin/data/report.json
-          git commit -m "chore: refresh bilingual company evaluation"
+          git commit -m "chore: refresh bilingual asset research"
           git push
