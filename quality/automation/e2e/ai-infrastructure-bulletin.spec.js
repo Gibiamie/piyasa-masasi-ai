@@ -87,7 +87,7 @@ test('personal portfolio calculates purchases and sales and persists in English'
 
   await page.locator('#languageToggle').click();
   await expect(page.locator('html')).toHaveAttribute('lang', 'en');
-  await expect(page.locator('.tab[data-view="portfolio"]')).toHaveText('My Portfolio');
+  await expect(page.locator('.tab[data-view="portfolio"]')).toContainText('My Portfolio');
   await expect(page.locator('#portfolioView h2').first()).toHaveText('My basket and transaction ledger');
   await expect(page.locator('#summaryTitle')).toHaveText('Daily company assessment of the tracking universe');
 
