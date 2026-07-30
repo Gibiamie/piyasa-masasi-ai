@@ -3,6 +3,18 @@
 (function extendBrokerImportWithLocalFileReaders() {
   if (typeof BrokerPortfolioImport === "undefined") return;
 
+  const originalParseDate = BrokerPortfolioImport.parseDate;
+  BrokerPortfolioImport.parseDate = function parseDateFromCompactText(value) {
+    const parsed = originalParseDate(value);
+    if (parsed) return parsed;
+    const text = String(value ?? "");
+    let match = text.match(/(\d{1,2})[./-](\d{1,2})[./-](\d{4})/);
+    if (match) return `${match[3]}-${match[2].padStart(2, "0")}-${match[1].padStart(2, "0")}`;
+    match = text.match(/(\d{4})-(\d{1,2})-(\d{1,2})/);
+    if (match) return `${match[1]}-${match[2].padStart(2, "0")}-${match[3].padStart(2, "0")}`;
+    return null;
+  };
+
   const PDF_LIBRARY_SOURCES = [
     "./vendor/pdf.min.js?v=3.11.174",
     "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"
