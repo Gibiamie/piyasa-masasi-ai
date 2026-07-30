@@ -12,8 +12,9 @@ const CSV = [
 
 test.describe('Broker portfolio import center', () => {
   test.beforeEach(async ({ page }) => {
-    await page.addInitScript(key => localStorage.removeItem(key), PORTFOLIO_KEY);
     await page.goto(URL);
+    await page.evaluate(key => localStorage.removeItem(key), PORTFOLIO_KEY);
+    await page.reload();
     await expect(page.locator('#freshness')).not.toHaveText(/Yükleniyor|Loading/, { timeout: 25000 });
     await expect(page.locator('#brokerImportOpen')).toBeVisible({ timeout: 10000 });
   });
