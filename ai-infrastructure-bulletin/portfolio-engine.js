@@ -223,3 +223,15 @@
     validateAddition,
   };
 });
+
+if (typeof window !== "undefined" && typeof document !== "undefined") {
+  const loadInteractiveControls = () => {
+    if (document.querySelector("script[data-interactive-controls]")) return;
+    const script = document.createElement("script");
+    script.src = "./ui-controls.js?v=2026.07.30.2";
+    script.dataset.interactiveControls = "true";
+    document.head.appendChild(script);
+  };
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", loadInteractiveControls, { once: true });
+  else loadInteractiveControls();
+}
