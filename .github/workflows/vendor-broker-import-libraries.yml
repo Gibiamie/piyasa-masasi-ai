@@ -1,0 +1,48 @@
+name: Vendor Broker Import Libraries
+
+on:
+  push:
+    branches: [fix/osmanli-pdf-import]
+    paths:
+      - '.github/workflows/vendor-broker-import-libraries.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  vendor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/osmanli-pdf-import
+          fetch-depth: 0
+      - name: Download pinned browser libraries
+        run: |
+          set -euo pipefail
+          mkdir -p ai-infrastructure-bulletin/vendor
+          curl --fail --location --retry 4 --retry-delay 2 \
+            https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js \
+            -o ai-infrastructure-bulletin/vendor/pdf.min.js
+          curl --fail --location --retry 4 --retry-delay 2 \
+            https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js \
+            -o ai-infrastructure-bulletin/vendor/pdf.worker.min.js
+          curl --fail --location --retry 4 --retry-delay 2 \
+            https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js \
+            -o ai-infrastructure-bulletin/vendor/xlsx.full.min.js
+          test "$(wc -c < ai-infrastructure-bulletin/vendor/pdf.min.js)" -gt 200000
+          test "$(wc -c < ai-infrastructure-bulletin/vendor/pdf.worker.min.js)" -gt 500000
+          test "$(wc -c < ai-infrastructure-bulletin/vendor/xlsx.full.min.js)" -gt 500000
+      - name: Commit vendored libraries
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add ai-infrastructure-bulletin/vendor
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "build: vendor broker import browser libraries"
+          git push origin HEAD:fix/osmanli-pdf-import
