@@ -1,5 +1,20 @@
-const CACHE = "piyasa-masasi-workspace-v10";
-const STATIC = ["./", "./index.html", "./styles.css", "./portfolio-engine.js", "./app.js", "./ui-controls.js", "./broker-import.js", "./broker-import-csv.js", "./portfolio-import-ui.js", "./manifest.webmanifest", "./icon.svg"];
+const CACHE = "piyasa-masasi-workspace-v11";
+const STATIC = [
+  "./",
+  "./index.html",
+  "./styles.css",
+  "./portfolio-engine.js",
+  "./app.js",
+  "./ui-controls.js",
+  "./broker-import.js",
+  "./broker-import-csv.js",
+  "./portfolio-import-ui.js",
+  "./vendor/pdf.min.js",
+  "./vendor/pdf.worker.min.js",
+  "./vendor/xlsx.full.min.js",
+  "./manifest.webmanifest",
+  "./icon.svg"
+];
 const REPORT = "./data/report.json";
 
 self.addEventListener("install", event => {
