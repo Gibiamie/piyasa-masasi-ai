@@ -75,5 +75,6 @@ test('refresh re-fetches the price feeds and TradingView mounts for the selected
   await page.locator('[data-source="TV"]').click();
   const widget = page.locator('#pmTvWrap script');
   await expect(widget).toHaveCount(1);
-  await expect(widget).toContainText('BIST:TTRAK');
+  const widgetConfig = await widget.evaluate(script => JSON.parse(script.textContent));
+  expect(widgetConfig.symbol).toBe('BIST:TTRAK');
 });
