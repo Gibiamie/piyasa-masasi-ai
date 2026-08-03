@@ -5,6 +5,7 @@
 
   let lastRefresh = 0;
   let observer = null;
+  let observedList = null;
   let scheduled = false;
 
   const language = () => (typeof state !== "undefined" && state.language === "en" ? "en" : "tr");
@@ -111,7 +112,7 @@
     const card = age?.closest(".pm-status-card");
     if (card) card.className = "pm-status-card good";
     const note = document.getElementById("pmStatusNote");
-    if (note) note.textContent = `${api.runtime.quotes.size} ${text("varlık tarayıcı akışında yenileniyor", "assets are refreshing in the browser feed")}. ${text("Özel grafik günlük ve dönemsel OHLC; TradingView sekmesi intraday görünüm sağlar.", "The custom chart provides daily and range OHLC; the TradingView tab provides intraday detail.")}`;
+    if (note) note.textContent = `${api.runtime.quotes.size} ${text("varlık tarayıcı akışında yenileniyor", "assets are refreshing in the browser feed")}. ${text("Özel grafik dönemsel OHLC; TradingView sekmesi intraday görünüm sağlar.", "The custom chart provides range OHLC; the TradingView tab provides intraday detail.")}`;
   }
 
   function patchAll() {
@@ -130,18 +131,23 @@
 
   function installObserver() {
     const list = document.getElementById("pmAssetList");
-    if (!list || observer) return;
+    if (!list) return;
+    if (list === observedList && observer) return;
+    observer?.disconnect();
+    observedList = list;
     observer = new MutationObserver(schedulePatch);
     observer.observe(list, { childList: true, subtree: true, attributes: true, attributeFilter: ["class"] });
     list.addEventListener("click", () => setTimeout(schedulePatch, 0));
+    schedulePatch();
   }
 
   function loop() {
     const api = liveApi();
     installObserver();
+    if (document.getElementById("pmMarketWorkspace")) schedulePatch();
     if (api?.runtime?.lastRefresh && api.runtime.lastRefresh !== lastRefresh) {
       lastRefresh = api.runtime.lastRefresh;
-      patchAll();
+      schedulePatch();
     }
     setTimeout(loop, 500);
   }
