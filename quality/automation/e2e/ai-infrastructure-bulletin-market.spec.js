@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test');
 
-const URL = '/ai-infrastructure-bulletin/#market';
+const APP_URL = '/ai-infrastructure-bulletin/#market';
 const PORTFOLIO_KEY = 'ai-infrastructure-bulletin.portfolio.v1';
 
 test.beforeEach(async ({ page }) => {
@@ -19,7 +19,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('loads BIST and Nasdaq quotes with a working portfolio chart on the first visit', async ({ page }) => {
-  await page.goto(URL);
+  await page.goto(APP_URL);
 
   await expect(page.locator('.tab[data-view="market"]')).toBeVisible();
   await expect(page.locator('#marketView')).toHaveClass(/active/);
@@ -58,7 +58,7 @@ test('refresh re-fetches the price feeds and TradingView mounts for the selected
     if (pathname.endsWith('/mic/data/market.json') || pathname.endsWith('/mic/data/nasdaq-quotes.json') || pathname.endsWith('/ai-infrastructure-bulletin/data/report.json')) requested.push(pathname);
   });
 
-  await page.goto(URL);
+  await page.goto(APP_URL);
   await expect(page.locator('#pmAssetTitle')).toContainText('TTRAK', { timeout: 25000 });
   requested.length = 0;
   await page.locator('#pmReloadMarket').click();
