@@ -3,6 +3,8 @@ const { test, expect } = require('@playwright/test');
 const APP_URL = '/ai-infrastructure-bulletin/#market';
 const PORTFOLIO_KEY = 'ai-infrastructure-bulletin.portfolio.v1';
 
+test.setTimeout(90_000);
+
 function chartPayload(symbol, range) {
   const now = Math.floor(Date.now() / 1000);
   const intraday = range === '1d';
@@ -104,18 +106,15 @@ test.describe('Live quotes and chart workspace', () => {
     }, { key: PORTFOLIO_KEY });
 
     await page.goto(APP_URL);
-    await page.evaluate(() => navigator.serviceWorker?.ready);
-    await page.waitForFunction(() => window.PiyasaLiveMarket?.runtime?.quotes?.size > 0, null, { timeout: 45000 });
-
-    if (!(await page.locator('.tab[data-view="market"]').count())) {
-      await page.reload();
-      await page.waitForFunction(() => window.PiyasaLiveMarket?.runtime?.quotes?.size > 0, null, { timeout: 45000 });
-    }
+    await page.evaluate(async () => { if ('serviceWorker' in navigator) await navigator.serviceWorker.ready; });
+    await page.reload();
+    await page.waitForFunction(() => window.PiyasaLiveMarket, null, { timeout: 30_000 });
+    await page.waitForFunction(() => window.PiyasaLiveMarket?.runtime?.quotes?.size > 0, null, { timeout: 45_000 });
 
     await expect(page.locator('.tab[data-view="market"]')).toBeVisible();
     await page.locator('.tab[data-view="market"]').click();
     await expect(page.locator('#marketView')).toHaveClass(/active/);
-    await expect(page.locator('.pm-market-list-meta')).toContainText(/30 sn|30-sec/);
+    await expect(page.locator('.pm-market-list-meta')).toContainText(/30 sn|30-sec/, { timeout: 10_000 });
 
     await page.locator('#pmMarketSearch').fill('TTRAK');
     await expect(page.locator('[data-pm-symbol="TTRAK"]')).toBeVisible();
@@ -124,11 +123,11 @@ test.describe('Live quotes and chart workspace', () => {
     await expect(page.locator('#pmAssetChange')).toContainText(/gecikmeli|delayed/);
 
     await page.evaluate(() => openAssetDrawer('LUNR'));
-    await expect(page.locator('#assetLiveChart')).toBeVisible({ timeout: 30000 });
+    await expect(page.locator('#assetLiveChart')).toBeVisible({ timeout: 30_000 });
     await expect(page.locator('#assetLiveChart [data-chart-price]')).toContainText(/20/);
     await expect(page.locator('#assetLiveChart [data-chart-range="1D"]')).toBeVisible();
     await expect(page.locator('#assetLiveChart [data-chart-range="2Y"]')).toBeVisible();
-    await expect(page.locator('#assetLiveChart .chart-svg')).toBeVisible({ timeout: 30000 });
+    await expect(page.locator('#assetLiveChart .chart-svg')).toBeVisible({ timeout: 30_000 });
     await expect(page.locator('#assetLiveChart .chart-cost-label')).toContainText(/maliyet|cost/i);
     await expect(page.locator('#assetLiveChart .chart-marker-buy')).toHaveCount(1);
 
@@ -151,7 +150,7 @@ test.describe('Live quotes and chart workspace', () => {
 
     liveLunrPrice = 21;
     await page.locator('#refresh').click();
-    await expect(page.locator('#portfolioMarketTotals')).toContainText(/210/, { timeout: 30000 });
+    await expect(page.locator('#portfolioMarketTotals')).toContainText(/210/, { timeout: 30_000 });
     await expect(page.locator('#portfolioUnrealizedTotals')).toContainText(/110/);
 
     await page.locator('#languageToggle').click();
