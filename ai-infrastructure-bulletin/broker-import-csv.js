@@ -280,3 +280,11 @@
     }
   };
 })();
+
+(function loadLiveMarketLayer() {
+  if (typeof document === "undefined" || document.querySelector("script[data-live-market]")) return;
+  const script = document.createElement("script");
+  script.src = "./live-market.js?v=2026.08.03.1";
+  script.dataset.liveMarket = "true";
+  document.head.appendChild(script);
+})();
