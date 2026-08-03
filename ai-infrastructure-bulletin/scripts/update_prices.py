@@ -14,6 +14,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 REPORT_PATH = ROOT / "data" / "report.json"
 WATCHLIST_PATH = ROOT / "data" / "watchlist.json"
+MIC_HISTORY_DIR = ROOT.parent / "mic" / "data" / "history"
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/150 Safari/537.36",
     "Accept": "application/json,text/plain,*/*",
@@ -59,8 +60,13 @@ def fetch_symbol(item: dict[str, Any]) -> tuple[str, dict[str, Any] | None, str 
             indicators = result.get("indicators") or {}
             quote = (indicators.get("quote") or [{}])[0]
             adjclose = (indicators.get("adjclose") or [{}])[0].get("adjclose") or []
+            opens = quote.get("open") or []
+            highs = quote.get("high") or []
+            lows = quote.get("low") or []
             closes = quote.get("close") or []
+            volumes = quote.get("volume") or []
             history: list[tuple[str, float, float]] = []
+            ohlc_by_date: dict[str, dict[str, Any]] = {}
             for index, timestamp in enumerate(timestamps):
                 close = finite(closes[index] if index < len(closes) else None)
                 adjusted = finite(adjclose[index] if index < len(adjclose) else None)
@@ -69,6 +75,14 @@ def fetch_symbol(item: dict[str, Any]) -> tuple[str, dict[str, Any] | None, str 
                 adjusted = adjusted if adjusted is not None else close
                 date = datetime.fromtimestamp(timestamp, timezone.utc).date().isoformat()
                 history.append((date, close, adjusted))
+                ohlc_by_date[date] = {
+                    "date": date,
+                    "open": finite(opens[index] if index < len(opens) else None) or close,
+                    "high": finite(highs[index] if index < len(highs) else None) or close,
+                    "low": finite(lows[index] if index < len(lows) else None) or close,
+                    "close": close,
+                    "volume": finite(volumes[index] if index < len(volumes) else None) or 0,
+                }
             by_date = {date: (close, adjusted) for date, close, adjusted in history}
             history = [(date, values[0], values[1]) for date, values in sorted(by_date.items())]
             if len(history) < 2:
@@ -92,6 +106,7 @@ def fetch_symbol(item: dict[str, Any]) -> tuple[str, dict[str, Any] | None, str 
                 "sector_en": item.get("sector_en", item.get("sector", "Other")),
                 "provider": "Yahoo Finance chart feed",
                 "data_status": "CURRENT",
+                "_history": [ohlc_by_date[date] for date, _, _ in history[-540:]],
             }, None
         except Exception as exc:
             last_error = f"{host}: {type(exc).__name__}: {exc}"
@@ -227,17 +242,30 @@ def main() -> int:
     report = json.loads(REPORT_PATH.read_text(encoding="utf-8"))
     config = json.loads(WATCHLIST_PATH.read_text(encoding="utf-8")).get("tickers") or []
     rows: dict[str, dict[str, Any]] = {}
+    histories: dict[str, dict[str, Any]] = {}
     failures: list[dict[str, str]] = []
     with ThreadPoolExecutor(max_workers=8) as pool:
         jobs = {pool.submit(fetch_symbol, item): item for item in config}
         for future in as_completed(jobs):
             ticker, row, error = future.result()
             if row:
+                history = row.pop("_history", [])
+                if history:
+                    histories[ticker] = {
+                        "symbol": ticker,
+                        "provider_symbol": row.get("provider_symbol") or ticker,
+                        "provider": row.get("provider") or "Yahoo Finance chart feed",
+                        "updated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                        "history": history,
+                    }
                 rows[ticker] = row
             else:
                 failures.append({"ticker": ticker, "error": error or "unknown"})
     if not rows:
         raise RuntimeError("Yahoo price update produced no successful symbols")
+    MIC_HISTORY_DIR.mkdir(parents=True, exist_ok=True)
+    for ticker, payload in histories.items():
+        (MIC_HISTORY_DIR / f"{ticker}.json").write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     existing = {row["ticker"]: row for row in report.get("watchlist", [])}
     watchlist: list[dict[str, Any]] = []
     for item in config:

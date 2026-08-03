@@ -1,7 +1,7 @@
 "use strict";
 
 const DATA_URL = "./data/report.json";
-const APP_VERSION = "2026.07.30.1";
+const APP_VERSION = "2026.08.03.1";
 const REPO_ISSUES_URL = "https://github.com/Gibiamie/piyasa-masasi-ai/issues/new";
 const PORTFOLIO_KEY = "ai-infrastructure-bulletin.portfolio.v1";
 const LANGUAGE_KEY = "ai-infrastructure-bulletin.language";
@@ -18,14 +18,14 @@ const I18N = {
     portfolioPageTitle: "Portföy çalışma alanı", portfolioPageDescription: "Gerçek işlem fiyatlarıyla maliyeti, açık pozisyonları ve gerçekleşen sonuçları yönetin.",
     sourcesPageTitle: "Kaynak şeffaflığı", sourcesPageDescription: "Araştırma görüşlerinin dayandığı haberleri ve yayın zamanlarını inceleyin.",
     settingsPageTitle: "Çalışma alanı ayarları", settingsPageDescription: "Araştırma evrenini genişletin ve veri kullanım ilkelerini görün.",
-    searchPlaceholder: "Sembol, şirket veya tema ara", refresh: "Yenile", loading: "Yükleniyor", freshData: "Güncel", staleData: "Güncellik kontrolü gerekli", dataError: "Veri hatası",
+    searchPlaceholder: "Sembol, şirket veya tema ara", refresh: "Yenile", loading: "Yükleniyor", freshData: "Fiyat güncel", staleData: "Fiyat güncelliği kontrol edilmeli", dataError: "Veri hatası",
     todayBrief: "BUGÜNÜN ARAŞTIRMA NOTU", preparingEvaluation: "Değerlendirme hazırlanıyor", loadingData: "Veri yükleniyor.", mainRisk: "Ana risk",
     exploreResearch: "Araştırmayı incele", openPortfolio: "Portföyü aç", reportTime: "Rapor zamanı", companiesEvaluated: "Değerlendirilen varlık", materialEvents: "Önemli gelişme", leadingCompany: "Öne çıkan varlık",
     focusRadar: "ODAK RADARI", researchPriority: "Araştırma önceliği", viewAll: "Tümünü gör", portfolioSnapshot: "PORTFÖY ÖZETİ", yourPositions: "Pozisyonlarınız", manage: "Yönet",
     byCompany: "VARLIK BAZINDA", dailyResearchViews: "Günlük araştırma görüşleri", last24Hours: "SON 24 SAAT", companyMaterialEvents: "Önemli gelişmeler",
     noMaterialEvent: "Önem eşiğini geçen gelişme yok", noMaterialEventDetail: "Haber bulunmaması fiyat ve temel risk değerlendirmesini durdurmaz.",
     all: "Tümü", positive: "Pozitif", negative: "Negatif", neutral: "Nötr", uncertain: "Belirsiz", speculative: "Spekülatif",
-    fullUniverse: "TÜM ARAŞTIRMA EVRENİ", companyPerformance: "Varlık performansı ve görüşler", marketDataLoading: "Piyasa verisi yükleniyor.", marketClose: "Piyasa verisi: {date}", marketUnavailable: "Piyasa verisi mevcut değil.",
+    fullUniverse: "TÜM ARAŞTIRMA EVRENİ", companyPerformance: "Varlık performansı ve görüşler", marketDataLoading: "Piyasa verisi yükleniyor.", marketClose: "Son fiyat zamanı: {date}", marketUnavailable: "Piyasa verisi mevcut değil.",
     filter: "Filtre", sort: "Sırala", searchAssets: "Varlık ara", sortTicker: "Sembol", sortMomentum: "21 günlük performans", sortRating: "Araştırma görüşü", sortRisk: "Risk",
     company: "Varlık", researchView: "Araştırma görüşü", price: "Fiyat", oneDay: "1 Gün", twentyOneDays: "21 Gün", twoFiftyTwoDays: "252 Gün", fiftyTwoWeekHigh: "52H Zirve", risk: "Risk",
     strongPositive: "Güçlü Pozitif", highUncertainty: "Yüksek Belirsizlik", highConfidence: "Yüksek Güven", mediumConfidence: "Orta Güven", lowConfidence: "Düşük Güven", unverified: "Doğrulanmadı",
@@ -52,14 +52,14 @@ const I18N = {
     portfolioPageTitle: "Portfolio workspace", portfolioPageDescription: "Manage cost, open positions and realized outcomes using actual transaction prices.",
     sourcesPageTitle: "Source transparency", sourcesPageDescription: "Review the news and publication times supporting each research view.",
     settingsPageTitle: "Workspace settings", settingsPageDescription: "Expand the research universe and review data-use principles.",
-    searchPlaceholder: "Search symbol, company or theme", refresh: "Refresh", loading: "Loading", freshData: "Current", staleData: "Freshness check required", dataError: "Data error",
+    searchPlaceholder: "Search symbol, company or theme", refresh: "Refresh", loading: "Loading", freshData: "Price current", staleData: "Price freshness requires checking", dataError: "Data error",
     todayBrief: "TODAY'S RESEARCH NOTE", preparingEvaluation: "Preparing evaluation", loadingData: "Loading data.", mainRisk: "Main risk",
     exploreResearch: "Explore research", openPortfolio: "Open portfolio", reportTime: "Report time", companiesEvaluated: "Assets evaluated", materialEvents: "Material events", leadingCompany: "Leading asset",
     focusRadar: "FOCUS RADAR", researchPriority: "Research priority", viewAll: "View all", portfolioSnapshot: "PORTFOLIO SNAPSHOT", yourPositions: "Your positions", manage: "Manage",
     byCompany: "BY ASSET", dailyResearchViews: "Daily research views", last24Hours: "LAST 24 HOURS", companyMaterialEvents: "Material developments",
     noMaterialEvent: "No event passed the materiality threshold", noMaterialEventDetail: "The absence of news does not stop the price and fundamental-risk assessment.",
     all: "All", positive: "Positive", negative: "Negative", neutral: "Neutral", uncertain: "Uncertain", speculative: "Speculative",
-    fullUniverse: "FULL RESEARCH UNIVERSE", companyPerformance: "Asset performance and views", marketDataLoading: "Loading market data.", marketClose: "Market data: {date}", marketUnavailable: "Market data is unavailable.",
+    fullUniverse: "FULL RESEARCH UNIVERSE", companyPerformance: "Asset performance and views", marketDataLoading: "Loading market data.", marketClose: "Last price time: {date}", marketUnavailable: "Market data is unavailable.",
     filter: "Filter", sort: "Sort", searchAssets: "Search assets", sortTicker: "Symbol", sortMomentum: "21-day performance", sortRating: "Research view", sortRisk: "Risk",
     company: "Asset", researchView: "Research view", price: "Price", oneDay: "1 Day", twentyOneDays: "21 Days", twoFiftyTwoDays: "252 Days", fiftyTwoWeekHigh: "52W High", risk: "Risk",
     strongPositive: "Strong Positive", highUncertainty: "High Uncertainty", highConfidence: "High Confidence", mediumConfidence: "Medium Confidence", lowConfidence: "Low Confidence", unverified: "Unverified",
@@ -190,11 +190,11 @@ function render() {
   $("#mainRiskValue").textContent = localizedField(summary, "main_risk") || "—";
   $("#summaryTitle").textContent = localizedField(summary, "headline") || t("preparingEvaluation");
   $("#summaryText").textContent = localizedField(summary, "summary") || t("noMaterialEvent");
-  $("#marketAsOf").textContent = report.market_data_as_of ? t("marketClose", { date: fmtDateOnly(report.market_data_as_of) }) : t("marketUnavailable");
-  const generatedAt = new Date(report.generated_at).getTime();
-  const ageHours = Number.isFinite(generatedAt) ? Math.max(0, (Date.now() - generatedAt) / 36e5) : Infinity;
-  $("#freshness").textContent = ageHours <= 30 ? t("freshData") : t("staleData");
-  $("#freshness").className = `status-pill ${ageHours <= 30 ? "positive" : "warning"}`;
+  $("#marketAsOf").textContent = report.market_data_as_of ? t("marketClose", { date: fmtDate(report.market_data_as_of) }) : t("marketUnavailable");
+  const marketTimestamp = new Date(report.market_data_as_of || report.generated_at).getTime();
+  const ageMinutes = Number.isFinite(marketTimestamp) ? Math.max(0, (Date.now() - marketTimestamp) / 6e4) : Infinity;
+  $("#freshness").textContent = ageMinutes <= 30 ? t("freshData") : t("staleData");
+  $("#freshness").className = `status-pill ${ageMinutes <= 30 ? "positive" : "warning"}`;
   $("#appVersion").textContent = `v${APP_VERSION}`;
   renderTrackedSymbols(data.watchlist || []);
   renderFocus(evaluations);

@@ -50,6 +50,8 @@ class PriceUpdateTests(unittest.TestCase):
         self.assertEqual(row["provider_symbol"], "TTRAK.IS")
         self.assertEqual(row["currency"], "TRY")
         self.assertIsNotNone(row["return_252d_pct"])
+        self.assertEqual(len(row["_history"]), 270)
+        self.assertEqual(row["_history"][-1]["close"], closes[-1])
         self.assertIn("TTRAK.IS", mocked.call_args.args[0])
 
     def test_percentage_change_rejects_zero_denominator(self):

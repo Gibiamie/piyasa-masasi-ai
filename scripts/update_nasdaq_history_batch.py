@@ -46,7 +46,7 @@ def fetch_one(asset):
         try:
             response=requests.get(
                 f'https://{host}/v8/finance/chart/{encoded}',
-                params={'range':'1y','interval':'1d','events':'div,splits'},
+                params={'range':'2y','interval':'1d','events':'div,splits'},
                 headers=HEADERS,
                 timeout=30
             )
@@ -89,7 +89,7 @@ def fetch_one(asset):
                 'provider_symbol':provider_symbol,
                 'provider':'Yahoo Finance chart feed',
                 'updated_at':datetime.now(timezone.utc).isoformat(timespec='seconds'),
-                'history':history[-270:]
+                'history':history[-540:]
             }
             return symbol,payload,None
         except Exception as exc:

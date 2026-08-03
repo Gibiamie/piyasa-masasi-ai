@@ -1,4 +1,4 @@
-const CACHE = "piyasa-masasi-workspace-v12";
+const CACHE = "piyasa-masasi-workspace-v13";
 const STATIC = [
   "./",
   "./index.html",
@@ -16,10 +16,6 @@ const STATIC = [
   "./manifest.webmanifest",
   "./icon.svg"
 ];
-const REPORT = "./data/report.json";
-const APP_SCRIPT = "./app.js";
-const INTEGRATION_SCRIPT = "./market-integration.js";
-
 self.addEventListener("install", event => {
   event.waitUntil(caches.open(CACHE).then(cache => Promise.all(STATIC.map(url => cache.add(url).catch(() => null)))));
   self.skipWaiting();
@@ -30,56 +26,15 @@ self.addEventListener("activate", event => {
     const keys = await caches.keys();
     await Promise.all(keys.filter(key => key !== CACHE).map(key => caches.delete(key)));
     await self.clients.claim();
-    const windows = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
-    await Promise.all(windows.map(client => client.url.includes("/ai-infrastructure-bulletin/") ? client.navigate(client.url).catch(() => null) : null));
   })());
 });
-
-async function combineApplication(baseResponse, integrationResponse) {
-  if (!baseResponse?.ok || !integrationResponse?.ok) throw new Error("Application integration files are unavailable");
-  const [base, integration] = await Promise.all([baseResponse.text(), integrationResponse.text()]);
-  return new Response(`${base}\n\n/* Integrated market and chart workspace */\n${integration}`, {
-    status: 200,
-    headers: {
-      "Content-Type": "application/javascript; charset=utf-8",
-      "Cache-Control": "no-cache"
-    }
-  });
-}
-
-async function integratedApplication(request) {
-  try {
-    const [base, integration] = await Promise.all([
-      fetch(request, { cache: "no-cache" }),
-      fetch(INTEGRATION_SCRIPT, { cache: "no-cache" })
-    ]);
-    const combined = await combineApplication(base, integration);
-    const cache = await caches.open(CACHE);
-    await cache.put(APP_SCRIPT, combined.clone());
-    return combined;
-  } catch (_) {
-    const cache = await caches.open(CACHE);
-    const combined = await cache.match(APP_SCRIPT, { ignoreSearch: true });
-    if (combined) return combined;
-    const [base, integration] = await Promise.all([
-      cache.match(APP_SCRIPT, { ignoreSearch: true }),
-      cache.match(INTEGRATION_SCRIPT, { ignoreSearch: true })
-    ]);
-    return combineApplication(base, integration);
-  }
-}
 
 self.addEventListener("fetch", event => {
   if (event.request.method !== "GET") return;
   const url = new URL(event.request.url);
 
-  if (url.pathname.endsWith("/ai-infrastructure-bulletin/app.js")) {
-    event.respondWith(integratedApplication(event.request));
-    return;
-  }
-
-  if (url.pathname.endsWith("/data/report.json") || url.pathname.endsWith("/mic/data/market.json") || url.pathname.includes("/mic/data/history/")) {
-    event.respondWith(fetch(event.request, { cache: "no-store" }).then(response => {
+  if (url.pathname.endsWith("/data/report.json") || url.pathname.endsWith("/mic/data/market.json") || url.pathname.endsWith("/mic/data/nasdaq-quotes.json") || url.pathname.includes("/mic/data/history/")) {
+    event.respondWith(fetch(event.request, { cache: "no-cache" }).then(response => {
       if (response.ok) caches.open(CACHE).then(cache => cache.put(event.request, response.clone()));
       return response;
     }).catch(() => caches.match(event.request, { ignoreSearch: true })));
