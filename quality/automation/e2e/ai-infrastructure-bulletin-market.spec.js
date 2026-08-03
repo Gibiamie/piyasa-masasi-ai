@@ -29,7 +29,7 @@ test('loads BIST and Nasdaq quotes with a working portfolio chart on the first v
   await expect.poll(async () => Number(await page.locator('#pmStatusUs').textContent())).toBeGreaterThan(4000);
   await expect(page.locator('#pmPositionQty')).toContainText('127');
   await expect(page.locator('#pmPositionAvg')).toContainText(/245[,.]25/);
-  await expect(page.locator('#pmChartStats')).not.toHaveText('—');
+  await expect(page.locator('#pmChartStats')).not.toHaveText('—', { timeout: 25000 });
   const ttrakMarketPrice = await page.locator('#pmAssetPrice').textContent();
 
   const canvas = page.locator('#pmChartCanvas');
@@ -53,6 +53,11 @@ test('loads BIST and Nasdaq quotes with a working portfolio chart on the first v
 
 test('refresh re-fetches the price feeds and TradingView mounts for the selected equity', async ({ page }) => {
   const requested = [];
+  await page.route('https://s3.tradingview.com/**', route => route.fulfill({
+    status: 200,
+    contentType: 'application/javascript',
+    body: ''
+  }));
   page.on('request', request => {
     const pathname = new URL(request.url()).pathname;
     if (pathname.endsWith('/mic/data/market.json') || pathname.endsWith('/mic/data/nasdaq-quotes.json') || pathname.endsWith('/ai-infrastructure-bulletin/data/report.json')) requested.push(pathname);
@@ -60,9 +65,12 @@ test('refresh re-fetches the price feeds and TradingView mounts for the selected
 
   await page.goto(APP_URL);
   await expect(page.locator('#pmAssetTitle')).toContainText('TTRAK', { timeout: 25000 });
+  await expect(page.locator('#pmChartStats')).not.toHaveText('—', { timeout: 25000 });
   requested.length = 0;
+  const historyRefreshed = page.waitForResponse(response => response.url().endsWith('/mic/data/history/TTRAK.json'), { timeout: 25000 });
   await page.locator('#pmReloadMarket').click();
   await expect.poll(() => new Set(requested).size).toBe(3);
+  await historyRefreshed;
 
   await page.locator('[data-source="TV"]').click();
   const widget = page.locator('#pmTvWrap script');
