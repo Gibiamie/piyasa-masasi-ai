@@ -1,0 +1,70 @@
+name: Live Browser Session Validation
+
+on:
+  push:
+    branches: [remediation/v30-audit]
+    paths:
+      - 'ai-infrastructure-bulletin/live-session-control.js'
+      - 'ai-infrastructure-bulletin/live-market.js'
+      - 'ai-infrastructure-bulletin/live-market-core.js'
+      - 'ai-infrastructure-bulletin/bist-widget-guard.js'
+      - 'ai-infrastructure-bulletin/sw.js'
+      - 'ai-infrastructure-bulletin/tests/live-session-control.test.js'
+      - '.github/workflows/live-browser-session.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-live-session:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Validate JavaScript
+        run: |
+          node --check ai-infrastructure-bulletin/live-session-control.js
+          node --check ai-infrastructure-bulletin/live-market.js
+          node --check ai-infrastructure-bulletin/live-market-core.js
+          node --check ai-infrastructure-bulletin/bist-widget-guard.js
+          node --check ai-infrastructure-bulletin/sw.js
+
+      - name: Verify user-triggered session behavior
+        run: node ai-infrastructure-bulletin/tests/live-session-control.test.js
+
+      - name: Verify real BIST intraday source
+        run: |
+          node <<'NODE'
+          const symbols = ['AEFES.IS', 'THYAO.IS', 'ASELS.IS'];
+          let passed = 0;
+          for (const symbol of symbols) {
+            let lastError;
+            for (const host of ['query1.finance.yahoo.com', 'query2.finance.yahoo.com']) {
+              try {
+                const url = `https://${host}/v8/finance/chart/${symbol}?range=1d&interval=5m&events=history`;
+                const response = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0' } });
+                if (!response.ok) throw new Error(`${host} HTTP ${response.status}`);
+                const payload = await response.json();
+                const result = payload?.chart?.result?.[0];
+                const timestamps = result?.timestamp || [];
+                const close = result?.indicators?.quote?.[0]?.close || [];
+                const valid = close.filter(Number.isFinite).length;
+                if (!timestamps.length || !valid) throw new Error(`${symbol} returned no 5-minute bars`);
+                console.log(`${symbol}: ${valid} valid 5-minute bars from ${host}`);
+                passed += 1;
+                lastError = null;
+                break;
+              } catch (error) {
+                lastError = error;
+              }
+            }
+            if (lastError) console.warn(`${symbol}: ${lastError.message}`);
+          }
+          if (!passed) throw new Error('No tested BIST symbol returned intraday bars');
+          NODE
