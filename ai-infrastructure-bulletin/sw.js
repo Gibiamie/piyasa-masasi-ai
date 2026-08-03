@@ -1,20 +1,20 @@
-const CACHE = "piyasa-masasi-workspace-v18";
+const CACHE = "piyasa-masasi-workspace-v19";
 const STATIC = [
   "./",
   "./index.html",
   "./styles.css",
   "./portfolio-engine.js",
   "./app.js",
+  "./ui-controls.js",
   "./market-integration.js",
-  "./bist-widget-guard.js",
-  "./us-native-intraday.js",
+  "./market-workspace-core.js",
+  "./native-intraday-core.js",
   "./workspace-enhancements.js",
+  "./market-live-bridge.js",
+  "./chart-fetch-fallback.js",
   "./live-market.js",
   "./live-market-core.js",
   "./live-session-control.js",
-  "./market-live-bridge.js",
-  "./chart-fetch-fallback.js",
-  "./ui-controls.js",
   "./broker-import.js",
   "./broker-import-csv.js",
   "./portfolio-import-ui.js",
@@ -24,13 +24,6 @@ const STATIC = [
   "./manifest.webmanifest",
   "./icon.svg"
 ];
-
-const MARKET_INTEGRATION = "./market-integration.js";
-const BIST_WIDGET_GUARD = "./bist-widget-guard.js";
-const US_NATIVE_INTRADAY = "./us-native-intraday.js";
-const WORKSPACE_ENHANCEMENTS = "./workspace-enhancements.js";
-const LIVE_MARKET_BOOTSTRAP = "./live-market.js";
-const LIVE_SESSION_CONTROL = "./live-session-control.js";
 
 self.addEventListener("install", event => {
   event.waitUntil(caches.open(CACHE).then(cache => Promise.all(STATIC.map(url => cache.add(url).catch(() => null)))));
@@ -47,60 +40,20 @@ self.addEventListener("activate", event => {
   })());
 });
 
-async function combineMarketIntegration(request) {
-  const cache = await caches.open(CACHE);
-  try {
-    const [baseResponse, bistResponse, usResponse, enhancementsResponse, liveResponse, sessionResponse] = await Promise.all([
-      fetch(request, { cache: "no-cache" }),
-      fetch(BIST_WIDGET_GUARD, { cache: "no-cache" }),
-      fetch(US_NATIVE_INTRADAY, { cache: "no-cache" }),
-      fetch(WORKSPACE_ENHANCEMENTS, { cache: "no-cache" }),
-      fetch(LIVE_MARKET_BOOTSTRAP, { cache: "no-cache" }),
-      fetch(LIVE_SESSION_CONTROL, { cache: "no-cache" })
-    ]);
-    if (!baseResponse.ok || !bistResponse.ok || !usResponse.ok || !enhancementsResponse.ok || !liveResponse.ok || !sessionResponse.ok) {
-      throw new Error("Market workspace files are unavailable");
-    }
-    const [base, bist, us, enhancements, live, sessionControl] = await Promise.all([
-      baseResponse.text(),
-      bistResponse.text(),
-      usResponse.text(),
-      enhancementsResponse.text(),
-      liveResponse.text(),
-      sessionResponse.text()
-    ]);
-    const combined = new Response(
-      `${base}\n\n/* BIST native intraday workspace */\n${bist}\n\n/* US native intraday workspace */\n${us}\n\n/* Workspace enhancements */\n${enhancements}\n\n/* MIC live-market bootstrap */\n${live}\n\n/* User-controlled live session */\n${sessionControl}`,
-      {
-        status: 200,
-        headers: {
-          "Content-Type": "application/javascript; charset=utf-8",
-          "Cache-Control": "no-cache"
-        }
-      }
-    );
-    await cache.put(MARKET_INTEGRATION, combined.clone());
-    return combined;
-  } catch (_) {
-    const cached = await cache.match(MARKET_INTEGRATION, { ignoreSearch: true });
-    return cached || Response.error();
-  }
-}
-
 self.addEventListener("fetch", event => {
   if (event.request.method !== "GET") return;
   const url = new URL(event.request.url);
 
-  // Third-party quote and chart calls are handled directly by the browser layer.
+  // The browser live layer owns all third-party quote and chart requests.
   if (url.origin !== self.location.origin) return;
 
-  if (url.pathname.endsWith("/ai-infrastructure-bulletin/market-integration.js")) {
-    event.respondWith(combineMarketIntegration(event.request));
-    return;
-  }
+  const marketData = url.pathname.endsWith("/data/report.json")
+    || url.pathname.endsWith("/mic/data/market.json")
+    || url.pathname.endsWith("/mic/data/nasdaq-quotes.json")
+    || url.pathname.includes("/mic/data/history/");
 
-  if (url.pathname.endsWith("/data/report.json") || url.pathname.endsWith("/mic/data/market.json") || url.pathname.endsWith("/mic/data/nasdaq-quotes.json") || url.pathname.includes("/mic/data/history/")) {
-    event.respondWith(fetch(event.request, { cache: "no-cache" }).then(response => {
+  if (marketData) {
+    event.respondWith(fetch(event.request, { cache: "no-store" }).then(response => {
       if (response.ok) caches.open(CACHE).then(cache => cache.put(event.request, response.clone()));
       return response;
     }).catch(() => caches.match(event.request, { ignoreSearch: true })));
