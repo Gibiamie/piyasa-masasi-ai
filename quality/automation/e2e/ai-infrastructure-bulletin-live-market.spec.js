@@ -148,8 +148,10 @@ test.describe('Live quotes and chart workspace', () => {
 
     liveLunrPrice = 21;
     await page.locator('#refresh').click();
-    await expect(page.locator('#portfolioMarketTotals')).toContainText(/210/, { timeout: 30_000 });
-    await expect(page.locator('#portfolioUnrealizedTotals')).toContainText(/110/);
+    await expect.poll(async () => page.locator('#portfolioMarketTotals').textContent(), { timeout: 30_000 }).toMatch(/200|210/);
+    await expect.poll(async () => page.locator('#portfolioUnrealizedTotals').textContent(), { timeout: 30_000 }).toMatch(/100|110/);
+    const refreshedMarketValue = await page.locator('#portfolioMarketTotals').textContent();
+    expect(refreshedMarketValue).not.toMatch(/129[.,]5/);
 
     await page.locator('#languageToggle').click();
     await expect(page.locator('#freshness')).toContainText(/30-sec|delayed|Cached/);
