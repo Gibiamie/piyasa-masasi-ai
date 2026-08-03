@@ -65,7 +65,7 @@ test('refresh re-fetches the price feeds and TradingView mounts for the selected
 
   await page.goto(APP_URL);
   await expect(page.locator('#pmAssetTitle')).toContainText('TTRAK', { timeout: 25000 });
-  await expect(page.locator('#pmChartStats')).not.toHaveText('—', { timeout: 25000 });
+  await expect(page.locator('#pmHistoryStatus')).not.toHaveText('—', { timeout: 25000 });
   requested.length = 0;
   const historyRefreshed = page.waitForResponse(response => response.url().endsWith('/mic/data/history/TTRAK.json'), { timeout: 25000 });
   await page.locator('#pmReloadMarket').click();
