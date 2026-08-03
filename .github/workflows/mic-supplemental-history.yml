@@ -6,7 +6,6 @@ on:
     paths:
       - scripts/update_supplemental_history.py
       - mic/data/supplemental-assets.json
-      - .github/workflows/mic-supplemental-history.yml
   schedule:
     - cron: '25 22 * * 1-5'
 
@@ -14,8 +13,8 @@ permissions:
   contents: write
 
 concurrency:
-  group: piyasa-data-refresh-${{ github.ref }}
-  cancel-in-progress: false
+  group: mic-supplemental-history-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   update:
@@ -38,6 +37,6 @@ jobs:
           for attempt in 1 2 3; do
             if git push origin "HEAD:${GITHUB_REF_NAME}"; then exit 0; fi
             git fetch origin "${GITHUB_REF_NAME}"
-            git rebase "origin/${GITHUB_REF_NAME}"
+            git rebase -X theirs "origin/${GITHUB_REF_NAME}"
           done
           exit 1

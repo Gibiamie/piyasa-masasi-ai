@@ -3,13 +3,12 @@ name: Piyasa Masasi AI Research Data
 on:
   workflow_dispatch:
   schedule:
-    - cron: "30 5 * * *"
+    - cron: "37 5 * * *"
   push:
     branches:
       - remediation/v30-audit
     paths:
       - "ai-infrastructure-bulletin/**"
-      - ".github/workflows/ai-infrastructure-bulletin.yml"
   pull_request:
     branches:
       - remediation/v30-audit
@@ -21,8 +20,8 @@ permissions:
   contents: write
 
 concurrency:
-  group: piyasa-data-refresh-${{ github.ref }}
-  cancel-in-progress: false
+  group: piyasa-masasi-research-data-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   validate-and-refresh:
@@ -73,6 +72,6 @@ jobs:
           for attempt in 1 2 3; do
             if git push origin "HEAD:${GITHUB_REF_NAME}"; then exit 0; fi
             git fetch origin "${GITHUB_REF_NAME}"
-            git rebase "origin/${GITHUB_REF_NAME}"
+            git rebase -X theirs "origin/${GITHUB_REF_NAME}"
           done
           exit 1

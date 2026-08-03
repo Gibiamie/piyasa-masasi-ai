@@ -5,7 +5,6 @@ on:
   push:
     paths:
       - scripts/update_mic_history.py
-      - .github/workflows/mic-history.yml
   schedule:
     - cron: '20 18 * * 1-5'
 
@@ -13,8 +12,8 @@ permissions:
   contents: write
 
 concurrency:
-  group: piyasa-data-refresh-${{ github.ref }}
-  cancel-in-progress: false
+  group: mic-chart-history-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   update-history:
@@ -37,6 +36,6 @@ jobs:
           for attempt in 1 2 3; do
             if git push origin "HEAD:${GITHUB_REF_NAME}"; then exit 0; fi
             git fetch origin "${GITHUB_REF_NAME}"
-            git rebase "origin/${GITHUB_REF_NAME}"
+            git rebase -X theirs "origin/${GITHUB_REF_NAME}"
           done
           exit 1
