@@ -6,6 +6,7 @@ on:
     paths:
       - 'ai-infrastructure-bulletin/live-market.js'
       - 'ai-infrastructure-bulletin/live-market-core.js'
+      - 'ai-infrastructure-bulletin/chart-fetch-fallback.js'
       - 'ai-infrastructure-bulletin/market-live-bridge.js'
       - 'ai-infrastructure-bulletin/market-integration.js'
       - 'ai-infrastructure-bulletin/broker-import-csv.js'
@@ -41,6 +42,7 @@ jobs:
         run: |
           node --check ai-infrastructure-bulletin/live-market.js
           node --check ai-infrastructure-bulletin/live-market-core.js
+          node --check ai-infrastructure-bulletin/chart-fetch-fallback.js
           node --check ai-infrastructure-bulletin/market-live-bridge.js
           node --check ai-infrastructure-bulletin/market-integration.js
           node --check ai-infrastructure-bulletin/broker-import-csv.js
