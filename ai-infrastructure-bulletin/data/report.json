@@ -1,10 +1,10 @@
 {
   "report": {
-    "report_id": "2026-08-04-0003",
-    "generated_at": "2026-08-04T00:03:45.934887+04:00",
+    "report_id": "2026-08-04-0006",
+    "generated_at": "2026-08-04T00:06:01.009535+04:00",
     "timezone": "Asia/Muscat",
-    "window_start": "2026-08-03T00:03:45.934887+04:00",
-    "window_end": "2026-08-04T00:03:45.934887+04:00",
+    "window_start": "2026-08-03T00:06:01.009535+04:00",
+    "window_end": "2026-08-04T00:06:01.009535+04:00",
     "market_data_as_of": "2026-08-03",
     "material_event_count": 42,
     "company_count": 18,
@@ -35,7 +35,7 @@
       "headline": "Bitget UEX Daily｜US-Iran Talks Possibly Tomorrow, Hormuz Agreement Signals Emerge; Amazon Completes $50 Billion OpenAI Investment; Palantir Earnings After the Close (August 3, 2026) - Bitget",
       "event_time": "2026-08-03T04:26:23+00:00",
       "published_time": "2026-08-03T04:26:23+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.113752+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.548172+00:00",
       "facts": [
         "Bitget UEX Daily｜US-Iran Talks Possibly Tomorrow, Hormuz Agreement Signals Emerge; Amazon Completes $50 Billion OpenAI Investment; Palantir Earnings After the Close (August 3, 2026) - Bitget"
       ],
@@ -92,7 +92,7 @@
       "headline": "AMD Earnings Preview: Can AI Chip Revenue and Helios Orders Push Stock Above $600? - TradingKey",
       "event_time": "2026-08-03T13:17:20+00:00",
       "published_time": "2026-08-03T13:17:20+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.113795+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.548211+00:00",
       "facts": [
         "AMD Earnings Preview: Can AI Chip Revenue and Helios Orders Push Stock Above $600? - TradingKey"
       ],
@@ -149,7 +149,7 @@
       "headline": "SpaceX Could Swing $204 Billion After Earnings - Benzinga",
       "event_time": "2026-08-03T19:30:21+00:00",
       "published_time": "2026-08-03T19:30:21+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.113822+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.548238+00:00",
       "facts": [
         "SpaceX Could Swing $204 Billion After Earnings - Benzinga"
       ],
@@ -206,7 +206,7 @@
       "headline": "Palantir Earnings Preview: Beating Estimates Won’t Lift Stock Without Guidance Raise - Tech Times",
       "event_time": "2026-08-03T14:27:07+00:00",
       "published_time": "2026-08-03T14:27:07+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.113851+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.548292+00:00",
       "facts": [
         "Palantir Earnings Preview: Beating Estimates Won’t Lift Stock Without Guidance Raise - Tech Times"
       ],
@@ -263,7 +263,7 @@
       "headline": "Kioxia Shares Rise Over 5% as $5 Billion Buyback Plan Offsets Earnings Miss - TradingKey",
       "event_time": "2026-08-03T09:27:13+00:00",
       "published_time": "2026-08-03T09:27:13+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.113883+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.548329+00:00",
       "facts": [
         "Kioxia Shares Rise Over 5% as $5 Billion Buyback Plan Offsets Earnings Miss - TradingKey"
       ],
@@ -311,63 +311,6 @@
       ]
     },
     {
-      "event_id": "evt-8c280ac2836810",
-      "primary_theme": "VST",
-      "related_themes": [],
-      "companies": [
-        "VST"
-      ],
-      "headline": "Vistra prices $4 billion senior notes offering across 4 tranches - Investing.com",
-      "event_time": "2026-08-03T08:46:41+00:00",
-      "published_time": "2026-08-03T08:46:41+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.113911+00:00",
-      "facts": [
-        "Vistra prices $4 billion senior notes offering across 4 tranches - Investing.com"
-      ],
-      "why_it_matters": "Vistra yatırım tezinin ana sürücüleri: Elektrik fiyatları ve üretim portföyü; Veri merkezi talebi; Sermaye tahsisi.",
-      "why_it_matters_en": "Key drivers of the Vistra investment thesis: Power prices and generation portfolio; Data-center demand; Capital allocation.",
-      "investment_meaning": "Araştırma görünümü zayıfladı; etkinin geçici mi yapısal mı olduğu resmî kaynaklarla kontrol edilmelidir.",
-      "investment_meaning_en": "The research view weakened; official sources should determine whether the effect is temporary or structural.",
-      "thesis_impact": "THESIS_WEAKENED",
-      "research_view": {
-        "rating": "NEGATIVE",
-        "time_horizon": "Orta-Uzun vadeli",
-        "time_horizon_en": "Medium to long term",
-        "summary": "Araştırma görünümü zayıfladı; etkinin geçici mi yapısal mı olduğu resmî kaynaklarla kontrol edilmelidir.",
-        "summary_en": "The research view weakened; official sources should determine whether the effect is temporary or structural.",
-        "reasons": [
-          "Vistra için son 24 saatte önem filtresini geçen gelişme"
-        ],
-        "reasons_en": [
-          "A development concerning Vistra passed the materiality filter in the last 24 hours"
-        ],
-        "risks": [
-          "Emtia fiyat oynaklığı",
-          "Regülasyon",
-          "Santral operasyon riski",
-          "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
-        ],
-        "risks_en": [
-          "Commodity-price volatility",
-          "Regulation",
-          "Plant-operating risk",
-          "A headline alone does not fully measure the financial effect"
-        ]
-      },
-      "risk_badge": "ESTABLISHED",
-      "confidence": "MEDIUM",
-      "sources": [
-        {
-          "source_type": "SECONDARY_NEWS",
-          "publisher": "Investing.com",
-          "title": "Vistra prices $4 billion senior notes offering across 4 tranches - Investing.com",
-          "published_at": "2026-08-03T08:46:41+00:00",
-          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOMEFiYzBuU1A0UHB4SVNYa2ZBdkhsTnU0T1dKSFN4bUl0R2hZZjk4dGpOSU1SVmx2UmZOVzhjUW9QTXV0V0hhZnI5V0pnRk05UGN5b1p1eWFVeElYYkM1dVB0YjZoT0VWelFMSTZYYWJUWi0zbVhFWmF2S1BPb2xwNmxuT0RTRWo4WERubU9nOFVicnJhaUc3U2VxbkQzT2pnN0w5dGhILXkwMHV5eEk3aE90WTYtNEFwRW1EZA?oc=5",
-          "primary_source": false
-        }
-      ]
-    },
-    {
       "event_id": "evt-c7b40092c35702",
       "primary_theme": "TTRAK",
       "related_themes": [],
@@ -377,7 +320,7 @@
       "headline": "Kordsa (KORDS) 2026 yılı 2. çeyrek bilançosu beklentiyi karşıladı mı? - Rota Borsa",
       "event_time": "2026-08-03T19:07:24+00:00",
       "published_time": "2026-08-03T19:07:24+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.113939+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.548360+00:00",
       "facts": [
         "Kordsa (KORDS) 2026 yılı 2. çeyrek bilançosu beklentiyi karşıladı mı? - Rota Borsa"
       ],
@@ -434,7 +377,7 @@
       "headline": "Türk Traktör (TTRAK) 2026 2. çeyrek bilançosu beklentiyi karşıladı mı? - Rota Borsa",
       "event_time": "2026-08-03T18:14:31+00:00",
       "published_time": "2026-08-03T18:14:31+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.113968+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.548386+00:00",
       "facts": [
         "Türk Traktör (TTRAK) 2026 2. çeyrek bilançosu beklentiyi karşıladı mı? - Rota Borsa"
       ],
@@ -482,21 +425,21 @@
       ]
     },
     {
-      "event_id": "evt-05bb1e3008bbbc",
-      "primary_theme": "VST",
+      "event_id": "evt-f96da8bf8fbe0f",
+      "primary_theme": "VRT",
       "related_themes": [],
       "companies": [
-        "VST"
+        "VRT"
       ],
-      "headline": "KKR’s $19.2 billion infrastructure fund close builds on a big July for hard asset fundraising - Pensions & Investments",
-      "event_time": "2026-08-03T16:59:00+00:00",
-      "published_time": "2026-08-03T16:59:00+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.113996+00:00",
+      "headline": "Should Investors Buy, Hold, or Sell Vertiv Stock Post Q2 Earnings? - Zacks Investment Research",
+      "event_time": "2026-08-03T16:37:43+00:00",
+      "published_time": "2026-08-03T16:37:43+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.548410+00:00",
       "facts": [
-        "KKR’s $19.2 billion infrastructure fund close builds on a big July for hard asset fundraising - Pensions & Investments"
+        "Should Investors Buy, Hold, or Sell Vertiv Stock Post Q2 Earnings? - Zacks Investment Research"
       ],
-      "why_it_matters": "Vistra yatırım tezinin ana sürücüleri: Elektrik fiyatları ve üretim portföyü; Veri merkezi talebi; Sermaye tahsisi.",
-      "why_it_matters_en": "Key drivers of the Vistra investment thesis: Power prices and generation portfolio; Data-center demand; Capital allocation.",
+      "why_it_matters": "Vertiv yatırım tezinin ana sürücüleri: Veri merkezi güç ve soğutma siparişleri; Sipariş birikimi; Fiyatlama ve marj.",
+      "why_it_matters_en": "Key drivers of the Vertiv investment thesis: Data-center power and cooling orders; Order backlog; Pricing and margins.",
       "investment_meaning": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
       "investment_meaning_en": "The development should be monitored; it is not sufficient on its own to determine a position decision.",
       "thesis_impact": "THESIS_UNCHANGED",
@@ -507,33 +450,33 @@
         "summary": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
         "summary_en": "The development should be monitored; it is not sufficient on its own to determine a position decision.",
         "reasons": [
-          "Vistra için son 24 saatte önem filtresini geçen gelişme"
+          "Vertiv için son 24 saatte önem filtresini geçen gelişme"
         ],
         "reasons_en": [
-          "A development concerning Vistra passed the materiality filter in the last 24 hours"
+          "A development concerning Vertiv passed the materiality filter in the last 24 hours"
         ],
         "risks": [
-          "Emtia fiyat oynaklığı",
-          "Regülasyon",
-          "Santral operasyon riski",
+          "Yüksek değerleme",
+          "Tedarik ve proje uygulaması",
+          "Sipariş normalleşmesi",
           "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
         ],
         "risks_en": [
-          "Commodity-price volatility",
-          "Regulation",
-          "Plant-operating risk",
+          "High valuation",
+          "Supply and project execution",
+          "Order normalization",
           "A headline alone does not fully measure the financial effect"
         ]
       },
-      "risk_badge": "ESTABLISHED",
+      "risk_badge": "GROWTH",
       "confidence": "MEDIUM",
       "sources": [
         {
           "source_type": "SECONDARY_NEWS",
-          "publisher": "Pensions & Investments",
-          "title": "KKR’s $19.2 billion infrastructure fund close builds on a big July for hard asset fundraising - Pensions & Investments",
-          "published_at": "2026-08-03T16:59:00+00:00",
-          "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPTXN0NlVXcEFMbC0xQUdmNW1jbVdEVzRoMHNKRk0zdkxuaG11Z1lWTFdCWUV4eUpHMlRNU0M1SmVsYlN2M2ZCQzZEN0xZdXpaUG1zUWx6SHFBRDVPdk5NZzZRWUZ0emtSWEJyb0FpQ0xhRk9ZNlVfQ2tYTUYySGJtRzcySDVycHV6ZjhQdG5DVGhCcUtxX0x0akFQbkRYcnJ4UFE?oc=5",
+          "publisher": "Zacks Investment Research",
+          "title": "Should Investors Buy, Hold, or Sell Vertiv Stock Post Q2 Earnings? - Zacks Investment Research",
+          "published_at": "2026-08-03T16:37:43+00:00",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQTi1Va0c5NHQzeFM2cE1PcXprbkE3Szc4N0NOSnlRUlJmUXRnNE5UU1FseFJHZUNvT3hnV05GYWdlRnhraXgyRmFUNEpUVXJEMDQ5VXBwa3hMakNOeXRSRU1ZZVF6YTZYTTlIRm9wWmE4YTdTVXN5ak8ycmhjdXE5Smw3UjhuWGtzcHV6WHhtTjF3cU03cTJXYm82cEZ6VUFvTVozSzNSQQ?oc=5",
           "primary_source": false
         }
       ]
@@ -548,7 +491,7 @@
       "headline": "Palantir shares edge higher ahead of Q2 earnings as investors eye strong revenue growth - livemint.com",
       "event_time": "2026-08-03T16:24:08+00:00",
       "published_time": "2026-08-03T16:24:08+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.114020+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.548433+00:00",
       "facts": [
         "Palantir shares edge higher ahead of Q2 earnings as investors eye strong revenue growth - livemint.com"
       ],
@@ -596,6 +539,63 @@
       ]
     },
     {
+      "event_id": "evt-6fc45e65fb98d2",
+      "primary_theme": "NVDA",
+      "related_themes": [],
+      "companies": [
+        "NVDA"
+      ],
+      "headline": "Can Strong Data Center Revenues Boost AMD's Top Line in Q2 Earnings? - Yahoo Finance UK",
+      "event_time": "2026-08-03T15:56:00+00:00",
+      "published_time": "2026-08-03T15:56:00+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.548462+00:00",
+      "facts": [
+        "Can Strong Data Center Revenues Boost AMD's Top Line in Q2 Earnings? - Yahoo Finance UK"
+      ],
+      "why_it_matters": "Nvidia yatırım tezinin ana sürücüleri: AI hızlandırıcı talebi; Veri merkezi geliri ve marjları; Yeni GPU platformlarının üretim takvimi.",
+      "why_it_matters_en": "Key drivers of the Nvidia investment thesis: AI accelerator demand; Data-center revenue and margins; Production schedule of new GPU platforms.",
+      "investment_meaning": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
+      "investment_meaning_en": "The development should be monitored; it is not sufficient on its own to determine a position decision.",
+      "thesis_impact": "THESIS_UNCHANGED",
+      "research_view": {
+        "rating": "NEUTRAL",
+        "time_horizon": "Orta-Uzun vadeli",
+        "time_horizon_en": "Medium to long term",
+        "summary": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
+        "summary_en": "The development should be monitored; it is not sufficient on its own to determine a position decision.",
+        "reasons": [
+          "Nvidia için son 24 saatte önem filtresini geçen gelişme"
+        ],
+        "reasons_en": [
+          "A development concerning Nvidia passed the materiality filter in the last 24 hours"
+        ],
+        "risks": [
+          "Değerleme ve beklenti riski",
+          "İhracat kısıtları",
+          "Tedarik ve müşteri yoğunlaşması",
+          "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
+        ],
+        "risks_en": [
+          "Valuation and expectations risk",
+          "Export restrictions",
+          "Supply and customer concentration",
+          "A headline alone does not fully measure the financial effect"
+        ]
+      },
+      "risk_badge": "ESTABLISHED",
+      "confidence": "MEDIUM",
+      "sources": [
+        {
+          "source_type": "SECONDARY_NEWS",
+          "publisher": "Yahoo Finance UK",
+          "title": "Can Strong Data Center Revenues Boost AMD's Top Line in Q2 Earnings? - Yahoo Finance UK",
+          "published_at": "2026-08-03T15:56:00+00:00",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxQdzBCLXdvYkVjaXlZUDRGXzZvTUVEWVNVRGFvTkE1SXhBSkJQYzY4NWFvOW82VWlaSDFQYThsWWE5V0xZMzRvQ3FBTktsNmFzZENYeGFLRFlYSlZtWGw5RmZFOUZmWFdBMW52WnZwY0IyQXBuNW9EMFdpV1NLUmdJb09oeko5RDk0ZUE?oc=5",
+          "primary_source": false
+        }
+      ]
+    },
+    {
       "event_id": "evt-ee4d80d8772520",
       "primary_theme": "AMD",
       "related_themes": [],
@@ -605,7 +605,7 @@
       "headline": "Can Strong Data Center Revenues Boost AMD's Top Line in Q2 Earnings? - Yahoo Finance UK",
       "event_time": "2026-08-03T15:56:00+00:00",
       "published_time": "2026-08-03T15:56:00+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.114047+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.548483+00:00",
       "facts": [
         "Can Strong Data Center Revenues Boost AMD's Top Line in Q2 Earnings? - Yahoo Finance UK"
       ],
@@ -662,7 +662,7 @@
       "headline": "Nebius Group Shares Surge Nearly 12% on $1 Billion AI Cloud Deal and New Nvidia Infrastructure Launch - International Business Times Australia",
       "event_time": "2026-08-03T15:30:02+00:00",
       "published_time": "2026-08-03T15:30:02+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.114077+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.548511+00:00",
       "facts": [
         "Nebius Group Shares Surge Nearly 12% on $1 Billion AI Cloud Deal and New Nvidia Infrastructure Launch - International Business Times Australia"
       ],
@@ -719,7 +719,7 @@
       "headline": "Palantir Earnings Prediction Market Preview: What Will Alex Karp Say? - Benzinga",
       "event_time": "2026-08-03T13:45:08+00:00",
       "published_time": "2026-08-03T13:45:08+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.114105+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.548534+00:00",
       "facts": [
         "Palantir Earnings Prediction Market Preview: What Will Alex Karp Say? - Benzinga"
       ],
@@ -776,7 +776,7 @@
       "headline": "Google Trails NVIDIA in AI Chip Sales, yet a Broadcom-Backed Pivot Could Unlock $252 Billion - Wccftech",
       "event_time": "2026-08-03T09:10:16+00:00",
       "published_time": "2026-08-03T09:10:16+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.114130+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.548561+00:00",
       "facts": [
         "Google Trails NVIDIA in AI Chip Sales, yet a Broadcom-Backed Pivot Could Unlock $252 Billion - Wccftech"
       ],
@@ -833,7 +833,7 @@
       "headline": "Google Trails NVIDIA in AI Chip Sales, yet a Broadcom-Backed Pivot Could Unlock $252 Billion - Wccftech",
       "event_time": "2026-08-03T09:10:16+00:00",
       "published_time": "2026-08-03T09:10:16+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.114153+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.548583+00:00",
       "facts": [
         "Google Trails NVIDIA in AI Chip Sales, yet a Broadcom-Backed Pivot Could Unlock $252 Billion - Wccftech"
       ],
@@ -890,7 +890,7 @@
       "headline": "SPCX Heads Into First Earnings: Musk Hints At Tesla-Sized Revenue, Jefferies Downplays Governance Risks - Asianet Newsable",
       "event_time": "2026-08-03T07:30:06+00:00",
       "published_time": "2026-08-03T07:30:06+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.114177+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.548606+00:00",
       "facts": [
         "SPCX Heads Into First Earnings: Musk Hints At Tesla-Sized Revenue, Jefferies Downplays Governance Risks - Asianet Newsable"
       ],
@@ -947,7 +947,7 @@
       "headline": "Digital Realty Trust (DLR) Is Down 5.3% After Raising 2026 Guidance Despite Weaker Q2 Profitability – Has The Bull Case Changed? - simplywall.st",
       "event_time": "2026-08-03T07:15:17+00:00",
       "published_time": "2026-08-03T07:15:17+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.114207+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.548636+00:00",
       "facts": [
         "Digital Realty Trust (DLR) Is Down 5.3% After Raising 2026 Guidance Despite Weaker Q2 Profitability – Has The Bull Case Changed? - simplywall.st"
       ],
@@ -1001,12 +1001,12 @@
       "companies": [
         "TSM"
       ],
-      "headline": "Got $1,000? Taiwan Semiconductor Manufacturing's $100 Billion Arizona Investment Makes It a Must-Own Stock - aol.com",
+      "headline": "Got $1,000? Taiwan Semiconductor Manufacturing's $100 Billion Arizona Investment Makes It a Must-Own Stock - AOL.com",
       "event_time": "2026-08-03T06:14:51+00:00",
       "published_time": "2026-08-03T06:14:51+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.114232+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.548662+00:00",
       "facts": [
-        "Got $1,000? Taiwan Semiconductor Manufacturing's $100 Billion Arizona Investment Makes It a Must-Own Stock - aol.com"
+        "Got $1,000? Taiwan Semiconductor Manufacturing's $100 Billion Arizona Investment Makes It a Must-Own Stock - AOL.com"
       ],
       "why_it_matters": "TSMC yatırım tezinin ana sürücüleri: AI çip talebi; İleri düğüm ve paketleme kapasitesi; Sermaye harcaması getirisi.",
       "why_it_matters_en": "Key drivers of the TSMC investment thesis: AI-chip demand; Advanced-node and packaging capacity; Return on capital expenditure.",
@@ -1043,67 +1043,10 @@
       "sources": [
         {
           "source_type": "SECONDARY_NEWS",
-          "publisher": "aol.com",
-          "title": "Got $1,000? Taiwan Semiconductor Manufacturing's $100 Billion Arizona Investment Makes It a Must-Own Stock - aol.com",
+          "publisher": "AOL.com",
+          "title": "Got $1,000? Taiwan Semiconductor Manufacturing's $100 Billion Arizona Investment Makes It a Must-Own Stock - AOL.com",
           "published_at": "2026-08-03T06:14:51+00:00",
           "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1rZWlZXzhvSWNybUpDSzBzaGVaWHJMM25mTmVUVzc2RDNSeFZ4ZXRoaW5tV1BRVVFuUWVBVkpJSWxieHQ1NzFidTVLTEVkMUJtamhWVXlOVHhhUkZNamc3M3Bwdm1XSWp0TFZKdDFqa3FRZG9RWTdjNFk3VENRcHc?oc=5",
-          "primary_source": false
-        }
-      ]
-    },
-    {
-      "event_id": "evt-5c995198508deb",
-      "primary_theme": "NVDA",
-      "related_themes": [],
-      "companies": [
-        "NVDA"
-      ],
-      "headline": "Data Center Sales Make Up 92% of Nvidia's Revenue. Here's What Investors Need to Know About Jensen Huang's Bets on AI Growth. - The Motley Fool",
-      "event_time": "2026-08-03T16:45:00+00:00",
-      "published_time": "2026-08-03T16:45:00+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.114258+00:00",
-      "facts": [
-        "Data Center Sales Make Up 92% of Nvidia's Revenue. Here's What Investors Need to Know About Jensen Huang's Bets on AI Growth. - The Motley Fool"
-      ],
-      "why_it_matters": "Nvidia yatırım tezinin ana sürücüleri: AI hızlandırıcı talebi; Veri merkezi geliri ve marjları; Yeni GPU platformlarının üretim takvimi.",
-      "why_it_matters_en": "Key drivers of the Nvidia investment thesis: AI accelerator demand; Data-center revenue and margins; Production schedule of new GPU platforms.",
-      "investment_meaning": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
-      "investment_meaning_en": "The development should be monitored; it is not sufficient on its own to determine a position decision.",
-      "thesis_impact": "THESIS_UNCHANGED",
-      "research_view": {
-        "rating": "NEUTRAL",
-        "time_horizon": "Orta-Uzun vadeli",
-        "time_horizon_en": "Medium to long term",
-        "summary": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
-        "summary_en": "The development should be monitored; it is not sufficient on its own to determine a position decision.",
-        "reasons": [
-          "Nvidia için son 24 saatte önem filtresini geçen gelişme"
-        ],
-        "reasons_en": [
-          "A development concerning Nvidia passed the materiality filter in the last 24 hours"
-        ],
-        "risks": [
-          "Değerleme ve beklenti riski",
-          "İhracat kısıtları",
-          "Tedarik ve müşteri yoğunlaşması",
-          "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
-        ],
-        "risks_en": [
-          "Valuation and expectations risk",
-          "Export restrictions",
-          "Supply and customer concentration",
-          "A headline alone does not fully measure the financial effect"
-        ]
-      },
-      "risk_badge": "ESTABLISHED",
-      "confidence": "MEDIUM",
-      "sources": [
-        {
-          "source_type": "SECONDARY_NEWS",
-          "publisher": "The Motley Fool",
-          "title": "Data Center Sales Make Up 92% of Nvidia's Revenue. Here's What Investors Need to Know About Jensen Huang's Bets on AI Growth. - The Motley Fool",
-          "published_at": "2026-08-03T16:45:00+00:00",
-          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOYXdkaHNVZTM5cENYN0RyZlFSUjBXWEdwcTR4eDBoQVgzU045X2Y3VG4zQnBqUzM1YWxaaVktNkc0eVBGRU9xQ29LaS0yQ1JkN1dadzFPQTREblQyVTlCS1YyYVlxY01wVS1lSlB3bVowekdtVXE2LXh4V1BTZ2FUellwOWVnaFZIOFNZQjBJRnFUbWlu?oc=5",
           "primary_source": false
         }
       ]
@@ -1118,7 +1061,7 @@
       "headline": "Vertiv upgraded to Buy as AI-driven data center boom boosts revenue and margins from 2027. - Pluang",
       "event_time": "2026-08-03T16:09:09+00:00",
       "published_time": "2026-08-03T16:09:09+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.114282+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.548686+00:00",
       "facts": [
         "Vertiv upgraded to Buy as AI-driven data center boom boosts revenue and margins from 2027. - Pluang"
       ],
@@ -1175,7 +1118,7 @@
       "headline": "Mass production and capacity expansion accelerate, reshaping foundry landscape in silicon photonics - dqindia.com",
       "event_time": "2026-08-03T09:21:37+00:00",
       "published_time": "2026-08-03T09:21:37+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.114307+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.548708+00:00",
       "facts": [
         "Mass production and capacity expansion accelerate, reshaping foundry landscape in silicon photonics - dqindia.com"
       ],
@@ -1223,18 +1166,18 @@
       ]
     },
     {
-      "event_id": "evt-c2108201bf0f6d",
+      "event_id": "evt-a9b4ea1494da26",
       "primary_theme": "AMZN",
       "related_themes": [],
       "companies": [
         "AMZN"
       ],
-      "headline": "Why Amazon Looks Better Than Microsoft After Each Jumped 15% Post Earnings - 247wallst.com",
+      "headline": "Why Amazon Looks Better Than Microsoft After Each Jumped 15% Post Earnings - 24/7 Wall St.",
       "event_time": "2026-08-03T19:49:14+00:00",
       "published_time": "2026-08-03T19:49:14+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.114367+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.548730+00:00",
       "facts": [
-        "Why Amazon Looks Better Than Microsoft After Each Jumped 15% Post Earnings - 247wallst.com"
+        "Why Amazon Looks Better Than Microsoft After Each Jumped 15% Post Earnings - 24/7 Wall St."
       ],
       "why_it_matters": "Amazon yatırım tezinin ana sürücüleri: AWS büyümesi; AI altyapı kapasitesi; Perakende operasyon marjı.",
       "why_it_matters_en": "Key drivers of the Amazon investment thesis: AWS growth; AI infrastructure capacity; Retail operating margin.",
@@ -1271,8 +1214,8 @@
       "sources": [
         {
           "source_type": "SECONDARY_NEWS",
-          "publisher": "247wallst.com",
-          "title": "Why Amazon Looks Better Than Microsoft After Each Jumped 15% Post Earnings - 247wallst.com",
+          "publisher": "24/7 Wall St.",
+          "title": "Why Amazon Looks Better Than Microsoft After Each Jumped 15% Post Earnings - 24/7 Wall St.",
           "published_at": "2026-08-03T19:49:14+00:00",
           "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPZlE1ODJnYUNCcnBRazZEekJNd0M3LWZXTV8yZUZLNzNDQmx6eVJBN3dERDFVSGxRNUpuVWxydHhVSmRXSnYxbE84QXZ0X3h0RVFLYWg3dThqZkhPbVdmNG1NdG1nUlRBY0dNS3h5eWZqOHBxWlgxRHRYWjBYQkx3TzdVcjNXVjFudDk1akxQak9rMWY5SEoyZmMzckFRTXQ4dnZYOE9naUEwVWVCbTdMZjZiVlhuOHA1?oc=5",
           "primary_source": false
@@ -1289,7 +1232,7 @@
       "headline": "Türk Traktör’den (TTRAK) yılın ilk yarısında 669 milyon TL zarar - Paratic Haber",
       "event_time": "2026-08-03T18:34:31+00:00",
       "published_time": "2026-08-03T18:34:31+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.114395+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.548755+00:00",
       "facts": [
         "Türk Traktör’den (TTRAK) yılın ilk yarısında 669 milyon TL zarar - Paratic Haber"
       ],
@@ -1346,7 +1289,7 @@
       "headline": "AWS Vs. Microsoft Vs. Google Cloud Earnings Q2 2026 Face-Off - crn.com",
       "event_time": "2026-08-03T18:20:00+00:00",
       "published_time": "2026-08-03T18:20:00+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.114416+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.548812+00:00",
       "facts": [
         "AWS Vs. Microsoft Vs. Google Cloud Earnings Q2 2026 Face-Off - crn.com"
       ],
@@ -1403,7 +1346,7 @@
       "headline": "SpaceX Faces Its First Earnings Test With $10.2B Of AI Capex In Play - Yellow.com",
       "event_time": "2026-08-03T18:11:40+00:00",
       "published_time": "2026-08-03T18:11:40+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.114440+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.548841+00:00",
       "facts": [
         "SpaceX Faces Its First Earnings Test With $10.2B Of AI Capex In Play - Yellow.com"
       ],
@@ -1460,7 +1403,7 @@
       "headline": "Constellation Energy (NASDAQ:CEG) sees PJM volume increase offsetting price decline ahead of earnings - TechStock²",
       "event_time": "2026-08-03T18:08:44+00:00",
       "published_time": "2026-08-03T18:08:44+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.114468+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.548868+00:00",
       "facts": [
         "Constellation Energy (NASDAQ:CEG) sees PJM volume increase offsetting price decline ahead of earnings - TechStock²"
       ],
@@ -1517,7 +1460,7 @@
       "headline": "SanDisk SNDK Stock Attempts a Reversal Ahead of Earnings After Testing $1,000 Support - FXLeaders",
       "event_time": "2026-08-03T17:52:57+00:00",
       "published_time": "2026-08-03T17:52:57+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.114490+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.548891+00:00",
       "facts": [
         "SanDisk SNDK Stock Attempts a Reversal Ahead of Earnings After Testing $1,000 Support - FXLeaders"
       ],
@@ -1574,7 +1517,7 @@
       "headline": "Vistra gains as AI-power optimism and earnings anticipation lift the stock - Quiver Quantitative",
       "event_time": "2026-08-03T17:40:00+00:00",
       "published_time": "2026-08-03T17:40:00+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.114512+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.548913+00:00",
       "facts": [
         "Vistra gains as AI-power optimism and earnings anticipation lift the stock - Quiver Quantitative"
       ],
@@ -1631,7 +1574,7 @@
       "headline": "Amazon Earnings, $3 Trillion Market Cap Point To Growth In These Top AI Stocks - Seeking Alpha",
       "event_time": "2026-08-03T17:37:34+00:00",
       "published_time": "2026-08-03T17:37:34+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.114536+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.548938+00:00",
       "facts": [
         "Amazon Earnings, $3 Trillion Market Cap Point To Growth In These Top AI Stocks - Seeking Alpha"
       ],
@@ -1679,75 +1622,18 @@
       ]
     },
     {
-      "event_id": "evt-61562eef4df507",
-      "primary_theme": "VRT",
-      "related_themes": [],
-      "companies": [
-        "VRT"
-      ],
-      "headline": "Should Investors Buy, Hold, or Sell Vertiv Stock Post Q2 Earnings? - Yahoo Finance Singapore",
-      "event_time": "2026-08-03T17:13:00+00:00",
-      "published_time": "2026-08-03T17:13:00+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.114557+00:00",
-      "facts": [
-        "Should Investors Buy, Hold, or Sell Vertiv Stock Post Q2 Earnings? - Yahoo Finance Singapore"
-      ],
-      "why_it_matters": "Vertiv yatırım tezinin ana sürücüleri: Veri merkezi güç ve soğutma siparişleri; Sipariş birikimi; Fiyatlama ve marj.",
-      "why_it_matters_en": "Key drivers of the Vertiv investment thesis: Data-center power and cooling orders; Order backlog; Pricing and margins.",
-      "investment_meaning": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
-      "investment_meaning_en": "The development should be monitored; it is not sufficient on its own to determine a position decision.",
-      "thesis_impact": "THESIS_UNCHANGED",
-      "research_view": {
-        "rating": "NEUTRAL",
-        "time_horizon": "Orta-Uzun vadeli",
-        "time_horizon_en": "Medium to long term",
-        "summary": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
-        "summary_en": "The development should be monitored; it is not sufficient on its own to determine a position decision.",
-        "reasons": [
-          "Vertiv için son 24 saatte önem filtresini geçen gelişme"
-        ],
-        "reasons_en": [
-          "A development concerning Vertiv passed the materiality filter in the last 24 hours"
-        ],
-        "risks": [
-          "Yüksek değerleme",
-          "Tedarik ve proje uygulaması",
-          "Sipariş normalleşmesi",
-          "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
-        ],
-        "risks_en": [
-          "High valuation",
-          "Supply and project execution",
-          "Order normalization",
-          "A headline alone does not fully measure the financial effect"
-        ]
-      },
-      "risk_badge": "GROWTH",
-      "confidence": "MEDIUM",
-      "sources": [
-        {
-          "source_type": "SECONDARY_NEWS",
-          "publisher": "Yahoo Finance Singapore",
-          "title": "Should Investors Buy, Hold, or Sell Vertiv Stock Post Q2 Earnings? - Yahoo Finance Singapore",
-          "published_at": "2026-08-03T17:13:00+00:00",
-          "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPNVRFelctczctWVhfMzJCeUM4aTRUczlZRXRXOGRzSWRxZHE5R0VKM2I2cDM2ZXVfU0tVZmJCNU9lTHV1M3B1azNzVThvQVFUQ1U1Rk9VYmlSSUItM1RJQ3luZ0V4QlRhWHFJWWdFaERGdFZhMEhuSWZCWEtjd2xUZll5MzQ0Zw?oc=5",
-          "primary_source": false
-        }
-      ]
-    },
-    {
       "event_id": "evt-69c011424d5294",
       "primary_theme": "TSLA",
       "related_themes": [],
       "companies": [
         "TSLA"
       ],
-      "headline": "After a Rough Post-Earnings Week, Where Does Tesla Go From Here? - aol.com",
+      "headline": "After a Rough Post-Earnings Week, Where Does Tesla Go From Here? - AOL.com",
       "event_time": "2026-08-03T17:08:36+00:00",
       "published_time": "2026-08-03T17:08:36+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.114580+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.548961+00:00",
       "facts": [
-        "After a Rough Post-Earnings Week, Where Does Tesla Go From Here? - aol.com"
+        "After a Rough Post-Earnings Week, Where Does Tesla Go From Here? - AOL.com"
       ],
       "why_it_matters": "Tesla yatırım tezinin ana sürücüleri: Araç teslimatları ve fiyatlama; Otonomi ve yapay zeka gelir potansiyeli; Enerji depolama büyümesi.",
       "why_it_matters_en": "Key drivers of the Tesla investment thesis: Vehicle deliveries and pricing; Autonomy and AI revenue potential; Energy-storage growth.",
@@ -1784,8 +1670,8 @@
       "sources": [
         {
           "source_type": "SECONDARY_NEWS",
-          "publisher": "aol.com",
-          "title": "After a Rough Post-Earnings Week, Where Does Tesla Go From Here? - aol.com",
+          "publisher": "AOL.com",
+          "title": "After a Rough Post-Earnings Week, Where Does Tesla Go From Here? - AOL.com",
           "published_at": "2026-08-03T17:08:36+00:00",
           "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9DSXl5RDZqN2RmU1N6eUxzMFo0VndTWVBGandlaDBJcWE0QTExOXFneTZ0bWNQd01GMjJRV1FoZ3JYN2xmWFMwM1BmZ0w1WmlfUXgxM3NnamNTallKQUlldlIweXYtX0w1cDdwU0ZhYUlUWFhMWldJUHEtamtJTEU?oc=5",
           "primary_source": false
@@ -1802,7 +1688,7 @@
       "headline": "BorgWarner Gears Up to Report Q2 Earnings: What's in the Cards? - The Globe and Mail",
       "event_time": "2026-08-03T16:34:00+00:00",
       "published_time": "2026-08-03T16:34:00+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.114603+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.548982+00:00",
       "facts": [
         "BorgWarner Gears Up to Report Q2 Earnings: What's in the Cards? - The Globe and Mail"
       ],
@@ -1859,7 +1745,7 @@
       "headline": "Buy Sandisk Stock Before Q4 Earnings? Here's What to Know - Yahoo Finance",
       "event_time": "2026-08-03T16:34:00+00:00",
       "published_time": "2026-08-03T16:34:00+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.114628+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.549005+00:00",
       "facts": [
         "Buy Sandisk Stock Before Q4 Earnings? Here's What to Know - Yahoo Finance"
       ],
@@ -1916,7 +1802,7 @@
       "headline": "Kimco Realty earnings in focus: Can leasing offset soft quarter? By Investing.com - Investing.com India",
       "event_time": "2026-08-03T15:04:49+00:00",
       "published_time": "2026-08-03T15:04:49+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.114650+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.549027+00:00",
       "facts": [
         "Kimco Realty earnings in focus: Can leasing offset soft quarter? By Investing.com - Investing.com India"
       ],
@@ -1973,7 +1859,7 @@
       "headline": "Caterpillar faces earnings test after AI selloff hits stock - Mining.com",
       "event_time": "2026-08-03T14:57:27+00:00",
       "published_time": "2026-08-03T14:57:27+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.114673+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.549049+00:00",
       "facts": [
         "Caterpillar faces earnings test after AI selloff hits stock - Mining.com"
       ],
@@ -2021,63 +1907,6 @@
       ]
     },
     {
-      "event_id": "evt-8e33a40b566294",
-      "primary_theme": "DLR",
-      "related_themes": [],
-      "companies": [
-        "DLR"
-      ],
-      "headline": "KKR closes record $19.2 billion infrastructure fund with data centers in the crosshairs - Crypto Briefing",
-      "event_time": "2026-08-03T13:53:03+00:00",
-      "published_time": "2026-08-03T13:53:03+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.114696+00:00",
-      "facts": [
-        "KKR closes record $19.2 billion infrastructure fund with data centers in the crosshairs - Crypto Briefing"
-      ],
-      "why_it_matters": "Digital Realty yatırım tezinin ana sürücüleri: Yeni kiralama hacmi; Veri merkezi kapasitesi; Fonlama ve ortak girişimler.",
-      "why_it_matters_en": "Key drivers of the Digital Realty investment thesis: New leasing volume; Data-center capacity; Funding and joint ventures.",
-      "investment_meaning": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
-      "investment_meaning_en": "The development should be monitored; it is not sufficient on its own to determine a position decision.",
-      "thesis_impact": "THESIS_UNCHANGED",
-      "research_view": {
-        "rating": "NEUTRAL",
-        "time_horizon": "Orta-Uzun vadeli",
-        "time_horizon_en": "Medium to long term",
-        "summary": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
-        "summary_en": "The development should be monitored; it is not sufficient on its own to determine a position decision.",
-        "reasons": [
-          "Digital Realty için son 24 saatte önem filtresini geçen gelişme"
-        ],
-        "reasons_en": [
-          "A development concerning Digital Realty passed the materiality filter in the last 24 hours"
-        ],
-        "risks": [
-          "Faiz ve borç maliyeti",
-          "Arz ve kira rekabeti",
-          "Proje teslimat riski",
-          "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
-        ],
-        "risks_en": [
-          "Interest and debt costs",
-          "Supply and leasing competition",
-          "Project-delivery risk",
-          "A headline alone does not fully measure the financial effect"
-        ]
-      },
-      "risk_badge": "ESTABLISHED",
-      "confidence": "MEDIUM",
-      "sources": [
-        {
-          "source_type": "SECONDARY_NEWS",
-          "publisher": "Crypto Briefing",
-          "title": "KKR closes record $19.2 billion infrastructure fund with data centers in the crosshairs - Crypto Briefing",
-          "published_at": "2026-08-03T13:53:03+00:00",
-          "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE5xQ1FjM1g1bFZIdGlFcnRoeXFyY1dKdmoxRzdacXFZLUNWY1lYTDlIVmNhWnBzdnJyV2p5QnlVTm9iZXBxNGhuQU5ib3BMUUwxM0dPWEZ5ZW9TUFdVUTJLei1aaDRxM3MyMEZXSWRJT2w3Z2ltWlVyc1NxZjk?oc=5",
-          "primary_source": false
-        }
-      ]
-    },
-    {
       "event_id": "evt-10cc5bb06f95a0",
       "primary_theme": "EQIX",
       "related_themes": [],
@@ -2087,7 +1916,7 @@
       "headline": "U.S. Hyperscale Data Center Market Size to Reach USD 697.84 Billion by 2031 - Arizton - openPR.com",
       "event_time": "2026-08-03T12:28:53+00:00",
       "published_time": "2026-08-03T12:28:53+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.114720+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.549075+00:00",
       "facts": [
         "U.S. Hyperscale Data Center Market Size to Reach USD 697.84 Billion by 2031 - Arizton - openPR.com"
       ],
@@ -2135,6 +1964,177 @@
       ]
     },
     {
+      "event_id": "evt-d6370f8f2768b7",
+      "primary_theme": "DLR",
+      "related_themes": [],
+      "companies": [
+        "DLR"
+      ],
+      "headline": "U.S. Hyperscale Data Center Market Size to Reach USD 697.84 Billion by 2031 - Arizton - openPR.com",
+      "event_time": "2026-08-03T12:28:53+00:00",
+      "published_time": "2026-08-03T12:28:53+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.549095+00:00",
+      "facts": [
+        "U.S. Hyperscale Data Center Market Size to Reach USD 697.84 Billion by 2031 - Arizton - openPR.com"
+      ],
+      "why_it_matters": "Digital Realty yatırım tezinin ana sürücüleri: Yeni kiralama hacmi; Veri merkezi kapasitesi; Fonlama ve ortak girişimler.",
+      "why_it_matters_en": "Key drivers of the Digital Realty investment thesis: New leasing volume; Data-center capacity; Funding and joint ventures.",
+      "investment_meaning": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
+      "investment_meaning_en": "The development should be monitored; it is not sufficient on its own to determine a position decision.",
+      "thesis_impact": "THESIS_UNCHANGED",
+      "research_view": {
+        "rating": "NEUTRAL",
+        "time_horizon": "Orta-Uzun vadeli",
+        "time_horizon_en": "Medium to long term",
+        "summary": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
+        "summary_en": "The development should be monitored; it is not sufficient on its own to determine a position decision.",
+        "reasons": [
+          "Digital Realty için son 24 saatte önem filtresini geçen gelişme"
+        ],
+        "reasons_en": [
+          "A development concerning Digital Realty passed the materiality filter in the last 24 hours"
+        ],
+        "risks": [
+          "Faiz ve borç maliyeti",
+          "Arz ve kira rekabeti",
+          "Proje teslimat riski",
+          "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
+        ],
+        "risks_en": [
+          "Interest and debt costs",
+          "Supply and leasing competition",
+          "Project-delivery risk",
+          "A headline alone does not fully measure the financial effect"
+        ]
+      },
+      "risk_badge": "ESTABLISHED",
+      "confidence": "MEDIUM",
+      "sources": [
+        {
+          "source_type": "SECONDARY_NEWS",
+          "publisher": "openPR.com",
+          "title": "U.S. Hyperscale Data Center Market Size to Reach USD 697.84 Billion by 2031 - Arizton - openPR.com",
+          "published_at": "2026-08-03T12:28:53+00:00",
+          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNajNZWjJUYnU3TFpadHJqQXZVeXRBSTdCUTdWY3oxWGFVdDRTcU5rWVF4ZE1mV0NUUkdGTzN0UW5vXzl3QmlXNzQ0cF85RExwVFRJOEg4QVM1eUFfcHZ0ZXBFU2QtUzg0bjVEVUd4dDJQck44QktKVGw0V3R2TG52Zl9kVmlQSzA5S2VnYkFacHdrX1Rvcmw5ZXVR?oc=5",
+          "primary_source": false
+        }
+      ]
+    },
+    {
+      "event_id": "evt-b82b5f07090d0c",
+      "primary_theme": "VST",
+      "related_themes": [],
+      "companies": [
+        "VST"
+      ],
+      "headline": "Constellation Energy (NASDAQ:CEG) sees PJM volume increase offsetting price decline ahead of earnings - TechStock²",
+      "event_time": "2026-08-03T10:06:59+00:00",
+      "published_time": "2026-08-03T10:06:59+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.549118+00:00",
+      "facts": [
+        "Constellation Energy (NASDAQ:CEG) sees PJM volume increase offsetting price decline ahead of earnings - TechStock²"
+      ],
+      "why_it_matters": "Vistra yatırım tezinin ana sürücüleri: Elektrik fiyatları ve üretim portföyü; Veri merkezi talebi; Sermaye tahsisi.",
+      "why_it_matters_en": "Key drivers of the Vistra investment thesis: Power prices and generation portfolio; Data-center demand; Capital allocation.",
+      "investment_meaning": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
+      "investment_meaning_en": "The development should be monitored; it is not sufficient on its own to determine a position decision.",
+      "thesis_impact": "THESIS_UNCHANGED",
+      "research_view": {
+        "rating": "NEUTRAL",
+        "time_horizon": "Orta-Uzun vadeli",
+        "time_horizon_en": "Medium to long term",
+        "summary": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
+        "summary_en": "The development should be monitored; it is not sufficient on its own to determine a position decision.",
+        "reasons": [
+          "Vistra için son 24 saatte önem filtresini geçen gelişme"
+        ],
+        "reasons_en": [
+          "A development concerning Vistra passed the materiality filter in the last 24 hours"
+        ],
+        "risks": [
+          "Emtia fiyat oynaklığı",
+          "Regülasyon",
+          "Santral operasyon riski",
+          "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
+        ],
+        "risks_en": [
+          "Commodity-price volatility",
+          "Regulation",
+          "Plant-operating risk",
+          "A headline alone does not fully measure the financial effect"
+        ]
+      },
+      "risk_badge": "ESTABLISHED",
+      "confidence": "MEDIUM",
+      "sources": [
+        {
+          "source_type": "SECONDARY_NEWS",
+          "publisher": "TechStock²",
+          "title": "Constellation Energy (NASDAQ:CEG) sees PJM volume increase offsetting price decline ahead of earnings - TechStock²",
+          "published_at": "2026-08-03T10:06:59+00:00",
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxONnZfX1lHYUZJQUdQbHhGRjhDZXlIVEZwaHZyazREUVMtcHVaTGZ6Z0VqWU1iLW1kODNYWHUxSm9fREJXRGJhNjVYM1E1UmpjM3VIbkJwUkFqM25keFJHMmV5TGdRR1VwY0tsWHZKalBxbjMwdVBsZTdiVmZMdzhaQzN2V1g0OTc2QWtPbDhkNFg5QUIwaEpWNUVFRlBUWWVCWVMxS3ZsMkNSLXZmeUNidjA0Nl9Tc1lNMmV3?oc=5",
+          "primary_source": false
+        }
+      ]
+    },
+    {
+      "event_id": "evt-8917256e2df4df",
+      "primary_theme": "VST",
+      "related_themes": [],
+      "companies": [
+        "VST"
+      ],
+      "headline": "[AI Earnings Rush × AI Event Season] Semiconductors, memory, optical communications, mining firms pivoting to AI and AI applications... Which is the strongest theme driving markets this week? - Moomoo",
+      "event_time": "2026-08-03T08:28:55+00:00",
+      "published_time": "2026-08-03T08:28:55+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.549147+00:00",
+      "facts": [
+        "[AI Earnings Rush × AI Event Season] Semiconductors, memory, optical communications, mining firms pivoting to AI and AI applications... Which is the strongest theme driving markets this week? - Moomoo"
+      ],
+      "why_it_matters": "Vistra yatırım tezinin ana sürücüleri: Elektrik fiyatları ve üretim portföyü; Veri merkezi talebi; Sermaye tahsisi.",
+      "why_it_matters_en": "Key drivers of the Vistra investment thesis: Power prices and generation portfolio; Data-center demand; Capital allocation.",
+      "investment_meaning": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
+      "investment_meaning_en": "The development should be monitored; it is not sufficient on its own to determine a position decision.",
+      "thesis_impact": "THESIS_UNCHANGED",
+      "research_view": {
+        "rating": "NEUTRAL",
+        "time_horizon": "Orta-Uzun vadeli",
+        "time_horizon_en": "Medium to long term",
+        "summary": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
+        "summary_en": "The development should be monitored; it is not sufficient on its own to determine a position decision.",
+        "reasons": [
+          "Vistra için son 24 saatte önem filtresini geçen gelişme"
+        ],
+        "reasons_en": [
+          "A development concerning Vistra passed the materiality filter in the last 24 hours"
+        ],
+        "risks": [
+          "Emtia fiyat oynaklığı",
+          "Regülasyon",
+          "Santral operasyon riski",
+          "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
+        ],
+        "risks_en": [
+          "Commodity-price volatility",
+          "Regulation",
+          "Plant-operating risk",
+          "A headline alone does not fully measure the financial effect"
+        ]
+      },
+      "risk_badge": "ESTABLISHED",
+      "confidence": "MEDIUM",
+      "sources": [
+        {
+          "source_type": "SECONDARY_NEWS",
+          "publisher": "Moomoo",
+          "title": "[AI Earnings Rush × AI Event Season] Semiconductors, memory, optical communications, mining firms pivoting to AI and AI applications... Which is the strongest theme driving markets this week? - Moomoo",
+          "published_at": "2026-08-03T08:28:55+00:00",
+          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPMmp3bmFBUU1udHE0eEh3M25TclRvcVpPM1hWZFhOLXZiVUVqbUJzeE5TWjNNcnhDZ2hFWEVVR2lIZkJneDlXR19QSVoyUjI1d2Y3cTF1dHVLZlhmN29XLUdFNE1NX0lXUEJmeWRjMnh1NlRyLXFQR0dRVG45LXpHanB4b05VVHJ1MTlVb0VGcjlMYmVxNXZhTGh6ODIyU3dXUTAwQmJjcElLZ3dFaFltb2hucXdQUXBuY1MwXw?oc=5",
+          "primary_source": false
+        }
+      ]
+    },
+    {
       "event_id": "evt-d43ae5c6a2211a",
       "primary_theme": "LUNR",
       "related_themes": [],
@@ -2144,7 +2144,7 @@
       "headline": "Peter Beck's Rocket Lab Reports Earnings on Aug. 10. Here's the One Number That Will Move the Stock. - AOL.ca",
       "event_time": "2026-08-03T01:44:45+00:00",
       "published_time": "2026-08-03T01:44:45+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.114756+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.549170+00:00",
       "facts": [
         "Peter Beck's Rocket Lab Reports Earnings on Aug. 10. Here's the One Number That Will Move the Stock. - AOL.ca"
       ],
@@ -2201,7 +2201,7 @@
       "headline": "Marvell's $220 Billion Tailwind: Can an Amazon Capex Boost Break the AI Chipmaker's Slide? - AD HOC NEWS",
       "event_time": "2026-08-03T01:02:24+00:00",
       "published_time": "2026-08-03T01:02:24+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.114782+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.549196+00:00",
       "facts": [
         "Marvell's $220 Billion Tailwind: Can an Amazon Capex Boost Break the AI Chipmaker's Slide? - AD HOC NEWS"
       ],
@@ -2258,7 +2258,7 @@
       "headline": "TSM Stock Price Forecast — ($404.25) Defends $397.70 After Record 67.7% Gross Margin — $540 Target, 33% Upside - TradingNEWS",
       "event_time": "2026-08-03T16:38:17+00:00",
       "published_time": "2026-08-03T16:38:17+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.114809+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.549224+00:00",
       "facts": [
         "TSM Stock Price Forecast — ($404.25) Defends $397.70 After Record 67.7% Gross Margin — $540 Target, 33% Upside - TradingNEWS"
       ],
@@ -2312,12 +2312,12 @@
       "companies": [
         "LUNR"
       ],
-      "headline": "Prediction: Rocket Lab Will Turn Profitable and Free-Cash-Flow-Positive in 2027 -- Thanks to Iridium - aol.com",
+      "headline": "Prediction: Rocket Lab Will Turn Profitable and Free-Cash-Flow-Positive in 2027 -- Thanks to Iridium - AOL.com",
       "event_time": "2026-08-03T08:57:49+00:00",
       "published_time": "2026-08-03T08:57:49+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.114832+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.549246+00:00",
       "facts": [
-        "Prediction: Rocket Lab Will Turn Profitable and Free-Cash-Flow-Positive in 2027 -- Thanks to Iridium - aol.com"
+        "Prediction: Rocket Lab Will Turn Profitable and Free-Cash-Flow-Positive in 2027 -- Thanks to Iridium - AOL.com"
       ],
       "why_it_matters": "Intuitive Machines yatırım tezinin ana sürücüleri: NASA ve ticari sözleşmeler; Görev başarısı ve fırlatma takvimi; Nakit tüketimi ve yeni finansman.",
       "why_it_matters_en": "Key drivers of the Intuitive Machines investment thesis: NASA and commercial contracts; Mission success and launch schedule; Cash consumption and new financing.",
@@ -2354,8 +2354,8 @@
       "sources": [
         {
           "source_type": "SECONDARY_NEWS",
-          "publisher": "aol.com",
-          "title": "Prediction: Rocket Lab Will Turn Profitable and Free-Cash-Flow-Positive in 2027 -- Thanks to Iridium - aol.com",
+          "publisher": "AOL.com",
+          "title": "Prediction: Rocket Lab Will Turn Profitable and Free-Cash-Flow-Positive in 2027 -- Thanks to Iridium - AOL.com",
           "published_at": "2026-08-03T08:57:49+00:00",
           "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNdU9EVUp4MEdPaGVLS0Z4N1B3Q0xsaERIb3JYcUVRYk5mdlliYjYxMEhpLTdOXzlXTEZyTk1tTUFKMkV2NmlLUGNrYnNsalZEWXYwSWFOZ0hJYjZLV2lpQ1NtTERYQ19sRWJMQ215aDZHN3dwZHh1bnJfbUlBcUY5Vnh4QlpzNllJ?oc=5",
           "primary_source": false
@@ -2363,18 +2363,18 @@
       ]
     },
     {
-      "event_id": "evt-1265308c43b9de",
+      "event_id": "evt-caf069696df767",
       "primary_theme": "EQIX",
       "related_themes": [],
       "companies": [
         "EQIX"
       ],
-      "headline": "Green Energy Stock Jumps 6% After Reporting 107% Revenue Growth in Q1 - Trade Brains",
+      "headline": "Green Energy Stock Jumps 6% After Reporting 107% Revenue Growth in Q1 - tradebrains.in",
       "event_time": "2026-08-03T06:33:00+00:00",
       "published_time": "2026-08-03T06:33:00+00:00",
-      "retrieved_time": "2026-08-03T20:03:53.114855+00:00",
+      "retrieved_time": "2026-08-03T20:06:06.549288+00:00",
       "facts": [
-        "Green Energy Stock Jumps 6% After Reporting 107% Revenue Growth in Q1 - Trade Brains"
+        "Green Energy Stock Jumps 6% After Reporting 107% Revenue Growth in Q1 - tradebrains.in"
       ],
       "why_it_matters": "Equinix yatırım tezinin ana sürücüleri: Kapasite ve doluluk; Fiyatlama ve bağlantı gelirleri; Enerji erişimi.",
       "why_it_matters_en": "Key drivers of the Equinix investment thesis: Capacity and occupancy; Pricing and interconnection revenue; Access to power.",
@@ -2411,8 +2411,8 @@
       "sources": [
         {
           "source_type": "SECONDARY_NEWS",
-          "publisher": "Trade Brains",
-          "title": "Green Energy Stock Jumps 6% After Reporting 107% Revenue Growth in Q1 - Trade Brains",
+          "publisher": "tradebrains.in",
+          "title": "Green Energy Stock Jumps 6% After Reporting 107% Revenue Growth in Q1 - tradebrains.in",
           "published_at": "2026-08-03T06:33:00+00:00",
           "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQSk8zenh5MXIwLXQ5QU4xMVMxNXJiTm0xM3BDWmZoZXJ1djRSUFBMN292MEVoTmd1eDgyRVZsMnNRa1pIWS1OaU9UOE9CbzJDdDk0NXQxSHdnV1M1aTdNQWNlc0U0dkdNOW9CbVNQQjJyZDRXUWlqNkF0R2pZd3JobGQ3RmdXeTNMblk4eGtMVlNaOGNYN0E?oc=5",
           "primary_source": false
@@ -2766,9 +2766,9 @@
         "Supply and customer concentration"
       ],
       "latest_event_headlines": [
+        "Can Strong Data Center Revenues Boost AMD's Top Line in Q2 Earnings? - Yahoo Finance UK",
         "Nebius Group Shares Surge Nearly 12% on $1 Billion AI Cloud Deal and New Nvidia Infrastructure Launch - International Business Times Australia",
-        "Google Trails NVIDIA in AI Chip Sales, yet a Broadcom-Backed Pivot Could Unlock $252 Billion - Wccftech",
-        "Data Center Sales Make Up 92% of Nvidia's Revenue. Here's What Investors Need to Know About Jensen Huang's Bets on AI Growth. - The Motley Fool"
+        "Google Trails NVIDIA in AI Chip Sales, yet a Broadcom-Backed Pivot Could Unlock $252 Billion - Wccftech"
       ],
       "price_context": {
         "currency": "USD",
@@ -2819,7 +2819,7 @@
       ],
       "latest_event_headlines": [
         "SPCX Heads Into First Earnings: Musk Hints At Tesla-Sized Revenue, Jefferies Downplays Governance Risks - Asianet Newsable",
-        "After a Rough Post-Earnings Week, Where Does Tesla Go From Here? - aol.com",
+        "After a Rough Post-Earnings Week, Where Does Tesla Go From Here? - AOL.com",
         "BorgWarner Gears Up to Report Q2 Earnings: What's in the Cards? - The Globe and Mail"
       ],
       "price_context": {
@@ -2923,7 +2923,7 @@
       ],
       "latest_event_headlines": [
         "Bitget UEX Daily｜US-Iran Talks Possibly Tomorrow, Hormuz Agreement Signals Emerge; Amazon Completes $50 Billion OpenAI Investment; Palantir Earnings After the Close (August 3, 2026) - Bitget",
-        "Why Amazon Looks Better Than Microsoft After Each Jumped 15% Post Earnings - 247wallst.com",
+        "Why Amazon Looks Better Than Microsoft After Each Jumped 15% Post Earnings - 24/7 Wall St.",
         "Amazon Earnings, $3 Trillion Market Cap Point To Growth In These Top AI Stocks - Seeking Alpha"
       ],
       "price_context": {
@@ -3177,7 +3177,7 @@
       ],
       "latest_event_headlines": [
         "U.S. Hyperscale Data Center Market Size to Reach USD 697.84 Billion by 2031 - Arizton - openPR.com",
-        "Green Energy Stock Jumps 6% After Reporting 107% Revenue Growth in Q1 - Trade Brains"
+        "Green Energy Stock Jumps 6% After Reporting 107% Revenue Growth in Q1 - tradebrains.in"
       ],
       "price_context": {
         "currency": "USD",
@@ -3229,7 +3229,7 @@
       "latest_event_headlines": [
         "Digital Realty Trust (DLR) Is Down 5.3% After Raising 2026 Guidance Despite Weaker Q2 Profitability – Has The Bull Case Changed? - simplywall.st",
         "Kimco Realty earnings in focus: Can leasing offset soft quarter? By Investing.com - Investing.com India",
-        "KKR closes record $19.2 billion infrastructure fund with data centers in the crosshairs - Crypto Briefing"
+        "U.S. Hyperscale Data Center Market Size to Reach USD 697.84 Billion by 2031 - Arizton - openPR.com"
       ],
       "price_context": {
         "currency": "USD",
@@ -3331,8 +3331,8 @@
         "Order normalization"
       ],
       "latest_event_headlines": [
+        "Should Investors Buy, Hold, or Sell Vertiv Stock Post Q2 Earnings? - Zacks Investment Research",
         "Vertiv upgraded to Buy as AI-driven data center boom boosts revenue and margins from 2027. - Pluang",
-        "Should Investors Buy, Hold, or Sell Vertiv Stock Post Q2 Earnings? - Yahoo Finance Singapore",
         "Caterpillar faces earnings test after AI selloff hits stock - Mining.com"
       ],
       "price_context": {
@@ -3401,8 +3401,8 @@
       "company": "Vistra",
       "sector": "Elektrik Üretimi",
       "sector_en": "Power Generation",
-      "rating": "NEGATIVE",
-      "thesis_impact": "THESIS_WEAKENED",
+      "rating": "NEUTRAL",
+      "thesis_impact": "THESIS_UNCHANGED",
       "time_horizon": "Orta-Uzun vadeli",
       "time_horizon_en": "Medium to long term",
       "confidence": "HIGH",
@@ -3433,9 +3433,9 @@
         "Plant-operating risk"
       ],
       "latest_event_headlines": [
-        "Vistra prices $4 billion senior notes offering across 4 tranches - Investing.com",
-        "KKR’s $19.2 billion infrastructure fund close builds on a big July for hard asset fundraising - Pensions & Investments",
-        "Vistra gains as AI-power optimism and earnings anticipation lift the stock - Quiver Quantitative"
+        "Vistra gains as AI-power optimism and earnings anticipation lift the stock - Quiver Quantitative",
+        "Constellation Energy (NASDAQ:CEG) sees PJM volume increase offsetting price decline ahead of earnings - TechStock²",
+        "[AI Earnings Rush × AI Event Season] Semiconductors, memory, optical communications, mining firms pivoting to AI and AI applications... Which is the strongest theme driving markets this week? - Moomoo"
       ],
       "price_context": {
         "currency": "USD",
@@ -3533,7 +3533,7 @@
         "Customer and cycle risk"
       ],
       "latest_event_headlines": [
-        "Got $1,000? Taiwan Semiconductor Manufacturing's $100 Billion Arizona Investment Makes It a Must-Own Stock - aol.com",
+        "Got $1,000? Taiwan Semiconductor Manufacturing's $100 Billion Arizona Investment Makes It a Must-Own Stock - AOL.com",
         "Mass production and capacity expansion accelerate, reshaping foundry landscape in silicon photonics - dqindia.com",
         "TSM Stock Price Forecast — ($404.25) Defends $397.70 After Record 67.7% Gross Margin — $540 Target, 33% Upside - TradingNEWS"
       ],
@@ -3638,7 +3638,7 @@
       ],
       "latest_event_headlines": [
         "Peter Beck's Rocket Lab Reports Earnings on Aug. 10. Here's the One Number That Will Move the Stock. - AOL.ca",
-        "Prediction: Rocket Lab Will Turn Profitable and Free-Cash-Flow-Positive in 2027 -- Thanks to Iridium - aol.com"
+        "Prediction: Rocket Lab Will Turn Profitable and Free-Cash-Flow-Positive in 2027 -- Thanks to Iridium - AOL.com"
       ],
       "price_context": {
         "currency": "USD",
