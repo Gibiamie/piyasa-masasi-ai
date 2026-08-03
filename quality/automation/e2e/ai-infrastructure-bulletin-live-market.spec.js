@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test');
 
-const URL = '/ai-infrastructure-bulletin/#market';
+const APP_URL = '/ai-infrastructure-bulletin/#market';
 const PORTFOLIO_KEY = 'ai-infrastructure-bulletin.portfolio.v1';
 
 function chartPayload(symbol, range) {
@@ -45,8 +45,8 @@ test.describe('Live quotes and chart workspace', () => {
     let liveLunrPrice = 20;
 
     await page.route('**/v7/finance/quote?**', async route => {
-      const url = new URL(route.request().url());
-      const symbols = decodeURIComponent(url.searchParams.get('symbols') || '').split(',').filter(Boolean);
+      const requestUrl = new globalThis.URL(route.request().url());
+      const symbols = decodeURIComponent(requestUrl.searchParams.get('symbols') || '').split(',').filter(Boolean);
       const now = Math.floor(Date.now() / 1000);
       await route.fulfill({
         status: 200,
@@ -76,9 +76,9 @@ test.describe('Live quotes and chart workspace', () => {
     });
 
     await page.route('**/v8/finance/chart/**', async route => {
-      const url = new URL(route.request().url());
-      const symbol = decodeURIComponent(url.pathname.split('/').pop());
-      await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(chartPayload(symbol, url.searchParams.get('range'))) });
+      const requestUrl = new globalThis.URL(route.request().url());
+      const symbol = decodeURIComponent(requestUrl.pathname.split('/').pop());
+      await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(chartPayload(symbol, requestUrl.searchParams.get('range'))) });
     });
 
     await page.addInitScript(({ key }) => {
@@ -103,7 +103,7 @@ test.describe('Live quotes and chart workspace', () => {
       }));
     }, { key: PORTFOLIO_KEY });
 
-    await page.goto(URL);
+    await page.goto(APP_URL);
     await page.evaluate(() => navigator.serviceWorker?.ready);
     await page.waitForFunction(() => window.PiyasaLiveMarket?.runtime?.quotes?.size > 0, null, { timeout: 45000 });
 
