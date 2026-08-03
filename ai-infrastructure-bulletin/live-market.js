@@ -57,7 +57,7 @@
     await loadScript(
       "./market-integration.js?v=2026.08.03.2",
       "marketIntegration",
-      () => Boolean(root.__PIYASA_MARKET_INTEGRATION__)
+      () => Boolean(root.__PM_MARKET_INTEGRATION__)
     );
 
     await loadScript(
