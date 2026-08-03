@@ -1,4 +1,4 @@
-const CACHE = "piyasa-masasi-workspace-v17";
+const CACHE = "piyasa-masasi-workspace-v18";
 const STATIC = [
   "./",
   "./index.html",
@@ -7,6 +7,7 @@ const STATIC = [
   "./app.js",
   "./market-integration.js",
   "./bist-widget-guard.js",
+  "./us-native-intraday.js",
   "./workspace-enhancements.js",
   "./live-market.js",
   "./live-market-core.js",
@@ -26,6 +27,7 @@ const STATIC = [
 
 const MARKET_INTEGRATION = "./market-integration.js";
 const BIST_WIDGET_GUARD = "./bist-widget-guard.js";
+const US_NATIVE_INTRADAY = "./us-native-intraday.js";
 const WORKSPACE_ENHANCEMENTS = "./workspace-enhancements.js";
 const LIVE_MARKET_BOOTSTRAP = "./live-market.js";
 const LIVE_SESSION_CONTROL = "./live-session-control.js";
@@ -48,25 +50,27 @@ self.addEventListener("activate", event => {
 async function combineMarketIntegration(request) {
   const cache = await caches.open(CACHE);
   try {
-    const [baseResponse, guardResponse, enhancementsResponse, liveResponse, sessionResponse] = await Promise.all([
+    const [baseResponse, bistResponse, usResponse, enhancementsResponse, liveResponse, sessionResponse] = await Promise.all([
       fetch(request, { cache: "no-cache" }),
       fetch(BIST_WIDGET_GUARD, { cache: "no-cache" }),
+      fetch(US_NATIVE_INTRADAY, { cache: "no-cache" }),
       fetch(WORKSPACE_ENHANCEMENTS, { cache: "no-cache" }),
       fetch(LIVE_MARKET_BOOTSTRAP, { cache: "no-cache" }),
       fetch(LIVE_SESSION_CONTROL, { cache: "no-cache" })
     ]);
-    if (!baseResponse.ok || !guardResponse.ok || !enhancementsResponse.ok || !liveResponse.ok || !sessionResponse.ok) {
+    if (!baseResponse.ok || !bistResponse.ok || !usResponse.ok || !enhancementsResponse.ok || !liveResponse.ok || !sessionResponse.ok) {
       throw new Error("Market workspace files are unavailable");
     }
-    const [base, guard, enhancements, live, sessionControl] = await Promise.all([
+    const [base, bist, us, enhancements, live, sessionControl] = await Promise.all([
       baseResponse.text(),
-      guardResponse.text(),
+      bistResponse.text(),
+      usResponse.text(),
       enhancementsResponse.text(),
       liveResponse.text(),
       sessionResponse.text()
     ]);
     const combined = new Response(
-      `${base}\n\n/* BIST native intraday workspace */\n${guard}\n\n/* Workspace enhancements */\n${enhancements}\n\n/* MIC live-market bootstrap */\n${live}\n\n/* User-controlled live session */\n${sessionControl}`,
+      `${base}\n\n/* BIST native intraday workspace */\n${bist}\n\n/* US native intraday workspace */\n${us}\n\n/* Workspace enhancements */\n${enhancements}\n\n/* MIC live-market bootstrap */\n${live}\n\n/* User-controlled live session */\n${sessionControl}`,
       {
         status: 200,
         headers: {
