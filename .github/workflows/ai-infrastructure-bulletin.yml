@@ -21,8 +21,8 @@ permissions:
   contents: write
 
 concurrency:
-  group: piyasa-masasi-research-data-${{ github.ref }}
-  cancel-in-progress: true
+  group: piyasa-data-refresh-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   validate-and-refresh:
@@ -70,4 +70,9 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add ai-infrastructure-bulletin/data/report.json mic/data/history
           git commit -m "chore: refresh bilingual asset research"
-          git push
+          for attempt in 1 2 3; do
+            if git push origin "HEAD:${GITHUB_REF_NAME}"; then exit 0; fi
+            git fetch origin "${GITHUB_REF_NAME}"
+            git rebase "origin/${GITHUB_REF_NAME}"
+          done
+          exit 1

@@ -31,7 +31,7 @@ test.describe('Piyasa Masası AI professional workspace', () => {
     await expect(page).toHaveTitle('Piyasa Masası AI');
     await expect(page.locator('.brand-text strong')).toHaveText('Piyasa Masası');
     await expect(page.locator('body')).not.toContainText('AI Altyapısı Piyasa Bülteni');
-    await expect(page.locator('.tab')).toHaveCount(5);
+    await expect(page.locator('.tab')).toHaveCount(6);
     await expect(page.locator('#evaluations .research-card').first()).toBeVisible();
     await page.locator('#evaluations .open-asset').first().click();
     await expect(page.locator('#assetDrawer')).toHaveClass(/open/);
