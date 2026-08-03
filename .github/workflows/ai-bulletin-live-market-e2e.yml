@@ -17,6 +17,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ai-bulletin-live-market-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   live-market:
     runs-on: ubuntu-latest
