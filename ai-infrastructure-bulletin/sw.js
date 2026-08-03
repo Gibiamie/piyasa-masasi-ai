@@ -41,7 +41,7 @@ self.addEventListener("activate", event => {
 async function combineApplication(baseResponse, integrationResponse, bridgeResponse) {
   if (!baseResponse?.ok || !integrationResponse?.ok || !bridgeResponse?.ok) throw new Error("Application integration files are unavailable");
   const [base, integration, bridge] = await Promise.all([baseResponse.text(), integrationResponse.text(), bridgeResponse.text()]);
-  return new Response(`${base}\n\n/* Integrated market and chart workspace */\n${integration}\n\n/* Live quote bridge */\n${bridge}`, {
+  return new Response(`${base}\n\n/* The live drawer owns the single asset-detail chart. */\nwindow.__PM_DRAWER_BRIDGE__ = true;\n\n/* Integrated market and chart workspace */\n${integration}\n\n/* Live quote bridge */\n${bridge}`, {
     status: 200,
     headers: {
       "Content-Type": "application/javascript; charset=utf-8",
