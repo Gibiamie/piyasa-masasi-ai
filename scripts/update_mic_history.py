@@ -57,7 +57,7 @@ def fetch_yahoo(asset: dict) -> dict:
         try:
             response = requests.get(
                 url,
-                params={"range": "1y", "interval": "1d", "events": "div,splits"},
+                params={"range": "2y", "interval": "1d", "events": "div,splits"},
                 headers=HEADERS,
                 timeout=25,
             )
@@ -97,7 +97,7 @@ def fetch_yahoo(asset: dict) -> dict:
                 "provider_symbol": provider_symbol,
                 "provider": "Yahoo Finance chart feed",
                 "updated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-                "history": history[-270:],
+                "history": history[-540:],
             }
         except Exception as exc:  # noqa: BLE001
             last_error = f"{host}: {exc}"

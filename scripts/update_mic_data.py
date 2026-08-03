@@ -15,6 +15,7 @@ NASDAQ_CSV = ROOT / 'mic' / 'data' / 'nasdaq-listed.csv'
 NASDAQ_QUOTES_OUT = ROOT / 'mic' / 'data' / 'nasdaq-quotes.json'
 NASDAQ_URL = 'https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt'
 NASDAQ_SCREENER_URL = 'https://api.nasdaq.com/api/screener/stocks'
+US_QUOTE_EXCHANGES = ('NASDAQ', 'NYSE', 'AMEX')
 COLS = ['name','description','type','subtype','close','change','volume','market_cap_basic','price_earnings_ttm','return_on_equity','revenue_growth_ttm_yoy','Volatility.D','sector','industry','currency','Perf.W','Perf.1M','Perf.3M','Perf.6M','Perf.Y','Perf.YTD']
 HEADERS={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/150 Safari/537.36'}
 NASDAQ_HEADERS={
@@ -167,55 +168,71 @@ def sync_nasdaq_quotes() -> int:
     if NASDAQ_QUOTES_OUT.exists():
         try: previous=json.loads(NASDAQ_QUOTES_OUT.read_text(encoding='utf-8'))
         except Exception: previous={}
-    try:
-        response=requests.get(
-            NASDAQ_SCREENER_URL,
-            params={'tableonly':'true','limit':'10000','offset':'0','exchange':'NASDAQ','download':'true'},
-            headers=NASDAQ_HEADERS,
-            timeout=75
-        )
-        response.raise_for_status()
-        data=response.json().get('data') or {}
-        rows=data.get('rows') or (data.get('table') or {}).get('rows') or []
-        quotes={}
-        now=datetime.now(timezone.utc).isoformat(timespec='seconds')
-        for row in rows:
-            symbol=str(row.get('symbol') or row.get('Symbol') or '').strip().upper()
-            if not symbol:
-                continue
-            price=numeric(row.get('lastsale') or row.get('lastSale') or row.get('last_sale'))
-            change=numeric(row.get('pctchange') or row.get('percentChange') or row.get('percent_change'))
-            quote={
-                'symbol':symbol,
-                'name':row.get('name') or row.get('securityName'),
-                'price':price,
-                'change':change,
-                'net_change':numeric(row.get('netchange') or row.get('netChange')),
-                'volume':numeric(row.get('volume')),
-                'market_cap':numeric(row.get('marketCap') or row.get('marketcap')),
-                'country':row.get('country'),
-                'ipo_year':row.get('ipoyear') or row.get('ipoYear'),
-                'sector':row.get('sector'),
-                'industry':row.get('industry'),
-                'price_as_of':now,
-                'source':'Nasdaq.com official stock screener snapshot'
-            }
-            if price is not None or quote['volume'] is not None or quote['market_cap'] is not None:
-                quotes[symbol]=quote
-        if not quotes:
-            raise RuntimeError('Nasdaq screener returned no usable quote rows')
-        payload={
-            'updated_at':now,
-            'source':'Nasdaq.com official stock screener snapshot',
-            'source_url':NASDAQ_SCREENER_URL,
-            'count':len(quotes),
-            'quotes':quotes
-        }
-        NASDAQ_QUOTES_OUT.write_text(json.dumps(payload,ensure_ascii=False,separators=(',',':')),encoding='utf-8')
-        return len(quotes)
-    except Exception as error:
-        print(f'warning: Nasdaq quote snapshot not refreshed: {error}')
+    quotes={}
+    failures=[]
+    now=datetime.now(timezone.utc).isoformat(timespec='seconds')
+    for exchange in US_QUOTE_EXCHANGES:
+        try:
+            response=requests.get(
+                NASDAQ_SCREENER_URL,
+                params={'tableonly':'true','limit':'10000','offset':'0','exchange':exchange,'download':'true'},
+                headers=NASDAQ_HEADERS,
+                timeout=75
+            )
+            response.raise_for_status()
+            data=response.json().get('data') or {}
+            rows=data.get('rows') or (data.get('table') or {}).get('rows') or []
+            usable=0
+            for row in rows:
+                symbol=str(row.get('symbol') or row.get('Symbol') or '').strip().upper()
+                if not symbol:
+                    continue
+                price=numeric(row.get('lastsale') or row.get('lastSale') or row.get('last_sale'))
+                change=numeric(row.get('pctchange') or row.get('percentChange') or row.get('percent_change'))
+                quote={
+                    'symbol':symbol,
+                    'name':row.get('name') or row.get('securityName'),
+                    'exchange':exchange,
+                    'price':price,
+                    'change':change,
+                    'net_change':numeric(row.get('netchange') or row.get('netChange')),
+                    'volume':numeric(row.get('volume')),
+                    'market_cap':numeric(row.get('marketCap') or row.get('marketcap')),
+                    'country':row.get('country'),
+                    'ipo_year':row.get('ipoyear') or row.get('ipoYear'),
+                    'sector':row.get('sector'),
+                    'industry':row.get('industry'),
+                    'price_as_of':now,
+                    'source':'Nasdaq.com US stock screener snapshot'
+                }
+                if price is not None or quote['volume'] is not None or quote['market_cap'] is not None:
+                    quotes[symbol]=quote
+                    usable+=1
+            if usable == 0:
+                raise RuntimeError('no usable quote rows')
+        except Exception as error:
+            failures.append(exchange)
+            print(f'warning: {exchange} quote snapshot not refreshed: {error}')
+
+    for symbol, quote in (previous.get('quotes') or {}).items():
+        exchange=str(quote.get('exchange') or 'NASDAQ').upper()
+        if exchange in failures and symbol not in quotes:
+            quotes[symbol]=quote
+    if not quotes:
+        print('warning: US quote snapshots produced no usable rows')
         return len(previous.get('quotes') or {})
+    payload={
+        'updated_at':now,
+        'source':'Nasdaq.com US stock screener snapshots',
+        'source_url':NASDAQ_SCREENER_URL,
+        'exchanges':list(US_QUOTE_EXCHANGES),
+        'failed_exchanges':failures,
+        'count':len(quotes),
+        'counts_by_exchange':{exchange:sum(1 for quote in quotes.values() if str(quote.get('exchange') or 'NASDAQ').upper()==exchange) for exchange in US_QUOTE_EXCHANGES},
+        'quotes':quotes
+    }
+    NASDAQ_QUOTES_OUT.write_text(json.dumps(payload,ensure_ascii=False,separators=(',',':')),encoding='utf-8')
+    return len(quotes)
 
 
 def main():
