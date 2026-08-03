@@ -1,4 +1,4 @@
-const CACHE = "piyasa-masasi-workspace-v15";
+const CACHE = "piyasa-masasi-workspace-v16";
 const STATIC = [
   "./",
   "./index.html",
@@ -9,6 +9,7 @@ const STATIC = [
   "./market-live-bridge.js",
   "./live-market.js",
   "./live-market-core.js",
+  "./chart-fetch-fallback.js",
   "./ui-controls.js",
   "./broker-import.js",
   "./broker-import-csv.js",
@@ -51,7 +52,7 @@ const LIVE_BOOTSTRAP = `
       return;
     }
     const script = document.createElement("script");
-    script.src = "./live-market.js?v=2026.08.03.3";
+    script.src = "./live-market.js?v=2026.08.03.4";
     script.dataset.liveMarket = "true";
     script.async = false;
     document.head.appendChild(script);
