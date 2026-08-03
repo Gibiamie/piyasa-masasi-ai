@@ -102,3 +102,5 @@
   root.PiyasaLiveBootstrap = { prepare, startCore };
   prepare().catch(error => console.error("Piyasa live-market preparation failed", error));
 })(typeof globalThis !== "undefined" ? globalThis : this);
+
+// CI verification branch only.
