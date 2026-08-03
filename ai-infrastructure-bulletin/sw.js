@@ -1,4 +1,4 @@
-const CACHE = "piyasa-masasi-workspace-v16";
+const CACHE = "piyasa-masasi-workspace-v17";
 const STATIC = [
   "./",
   "./index.html",
@@ -10,6 +10,7 @@ const STATIC = [
   "./workspace-enhancements.js",
   "./live-market.js",
   "./live-market-core.js",
+  "./live-session-control.js",
   "./market-live-bridge.js",
   "./chart-fetch-fallback.js",
   "./ui-controls.js",
@@ -27,6 +28,7 @@ const MARKET_INTEGRATION = "./market-integration.js";
 const BIST_WIDGET_GUARD = "./bist-widget-guard.js";
 const WORKSPACE_ENHANCEMENTS = "./workspace-enhancements.js";
 const LIVE_MARKET_BOOTSTRAP = "./live-market.js";
+const LIVE_SESSION_CONTROL = "./live-session-control.js";
 
 self.addEventListener("install", event => {
   event.waitUntil(caches.open(CACHE).then(cache => Promise.all(STATIC.map(url => cache.add(url).catch(() => null)))));
@@ -46,23 +48,25 @@ self.addEventListener("activate", event => {
 async function combineMarketIntegration(request) {
   const cache = await caches.open(CACHE);
   try {
-    const [baseResponse, guardResponse, enhancementsResponse, liveResponse] = await Promise.all([
+    const [baseResponse, guardResponse, enhancementsResponse, liveResponse, sessionResponse] = await Promise.all([
       fetch(request, { cache: "no-cache" }),
       fetch(BIST_WIDGET_GUARD, { cache: "no-cache" }),
       fetch(WORKSPACE_ENHANCEMENTS, { cache: "no-cache" }),
-      fetch(LIVE_MARKET_BOOTSTRAP, { cache: "no-cache" })
+      fetch(LIVE_MARKET_BOOTSTRAP, { cache: "no-cache" }),
+      fetch(LIVE_SESSION_CONTROL, { cache: "no-cache" })
     ]);
-    if (!baseResponse.ok || !guardResponse.ok || !enhancementsResponse.ok || !liveResponse.ok) {
+    if (!baseResponse.ok || !guardResponse.ok || !enhancementsResponse.ok || !liveResponse.ok || !sessionResponse.ok) {
       throw new Error("Market workspace files are unavailable");
     }
-    const [base, guard, enhancements, live] = await Promise.all([
+    const [base, guard, enhancements, live, sessionControl] = await Promise.all([
       baseResponse.text(),
       guardResponse.text(),
       enhancementsResponse.text(),
-      liveResponse.text()
+      liveResponse.text(),
+      sessionResponse.text()
     ]);
     const combined = new Response(
-      `${base}\n\n/* BIST native intraday workspace */\n${guard}\n\n/* Workspace enhancements */\n${enhancements}\n\n/* MIC live-market bootstrap */\n${live}`,
+      `${base}\n\n/* BIST native intraday workspace */\n${guard}\n\n/* Workspace enhancements */\n${enhancements}\n\n/* MIC live-market bootstrap */\n${live}\n\n/* User-controlled live session */\n${sessionControl}`,
       {
         status: 200,
         headers: {
@@ -83,8 +87,7 @@ self.addEventListener("fetch", event => {
   if (event.request.method !== "GET") return;
   const url = new URL(event.request.url);
 
-  // Never proxy or cache third-party quote/chart requests. The live layer handles
-  // direct, query2 and AllOrigins fallbacks itself.
+  // Third-party quote and chart calls are handled directly by the browser layer.
   if (url.origin !== self.location.origin) return;
 
   if (url.pathname.endsWith("/ai-infrastructure-bulletin/market-integration.js")) {
