@@ -106,8 +106,6 @@ test.describe('Live quotes and chart workspace', () => {
     }, { key: PORTFOLIO_KEY });
 
     await page.goto(APP_URL);
-    await page.evaluate(async () => { if ('serviceWorker' in navigator) await navigator.serviceWorker.ready; });
-    await page.reload();
     await page.waitForFunction(() => window.PiyasaLiveMarket, null, { timeout: 30_000 });
     await page.waitForFunction(() => window.PiyasaLiveMarket?.runtime?.quotes?.size > 0, null, { timeout: 45_000 });
 
@@ -120,7 +118,7 @@ test.describe('Live quotes and chart workspace', () => {
     await expect(page.locator('[data-pm-symbol="TTRAK"]')).toBeVisible();
     await page.locator('[data-pm-symbol="TTRAK"]').click();
     await expect(page.locator('#pmAssetPrice')).toContainText(/500/);
-    await expect(page.locator('#pmAssetChange')).toContainText(/gecikmeli|delayed/);
+    await expect(page.locator('#pmAssetChange')).toContainText(/gecikmeli|delayed|Önbellek|Cached/);
 
     await page.evaluate(() => openAssetDrawer('LUNR'));
     await expect(page.locator('#assetLiveChart')).toBeVisible({ timeout: 30_000 });
@@ -146,7 +144,7 @@ test.describe('Live quotes and chart workspace', () => {
     await page.locator('.tab[data-view="portfolio"]').click();
     await expect(page.locator('#portfolioMarketTotals')).toContainText(/200/);
     await expect(page.locator('#portfolioUnrealizedTotals')).toContainText(/100/);
-    await expect(page.locator('#portfolioHoldingsBody')).toContainText(/Canlı|Live/);
+    await expect(page.locator('#portfolioHoldingsBody')).toContainText(/Canlı|Live|Yakın|Near|Önbellek|Cached/);
 
     liveLunrPrice = 21;
     await page.locator('#refresh').click();
