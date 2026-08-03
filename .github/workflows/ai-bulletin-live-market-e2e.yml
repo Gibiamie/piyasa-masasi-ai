@@ -1,0 +1,64 @@
+name: AI Bulletin Live Market E2E
+
+on:
+  pull_request:
+    branches: [remediation/v30-audit]
+    paths:
+      - 'ai-infrastructure-bulletin/live-market.js'
+      - 'ai-infrastructure-bulletin/market-live-bridge.js'
+      - 'ai-infrastructure-bulletin/market-integration.js'
+      - 'ai-infrastructure-bulletin/broker-import-csv.js'
+      - 'ai-infrastructure-bulletin/sw.js'
+      - 'ai-infrastructure-bulletin/tests/live-market.test.js'
+      - 'quality/automation/e2e/ai-infrastructure-bulletin-live-market.spec.js'
+      - '.github/workflows/ai-bulletin-live-market-e2e.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ai-bulletin-live-market-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  live-market:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate live market application
+        run: |
+          node --check ai-infrastructure-bulletin/live-market.js
+          node --check ai-infrastructure-bulletin/market-live-bridge.js
+          node --check ai-infrastructure-bulletin/market-integration.js
+          node --check ai-infrastructure-bulletin/broker-import-csv.js
+          node --check ai-infrastructure-bulletin/sw.js
+          node ai-infrastructure-bulletin/tests/live-market.test.js
+          node ai-infrastructure-bulletin/tests/portfolio-engine.test.js
+          node ai-infrastructure-bulletin/tests/test_broker_import.js
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium firefox webkit
+
+      - name: Validate live prices, charts and portfolio repricing
+        run: npx playwright test quality/automation/e2e/ai-infrastructure-bulletin-live-market.spec.js
+
+      - name: Upload report on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ai-bulletin-live-market-report
+          path: |
+            quality/automation/e2e/report
+            test-results
+          if-no-files-found: ignore
