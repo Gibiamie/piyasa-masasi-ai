@@ -1,4 +1,4 @@
-const CACHE = "piyasa-masasi-workspace-v14";
+const CACHE = "piyasa-masasi-workspace-v15";
 const STATIC = [
   "./",
   "./index.html",
@@ -8,6 +8,7 @@ const STATIC = [
   "./market-integration.js",
   "./market-live-bridge.js",
   "./live-market.js",
+  "./live-market-core.js",
   "./ui-controls.js",
   "./broker-import.js",
   "./broker-import-csv.js",
@@ -34,19 +35,15 @@ self.addEventListener("activate", event => {
     const keys = await caches.keys();
     await Promise.all(keys.filter(key => key !== CACHE).map(key => caches.delete(key)));
     await self.clients.claim();
-    const windows = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
-    await Promise.all(windows.map(client => client.url.includes("/ai-infrastructure-bulletin/") ? client.navigate(client.url).catch(() => null) : null));
   })());
 });
 
 const LIVE_BOOTSTRAP = `
 (function startLiveMarketAfterControls() {
-  if (window.__PIYASA_LIVE_BOOTSTRAP__) return;
-  window.__PIYASA_LIVE_BOOTSTRAP__ = true;
+  if (window.PiyasaLiveMarket || document.querySelector("script[data-live-market]")) return;
   let attempts = 0;
   const start = () => {
     attempts += 1;
-    if (window.PiyasaLiveMarket || document.querySelector("script[data-live-market]")) return;
     const controlsReady = Boolean(document.getElementById("interactiveControlsStyles"));
     const applicationReady = typeof openAssetDrawer === "function" && typeof renderPortfolio === "function" && typeof renderWatchlist === "function";
     if (!controlsReady || !applicationReady) {
@@ -54,7 +51,7 @@ const LIVE_BOOTSTRAP = `
       return;
     }
     const script = document.createElement("script");
-    script.src = "./live-market.js?v=2026.08.03.2";
+    script.src = "./live-market.js?v=2026.08.03.3";
     script.dataset.liveMarket = "true";
     script.async = false;
     document.head.appendChild(script);
