@@ -1,4 +1,4 @@
-const CACHE = "piyasa-masasi-workspace-v14";
+const CACHE = "piyasa-masasi-workspace-v15";
 const STATIC = [
   "./",
   "./index.html",
@@ -7,6 +7,7 @@ const STATIC = [
   "./app.js",
   "./market-integration.js",
   "./bist-widget-guard.js",
+  "./workspace-enhancements.js",
   "./ui-controls.js",
   "./broker-import.js",
   "./broker-import-csv.js",
@@ -20,6 +21,7 @@ const STATIC = [
 
 const MARKET_INTEGRATION = "./market-integration.js";
 const BIST_WIDGET_GUARD = "./bist-widget-guard.js";
+const WORKSPACE_ENHANCEMENTS = "./workspace-enhancements.js";
 
 self.addEventListener("install", event => {
   event.waitUntil(caches.open(CACHE).then(cache => Promise.all(STATIC.map(url => cache.add(url).catch(() => null)))));
@@ -39,13 +41,18 @@ self.addEventListener("activate", event => {
 async function combineMarketIntegration(request) {
   const cache = await caches.open(CACHE);
   try {
-    const [baseResponse, guardResponse] = await Promise.all([
+    const [baseResponse, guardResponse, enhancementsResponse] = await Promise.all([
       fetch(request, { cache: "no-cache" }),
-      fetch(BIST_WIDGET_GUARD, { cache: "no-cache" })
+      fetch(BIST_WIDGET_GUARD, { cache: "no-cache" }),
+      fetch(WORKSPACE_ENHANCEMENTS, { cache: "no-cache" })
     ]);
-    if (!baseResponse.ok || !guardResponse.ok) throw new Error("Market integration files are unavailable");
-    const [base, guard] = await Promise.all([baseResponse.text(), guardResponse.text()]);
-    const combined = new Response(`${base}\n\n/* BIST embedded-widget guard */\n${guard}`, {
+    if (!baseResponse.ok || !guardResponse.ok || !enhancementsResponse.ok) throw new Error("Market workspace files are unavailable");
+    const [base, guard, enhancements] = await Promise.all([
+      baseResponse.text(),
+      guardResponse.text(),
+      enhancementsResponse.text()
+    ]);
+    const combined = new Response(`${base}\n\n/* BIST embedded-widget guard */\n${guard}\n\n/* Workspace enhancements */\n${enhancements}`, {
       status: 200,
       headers: {
         "Content-Type": "application/javascript; charset=utf-8",
@@ -55,17 +62,8 @@ async function combineMarketIntegration(request) {
     await cache.put(MARKET_INTEGRATION, combined.clone());
     return combined;
   } catch (_) {
-    const combined = await cache.match(MARKET_INTEGRATION, { ignoreSearch: true });
-    if (combined) return combined;
-    const [baseResponse, guardResponse] = await Promise.all([
-      cache.match(MARKET_INTEGRATION, { ignoreSearch: true }),
-      cache.match(BIST_WIDGET_GUARD, { ignoreSearch: true })
-    ]);
-    if (!baseResponse || !guardResponse) return Response.error();
-    const [base, guard] = await Promise.all([baseResponse.text(), guardResponse.text()]);
-    return new Response(`${base}\n\n/* BIST embedded-widget guard */\n${guard}`, {
-      headers: { "Content-Type": "application/javascript; charset=utf-8" }
-    });
+    const cached = await cache.match(MARKET_INTEGRATION, { ignoreSearch: true });
+    return cached || Response.error();
   }
 }
 
