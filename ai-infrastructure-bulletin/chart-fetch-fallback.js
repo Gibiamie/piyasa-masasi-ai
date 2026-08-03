@@ -100,6 +100,22 @@
     }
   }
 
+  function activeChartSymbol() {
+    const active = root.PiyasaLiveMarket?.runtime?.activeChart;
+    if (!active?.host?.isConnected) return "";
+    return baseSymbol(
+      active.ticker
+      || active.asset?.provider_symbol
+      || active.asset?.providerSymbol
+      || active.asset?.ticker
+      || active.asset?.symbol
+    );
+  }
+
+  function interactiveChartFallbackAllowed(request) {
+    return Boolean(activeChartSymbol()) && activeChartSymbol() === baseSymbol(request.symbol);
+  }
+
   async function micHistoryResponse(request) {
     const symbol = baseSymbol(request.symbol);
     const url = new URL(`../mic/data/history/${encodeURIComponent(symbol)}.json`, document.baseURI).href;
@@ -127,10 +143,11 @@
 
     try {
       const response = await originalFetch(input, init);
-      if (response.ok) return response;
+      if (response.ok || !interactiveChartFallbackAllowed(request)) return response;
       return await micHistoryResponse(request);
-    } catch (_) {
-      return micHistoryResponse(request);
+    } catch (error) {
+      if (interactiveChartFallbackAllowed(request)) return micHistoryResponse(request);
+      throw error;
     }
   };
 
@@ -139,6 +156,7 @@
     unwrapPayload,
     normalizeHistoryRow,
     toYahooChart,
-    chartRequest
+    chartRequest,
+    interactiveChartFallbackAllowed
   };
 })(typeof globalThis !== "undefined" ? globalThis : this);
