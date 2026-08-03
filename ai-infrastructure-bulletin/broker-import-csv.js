@@ -76,160 +76,61 @@
     return rows;
   }
 
-  function loadScriptSource(src, globalName) {
+  function loadLocalFirst(sources, globalName) {
     if (globalThis[globalName]) return Promise.resolve(globalThis[globalName]);
-    if (typeof document === "undefined") return Promise.reject(new Error(`BROWSER_LIBRARY_REQUIRED:${globalName}`));
-    const absolute = new URL(src, document.baseURI).href;
-    const existing = [...document.scripts].find(script => script.src === absolute);
-    if (existing) {
-      return new Promise((resolve, reject) => {
-        if (globalThis[globalName]) { resolve(globalThis[globalName]); return; }
-        existing.addEventListener("load", () => globalThis[globalName] ? resolve(globalThis[globalName]) : reject(new Error(`LIBRARY_NOT_AVAILABLE:${globalName}`)), { once: true });
-        existing.addEventListener("error", () => reject(new Error(`LIBRARY_LOAD_FAILED:${globalName}`)), { once: true });
-      });
-    }
     return new Promise((resolve, reject) => {
-      const script = document.createElement("script");
-      script.src = absolute;
-      script.async = true;
-      script.dataset.brokerLibrary = globalName;
-      script.onload = () => globalThis[globalName] ? resolve(globalThis[globalName]) : reject(new Error(`LIBRARY_NOT_AVAILABLE:${globalName}`));
-      script.onerror = () => reject(new Error(`LIBRARY_LOAD_FAILED:${globalName}:${src}`));
-      document.head.appendChild(script);
+      let index = 0;
+      const tryNext = () => {
+        if (index >= sources.length) { reject(new Error(`LIBRARY_LOAD_FAILED:${globalName}`)); return; }
+        const source = sources[index++];
+        const script = document.createElement("script");
+        script.src = source;
+        script.async = true;
+        script.dataset.library = globalName;
+        script.onload = () => globalThis[globalName] ? resolve(globalThis[globalName]) : tryNext();
+        script.onerror = () => { script.remove(); tryNext(); };
+        document.head.appendChild(script);
+      };
+      tryNext();
     });
   }
 
-  async function loadFirstAvailable(sources, globalName) {
-    let lastError = null;
-    for (const source of sources) {
-      try { return await loadScriptSource(source, globalName); }
-      catch (error) { lastError = error; }
-    }
-    throw new Error(`IMPORT_LIBRARY_UNAVAILABLE:${globalName}:${lastError?.message || "unknown"}`);
-  }
-
-  function itemX(item) { return Number(item?.x ?? item?.transform?.[4] ?? 0); }
-  function itemY(item) { return Number(item?.y ?? item?.transform?.[5] ?? item?.top ?? 0); }
-
-  function groupPdfRows(items, tolerance = 2.8) {
-    const rows = [];
-    for (const item of items || []) {
-      const text = String(item?.str ?? item?.text ?? "");
-      if (!text.trim()) continue;
-      const x = itemX(item);
-      const y = itemY(item);
-      let row = rows.find(candidate => Math.abs(candidate.y - y) <= tolerance);
-      if (!row) { row = { y, items: [] }; rows.push(row); }
-      row.items.push({ x, text });
-    }
-    return rows
-      .sort((a, b) => b.y - a.y)
-      .map(row => ({ ...row, items: row.items.sort((a, b) => a.x - b.x) }));
-  }
-
-  function compactColumn(items, minX, maxX = Infinity) {
-    return (items || [])
-      .filter(item => item.x >= minX && item.x < maxX)
-      .sort((a, b) => a.x - b.x)
-      .map(item => item.text)
-      .join("")
-      .replace(/\s+/g, "")
-      .trim();
-  }
-
-  function compactPdfText(pages) {
-    return BrokerPortfolioImport.fold((pages || []).flat().map(item => String(item?.str ?? item?.text ?? "")).join(" ")).replace(/\s+/g, "");
-  }
-
-  function findStatementDate(pages) {
-    for (const pageItems of pages || []) {
-      for (const row of groupPdfRows(pageItems)) {
-        const compact = row.items.map(item => item.text).join("").replace(/\s+/g, "");
-        const date = BrokerPortfolioImport.parseDate(compact);
-        const folded = BrokerPortfolioImport.fold(compact).replace(/\s+/g, "");
-        if (date && (folded.includes("duzenlemetarihi") || folded.includes("raportarihi") || folded.includes("statementdate"))) return date;
+  function compactPdfItems(items) {
+    const source = (items || []).map(item => ({ str: String(item.str ?? item.text ?? ""), transform: item.transform || [1,0,0,1,item.x || 0,item.y || 0], x: item.x, y: item.y })).filter(item => item.str.trim());
+    const rows = BrokerPortfolioImport.groupPdfItems(source, 3.1);
+    return rows.flatMap(row => {
+      const merged = [];
+      for (const item of row.items) {
+        const previous = merged.at(-1);
+        if (previous && item.x - previous.x < 18 && /^[A-Za-zÇĞİÖŞÜçğıöşü]$/.test(previous.text) && /^[A-Za-zÇĞİÖŞÜçğıöşü]$/.test(item.text)) previous.text += item.text;
+        else merged.push({ ...item });
       }
-    }
-    const all = (pages || []).flat().map(item => String(item?.str ?? item?.text ?? "")).join("").replace(/\s+/g, "");
-    return BrokerPortfolioImport.parseDate(all);
+      return merged.map(item => ({ str: item.text, transform: [1,0,0,1,item.x,row.y] }));
+    });
   }
 
-  function parseOsmanliPdfItemsRobust(pages) {
-    const compactText = compactPdfText(pages);
-    const recognized = (compactText.includes("osmanliyatirim") && compactText.includes("hisseportfoyum")) || compactText.includes("kodadetmaliyetkapanisfiyat");
-    if (!recognized) throw new Error("UNSUPPORTED_PDF_TEMPLATE");
-
-    const statementDate = findStatementDate(pages);
-    const holdingsBySymbol = new Map();
-    let textItemCount = 0;
-
-    for (const pageItems of pages || []) {
-      textItemCount += (pageItems || []).length;
-      for (const row of groupPdfRows(pageItems)) {
-        let symbol = BrokerPortfolioImport.normalizeHolding({ symbol: compactColumn(row.items, 0, 62), quantity: 1, averageCost: 0 }, { currency: "TRY" }).symbol;
-        let quantityText = compactColumn(row.items, 62, 112);
-
-        if (!/^[A-Z][A-Z0-9]{1,11}$/.test(symbol)) {
-          const firstBand = compactColumn(row.items, 0, 112).toUpperCase();
-          const match = firstBand.match(/^([A-Z]{2,12})([0-9].*)$/);
-          if (match) { symbol = match[1]; quantityText = quantityText || match[2]; }
-        }
-        if (!/^[A-Z][A-Z0-9]{1,11}$/.test(symbol)) continue;
-
-        const raw = {
-          symbol,
-          quantity: quantityText,
-          averageCost: compactColumn(row.items, 112, 158),
-          currentPrice: compactColumn(row.items, 207, 250),
-          marketValue: compactColumn(row.items, 520),
-          date: statementDate,
-          currency: "TRY",
-          assetType: "STOCK",
-          unit: "lot"
-        };
-        const holding = BrokerPortfolioImport.normalizeHolding(raw, { currency: "TRY", date: statementDate, assetType: "STOCK", unit: "lot" });
-        if (holding.symbol && holding.quantity > 0 && holding.averageCost >= 0) holdingsBySymbol.set(holding.symbol, holding);
-      }
-    }
-
-    if (!textItemCount) throw new Error("SCANNED_PDF");
-    const holdings = [...holdingsBySymbol.values()];
-    if (!holdings.length) throw new Error(`PORTFOLIO_ROWS_NOT_FOUND:TEXT_ITEMS=${textItemCount}`);
-    return {
-      broker: "Osmanlı Yatırım Menkul Değerler A.Ş.",
-      statementDate,
-      sourceType: "PDF",
-      holdings,
-      warnings: holdings.some(row => row.errors.length) ? ["ROWS_REQUIRE_REVIEW"] : [],
-      adapter: "OSMANLI_PORTFOLIO_PDF_V2"
-    };
-  }
-
-  async function parsePdfLocally(file) {
-    const pdfjsLib = await loadFirstAvailable(PDF_LIBRARY_SOURCES, "pdfjsLib");
-    pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(PDF_WORKER_SOURCE, document.baseURI).href;
+  async function parsePdfLocal(file) {
+    const pdfjsLib = await loadLocalFirst(PDF_LIBRARY_SOURCES, "pdfjsLib");
+    pdfjsLib.GlobalWorkerOptions.workerSrc = PDF_WORKER_SOURCE;
     const data = new Uint8Array(await file.arrayBuffer());
-    let documentRef;
-    try {
-      documentRef = await pdfjsLib.getDocument({ data }).promise;
-    } catch (error) {
-      throw new Error(`PDF_OPEN_FAILED:${error?.message || error}`);
-    }
+    const documentRef = await pdfjsLib.getDocument({ data }).promise;
     const pages = [];
     for (let pageNumber = 1; pageNumber <= documentRef.numPages; pageNumber += 1) {
       const page = await documentRef.getPage(pageNumber);
-      const content = await page.getTextContent({ disableNormalization: false, includeMarkedContent: false });
-      pages.push(content.items || []);
+      const content = await page.getTextContent();
+      pages.push(compactPdfItems(content.items));
     }
-    return parseOsmanliPdfItemsRobust(pages);
+    const folded = BrokerPortfolioImport.fold(pages.flat().map(item => item.str).join(" "));
+    if (folded.includes("osmanli yatirim") && folded.includes("hisse portfoyum")) return BrokerPortfolioImport.parseOsmanliPdfItems(pages);
+    throw new Error("UNSUPPORTED_PDF_TEMPLATE");
   }
 
-  async function parseSpreadsheetLocally(file) {
-    const XLSX = await loadFirstAvailable(XLSX_LIBRARY_SOURCES, "XLSX");
+  async function parseSpreadsheetLocal(file) {
+    const XLSX = await loadLocalFirst(XLSX_LIBRARY_SOURCES, "XLSX");
     const workbook = XLSX.read(await file.arrayBuffer(), { type: "array", cellDates: true, raw: true });
     let best = null;
     const rawSheets = [];
-    for (const sheetName of workbook.SheetNames || []) {
+    for (const sheetName of workbook.SheetNames) {
       const matrix = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1, defval: "", raw: true });
       rawSheets.push({ name: sheetName, matrix });
       try {
@@ -237,46 +138,29 @@
         if (!best || parsed.holdings.length > best.holdings.length) best = { ...parsed, sheetName };
       } catch (_) {}
     }
-    if (best) return best;
-    return {
-      broker: "Generic broker",
-      statementDate: null,
-      sourceType: "SPREADSHEET",
-      holdings: [],
-      warnings: ["COLUMN_MAPPING_REQUIRED"],
-      adapter: "MANUAL_COLUMN_MAPPING",
-      mappingRequired: true,
-      rawSheets
-    };
+    return best || { broker: "Generic broker", statementDate: null, sourceType: "SPREADSHEET", holdings: [], warnings: ["COLUMN_MAPPING_REQUIRED"], adapter: "MANUAL_COLUMN_MAPPING", mappingRequired: true, rawSheets };
   }
 
   const originalParseFile = BrokerPortfolioImport.parseFile;
   BrokerPortfolioImport.detectCsvDelimiter = detectDelimiter;
   BrokerPortfolioImport.parseCsv = parseCsv;
-  BrokerPortfolioImport.groupPdfRowsRobust = groupPdfRows;
-  BrokerPortfolioImport.compactPdfColumn = compactColumn;
-  BrokerPortfolioImport.parseOsmanliPdfItemsRobust = parseOsmanliPdfItemsRobust;
-
   BrokerPortfolioImport.parseFile = async function parseFileWithLocalReaders(file) {
     const name = String(file?.name || "").toLowerCase();
-    if (name.endsWith(".pdf")) return parsePdfLocally(file);
-    if (/\.(xlsx|xls)$/i.test(name)) return parseSpreadsheetLocally(file);
-    if (!name.endsWith(".csv")) return originalParseFile(file);
-
-    const matrix = parseCsv(await file.text());
-    try {
-      return BrokerPortfolioImport.parseGenericMatrix(matrix, { sourceType: "CSV" });
-    } catch (_) {
-      return {
-        broker: "Generic broker",
-        statementDate: null,
-        sourceType: "CSV",
-        holdings: [],
-        warnings: ["COLUMN_MAPPING_REQUIRED"],
-        adapter: "MANUAL_COLUMN_MAPPING",
-        mappingRequired: true,
-        rawSheets: [{ name: file.name || "CSV", matrix }]
-      };
+    if (name.endsWith(".csv")) {
+      const matrix = parseCsv(await file.text());
+      try { return BrokerPortfolioImport.parseGenericMatrix(matrix, { sourceType: "CSV" }); }
+      catch (_) { return { broker: "Generic broker", statementDate: null, sourceType: "CSV", holdings: [], warnings: ["COLUMN_MAPPING_REQUIRED"], adapter: "MANUAL_COLUMN_MAPPING", mappingRequired: true, rawSheets: [{ name: file.name || "CSV", matrix }] }; }
     }
+    if (name.endsWith(".pdf")) return parsePdfLocal(file);
+    if (/\.(xlsx|xls)$/i.test(name)) return parseSpreadsheetLocal(file);
+    return originalParseFile(file);
   };
+})();
+
+(function loadLiveMarketLayer() {
+  if (document.querySelector("script[data-live-market]")) return;
+  const script = document.createElement("script");
+  script.src = "./live-market.js?v=2026.08.03.1";
+  script.dataset.liveMarket = "true";
+  document.head.appendChild(script);
 })();
