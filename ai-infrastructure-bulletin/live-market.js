@@ -29,9 +29,14 @@
     });
   }
 
+  function attributeName(marker) {
+    return `data-${String(marker).replace(/[A-Z]/g, letter => `-${letter.toLowerCase()}`)}`;
+  }
+
   function loadScript(src, marker, isReady) {
     if (isReady()) return Promise.resolve();
-    const existing = document.querySelector(`script[data-${marker}]`);
+    const attribute = attributeName(marker);
+    const existing = document.querySelector(`script[${attribute}]`);
     if (existing) {
       return new Promise((resolve, reject) => {
         if (isReady()) { resolve(); return; }
@@ -43,7 +48,7 @@
       const script = document.createElement("script");
       script.src = src;
       script.async = false;
-      script.dataset[marker] = "true";
+      script.setAttribute(attribute, "true");
       script.onload = () => isReady() ? resolve() : reject(new Error(`SCRIPT_NOT_READY:${src}`));
       script.onerror = () => reject(new Error(`SCRIPT_LOAD_FAILED:${src}`));
       document.head.appendChild(script);
@@ -55,19 +60,25 @@
     root.__PM_DRAWER_BRIDGE__ = true;
 
     await loadScript(
-      "./market-integration.js?v=2026.08.03.2",
+      "./market-integration.js?v=2026.08.03.3",
       "marketIntegration",
       () => Boolean(root.__PM_MARKET_INTEGRATION__)
     );
 
     await loadScript(
-      "./market-live-bridge.js?v=2026.08.03.2",
+      "./market-live-bridge.js?v=2026.08.03.3",
       "marketLiveBridge",
       () => Boolean(root.__PM_LIVE_MARKET_BRIDGE__)
     );
 
     await loadScript(
-      "./live-market-core.js?v=2026.08.03.2",
+      "./chart-fetch-fallback.js?v=2026.08.03.1",
+      "chartFetchFallback",
+      () => Boolean(root.__PIYASA_CHART_FETCH_FALLBACK__)
+    );
+
+    await loadScript(
+      "./live-market-core.js?v=2026.08.03.3",
       "liveMarketCore",
       () => Boolean(root.PiyasaLiveMarket)
     );
