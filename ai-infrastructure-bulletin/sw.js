@@ -1,4 +1,4 @@
-const CACHE = "piyasa-masasi-workspace-v13";
+const CACHE = "piyasa-masasi-workspace-v14";
 const STATIC = [
   "./",
   "./index.html",
@@ -20,6 +20,7 @@ const STATIC = [
 ];
 const REPORT = "./data/report.json";
 const APP_SCRIPT = "./app.js";
+const INTEGRATED_APP = "./app.integrated.js";
 const INTEGRATION_SCRIPT = "./market-integration.js";
 const LIVE_BRIDGE_SCRIPT = "./market-live-bridge.js";
 
@@ -38,10 +39,33 @@ self.addEventListener("activate", event => {
   })());
 });
 
+const LIVE_BOOTSTRAP = `
+(function startLiveMarketAfterControls() {
+  if (window.__PIYASA_LIVE_BOOTSTRAP__) return;
+  window.__PIYASA_LIVE_BOOTSTRAP__ = true;
+  let attempts = 0;
+  const start = () => {
+    attempts += 1;
+    if (window.PiyasaLiveMarket || document.querySelector("script[data-live-market]")) return;
+    const controlsReady = Boolean(document.getElementById("interactiveControlsStyles"));
+    const applicationReady = typeof openAssetDrawer === "function" && typeof renderPortfolio === "function" && typeof renderWatchlist === "function";
+    if (!controlsReady || !applicationReady) {
+      if (attempts < 400) setTimeout(start, 50);
+      return;
+    }
+    const script = document.createElement("script");
+    script.src = "./live-market.js?v=2026.08.03.2";
+    script.dataset.liveMarket = "true";
+    script.async = false;
+    document.head.appendChild(script);
+  };
+  start();
+})();`;
+
 async function combineApplication(baseResponse, integrationResponse, bridgeResponse) {
   if (!baseResponse?.ok || !integrationResponse?.ok || !bridgeResponse?.ok) throw new Error("Application integration files are unavailable");
   const [base, integration, bridge] = await Promise.all([baseResponse.text(), integrationResponse.text(), bridgeResponse.text()]);
-  return new Response(`${base}\n\n/* The live drawer owns the single asset-detail chart. */\nwindow.__PM_DRAWER_BRIDGE__ = true;\n\n/* Integrated market and chart workspace */\n${integration}\n\n/* Live quote bridge */\n${bridge}`, {
+  return new Response(`${base}\n\n/* The live drawer owns the single asset-detail chart. */\nwindow.__PM_DRAWER_BRIDGE__ = true;\n\n/* Integrated market and chart workspace */\n${integration}\n\n/* Live quote bridge */\n${bridge}\n\n/* Deterministic live-market bootstrap */\n${LIVE_BOOTSTRAP}`, {
     status: 200,
     headers: {
       "Content-Type": "application/javascript; charset=utf-8",
@@ -51,6 +75,7 @@ async function combineApplication(baseResponse, integrationResponse, bridgeRespo
 }
 
 async function integratedApplication(request) {
+  const cache = await caches.open(CACHE);
   try {
     const [base, integration, bridge] = await Promise.all([
       fetch(request, { cache: "no-cache" }),
@@ -58,13 +83,11 @@ async function integratedApplication(request) {
       fetch(LIVE_BRIDGE_SCRIPT, { cache: "no-cache" })
     ]);
     const combined = await combineApplication(base, integration, bridge);
-    const cache = await caches.open(CACHE);
-    await cache.put(APP_SCRIPT, combined.clone());
+    await cache.put(INTEGRATED_APP, combined.clone());
     return combined;
   } catch (_) {
-    const cache = await caches.open(CACHE);
-    const combined = await cache.match(APP_SCRIPT, { ignoreSearch: true });
-    if (combined) return combined;
+    const integrated = await cache.match(INTEGRATED_APP, { ignoreSearch: true });
+    if (integrated) return integrated;
     const [base, integration, bridge] = await Promise.all([
       cache.match(APP_SCRIPT, { ignoreSearch: true }),
       cache.match(INTEGRATION_SCRIPT, { ignoreSearch: true }),
