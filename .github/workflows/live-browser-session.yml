@@ -11,6 +11,16 @@ on:
       - 'ai-infrastructure-bulletin/sw.js'
       - 'ai-infrastructure-bulletin/tests/live-session-control.test.js'
       - '.github/workflows/live-browser-session.yml'
+  pull_request:
+    branches: [remediation/v30-audit]
+    paths:
+      - 'ai-infrastructure-bulletin/live-session-control.js'
+      - 'ai-infrastructure-bulletin/live-market.js'
+      - 'ai-infrastructure-bulletin/live-market-core.js'
+      - 'ai-infrastructure-bulletin/bist-widget-guard.js'
+      - 'ai-infrastructure-bulletin/sw.js'
+      - 'ai-infrastructure-bulletin/tests/live-session-control.test.js'
+      - '.github/workflows/live-browser-session.yml'
   workflow_dispatch:
 
 permissions:
