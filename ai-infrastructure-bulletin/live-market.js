@@ -9,6 +9,9 @@
   if (root.__PIYASA_LIVE_MARKET_BOOTSTRAP__) return;
   root.__PIYASA_LIVE_MARKET_BOOTSTRAP__ = true;
 
+  let preparedPromise = null;
+  let corePromise = null;
+
   function ready() {
     return Boolean(document.getElementById("interactiveControlsStyles"))
       && typeof root.openAssetDrawer === "function"
@@ -55,36 +58,47 @@
     });
   }
 
-  async function start() {
-    await waitUntilReady();
-    root.__PM_DRAWER_BRIDGE__ = true;
+  async function prepare() {
+    if (preparedPromise) return preparedPromise;
+    preparedPromise = (async () => {
+      await waitUntilReady();
+      root.__PM_DRAWER_BRIDGE__ = true;
 
-    await loadScript(
-      "./market-integration.js?v=2026.08.03.3",
-      "marketIntegration",
-      () => Boolean(root.__PM_MARKET_INTEGRATION__)
-    );
+      await loadScript(
+        "./market-integration.js?v=2026.08.04.1",
+        "marketIntegration",
+        () => Boolean(root.__PM_MARKET_INTEGRATION__)
+      );
 
-    await loadScript(
-      "./market-live-bridge.js?v=2026.08.03.3",
-      "marketLiveBridge",
-      () => Boolean(root.__PM_LIVE_MARKET_BRIDGE__)
-    );
+      await loadScript(
+        "./market-live-bridge.js?v=2026.08.04.1",
+        "marketLiveBridge",
+        () => Boolean(root.__PM_LIVE_MARKET_BRIDGE__)
+      );
 
-    await loadScript(
-      "./chart-fetch-fallback.js?v=2026.08.03.1",
-      "chartFetchFallback",
-      () => Boolean(root.__PIYASA_CHART_FETCH_FALLBACK__)
-    );
-
-    await loadScript(
-      "./live-market-core.js?v=2026.08.03.3",
-      "liveMarketCore",
-      () => Boolean(root.PiyasaLiveMarket)
-    );
+      await loadScript(
+        "./chart-fetch-fallback.js?v=2026.08.04.1",
+        "chartFetchFallback",
+        () => Boolean(root.__PIYASA_CHART_FETCH_FALLBACK__)
+      );
+    })();
+    return preparedPromise;
   }
 
-  start().catch(error => {
-    console.error("Piyasa live market bootstrap failed", error);
-  });
+  async function startCore() {
+    if (corePromise) return corePromise;
+    corePromise = (async () => {
+      await prepare();
+      await loadScript(
+        "./live-market-core.js?v=2026.08.04.1",
+        "liveMarketCore",
+        () => Boolean(root.PiyasaLiveMarket)
+      );
+      return root.PiyasaLiveMarket;
+    })();
+    return corePromise;
+  }
+
+  root.PiyasaLiveBootstrap = { prepare, startCore };
+  prepare().catch(error => console.error("Piyasa live-market preparation failed", error));
 })(typeof globalThis !== "undefined" ? globalThis : this);
