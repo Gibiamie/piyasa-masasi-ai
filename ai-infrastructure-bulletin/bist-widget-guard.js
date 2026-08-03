@@ -68,11 +68,9 @@
     const micButton = tabs?.querySelector('[data-source="MIC"]');
     const tvButton = tabs?.querySelector('[data-source="TV"]');
 
-    // Reset the private integration state to MIC without calling the guarded handler.
     if (originalSourceHandler && micButton) originalSourceHandler({ target: micButton });
     guardMode = true;
 
-    // Keep the working, application-native OHLC graph visible.
     byId("pmCustomWrap")?.classList.remove("hidden");
     byId("pmTvWrap")?.classList.remove("active");
     if (byId("pmTvWrap")) byId("pmTvWrap").innerHTML = "";
@@ -113,8 +111,10 @@
       : "";
 
     const note = byId("pmStatusNote");
-    if (bist && note && !note.textContent.includes("gömülü BIST")) {
-      const base = note.textContent.replace(/Portföy grafiği günlük OHLC[^.]*\.\s*TradingView sekmesi işlem içi grafiği gösterir\.?/i, "Portföy grafiği günlük OHLC, maliyet çizgisi ve alış/satış noktalarını gösterir.");
+    const truthMarker = label("gömülü BIST grafiği", "embedded TradingView BIST chart");
+    if (bist && note && !note.textContent.includes(truthMarker)) {
+      let base = note.textContent.replace(/Portföy grafiği günlük OHLC[^.]*\.\s*TradingView sekmesi işlem içi grafiği gösterir\.?/i, "Portföy grafiği günlük OHLC, maliyet çizgisi ve alış/satış noktalarını gösterir.");
+      base = base.replace(/The portfolio chart shows daily OHLC[^.]*\.\s*The TradingView tab shows the intraday chart\.?/i, "The portfolio chart shows daily OHLC, average cost and buy/sell markers.");
       note.textContent = `${base} ${label("TradingView’in gömülü BIST grafiği lisans kısıtı nedeniyle devre dışıdır.", "The embedded TradingView BIST chart is disabled because of licensing restrictions.")}`.trim();
     }
 
