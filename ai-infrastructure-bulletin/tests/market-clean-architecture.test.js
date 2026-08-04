@@ -41,3 +41,4 @@ for (const key of ["BIST:BURCE", "BIST:ISATR", "BIST:ISKUR", "BIST:UMPAS", "US:R
 }
 
 console.log("market-clean-architecture: official catalogue runtime validated");
+// Verification branch rerun after dependency-test correction.
