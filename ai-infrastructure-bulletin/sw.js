@@ -1,4 +1,4 @@
-const CACHE = "piyasa-masasi-workspace-v20";
+const CACHE = "piyasa-masasi-workspace-v21";
 const STATIC = [
   "./",
   "./index.html",
@@ -8,9 +8,10 @@ const STATIC = [
   "./ui-controls.js",
   "./workspace-enhancements.js",
   "./market-integration.js",
-  "./market-core.js",
+  "./market-core-v2.js",
   "./intraday-core.js",
   "./market-live-session.js",
+  "./data/equity-catalog.json",
   "./broker-import.js",
   "./broker-import-csv.js",
   "./portfolio-import-ui.js",
@@ -37,10 +38,10 @@ self.addEventListener("activate", event => {
 self.addEventListener("fetch", event => {
   if (event.request.method !== "GET") return;
   const url = new URL(event.request.url);
-
   if (url.origin !== self.location.origin) return;
 
   const marketData = url.pathname.endsWith("/data/report.json")
+    || url.pathname.endsWith("/data/equity-catalog.json")
     || url.pathname.endsWith("/mic/data/market.json")
     || url.pathname.endsWith("/mic/data/nasdaq-quotes.json")
     || url.pathname.includes("/mic/data/history/");
