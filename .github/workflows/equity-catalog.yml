@@ -1,0 +1,60 @@
+name: Equity Catalogue
+
+on:
+  push:
+    branches: [remediation/v30-audit]
+    paths:
+      - 'scripts/build-equity-catalog.mjs'
+      - '.github/workflows/equity-catalog.yml'
+  schedule:
+    - cron: '17 4 * * 1-5'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: equity-catalogue-remediation-v30-audit
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: remediation/v30-audit
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Build official equity catalogue
+        run: node scripts/build-equity-catalog.mjs
+
+      - name: Validate catalogue
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const catalog = JSON.parse(fs.readFileSync('ai-infrastructure-bulletin/data/equity-catalog.json', 'utf8'));
+          if (catalog.counts.BIST < 600) throw new Error(`BIST count ${catalog.counts.BIST}`);
+          if (catalog.counts.US < 6500) throw new Error(`US count ${catalog.counts.US}`);
+          const keys = new Set(catalog.assets.map(asset => asset.key));
+          for (const key of ['BIST:BURCE','BIST:ISATR','BIST:ISKUR','BIST:UMPAS','US:RDW','US:CBOE','BIST:LINK','US:LINK']) {
+            if (!keys.has(key)) throw new Error(`${key} missing`);
+          }
+          console.log(catalog.counts);
+          NODE
+
+      - name: Publish catalogue when changed
+        run: |
+          if git diff --quiet -- ai-infrastructure-bulletin/data/equity-catalog.json; then
+            echo 'Catalogue unchanged.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add ai-infrastructure-bulletin/data/equity-catalog.json
+          git commit -m 'chore: refresh official equity catalogue'
+          git push origin HEAD:remediation/v30-audit
