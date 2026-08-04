@@ -1,5 +1,6 @@
 name: Audit BIST Universe
 
+# Verification branch run for the current KAP comparison.
 on:
   push:
     branches: [remediation/v30-audit]
