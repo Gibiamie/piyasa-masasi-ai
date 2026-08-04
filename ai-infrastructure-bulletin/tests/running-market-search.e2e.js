@@ -12,10 +12,11 @@ const APP_URL = process.env.PM_APP_URL || "http://127.0.0.1:4173/ai-infrastructu
   page.on("pageerror", error => errors.push(error.message));
   page.on("console", message => { if (message.type() === "error") errors.push(message.text()); });
 
-  await page.goto(APP_URL, { waitUntil: "domcontentloaded", timeout: 120000 });
-  await page.waitForTimeout(5000);
+  await page.goto(APP_URL, { waitUntil: "commit", timeout: 30000 });
+  await page.waitForTimeout(10000);
 
   const diagnostics = await page.evaluate(() => ({
+    readyState: document.readyState,
     marketSearchPresent: Boolean(document.querySelector("#pmMarketSearch")),
     total: window.PiyasaMarketWorkspace?.getAssets?.().length || 0,
     displayedTotal: document.querySelector("#pmStatusTotal")?.textContent || "",
