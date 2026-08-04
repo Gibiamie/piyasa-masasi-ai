@@ -69,62 +69,72 @@ jobs:
           const { chromium } = require('playwright');
           const assert = require('node:assert/strict');
 
-          const browser = await chromium.launch({ headless: true });
-          const page = await browser.newPage();
-          const errors = [];
-          page.on('pageerror', error => errors.push(error.message));
-          page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
+          (async () => {
+            const browser = await chromium.launch({ headless: true });
+            const page = await browser.newPage();
+            const errors = [];
+            page.on('pageerror', error => errors.push(error.message));
+            page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
 
-          await page.goto('http://127.0.0.1:4173/ai-infrastructure-bulletin/#market', { waitUntil: 'domcontentloaded', timeout: 120000 });
-          await page.waitForSelector('#pmMarketSearch', { timeout: 120000 });
-          await page.waitForFunction(() => Number(document.querySelector('#pmStatusTotal')?.textContent || 0) > 7000, null, { timeout: 120000 });
+            await page.goto('http://127.0.0.1:4173/ai-infrastructure-bulletin/#market', { waitUntil: 'domcontentloaded', timeout: 120000 });
+            await page.waitForSelector('#pmMarketSearch', { timeout: 120000 });
+            await page.waitForFunction(() => Number(document.querySelector('#pmStatusTotal')?.textContent || 0) > 7000, null, { timeout: 120000 });
 
-          async function search(symbol) {
-            await page.locator('#pmMarketSearch').fill(symbol);
-            await page.waitForTimeout(50);
-            return page.locator(`#pmAssetList [data-pm-symbol="${symbol}"]`).count();
-          }
+            async function search(symbol) {
+              await page.locator('#pmMarketSearch').fill(symbol);
+              await page.waitForTimeout(50);
+              return page.locator(`#pmAssetList [data-pm-symbol="${symbol}"]`).count();
+            }
 
-          for (const symbol of ['RDW', 'BURCE', 'CBOE', 'ISATR', 'ISKUR', 'UMPAS']) {
-            assert.ok(await search(symbol) >= 1, `${symbol} must be searchable`);
-          }
+            for (const symbol of ['RDW', 'BURCE', 'CBOE', 'ISATR', 'ISKUR', 'UMPAS']) {
+              assert.ok(await search(symbol) >= 1, `${symbol} must be searchable`);
+            }
 
-          await page.locator('#pmMarketFilters [data-filter="BIST"]').click();
-          assert.ok(await search('RDW') >= 1, 'RDW search must work even after BIST filter was selected');
+            await page.locator('#pmMarketFilters [data-filter="BIST"]').click();
+            assert.ok(await search('RDW') >= 1, 'RDW search must work even after BIST filter was selected');
 
-          const links = await search('LINK');
-          assert.ok(links >= 2, 'BIST and US LINK must both remain searchable');
+            const links = await search('LINK');
+            assert.ok(links >= 2, 'BIST and US LINK must both remain searchable');
 
-          assert.equal(await page.locator('iframe').count(), 0, 'The market workspace must not contain a TradingView iframe');
-          assert.equal(await page.getByText(/TradingView/i).count(), 0, 'The market workspace must not expose TradingView UI');
-          assert.deepEqual(errors, [], `browser errors: ${errors.join(' | ')}`);
-          await browser.close();
-          console.log('running-market-search: all assertions passed');
+            assert.equal(await page.locator('iframe').count(), 0, 'The market workspace must not contain a TradingView iframe');
+            assert.equal(await page.getByText(/TradingView/i).count(), 0, 'The market workspace must not expose TradingView UI');
+            assert.deepEqual(errors, [], `browser errors: ${errors.join(' | ')}`);
+            await browser.close();
+            console.log('running-market-search: all assertions passed');
+          })().catch(error => {
+            console.error(error);
+            process.exitCode = 1;
+          });
           NODE
 
       - name: Verify exact BIST and US intraday symbols
         run: |
           node <<'NODE'
-          for (const symbol of ['ISCTR.IS', 'RDW']) {
-            let lastError = null;
-            for (const host of ['query1.finance.yahoo.com', 'query2.finance.yahoo.com']) {
-              try {
-                const url = `https://${host}/v8/finance/chart/${symbol}?range=1d&interval=5m&events=history&includePrePost=false`;
-                const response = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0' } });
-                if (!response.ok) throw new Error(`${host} HTTP ${response.status}`);
-                const payload = await response.json();
-                const chart = payload?.chart?.result?.[0];
-                const returned = String(chart?.meta?.symbol || '').toUpperCase();
-                const validBars = (chart?.indicators?.quote?.[0]?.close || []).filter(Number.isFinite).length;
-                if (returned !== symbol) throw new Error(`expected ${symbol}, received ${returned}`);
-                if (!validBars) throw new Error(`${symbol} returned no valid bars`);
-                console.log(`${symbol}: ${validBars} valid 5-minute bars`);
-                lastError = null;
-                break;
-              } catch (error) {
-                lastError = error;
+          (async () => {
+            for (const symbol of ['ISCTR.IS', 'RDW']) {
+              let lastError = null;
+              for (const host of ['query1.finance.yahoo.com', 'query2.finance.yahoo.com']) {
+                try {
+                  const url = `https://${host}/v8/finance/chart/${symbol}?range=1d&interval=5m&events=history&includePrePost=false`;
+                  const response = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0' } });
+                  if (!response.ok) throw new Error(`${host} HTTP ${response.status}`);
+                  const payload = await response.json();
+                  const chart = payload?.chart?.result?.[0];
+                  const returned = String(chart?.meta?.symbol || '').toUpperCase();
+                  const validBars = (chart?.indicators?.quote?.[0]?.close || []).filter(Number.isFinite).length;
+                  if (returned !== symbol) throw new Error(`expected ${symbol}, received ${returned}`);
+                  if (!validBars) throw new Error(`${symbol} returned no valid bars`);
+                  console.log(`${symbol}: ${validBars} valid 5-minute bars`);
+                  lastError = null;
+                  break;
+                } catch (error) {
+                  lastError = error;
+                }
               }
+              if (lastError) throw lastError;
             }
-            if (lastError) throw lastError;
-          }
+          })().catch(error => {
+            console.error(error);
+            process.exitCode = 1;
+          });
           NODE
