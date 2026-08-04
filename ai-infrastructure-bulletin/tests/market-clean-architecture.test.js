@@ -31,3 +31,4 @@ assert.match(files.sw, /piyasa-masasi-workspace-v20/);
 assert.doesNotMatch(files.sw, /client\.navigate|combineMarketIntegration/);
 
 console.log("market-clean-architecture: canonical runtime validated");
+// Final diagnostic verification branch trigger.
