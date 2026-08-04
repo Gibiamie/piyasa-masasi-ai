@@ -1,4 +1,4 @@
-const CACHE = "piyasa-masasi-workspace-v19";
+const CACHE = "piyasa-masasi-workspace-v20";
 const STATIC = [
   "./",
   "./index.html",
@@ -6,15 +6,11 @@ const STATIC = [
   "./portfolio-engine.js",
   "./app.js",
   "./ui-controls.js",
-  "./market-integration.js",
-  "./market-workspace-core.js",
-  "./native-intraday-core.js",
   "./workspace-enhancements.js",
-  "./market-live-bridge.js",
-  "./chart-fetch-fallback.js",
-  "./live-market.js",
-  "./live-market-core.js",
-  "./live-session-control.js",
+  "./market-integration.js",
+  "./market-core.js",
+  "./intraday-core.js",
+  "./market-live-session.js",
   "./broker-import.js",
   "./broker-import-csv.js",
   "./portfolio-import-ui.js",
@@ -35,8 +31,6 @@ self.addEventListener("activate", event => {
     const keys = await caches.keys();
     await Promise.all(keys.filter(key => key !== CACHE).map(key => caches.delete(key)));
     await self.clients.claim();
-    const windows = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
-    await Promise.all(windows.map(client => client.url.includes("/ai-infrastructure-bulletin/") ? client.navigate(client.url).catch(() => null) : null));
   })());
 });
 
@@ -44,7 +38,6 @@ self.addEventListener("fetch", event => {
   if (event.request.method !== "GET") return;
   const url = new URL(event.request.url);
 
-  // The browser live layer owns all third-party quote and chart requests.
   if (url.origin !== self.location.origin) return;
 
   const marketData = url.pathname.endsWith("/data/report.json")
