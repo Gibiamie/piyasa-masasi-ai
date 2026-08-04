@@ -30,7 +30,7 @@ if (!kapResponse.ok) throw new Error(`KAP HTTP ${kapResponse.status}`);
 const official = parseKapEquities(await kapResponse.text());
 if (official.length < 600) throw new Error(`Unexpected KAP count ${official.length}`);
 
-const browser = await chromium.launch({ headless: true });
+const browser = await chromium.launch({ headless: true, channel: 'chrome' });
 const context = await browser.newContext();
 const page = await context.newPage();
 const consoleErrors = [];
