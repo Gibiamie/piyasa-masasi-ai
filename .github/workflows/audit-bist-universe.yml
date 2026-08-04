@@ -12,6 +12,7 @@ on:
     branches: [remediation/v30-audit]
     paths:
       - 'scripts/audit-bist-universe.mjs'
+      - 'scripts/debug-kap-html.mjs'
       - 'mic/data/market.json'
       - '.github/workflows/audit-bist-universe.yml'
   workflow_dispatch:
@@ -30,15 +31,20 @@ jobs:
         with:
           node-version: '24'
 
+      - name: Inspect KAP payload
+        run: node scripts/debug-kap-html.mjs
+
       - name: Run KAP comparison
         run: node scripts/audit-bist-universe.mjs
 
       - name: Publish job summary
-        run: cat audit-results/bist-universe-audit.md >> "$GITHUB_STEP_SUMMARY"
+        if: always()
+        run: test -f audit-results/bist-universe-audit.md && cat audit-results/bist-universe-audit.md >> "$GITHUB_STEP_SUMMARY" || true
 
       - name: Upload audit report
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: bist-universe-audit
           path: audit-results/
-          if-no-files-found: error
+          if-no-files-found: ignore
