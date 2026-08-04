@@ -13,7 +13,7 @@ const files = {
 };
 
 for (const name of ["integration", "workspace", "intraday", "live", "sw"]) {
-  assert.doesNotMatch(files[name], /TradingView|mountTradingView|s3\.tradingview\.com|pmTvWrap/, `${name} must not contain TradingView code`);
+  assert.doesNotMatch(files[name], /mountTradingView|s3\.tradingview\.com|pmTvWrap|tradingview-widget-container/, `${name} must not contain embedded widget code`);
 }
 assert.match(files.integration, /market-core-v2\.js/);
 assert.doesNotMatch(files.integration, /market-core\.js["']/);
