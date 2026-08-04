@@ -1,0 +1,43 @@
+name: Audit BIST Universe
+
+on:
+  push:
+    branches: [remediation/v30-audit]
+    paths:
+      - 'scripts/audit-bist-universe.mjs'
+      - 'mic/data/market.json'
+      - '.github/workflows/audit-bist-universe.yml'
+  pull_request:
+    branches: [remediation/v30-audit]
+    paths:
+      - 'scripts/audit-bist-universe.mjs'
+      - 'mic/data/market.json'
+      - '.github/workflows/audit-bist-universe.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Run KAP comparison
+        run: node scripts/audit-bist-universe.mjs
+
+      - name: Publish job summary
+        run: cat audit-results/bist-universe-audit.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload audit report
+        uses: actions/upload-artifact@v4
+        with:
+          name: bist-universe-audit
+          path: audit-results/
+          if-no-files-found: error
