@@ -4,8 +4,9 @@ on:
   push:
     branches: [remediation/v30-audit]
     paths:
+      - 'ai-infrastructure-bulletin/data/equity-catalog.json'
       - 'ai-infrastructure-bulletin/market-integration.js'
-      - 'ai-infrastructure-bulletin/market-core.js'
+      - 'ai-infrastructure-bulletin/market-core-v2.js'
       - 'ai-infrastructure-bulletin/intraday-core.js'
       - 'ai-infrastructure-bulletin/market-live-session.js'
       - 'ai-infrastructure-bulletin/sw.js'
@@ -16,8 +17,9 @@ on:
   pull_request:
     branches: [remediation/v30-audit]
     paths:
+      - 'ai-infrastructure-bulletin/data/equity-catalog.json'
       - 'ai-infrastructure-bulletin/market-integration.js'
-      - 'ai-infrastructure-bulletin/market-core.js'
+      - 'ai-infrastructure-bulletin/market-core-v2.js'
       - 'ai-infrastructure-bulletin/intraday-core.js'
       - 'ai-infrastructure-bulletin/market-live-session.js'
       - 'ai-infrastructure-bulletin/sw.js'
@@ -44,7 +46,7 @@ jobs:
       - name: Validate JavaScript syntax
         run: |
           node --check ai-infrastructure-bulletin/market-integration.js
-          node --check ai-infrastructure-bulletin/market-core.js
+          node --check ai-infrastructure-bulletin/market-core-v2.js
           node --check ai-infrastructure-bulletin/intraday-core.js
           node --check ai-infrastructure-bulletin/market-live-session.js
           node --check ai-infrastructure-bulletin/sw.js
@@ -64,7 +66,7 @@ jobs:
           echo $! > /tmp/piyasa-http.pid
           sleep 3
 
-      - name: Verify complete search in the running application
+      - name: Verify official catalogue search in the running application
         run: node ai-infrastructure-bulletin/tests/running-market-search.e2e.js
 
       - name: Verify exact BIST and US intraday symbols
