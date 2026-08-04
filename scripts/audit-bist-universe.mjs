@@ -20,7 +20,7 @@ function decodeEscapedJsonString(value) {
 
 function parseKapEquities(html) {
   const equityStartToken = '\\"title\\":\\"EQUITY MARKET\\"';
-  const structuredStartToken = '\\"title\\":\\"STRUCTURED PRODUCTS AND FUND MARKET\\"';
+  const structuredStartToken = 'STRUCTURED PRODUCTS AND FUND MARKET';
   const start = html.indexOf(equityStartToken);
   const end = html.indexOf(structuredStartToken, start + equityStartToken.length);
   if (start < 0 || end < 0) throw new Error(`KAP embedded market payload boundaries not found (start=${start}, end=${end})`);
