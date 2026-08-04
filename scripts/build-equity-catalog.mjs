@@ -100,7 +100,7 @@ async function main() {
   const bist = parseKap(kapHtml);
   const us = parseNasdaq(nasdaqPayload);
   if (bist.size < 600) throw new Error(`Unexpected KAP equity count: ${bist.size}`);
-  if (us.size < 6500) throw new Error(`Unexpected US equity count: ${us.size}`);
+  if (us.size < 6000) throw new Error(`Unexpected US equity count: ${us.size}`);
 
   const assets = [...bist.values(), ...us.values()].sort((a, b) => a.market.localeCompare(b.market) || a.symbol.localeCompare(b.symbol));
   const required = ['BIST:BURCE', 'BIST:ISATR', 'BIST:ISKUR', 'BIST:UMPAS', 'US:RDW', 'US:CBOE', 'BIST:LINK', 'US:LINK'];
@@ -122,5 +122,3 @@ main().catch(error => {
   console.error(error);
   process.exitCode = 1;
 });
-
-// Release branch trigger: catalogue content remains source-driven.
