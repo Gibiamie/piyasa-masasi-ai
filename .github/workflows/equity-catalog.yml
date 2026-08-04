@@ -56,7 +56,7 @@ jobs:
 
       - name: Publish catalogue when changed
         run: |
-          if git diff --quiet -- ai-infrastructure-bulletin/data/equity-catalog.json; then
+          if [ -z "$(git status --porcelain -- ai-infrastructure-bulletin/data/equity-catalog.json)" ]; then
             echo 'Catalogue unchanged.'
             exit 0
           fi
