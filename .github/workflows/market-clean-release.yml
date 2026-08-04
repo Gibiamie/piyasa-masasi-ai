@@ -12,6 +12,17 @@ on:
       - 'ai-infrastructure-bulletin/tests/market-core-clean.test.js'
       - 'ai-infrastructure-bulletin/tests/market-clean-architecture.test.js'
       - '.github/workflows/market-clean-release.yml'
+  pull_request:
+    branches: [remediation/v30-audit]
+    paths:
+      - 'ai-infrastructure-bulletin/market-integration.js'
+      - 'ai-infrastructure-bulletin/market-core.js'
+      - 'ai-infrastructure-bulletin/intraday-core.js'
+      - 'ai-infrastructure-bulletin/market-live-session.js'
+      - 'ai-infrastructure-bulletin/sw.js'
+      - 'ai-infrastructure-bulletin/tests/market-core-clean.test.js'
+      - 'ai-infrastructure-bulletin/tests/market-clean-architecture.test.js'
+      - '.github/workflows/market-clean-release.yml'
   workflow_dispatch:
 
 permissions:
@@ -95,7 +106,6 @@ jobs:
         run: |
           node <<'NODE'
           for (const symbol of ['ISCTR.IS', 'RDW']) {
-            let chart = null;
             let lastError = null;
             for (const host of ['query1.finance.yahoo.com', 'query2.finance.yahoo.com']) {
               try {
@@ -103,7 +113,7 @@ jobs:
                 const response = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0' } });
                 if (!response.ok) throw new Error(`${host} HTTP ${response.status}`);
                 const payload = await response.json();
-                chart = payload?.chart?.result?.[0];
+                const chart = payload?.chart?.result?.[0];
                 const returned = String(chart?.meta?.symbol || '').toUpperCase();
                 const validBars = (chart?.indicators?.quote?.[0]?.close || []).filter(Number.isFinite).length;
                 if (returned !== symbol) throw new Error(`expected ${symbol}, received ${returned}`);
