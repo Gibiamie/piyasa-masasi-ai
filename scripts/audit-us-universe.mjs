@@ -11,7 +11,7 @@ function normalize(value) {
 }
 
 function isUsAsset(asset) {
-  return normalize(asset.exchange) !== 'BIST' && normalize(asset.currency) === 'USD';
+  return normalize(asset.exchange) !== 'BIST';
 }
 
 function mapAssets(json) {
@@ -21,6 +21,7 @@ function mapAssets(json) {
       symbol: normalize(asset.symbol || asset.ticker || asset.provider_symbol),
       name: asset.name || asset.company || '',
       exchange: normalize(asset.exchange),
+      currency: normalize(asset.currency),
       price: asset.price ?? null
     }))
     .filter(row => row.symbol);
@@ -96,8 +97,8 @@ async function main() {
     live_market_url: LIVE_MARKET_URL,
     counts: {
       nasdaq_screener_symbols: official.size,
-      repo_us_symbols: repo.size,
-      live_us_symbols: live.size,
+      repo_non_bist_symbols: repo.size,
+      live_non_bist_symbols: live.size,
       missing_from_repo: missingRepo.length,
       missing_from_live: missingLive.length,
       live_only_not_in_nasdaq_screener: liveOnly.length
@@ -114,7 +115,7 @@ async function main() {
 
   await fs.mkdir(OUTPUT_DIR, { recursive: true });
   await fs.writeFile(path.join(OUTPUT_DIR, 'us-universe-audit.json'), `${JSON.stringify(report, null, 2)}\n`);
-  const md = `# US Universe Audit\n\nGenerated: ${report.generated_at}\n\n- Nasdaq screener symbols: **${official.size}**\n- Repository US symbols: **${repo.size}**\n- Live US symbols: **${live.size}**\n- Missing from live application data: **${missingLive.length}**\n- RDW in Nasdaq source: **${Boolean(report.rdw.official)}**\n- RDW in repository: **${Boolean(report.rdw.in_repo)}**\n- RDW in live data: **${Boolean(report.rdw.in_live)}**\n\n## Missing from live application data\n\n${markdownTable(missingLive)}\n`;
+  const md = `# US Universe Audit\n\nGenerated: ${report.generated_at}\n\n- Nasdaq screener symbols: **${official.size}**\n- Repository non-BIST symbols: **${repo.size}**\n- Live non-BIST symbols: **${live.size}**\n- Missing from live application data: **${missingLive.length}**\n- RDW in Nasdaq source: **${Boolean(report.rdw.official)}**\n- RDW in repository: **${Boolean(report.rdw.in_repo)}**\n- RDW in live data: **${Boolean(report.rdw.in_live)}**\n\n## Missing from live application data\n\n${markdownTable(missingLive)}\n`;
   await fs.writeFile(path.join(OUTPUT_DIR, 'us-universe-audit.md'), md);
   console.log(JSON.stringify(report, null, 2));
 }
