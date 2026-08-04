@@ -53,9 +53,7 @@ jobs:
           node ai-infrastructure-bulletin/tests/market-clean-architecture.test.js
 
       - name: Install browser test runtime
-        run: |
-          npm install --no-save playwright@1.55.0
-          npx playwright install --with-deps chromium
+        run: npm install --no-save playwright@1.55.0
 
       - name: Start local application
         run: |
@@ -70,7 +68,7 @@ jobs:
           const assert = require('node:assert/strict');
 
           (async () => {
-            const browser = await chromium.launch({ headless: true });
+            const browser = await chromium.launch({ headless: true, channel: 'chrome' });
             const page = await browser.newPage();
             const errors = [];
             page.on('pageerror', error => errors.push(error.message));
