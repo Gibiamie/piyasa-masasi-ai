@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 
 const NASDAQ_URL = 'https://api.nasdaq.com/api/screener/stocks?tableonly=true&limit=10000&offset=0&download=true';
-const LIVE_MARKET_URL = 'https://gibiamie.github.io/piyasa-masasi-ai/ai-infrastructure-bulletin/mic/data/market.json';
+const LIVE_MARKET_URL = 'https://gibiamie.github.io/piyasa-masasi-ai/mic/data/market.json';
 const REPO_MARKET_FILE = 'mic/data/market.json';
 const OUTPUT_DIR = 'audit-results';
 
