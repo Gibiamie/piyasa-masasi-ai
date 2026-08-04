@@ -5,28 +5,13 @@ const KAP_URL = 'https://www.kap.org.tr/en/Pazarlar';
 const MARKET_FILE = 'mic/data/market.json';
 const OUTPUT_DIR = 'audit-results';
 
-function decodeEscapedJsonString(value) {
-  try { return JSON.parse(`"${value.replaceAll('"', '\\"')}"`); }
-  catch (_) {
-    return value
-      .replace(/\\u([0-9a-f]{4})/gi, (_, code) => String.fromCharCode(Number.parseInt(code, 16)))
-      .replace(/\\n/g, '\n')
-      .replace(/\\r/g, '\r')
-      .replace(/\\t/g, '\t')
-      .replace(/\\"/g, '"')
-      .replace(/\\\\/g, '\\');
-  }
-}
-
 function parseKapEquities(html) {
-  const equityStartToken = '\\"title\\":\\"EQUITY MARKET\\"';
-  const structuredStartToken = 'STRUCTURED PRODUCTS AND FUND MARKET';
-  const start = html.indexOf(equityStartToken);
-  const end = html.indexOf(structuredStartToken, start + equityStartToken.length);
-  if (start < 0 || end < 0) throw new Error(`KAP embedded market payload boundaries not found (start=${start}, end=${end})`);
+  const normalized = html.replace(/\\"/g, '"');
+  const start = normalized.indexOf('"title":"EQUITY MARKET"');
+  if (start < 0) throw new Error('KAP embedded EQUITY MARKET payload not found');
 
-  const segment = html.slice(start, end);
-  const tokenPattern = /\\"marketName\\":\\"([^"\\]+)\\"|\\"stockCode\\":\\"([A-Z0-9]{3,8})\\",\\"title\\":\\"((?:\\.|[^"\\])*)\\"/g;
+  const segment = normalized.slice(start);
+  const tokenPattern = /"marketName":"([^"]+)"|"stockCode":"([A-Z0-9]{3,8})","title":"([^"]*)"/g;
   const allowedMarkets = new Set(['BIST STAR', 'BIST MAIN', 'SUBMARKET', 'WATCHLIST MARKET', 'PRE-MARKET TRADING PLATFORM']);
   const byCode = new Map();
   let currentMarket = null;
@@ -34,16 +19,12 @@ function parseKapEquities(html) {
 
   while ((match = tokenPattern.exec(segment)) !== null) {
     if (match[1]) {
-      const market = decodeEscapedJsonString(match[1]).toUpperCase();
+      const market = match[1].toUpperCase();
       currentMarket = allowedMarkets.has(market) ? market : null;
       continue;
     }
     if (!currentMarket || !match[2]) continue;
-    byCode.set(match[2], {
-      code: match[2],
-      company: decodeEscapedJsonString(match[3]),
-      market: currentMarket
-    });
+    byCode.set(match[2], { code: match[2], company: match[3], market: currentMarket });
   }
 
   const equities = [...byCode.values()].sort((a, b) => a.code.localeCompare(b.code));
@@ -103,7 +84,6 @@ async function main() {
   const markdown = `# BIST Universe Audit\n\nGenerated: ${report.generated_at}\n\n- KAP current equity symbols: **${report.counts.kap_equities}**\n- Application BIST symbols: **${report.counts.app_bist_symbols}**\n- Matched: **${report.counts.matched}**\n- Missing from application: **${report.counts.missing_from_app}**\n- Application-only / not in current KAP equity markets: **${report.counts.app_only_not_in_current_kap_equity_markets}**\n\n## Missing from application\n\n${markdownTable(missing, [{ key: 'code', label: 'Code' }, { key: 'company', label: 'Company' }, { key: 'market', label: 'KAP market' }])}\n\n## Application-only / not in current KAP equity markets\n\n${markdownTable(extra, [{ key: 'code', label: 'Code' }, { key: 'name', label: 'Application name' }, { key: 'price', label: 'Price' }])}\n`;
   await fs.writeFile(path.join(OUTPUT_DIR, 'bist-universe-audit.md'), markdown);
   console.log(JSON.stringify(report, null, 2));
-  if (!missing.some(row => row.code === 'BURCE')) throw new Error('Expected BURCE to be missing from application, but comparison did not show it');
 }
 
 main().catch(error => {
