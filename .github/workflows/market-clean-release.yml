@@ -11,6 +11,7 @@ on:
       - 'ai-infrastructure-bulletin/sw.js'
       - 'ai-infrastructure-bulletin/tests/market-core-clean.test.js'
       - 'ai-infrastructure-bulletin/tests/market-clean-architecture.test.js'
+      - 'ai-infrastructure-bulletin/tests/running-market-search.e2e.js'
       - '.github/workflows/market-clean-release.yml'
   pull_request:
     branches: [remediation/v30-audit]
@@ -22,6 +23,7 @@ on:
       - 'ai-infrastructure-bulletin/sw.js'
       - 'ai-infrastructure-bulletin/tests/market-core-clean.test.js'
       - 'ai-infrastructure-bulletin/tests/market-clean-architecture.test.js'
+      - 'ai-infrastructure-bulletin/tests/running-market-search.e2e.js'
       - '.github/workflows/market-clean-release.yml'
   workflow_dispatch:
 
@@ -46,6 +48,7 @@ jobs:
           node --check ai-infrastructure-bulletin/intraday-core.js
           node --check ai-infrastructure-bulletin/market-live-session.js
           node --check ai-infrastructure-bulletin/sw.js
+          node --check ai-infrastructure-bulletin/tests/running-market-search.e2e.js
 
       - name: Run market core tests
         run: |
@@ -62,48 +65,7 @@ jobs:
           sleep 3
 
       - name: Verify complete search in the running application
-        run: |
-          node <<'NODE'
-          const { chromium } = require('playwright');
-          const assert = require('node:assert/strict');
-
-          (async () => {
-            const browser = await chromium.launch({ headless: true, channel: 'chrome' });
-            const page = await browser.newPage();
-            const errors = [];
-            page.on('pageerror', error => errors.push(error.message));
-            page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
-
-            await page.goto('http://127.0.0.1:4173/ai-infrastructure-bulletin/#market', { waitUntil: 'domcontentloaded', timeout: 120000 });
-            await page.waitForSelector('#pmMarketSearch', { timeout: 120000 });
-            await page.waitForFunction(() => Number(document.querySelector('#pmStatusTotal')?.textContent || 0) > 7000, null, { timeout: 120000 });
-
-            async function search(symbol) {
-              await page.locator('#pmMarketSearch').fill(symbol);
-              await page.waitForTimeout(50);
-              return page.locator(`#pmAssetList [data-pm-symbol="${symbol}"]`).count();
-            }
-
-            for (const symbol of ['RDW', 'BURCE', 'CBOE', 'ISATR', 'ISKUR', 'UMPAS']) {
-              assert.ok(await search(symbol) >= 1, `${symbol} must be searchable`);
-            }
-
-            await page.locator('#pmMarketFilters [data-filter="BIST"]').click();
-            assert.ok(await search('RDW') >= 1, 'RDW search must work even after BIST filter was selected');
-
-            const links = await search('LINK');
-            assert.ok(links >= 2, 'BIST and US LINK must both remain searchable');
-
-            assert.equal(await page.locator('iframe').count(), 0, 'The market workspace must not contain a TradingView iframe');
-            assert.equal(await page.getByText(/TradingView/i).count(), 0, 'The market workspace must not expose TradingView UI');
-            assert.deepEqual(errors, [], `browser errors: ${errors.join(' | ')}`);
-            await browser.close();
-            console.log('running-market-search: all assertions passed');
-          })().catch(error => {
-            console.error(error);
-            process.exitCode = 1;
-          });
-          NODE
+        run: node ai-infrastructure-bulletin/tests/running-market-search.e2e.js
 
       - name: Verify exact BIST and US intraday symbols
         run: |
