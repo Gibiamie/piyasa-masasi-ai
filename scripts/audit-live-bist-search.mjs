@@ -34,31 +34,49 @@ const browser = await chromium.launch({ headless: true, channel: 'chrome' });
 const context = await browser.newContext();
 const page = await context.newPage();
 const consoleErrors = [];
+let reloadCount = 0;
 page.on('console', message => { if (message.type() === 'error') consoleErrors.push(message.text()); });
 page.on('pageerror', error => consoleErrors.push(error.message));
+page.on('framenavigated', frame => { if (frame === page.mainFrame()) reloadCount += 1; });
 
-await page.goto(APP_URL, { waitUntil: 'networkidle', timeout: 120000 });
-await page.waitForSelector('#pmMarketSearch', { state: 'visible', timeout: 120000 });
-await page.waitForFunction(() => Number(document.querySelector('#pmStatusBist')?.textContent || 0) > 0, null, { timeout: 120000 });
-
-const search = page.locator('#pmMarketSearch');
-const missing = [];
-const mismatched = [];
-
-for (const row of official) {
-  await search.fill(row.code);
-  await page.waitForTimeout(15);
-  const candidates = await page.locator('#pmAssetList [data-pm-symbol]').evaluateAll(nodes => nodes.map(node => node.dataset.pmSymbol));
-  if (!candidates.includes(row.code)) {
-    missing.push(row);
-  } else if (candidates.some(code => code !== row.code)) {
-    mismatched.push({ code: row.code, returned: candidates });
-  }
+async function waitForMarket() {
+  await page.waitForSelector('#pmMarketSearch', { state: 'attached', timeout: 120000 });
+  await page.waitForFunction(() => Number(document.querySelector('#pmStatusBist')?.textContent || 0) > 0, null, { timeout: 120000 });
 }
 
-await search.fill('BURCE');
-await page.waitForTimeout(100);
-const burceVisible = await page.locator('#pmAssetList [data-pm-symbol="BURCE"]').count() > 0;
+async function searchSymbol(code) {
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    try {
+      await page.evaluate(symbol => {
+        const input = document.querySelector('#pmMarketSearch');
+        if (!input) throw new Error('SEARCH_INPUT_NOT_FOUND');
+        input.value = symbol;
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      }, code);
+      await page.waitForTimeout(20);
+      return await page.locator('#pmAssetList [data-pm-symbol]').evaluateAll(nodes => nodes.map(node => node.dataset.pmSymbol));
+    } catch (error) {
+      if (attempt === 2) throw error;
+      await waitForMarket();
+    }
+  }
+  return [];
+}
+
+await page.goto(APP_URL, { waitUntil: 'networkidle', timeout: 120000 });
+await waitForMarket();
+
+const missing = [];
+const mismatched = [];
+for (const [index, row] of official.entries()) {
+  const candidates = await searchSymbol(row.code);
+  if (!candidates.includes(row.code)) missing.push(row);
+  else if (candidates.some(code => code !== row.code)) mismatched.push({ code: row.code, returned: candidates });
+  if (index > 0 && index % 100 === 0) await waitForMarket();
+}
+
+const burceCandidates = await searchSymbol('BURCE');
+const burceVisible = burceCandidates.includes('BURCE');
 const displayedBistCount = await page.locator('#pmStatusBist').textContent();
 const displayedTotalCount = await page.locator('#pmStatusTotal').textContent();
 const appVersion = await page.evaluate(() => ({
@@ -78,6 +96,7 @@ const report = {
   missing_from_live_search_count: missing.length,
   missing_from_live_search: missing,
   mismatched_results: mismatched,
+  main_frame_navigation_count: reloadCount,
   console_errors: [...new Set(consoleErrors)],
   app_version: appVersion
 };
