@@ -1,0 +1,39 @@
+name: Live Official Market Release
+
+on:
+  pull_request:
+    branches: [remediation/v30-audit]
+    paths:
+      - '.github/workflows/live-official-release.yml'
+      - 'ai-infrastructure-bulletin/tests/running-market-search.e2e.js'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Install browser runtime
+        run: npm install --no-save playwright@1.55.0
+
+      - name: Verify published application
+        env:
+          PM_APP_URL: https://gibiamie.github.io/piyasa-masasi-ai/ai-infrastructure-bulletin/?release=official-v21#market
+        run: |
+          for attempt in 1 2 3 4 5 6 7 8; do
+            echo "Live verification attempt $attempt"
+            if node ai-infrastructure-bulletin/tests/running-market-search.e2e.js; then
+              exit 0
+            fi
+            sleep 30
+          done
+          exit 1
