@@ -28,8 +28,15 @@ function mapAssets(json) {
 }
 
 function parseNasdaq(payload) {
-  const rows = payload?.data?.table?.rows;
-  if (!Array.isArray(rows)) throw new Error('Nasdaq screener rows not found');
+  const rows = payload?.data?.rows || payload?.data?.table?.rows;
+  if (!Array.isArray(rows)) {
+    const shape = {
+      topLevelKeys: Object.keys(payload || {}),
+      dataType: typeof payload?.data,
+      dataKeys: payload?.data && typeof payload.data === 'object' ? Object.keys(payload.data) : []
+    };
+    throw new Error(`Nasdaq screener rows not found: ${JSON.stringify(shape)}`);
+  }
   const mapped = rows
     .map(row => ({
       symbol: normalize(row.symbol),
