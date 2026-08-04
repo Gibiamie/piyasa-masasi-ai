@@ -6,6 +6,12 @@ on:
     paths:
       - 'scripts/build-equity-catalog.mjs'
       - '.github/workflows/equity-catalog.yml'
+  pull_request:
+    branches: [remediation/v30-audit]
+    paths:
+      - 'scripts/build-equity-catalog.mjs'
+      - '.github/workflows/equity-catalog.yml'
+      - 'ai-infrastructure-bulletin/data/equity-catalog.json'
   schedule:
     - cron: '17 4 * * 1-5'
   workflow_dispatch:
@@ -14,7 +20,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: equity-catalogue-remediation-v30-audit
+  group: equity-catalogue-${{ github.event.pull_request.number || github.ref_name }}
   cancel-in-progress: true
 
 jobs:
@@ -24,7 +30,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: remediation/v30-audit
+          ref: ${{ github.event_name == 'pull_request' && github.head_ref || 'remediation/v30-audit' }}
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
@@ -53,8 +60,9 @@ jobs:
             echo 'Catalogue unchanged.'
             exit 0
           fi
+          TARGET_BRANCH="${GITHUB_HEAD_REF:-remediation/v30-audit}"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add ai-infrastructure-bulletin/data/equity-catalog.json
           git commit -m 'chore: refresh official equity catalogue'
-          git push origin HEAD:remediation/v30-audit
+          git push origin HEAD:"$TARGET_BRANCH"
