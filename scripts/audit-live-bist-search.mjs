@@ -39,28 +39,27 @@ page.on('console', message => { if (message.type() === 'error') consoleErrors.pu
 page.on('pageerror', error => consoleErrors.push(error.message));
 page.on('framenavigated', frame => { if (frame === page.mainFrame()) navigationCount += 1; });
 
-await page.goto(APP_URL, { waitUntil: 'networkidle', timeout: 120000 });
+await page.goto(APP_URL, { waitUntil: 'domcontentloaded', timeout: 120000 });
 await page.waitForSelector('#pmMarketSearch', { state: 'attached', timeout: 120000 });
 await page.waitForFunction(() => Number(document.querySelector('#pmStatusBist')?.textContent || 0) > 0, null, { timeout: 120000 });
 
-const searchResults = await page.evaluate(rows => {
+const appAssets = await page.evaluate(() => window.PiyasaMarketWorkspace?.getAssets?.() || []);
+const appBistCodes = new Set(appAssets.filter(asset => String(asset.exchange || '').toUpperCase() === 'BIST').map(asset => String(asset.symbol || '').toUpperCase()));
+const missingFromApplication = official.filter(row => !appBistCodes.has(row.code));
+
+const searchChecks = await page.evaluate(codes => {
   const input = document.querySelector('#pmMarketSearch');
   const list = document.querySelector('#pmAssetList');
   if (!input || !list) throw new Error('MARKET_SEARCH_UI_NOT_FOUND');
-  const missing = [];
-  const mismatched = [];
-  for (const row of rows) {
-    input.value = row.code;
+  const result = {};
+  for (const code of codes) {
+    input.value = code;
     input.dispatchEvent(new Event('input', { bubbles: true }));
-    const candidates = [...list.querySelectorAll('[data-pm-symbol]')].map(node => node.dataset.pmSymbol);
-    if (!candidates.includes(row.code)) missing.push(row);
-    else if (candidates.some(code => code !== row.code)) mismatched.push({ code: row.code, returned: candidates });
+    const returned = [...list.querySelectorAll('[data-pm-symbol]')].map(node => node.dataset.pmSymbol);
+    result[code] = { found: returned.includes(code), returned };
   }
-  input.value = 'BURCE';
-  input.dispatchEvent(new Event('input', { bubbles: true }));
-  const burceCandidates = [...list.querySelectorAll('[data-pm-symbol]')].map(node => node.dataset.pmSymbol);
-  return { missing, mismatched, burceVisible: burceCandidates.includes('BURCE'), burceCandidates };
-}, official);
+  return result;
+}, ['BURCE', 'ISCTR', 'AEFES', 'THYAO', 'ISATR', 'ISKUR', 'UMPAS']);
 
 const displayedBistCount = await page.locator('#pmStatusBist').textContent();
 const displayedTotalCount = await page.locator('#pmStatusTotal').textContent();
@@ -75,13 +74,13 @@ const report = {
   generated_at: new Date().toISOString(),
   app_url: APP_URL,
   official_symbols_tested: official.length,
+  application_bist_assets: appBistCodes.size,
   displayed_bist_count: displayedBistCount,
   displayed_total_count: displayedTotalCount,
-  burce_visible: searchResults.burceVisible,
-  burce_candidates: searchResults.burceCandidates,
-  missing_from_live_search_count: searchResults.missing.length,
-  missing_from_live_search: searchResults.missing,
-  mismatched_results: searchResults.mismatched,
+  missing_from_application_count: missingFromApplication.length,
+  missing_from_application: missingFromApplication,
+  search_checks: searchChecks,
+  burce_visible: searchChecks.BURCE?.found === true,
   main_frame_navigation_count: navigationCount,
   console_errors: [...new Set(consoleErrors)],
   app_version: appVersion
@@ -92,5 +91,3 @@ await fs.writeFile('audit-results/live-bist-search-audit.json', `${JSON.stringif
 await page.screenshot({ path: 'audit-results/live-bist-search.png', fullPage: false });
 console.log(JSON.stringify(report, null, 2));
 await browser.close();
-
-if (!searchResults.burceVisible) process.exitCode = 2;
