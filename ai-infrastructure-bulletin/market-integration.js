@@ -5,15 +5,12 @@
   window.__PM_MARKET_INTEGRATION_BOOTSTRAP__ = true;
   window.__PM_MARKET_INTEGRATION__ = true;
 
-  const VERSION = "2026.08.04.2";
-  const modules = [
-    ["./market-workspace-core.js", "__PM_MARKET_WORKSPACE_CORE__"],
-    ["./native-intraday-core.js", "__PM_NATIVE_INTRADAY_CORE__"],
+  const VERSION = "2026.08.04.4";
+  const MODULES = [
     ["./workspace-enhancements.js", "__PM_WORKSPACE_ENHANCEMENTS__"],
-    ["./market-live-bridge.js", "__PM_LIVE_MARKET_BRIDGE__"],
-    ["./chart-fetch-fallback.js", "__PIYASA_CHART_FETCH_FALLBACK__"],
-    ["./live-market.js", "__PIYASA_LIVE_MARKET_BOOTSTRAP__"],
-    ["./live-session-control.js", "__PM_LIVE_SESSION_CONTROL__"]
+    ["./market-core.js", "__PM_MARKET_WORKSPACE_CORE__"],
+    ["./intraday-core.js", "__PM_NATIVE_INTRADAY_CORE__"],
+    ["./market-live-session.js", "__PM_MARKET_LIVE_SESSION__"]
   ];
 
   function loadScript(path, marker) {
@@ -21,6 +18,7 @@
     const existing = document.querySelector(`script[data-pm-module="${marker}"]`);
     if (existing) {
       return new Promise((resolve, reject) => {
+        if (window[marker]) { resolve(); return; }
         existing.addEventListener("load", resolve, { once: true });
         existing.addEventListener("error", () => reject(new Error(`MODULE_LOAD_FAILED:${path}`)), { once: true });
       });
@@ -46,7 +44,7 @@
 
   async function start() {
     await waitForApplication();
-    for (const [path, marker] of modules) await loadScript(path, marker);
+    for (const [path, marker] of MODULES) await loadScript(path, marker);
   }
 
   start().catch(error => {
