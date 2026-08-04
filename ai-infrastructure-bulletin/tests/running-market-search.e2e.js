@@ -4,9 +4,10 @@ const assert = require("node:assert/strict");
 const { chromium } = require("playwright");
 
 const APP_URL = process.env.PM_APP_URL || "http://127.0.0.1:4173/ai-infrastructure-bulletin/#market";
+let browser = null;
 
 (async () => {
-  const browser = await chromium.launch({ headless: true, channel: "chrome" });
+  browser = await chromium.launch({ headless: true, channel: "chrome" });
   const page = await browser.newPage();
   const errors = [];
   page.on("pageerror", error => errors.push(error.message));
@@ -54,9 +55,11 @@ const APP_URL = process.env.PM_APP_URL || "http://127.0.0.1:4173/ai-infrastructu
   assert.equal(await page.getByText(/TradingView/i).count(), 0, "market workspace must not expose TradingView UI");
   assert.deepEqual([...new Set(errors)], [], `browser errors: ${[...new Set(errors)].join(" | ")}`);
 
-  await browser.close();
   console.log("running-market-search: all assertions passed");
-})().catch(error => {
+})().then(async () => {
+  if (browser) await browser.close();
+}).catch(async error => {
   console.error(error);
-  process.exitCode = 1;
+  if (browser) await browser.close().catch(() => null);
+  process.exit(1);
 });
