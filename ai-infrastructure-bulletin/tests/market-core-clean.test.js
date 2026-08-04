@@ -33,13 +33,15 @@ const context = {
 };
 context.window = context;
 vm.createContext(context);
-vm.runInContext(fs.readFileSync("ai-infrastructure-bulletin/market-core.js", "utf8"), context);
+vm.runInContext(fs.readFileSync("ai-infrastructure-bulletin/market-core-v2.js", "utf8"), context);
 
 const api = context.PiyasaMarketWorkspace;
 assert.ok(api, "workspace API must be exported");
-const { mergeFeeds, filteredAssets } = api._test;
+const catalog = JSON.parse(fs.readFileSync("ai-infrastructure-bulletin/data/equity-catalog.json", "utf8"));
+const { buildUniverse, filteredAssets } = api._test;
 
-mergeFeeds(
+buildUniverse(
+  catalog,
   {
     updated_at: "2026-08-04T12:00:00Z",
     assets: [
@@ -57,15 +59,11 @@ mergeFeeds(
   { watchlist: [] }
 );
 
+assert.equal(api.getAssets().length, catalog.assets.length, "feed overlays must not change the official universe size");
 const keys = new Set(api.getAssets().map(asset => asset.key));
-assert.ok(keys.has("BIST:LINK"));
-assert.ok(keys.has("US:LINK"));
-assert.ok(keys.has("BIST:BURCE"));
-assert.ok(keys.has("US:RDW"));
-assert.ok(keys.has("BIST:ISATR"));
-assert.ok(keys.has("BIST:ISKUR"));
-assert.ok(keys.has("BIST:UMPAS"));
-assert.ok(keys.has("US:CBOE"));
+for (const key of ["BIST:LINK", "US:LINK", "BIST:BURCE", "US:RDW", "BIST:ISATR", "BIST:ISKUR", "BIST:UMPAS", "US:CBOE"]) {
+  assert.ok(keys.has(key), `${key} must exist in the official catalogue`);
+}
 
 api.state.filter = "BIST";
 api.state.query = "RDW";
@@ -74,4 +72,5 @@ assert.equal(filteredAssets()[0]?.key, "US:RDW", "search must ignore the active 
 api.state.query = "LINK";
 assert.deepEqual(new Set(filteredAssets().map(asset => asset.key)), new Set(["BIST:LINK", "US:LINK"]));
 
-console.log("market-core-clean: composite universe and global search validated");
+assert.doesNotMatch(api._test.cleanSource("TradingView feed"), /TradingView/i);
+console.log("market-core-clean: official catalogue, symbol collisions and global search validated");
