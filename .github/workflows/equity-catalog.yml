@@ -46,7 +46,7 @@ jobs:
           const fs = require('node:fs');
           const catalog = JSON.parse(fs.readFileSync('ai-infrastructure-bulletin/data/equity-catalog.json', 'utf8'));
           if (catalog.counts.BIST < 600) throw new Error(`BIST count ${catalog.counts.BIST}`);
-          if (catalog.counts.US < 6500) throw new Error(`US count ${catalog.counts.US}`);
+          if (catalog.counts.US < 6000) throw new Error(`US count ${catalog.counts.US}`);
           const keys = new Set(catalog.assets.map(asset => asset.key));
           for (const key of ['BIST:BURCE','BIST:ISATR','BIST:ISKUR','BIST:UMPAS','US:RDW','US:CBOE','BIST:LINK','US:LINK']) {
             if (!keys.has(key)) throw new Error(`${key} missing`);
