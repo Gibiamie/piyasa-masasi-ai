@@ -13,14 +13,16 @@ const APP_URL = process.env.PM_APP_URL || "http://127.0.0.1:4173/ai-infrastructu
   page.on("console", message => { if (message.type() === "error") errors.push(message.text()); });
 
   await page.goto(APP_URL, { waitUntil: "domcontentloaded", timeout: 120000 });
-  await page.waitForSelector("#pmMarketSearch", { timeout: 120000 });
-  await page.waitForFunction(() => (window.PiyasaMarketWorkspace?.getAssets?.().length || 0) > 0, null, { timeout: 120000 });
+  await page.waitForTimeout(5000);
 
   const diagnostics = await page.evaluate(() => ({
+    marketSearchPresent: Boolean(document.querySelector("#pmMarketSearch")),
     total: window.PiyasaMarketWorkspace?.getAssets?.().length || 0,
     displayedTotal: document.querySelector("#pmStatusTotal")?.textContent || "",
     displayedBist: document.querySelector("#pmStatusBist")?.textContent || "",
     displayedUs: document.querySelector("#pmStatusUs")?.textContent || "",
+    freshness: document.querySelector("#freshness")?.textContent || "",
+    scripts: [...document.scripts].map(script => script.src).filter(Boolean),
     modules: {
       integration: Boolean(window.__PM_MARKET_INTEGRATION_BOOTSTRAP__),
       workspace: Boolean(window.__PM_MARKET_WORKSPACE_CORE__),
@@ -28,7 +30,9 @@ const APP_URL = process.env.PM_APP_URL || "http://127.0.0.1:4173/ai-infrastructu
       live: Boolean(window.__PM_MARKET_LIVE_SESSION__)
     }
   }));
-  console.log("market diagnostics", JSON.stringify(diagnostics));
+  console.log("market diagnostics", JSON.stringify({ ...diagnostics, errors: [...new Set(errors)] }));
+
+  assert.equal(diagnostics.marketSearchPresent, true, "market search UI must be mounted");
   assert.ok(diagnostics.total > 7000, `expected more than 7000 equities, received ${diagnostics.total}`);
 
   async function search(symbol) {
