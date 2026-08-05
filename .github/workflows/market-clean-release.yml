@@ -9,6 +9,7 @@ on:
       - 'ai-infrastructure-bulletin/market-core-v2.js'
       - 'ai-infrastructure-bulletin/intraday-core.js'
       - 'ai-infrastructure-bulletin/market-live-session.js'
+      - 'ai-infrastructure-bulletin/language-portfolio-runtime.js'
       - 'ai-infrastructure-bulletin/sw.js'
       - 'ai-infrastructure-bulletin/tests/market-core-clean.test.js'
       - 'ai-infrastructure-bulletin/tests/market-clean-architecture.test.js'
@@ -22,6 +23,7 @@ on:
       - 'ai-infrastructure-bulletin/market-core-v2.js'
       - 'ai-infrastructure-bulletin/intraday-core.js'
       - 'ai-infrastructure-bulletin/market-live-session.js'
+      - 'ai-infrastructure-bulletin/language-portfolio-runtime.js'
       - 'ai-infrastructure-bulletin/sw.js'
       - 'ai-infrastructure-bulletin/tests/market-core-clean.test.js'
       - 'ai-infrastructure-bulletin/tests/market-clean-architecture.test.js'
@@ -49,6 +51,7 @@ jobs:
           node --check ai-infrastructure-bulletin/market-core-v2.js
           node --check ai-infrastructure-bulletin/intraday-core.js
           node --check ai-infrastructure-bulletin/market-live-session.js
+          node --check ai-infrastructure-bulletin/language-portfolio-runtime.js
           node --check ai-infrastructure-bulletin/sw.js
           node --check ai-infrastructure-bulletin/tests/running-market-search.e2e.js
 
@@ -66,7 +69,7 @@ jobs:
           echo $! > /tmp/piyasa-http.pid
           sleep 3
 
-      - name: Verify official catalogue search in the running application
+      - name: Verify language switching, catalogue search and transaction autofill
         run: node ai-infrastructure-bulletin/tests/running-market-search.e2e.js
 
       - name: Verify exact BIST and US intraday symbols
