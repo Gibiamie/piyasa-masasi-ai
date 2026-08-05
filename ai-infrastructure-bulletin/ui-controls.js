@@ -8,48 +8,78 @@
       standard: { title: "Standart görünüm uygulandı", detail: "Özet, araştırma görüşü, risk sınıfı ve 21/252 günlük fiyat bağlamı birlikte gösterilir." },
       advanced: { title: "Gelişmiş görünüm uygulandı", detail: "Standart bilgilere ek olarak fiyat bağlamı, temel sürücüler, ana riskler ve olay ayrıntıları gösterilir." },
       professional: { title: "Profesyonel görünüm uygulandı", detail: "Tüm teknik metrikler, güven seviyesi, olay sayısı, fiyat tarihi, sürücüler, riskler ve kaynak ayrıntıları gösterilir." },
-      searchResults: "Arama sonuçları", noSearchResults: "Eşleşen varlık bulunamadı", showUniverse: "Araştırma evreninde göster", resultCount: "{count} varlık bulundu"
+      searchResults: "Hisse arama sonuçları",
+      noSearchResults: "Eşleşen hisse bulunamadı",
+      searchLoading: "KAP ve Nasdaq hisse kataloğu yükleniyor…",
+      showUniverse: "Piyasa ve grafikte göster",
+      resultCount: "{count} hisse bulundu",
+      searchPlaceholder: "Hisse kodu veya şirket adı ara"
     },
     en: {
       beginner: { title: "Beginner view applied", detail: "Shows a concise summary, current price and core 21-day movement. Technical metrics and long explanations are hidden." },
       standard: { title: "Standard view applied", detail: "Shows the summary, research view, risk class and 21/252-day price context together." },
       advanced: { title: "Advanced view applied", detail: "Adds price context, key drivers, principal risks and event detail to the standard view." },
       professional: { title: "Professional view applied", detail: "Shows all technical metrics, confidence, event count, price date, drivers, risks and source detail." },
-      searchResults: "Search results", noSearchResults: "No matching asset found", showUniverse: "Show in research universe", resultCount: "{count} assets found"
+      searchResults: "Equity search results",
+      noSearchResults: "No matching equity found",
+      searchLoading: "Loading the KAP and Nasdaq equity catalogue…",
+      showUniverse: "Show in market and chart",
+      resultCount: "{count} equities found",
+      searchPlaceholder: "Search ticker or company name"
     }
   };
 
   const copy = () => LEVEL_COPY[state.language] || LEVEL_COPY.tr;
+  let searchRetryCount = 0;
 
   function ensureStyles() {
     if (document.getElementById("interactiveControlsStyles")) return;
     const style = document.createElement("style");
     style.id = "interactiveControlsStyles";
     style.textContent = `
-      .global-search{z-index:45}.search-results-panel{position:absolute;top:calc(100% + 8px);left:0;right:0;min-width:min(520px,calc(100vw - 32px));max-height:420px;overflow:auto;border:1px solid var(--line);border-radius:16px 16px 16px 5px;background:rgba(255,253,248,.98);box-shadow:var(--shadow-strong);padding:8px;display:none}.search-results-panel.open{display:block}.search-results-head{display:flex;justify-content:space-between;gap:12px;padding:8px 10px 10px;color:var(--muted);font-size:.72rem}.search-result{width:100%;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:11px;align-items:center;border:0;border-top:1px solid var(--line);background:transparent;color:var(--ink);padding:12px 10px;text-align:left}.search-result:first-of-type{border-top:0}.search-result:hover,.search-result:focus-visible{background:var(--paper-soft);outline:none}.search-result-symbol{display:inline-flex;min-width:58px;justify-content:center;padding:6px 8px;border-radius:999px;background:var(--sage-soft);color:var(--pine);font-size:.7rem;font-weight:800}.search-result-copy{min-width:0;display:grid;gap:3px}.search-result-copy strong,.search-result-copy span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.search-result-copy span{color:var(--muted);font-size:.72rem}.search-result-price{text-align:right;white-space:nowrap}.search-result-price small{display:block;margin-top:3px}.search-empty{padding:24px 14px;text-align:center;color:var(--muted)}.search-universe-action{width:100%;border:0;border-top:1px solid var(--line);background:transparent;color:var(--pine-2);padding:11px;font-weight:750}.experience-status{margin-top:14px;padding:15px 16px;border-left:3px solid var(--pine-2);border-radius:0 12px 12px 0;background:var(--paper-soft)}.experience-status strong{display:block;margin-bottom:5px;color:var(--ink)}.experience-status>span{color:var(--muted);font-size:.78rem;line-height:1.55}.experience-proof{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px}.experience-proof span{padding:5px 8px;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--pine-2);font-size:.65rem;font-weight:750}.experience-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:4px 0 15px}.experience-detail{padding:10px;background:var(--paper-soft);border-radius:10px 10px 10px 3px}.experience-detail strong{display:block;margin-bottom:5px;font-size:.67rem;text-transform:uppercase;letter-spacing:.08em}.experience-detail ul{margin:0;padding-left:17px;color:var(--muted);font-size:.72rem;line-height:1.45}.professional-meta{display:flex;flex-wrap:wrap;gap:6px;margin:-4px 0 13px}html[data-experience="beginner"] .market-table-wrap th:nth-child(6),html[data-experience="beginner"] .market-table-wrap td:nth-child(6),html[data-experience="beginner"] .market-table-wrap th:nth-child(7),html[data-experience="beginner"] .market-table-wrap td:nth-child(7),html[data-experience="beginner"] .market-table-wrap th:nth-child(8),html[data-experience="beginner"] .market-table-wrap td:nth-child(8){display:none}html[data-experience="standard"] .market-table-wrap th:nth-child(7),html[data-experience="standard"] .market-table-wrap td:nth-child(7){display:none}@media(max-width:620px){.search-results-panel{position:fixed;left:12px;right:12px;top:82px;min-width:0;max-height:60vh}.experience-detail-grid{grid-template-columns:1fr}}
+      .global-search{z-index:45}.search-results-panel{position:absolute;top:calc(100% + 8px);left:0;right:0;min-width:min(560px,calc(100vw - 32px));max-height:420px;overflow:auto;border:1px solid var(--line);border-radius:16px 16px 16px 5px;background:rgba(255,253,248,.98);box-shadow:var(--shadow-strong);padding:8px;display:none}.search-results-panel.open{display:block}.search-results-head{display:flex;justify-content:space-between;gap:12px;padding:8px 10px 10px;color:var(--muted);font-size:.72rem}.search-result{width:100%;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:11px;align-items:center;border:0;border-top:1px solid var(--line);background:transparent;color:var(--ink);padding:12px 10px;text-align:left}.search-result:first-of-type{border-top:0}.search-result:hover,.search-result:focus-visible{background:var(--paper-soft);outline:none}.search-result-symbol{display:inline-flex;min-width:68px;justify-content:center;padding:6px 8px;border-radius:999px;background:var(--sage-soft);color:var(--pine);font-size:.7rem;font-weight:800}.search-result-copy{min-width:0;display:grid;gap:3px}.search-result-copy strong,.search-result-copy span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.search-result-copy span{color:var(--muted);font-size:.72rem}.search-result-price{text-align:right;white-space:nowrap}.search-result-price small{display:block;margin-top:3px}.search-empty{padding:24px 14px;text-align:center;color:var(--muted)}.search-universe-action{width:100%;border:0;border-top:1px solid var(--line);background:transparent;color:var(--pine-2);padding:11px;font-weight:750}.experience-status{margin-top:14px;padding:15px 16px;border-left:3px solid var(--pine-2);border-radius:0 12px 12px 0;background:var(--paper-soft)}.experience-status strong{display:block;margin-bottom:5px;color:var(--ink)}.experience-status>span{color:var(--muted);font-size:.78rem;line-height:1.55}.experience-proof{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px}.experience-proof span{padding:5px 8px;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--pine-2);font-size:.65rem;font-weight:750}.experience-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:4px 0 15px}.experience-detail{padding:10px;background:var(--paper-soft);border-radius:10px 10px 10px 3px}.experience-detail strong{display:block;margin-bottom:5px;font-size:.67rem;text-transform:uppercase;letter-spacing:.08em}.experience-detail ul{margin:0;padding-left:17px;color:var(--muted);font-size:.72rem;line-height:1.45}.professional-meta{display:flex;flex-wrap:wrap;gap:6px;margin:-4px 0 13px}html[data-experience="beginner"] .market-table-wrap th:nth-child(6),html[data-experience="beginner"] .market-table-wrap td:nth-child(6),html[data-experience="beginner"] .market-table-wrap th:nth-child(7),html[data-experience="beginner"] .market-table-wrap td:nth-child(7),html[data-experience="beginner"] .market-table-wrap th:nth-child(8),html[data-experience="beginner"] .market-table-wrap td:nth-child(8){display:none}html[data-experience="standard"] .market-table-wrap th:nth-child(7),html[data-experience="standard"] .market-table-wrap td:nth-child(7){display:none}@media(max-width:620px){.search-results-panel{position:fixed;left:12px;right:12px;top:82px;min-width:0;max-height:60vh}.experience-detail-grid{grid-template-columns:1fr}}
     `;
     document.head.appendChild(style);
   }
 
-  function searchHaystack(item) {
-    return [item.ticker, item.provider_symbol, item.company, localizedField(item, "sector"), localizedField(item, "summary"), localizedField(item, "performance_context"), ...localizedArray(item, "key_drivers"), ...localizedArray(item, "key_risks")].join(" ").toLocaleLowerCase(state.language === "tr" ? "tr" : "en");
+  function normalizeSearch(value) {
+    return String(value || "").trim().toLocaleLowerCase(state.language === "tr" ? "tr" : "en");
   }
 
-  function assetSearchResults(query) {
-    if (!state.report || !query.trim()) return [];
-    const normalized = query.trim().toLocaleLowerCase(state.language === "tr" ? "tr" : "en");
-    const evaluations = state.report.company_evaluations || [];
-    const watchlist = state.report.watchlist || [];
-    const marketMap = new Map(watchlist.map(item => [item.ticker, item]));
-    return evaluations.filter(item => searchHaystack({ ...marketMap.get(item.ticker), ...item }).includes(normalized)).sort((a, b) => {
-      const aExact = [a.ticker, a.company].some(value => String(value || "").toLocaleLowerCase(state.language === "tr" ? "tr" : "en") === normalized);
-      const bExact = [b.ticker, b.company].some(value => String(value || "").toLocaleLowerCase(state.language === "tr" ? "tr" : "en") === normalized);
-      if (aExact !== bExact) return aExact ? -1 : 1;
-      const aStarts = String(a.ticker || "").toLowerCase().startsWith(normalized);
-      const bStarts = String(b.ticker || "").toLowerCase().startsWith(normalized);
-      if (aStarts !== bStarts) return aStarts ? -1 : 1;
-      return String(a.ticker).localeCompare(String(b.ticker));
-    }).slice(0, 8).map(item => ({ ...item, market: marketMap.get(item.ticker) || item.price_context || {} }));
+  function marketAssets() {
+    try { return window.PiyasaMarketWorkspace?.getAssets?.() || []; }
+    catch (_) { return []; }
+  }
+
+  function marketSearchScore(asset, normalized) {
+    const symbol = normalizeSearch(asset.symbol);
+    const provider = normalizeSearch(asset.providerSymbol);
+    const name = normalizeSearch(asset.name);
+    if (symbol === normalized || provider === normalized) return 0;
+    if (symbol.startsWith(normalized) || provider.startsWith(normalized)) return 1;
+    if (name.startsWith(normalized)) return 2;
+    return 3;
+  }
+
+  function assetSearchResults(query, assets = marketAssets()) {
+    if (!query.trim() || !assets.length) return [];
+    const normalized = normalizeSearch(query);
+    return assets.filter(asset => [
+      asset.symbol,
+      asset.providerSymbol,
+      asset.name,
+      asset.market,
+      asset.exchange,
+      asset.sector,
+      asset.industry,
+      asset.currency
+    ].some(value => normalizeSearch(value).includes(normalized))).sort((a, b) => {
+      const score = marketSearchScore(a, normalized) - marketSearchScore(b, normalized);
+      if (score) return score;
+      const symbolOrder = String(a.symbol).localeCompare(String(b.symbol));
+      if (symbolOrder) return symbolOrder;
+      return String(a.market).localeCompare(String(b.market));
+    }).slice(0, 12);
   }
 
   function ensureSearchPanel() {
@@ -68,18 +98,52 @@
     $("#globalSearch")?.setAttribute("aria-expanded", "false");
   }
 
+  async function openMarketAsset(asset, query) {
+    closeSearchPanel();
+    navigate("market");
+    const marketInput = $("#pmMarketSearch");
+    if (marketInput) {
+      marketInput.value = query;
+      marketInput.dispatchEvent(new Event("input", { bubbles: true }));
+    }
+    if (asset?.key) await window.PiyasaMarketWorkspace?.select?.(asset.key);
+  }
+
   function renderSearchPanel() {
     const input = $("#globalSearch");
     const panel = ensureSearchPanel();
     const query = input.value.trim();
-    if (!query) { panel.innerHTML = ""; closeSearchPanel(); return []; }
-    const results = assetSearchResults(query);
+    if (!query) { panel.innerHTML = ""; searchRetryCount = 0; closeSearchPanel(); return []; }
+
     const labels = copy();
-    panel.innerHTML = `<div class="search-results-head"><strong>${esc(labels.searchResults)}</strong><span>${esc(labels.resultCount.replace("{count}", String(results.length)))}</span></div>${results.length ? results.map(item => { const market = item.market || {}; return `<button class="search-result" type="button" role="option" data-ticker="${esc(item.ticker)}"><span class="search-result-symbol">${esc(item.ticker)}</span><span class="search-result-copy"><strong>${esc(item.company)}</strong><span>${esc(localizedField(item, "sector") || localizedField(item, "summary"))}</span></span><span class="search-result-price"><strong>${market.price == null ? "—" : fmtMoney(market.price, market.currency)}</strong><small class="${pctClass(market.return_21d_pct)}">${fmtPct(market.return_21d_pct)}</small></span></button>`; }).join("") : `<div class="search-empty">${esc(labels.noSearchResults)}</div>`}<button class="search-universe-action" type="button">${esc(labels.showUniverse)} →</button>`;
+    const assets = marketAssets();
+    if (!assets.length) {
+      panel.innerHTML = `<div class="search-results-head"><strong>${esc(labels.searchResults)}</strong><span>—</span></div><div class="search-empty">${esc(labels.searchLoading)}</div>`;
+      panel.classList.add("open");
+      input.setAttribute("aria-expanded", "true");
+      if (searchRetryCount < 20) {
+        searchRetryCount += 1;
+        setTimeout(() => { if (input.value.trim() === query) renderSearchPanel(); }, 250);
+      }
+      return [];
+    }
+
+    searchRetryCount = 0;
+    const results = assetSearchResults(query, assets);
+    panel.innerHTML = `<div class="search-results-head"><strong>${esc(labels.searchResults)}</strong><span>${esc(labels.resultCount.replace("{count}", String(results.length)))}</span></div>${results.length ? results.map(asset => `<button class="search-result" type="button" role="option" data-key="${esc(asset.key)}"><span class="search-result-symbol">${esc(asset.symbol)}</span><span class="search-result-copy"><strong>${esc(asset.name)}</strong><span>${esc([asset.exchange || asset.market, asset.sector || asset.industry].filter(Boolean).join(" · "))}</span></span><span class="search-result-price"><strong>${asset.price == null ? "—" : fmtMoney(asset.price, asset.currency)}</strong><small class="${pctClass(asset.change)}">${fmtPct(asset.change)}</small></span></button>`).join("") : `<div class="search-empty">${esc(labels.noSearchResults)}</div>`}<button class="search-universe-action" type="button">${esc(labels.showUniverse)} →</button>`;
     panel.classList.add("open");
     input.setAttribute("aria-expanded", "true");
-    panel.querySelectorAll(".search-result").forEach(button => button.onclick = event => { event.preventDefault(); closeSearchPanel(); openAssetDrawer(button.dataset.ticker); });
-    panel.querySelector(".search-universe-action").onclick = event => { event.preventDefault(); state.marketSearch = query; $("#marketSearch").value = query; closeSearchPanel(); navigate("watchlist"); renderWatchlist(state.report?.watchlist || [], state.report?.company_evaluations || []); };
+    panel.querySelectorAll(".search-result").forEach(button => {
+      button.onclick = event => {
+        event.preventDefault();
+        const asset = results.find(item => item.key === button.dataset.key);
+        void openMarketAsset(asset, query);
+      };
+    });
+    panel.querySelector(".search-universe-action").onclick = event => {
+      event.preventDefault();
+      void openMarketAsset(results[0] || null, query);
+    };
     return results;
   }
 
@@ -161,14 +225,28 @@
     if (announce) showToast(copy()[state.experience].title);
   }
 
+  function applySearchCopy() {
+    const input = $("#globalSearch");
+    if (input) input.placeholder = copy().searchPlaceholder;
+    document.getElementById("globalSearchResults")?.setAttribute("aria-label", copy().searchResults);
+  }
+
   function wireSearch() {
     const input = $("#globalSearch");
     if (!input) return;
     input.setAttribute("role", "combobox"); input.setAttribute("aria-autocomplete", "list"); input.setAttribute("aria-controls", "globalSearchResults"); input.setAttribute("aria-expanded", "false");
-    input.oninput = event => { state.query = event.target.value; if (state.report) { renderEvaluations(state.report.company_evaluations || []); renderEvents(state.report.events || []); renderWatchlist(state.report.watchlist || [], state.report.company_evaluations || []); } renderSearchPanel(); };
+    input.oninput = () => renderSearchPanel();
     input.onfocus = () => { if (input.value.trim()) renderSearchPanel(); };
-    input.onkeydown = event => { if (event.key === "Escape") { closeSearchPanel(); return; } if (event.key !== "Enter") return; event.preventDefault(); const results = assetSearchResults(input.value); if (results.length) { closeSearchPanel(); openAssetDrawer(results[0].ticker); } else { state.marketSearch = input.value.trim(); $("#marketSearch").value = state.marketSearch; navigate("watchlist"); } };
+    input.onkeydown = event => {
+      if (event.key === "Escape") { closeSearchPanel(); return; }
+      if (event.key !== "Enter") return;
+      event.preventDefault();
+      const query = input.value.trim();
+      const results = assetSearchResults(query);
+      void openMarketAsset(results[0] || null, query);
+    };
     document.addEventListener("pointerdown", event => { if (!event.target.closest(".global-search")) closeSearchPanel(); });
+    applySearchCopy();
   }
 
   function wireExperience() {
@@ -180,7 +258,7 @@
 
   ensureStyles(); ensureSearchPanel(); wireSearch(); wireExperience();
   const originalApplyLanguage = applyLanguage;
-  applyLanguage = function applyLanguageWithControls() { originalApplyLanguage(); renderExperienceStatus(); document.getElementById("globalSearchResults")?.setAttribute("aria-label", copy().searchResults); };
+  applyLanguage = function applyLanguageWithControls() { originalApplyLanguage(); renderExperienceStatus(); applySearchCopy(); if ($("#globalSearch")?.value.trim()) renderSearchPanel(); };
 })();
 
 
