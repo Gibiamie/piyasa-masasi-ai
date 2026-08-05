@@ -29,18 +29,20 @@ assert.match(files.workspace, /equity-catalog\.json/);
 assert.match(files.workspace, /keyOf\(market, symbol\)/);
 assert.doesNotMatch(files.workspace, /SUPPLEMENTS/);
 
-assert.match(files.intraday, /AbortController/);
-assert.match(files.intraday, /SYMBOL_MISMATCH/);
-assert.match(files.intraday, /aggregateSamples/);
-assert.match(files.intraday, /sessionFallback/);
-assert.match(files.intraday, /Promise\.any/);
+assert.match(files.intraday, /aggregate/);
+assert.match(files.intraday, /recordQuote/);
+assert.match(files.intraday, /intraday-samples\.v3/);
 assert.match(files.intraday, /PiyasaMarketLive\?\.requestAsset/);
+assert.doesNotMatch(files.intraday, /query1\.finance\.yahoo|query2\.finance\.yahoo|allorigins|corsproxy|codetabs/);
 
 assert.match(files.live, /sessionStorage/);
 assert.match(files.live, /requestAsset/);
 assert.match(files.live, /refreshPriority/);
-assert.match(files.live, /fetchChartQuote/);
+assert.match(files.live, /scanner\.tradingview\.com\/turkey\/scan/);
+assert.match(files.live, /scanner\.tradingview\.com\/america\/scan/);
+assert.match(files.live, /fetchScanner/);
 assert.match(files.live, /PiyasaResearchIntelligence\?\.getPersonalAssets/);
+assert.doesNotMatch(files.live, /query1\.finance\.yahoo|query2\.finance\.yahoo|allorigins|corsproxy|codetabs/);
 
 assert.match(files.languagePortfolio, /applyMarketLanguage/);
 assert.match(files.languagePortfolio, /fillTransactionAsset/);
@@ -76,4 +78,4 @@ for (const key of ["BIST:BURCE", "BIST:ISATR", "BIST:ISKUR", "BIST:UMPAS", "US:R
   assert.ok(keys.has(key), `${key} missing from catalogue`);
 }
 
-console.log("market-clean-architecture: canonical research universe, resilient intraday, sources and personal list validated");
+console.log("market-clean-architecture: browser scanner quotes, open-session bars, canonical research and sources validated");
