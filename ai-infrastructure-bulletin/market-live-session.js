@@ -4,12 +4,12 @@
   if (window.__PM_MARKET_LIVE_SESSION__) return;
   window.__PM_MARKET_LIVE_SESSION__ = true;
 
-  const SESSION_KEY = "piyasa-masasi-ai.live-session.v3";
+  const SESSION_KEY = "piyasa-masasi-ai.live-session.v4";
   const PRIORITY_INTERVAL = 30_000;
   const FULL_RESCAN_INTERVAL = 10 * 60_000;
-  const BATCH_SIZE = 40;
-  const CONCURRENCY = 4;
-  const REQUEST_TIMEOUT = 10_000;
+  const BATCH_SIZE = 100;
+  const CONCURRENCY = 3;
+  const REQUEST_TIMEOUT = 12_000;
 
   const live = {
     active: sessionStorage.getItem(SESSION_KEY) === "1",
@@ -28,9 +28,10 @@
   };
 
   const $ = id => document.getElementById(id);
-  const normalize = value => String(value || "").trim().toUpperCase();
   const language = () => document.documentElement.lang === "en" ? "en" : "tr";
   const T = (tr, en) => language() === "en" ? en : tr;
+  const finite = value => Number.isFinite(Number(value)) ? Number(value) : null;
+  const assets = () => window.PiyasaMarketWorkspace?.getAssets?.() || [];
   const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
   function ensureDetail() {
@@ -52,12 +53,8 @@
   }
 
   function updateUi(activity = "") {
-    const pill = $("freshness");
-    const detail = ensureDetail();
-    const button = $("refresh");
-    const localButton = $("pmReloadMarket");
+    const pill = $("freshness"), detail = ensureDetail(), button = $("refresh"), localButton = $("pmReloadMarket");
     if (!pill) return;
-
     if (!live.active) {
       pill.textContent = T("Canlı izleme kapalı", "Live monitoring off");
       pill.className = "status-pill neutral";
@@ -66,137 +63,140 @@
       if (localButton) localButton.textContent = T("Yenile ve izlemeyi başlat", "Refresh and start monitoring");
       return;
     }
-
     if (live.scanning) {
       pill.textContent = T("Canlı izleme açık · güncelleniyor", "Live monitoring on · updating");
       pill.className = "status-pill positive";
       if (detail) detail.textContent = `${activity || T("Hisse evreni taranıyor", "Scanning equity universe")} · ${live.processed}/${live.total} · ${T("güncellenen", "updated")}: ${live.updated} · ${T("öncelikli", "priority")}: ${live.priorityUpdated}/${live.priorityTotal}`;
     } else if (live.lastError && !live.lastSuccessAt) {
-      pill.textContent = T("Canlı izleme açık · yeniden deneniyor", "Live monitoring on · retrying");
+      pill.textContent = T("Canlı izleme açık · yayımlanmış fiyat kullanılıyor", "Live monitoring on · using published price");
       pill.className = "status-pill warning";
-      if (detail) detail.textContent = T("Öncelikli hisseler için alternatif veri yolları deneniyor.", "Alternative data routes are being tried for priority equities.");
+      if (detail) detail.textContent = T("Tarayıcı veri kaynağı yeniden denenecek.", "The browser data source will be retried.");
     } else {
       pill.textContent = T("Canlı izleme açık", "Live monitoring on");
       pill.className = "status-pill positive";
-      if (detail) detail.textContent = `${T("Son başarılı kontrol", "Last successful check")}: ${formatTime(live.lastSuccessAt)} · ${T("öncelikli", "priority")}: ${live.priorityUpdated}/${live.priorityTotal}${live.scanning ? ` · ${live.updated}/${live.total}` : ""}`;
+      if (detail) detail.textContent = `${T("Son başarılı kontrol", "Last successful check")}: ${formatTime(live.lastSuccessAt)} · ${T("öncelikli", "priority")}: ${live.priorityUpdated}/${live.priorityTotal}`;
     }
     if (button) button.textContent = T("Şimdi yenile", "Refresh now");
     if (localButton) localButton.textContent = T("Şimdi yenile", "Refresh now");
   }
 
-  function assets() { return window.PiyasaMarketWorkspace?.getAssets?.() || []; }
-  function provider(asset) { return asset?.providerSymbol || (asset?.market === "BIST" ? `${asset.symbol}.IS` : asset?.symbol); }
-  function chunk(values, size) { const output = []; for (let index = 0; index < values.length; index += size) output.push(values.slice(index, index + size)); return output; }
+  function scannerEndpoint(market) {
+    return market === "BIST" ? "https://scanner.tradingview.com/turkey/scan" : "https://scanner.tradingview.com/america/scan";
+  }
 
-  async function fetchWithTimeout(url, timeout = REQUEST_TIMEOUT) {
+  function scannerTicker(asset) {
+    if (asset.market === "BIST") return `BIST:${asset.symbol}`;
+    const exchange = String(asset.exchange || "NASDAQ").toUpperCase();
+    const known = ["NASDAQ", "NYSE", "AMEX", "NYSEARCA", "CBOE", "OTC"];
+    return `${known.includes(exchange) ? exchange : "NASDAQ"}:${asset.symbol}`;
+  }
+
+  function providerSymbol(asset) {
+    return asset.providerSymbol || (asset.market === "BIST" ? `${asset.symbol}.IS` : asset.symbol);
+  }
+
+  async function postScanner(endpoint, tickers) {
     const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), timeout);
+    const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT);
     try {
-      const response = await fetch(url, { cache: "no-store", signal: controller.signal, headers: { Accept: "application/json,text/plain,*/*" } });
-      if (!response.ok) throw new Error(`HTTP_${response.status}`);
+      const response = await fetch(endpoint, {
+        method: "POST",
+        cache: "no-store",
+        signal: controller.signal,
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ symbols: { tickers, query: { types: [] } }, columns: ["name", "close", "change", "volume", "market_cap_basic", "update_mode"] })
+      });
+      if (!response.ok) throw new Error(`SCANNER_HTTP_${response.status}`);
       return await response.json();
     } finally { clearTimeout(timer); }
   }
 
-  async function firstSuccessful(urls) {
-    const attempts = urls.map(url => fetchWithTimeout(url));
-    try { return await Promise.any(attempts); }
-    catch (error) { throw error?.errors?.at(-1) || error; }
+  async function fetchScanner(list) {
+    const output = new Map();
+    for (const market of ["BIST", "US"]) {
+      const group = list.filter(asset => asset.market === market);
+      if (!group.length) continue;
+      const tickerToAsset = new Map(group.map(asset => [scannerTicker(asset), asset]));
+      const payload = await postScanner(scannerEndpoint(market), [...tickerToAsset.keys()]);
+      for (const row of payload?.data || []) {
+        const asset = tickerToAsset.get(String(row.s || "").toUpperCase());
+        const data = row.d || [];
+        const price = finite(data[1]);
+        if (!asset || price === null) continue;
+        output.set(providerSymbol(asset).toUpperCase(), {
+          symbol: providerSymbol(asset).toUpperCase(),
+          price,
+          changePercent: finite(data[2]),
+          volume: finite(data[3]),
+          marketCap: finite(data[4]),
+          timestamp: Date.now(),
+          source: "MIC browser scanner"
+        });
+      }
+    }
+    return output;
   }
 
-  function quoteCandidates(symbols) {
-    const joined = symbols.join(",");
-    const direct = `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${encodeURIComponent(joined)}`;
-    return [direct, direct.replace("query1.finance.yahoo.com", "query2.finance.yahoo.com"), `https://api.allorigins.win/raw?url=${encodeURIComponent(direct)}`, `https://corsproxy.io/?url=${encodeURIComponent(direct)}`];
-  }
-
-  async function fetchBatch(symbols) {
-    if (!symbols.length) return new Map();
-    const payload = await firstSuccessful(quoteCandidates(symbols));
-    const rows = payload?.quoteResponse?.result;
-    if (!Array.isArray(rows)) throw new Error("INVALID_QUOTE_RESPONSE");
-    return new Map(rows.map(row => [normalize(row.symbol), {
-      symbol: normalize(row.symbol),
-      price: row.regularMarketPrice,
-      changePercent: row.regularMarketChangePercent,
-      volume: row.regularMarketVolume,
-      marketCap: row.marketCap,
-      timestamp: Number(row.regularMarketTime || 0) * 1000 || Date.now(),
-      source: "MIC · Yahoo Finance quote"
-    }]).filter(([, quote]) => Number.isFinite(Number(quote.price))));
-  }
-
-  async function fetchChartQuote(symbol) {
-    const direct = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?range=1d&interval=1m&events=history&includePrePost=false`;
-    const payload = await firstSuccessful([direct, direct.replace("query1.finance.yahoo.com", "query2.finance.yahoo.com"), `https://api.allorigins.win/raw?url=${encodeURIComponent(direct)}`, `https://corsproxy.io/?url=${encodeURIComponent(direct)}`, `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(direct)}`]);
-    const result = payload?.chart?.result?.[0];
-    if (!result) throw new Error(payload?.chart?.error?.description || "EMPTY_CHART_QUOTE");
-    const close = result.indicators?.quote?.[0]?.close || [];
-    let last = null;
-    for (let index = close.length - 1; index >= 0; index -= 1) if (Number.isFinite(Number(close[index]))) { last = Number(close[index]); break; }
-    const meta = result.meta || {};
-    const price = Number.isFinite(Number(meta.regularMarketPrice)) ? Number(meta.regularMarketPrice) : last;
-    if (!Number.isFinite(price)) throw new Error("CHART_PRICE_MISSING");
-    const previous = Number(meta.chartPreviousClose ?? meta.previousClose);
-    return new Map([[normalize(symbol), {
-      symbol: normalize(symbol),
+  function snapshotQuote(asset) {
+    const price = finite(asset?.price);
+    if (price === null) return null;
+    return {
+      symbol: providerSymbol(asset).toUpperCase(),
       price,
-      changePercent: Number.isFinite(previous) && previous ? (price / previous - 1) * 100 : null,
-      volume: null,
-      marketCap: null,
-      timestamp: Number(meta.regularMarketTime || 0) * 1000 || Date.now(),
-      source: "MIC · Yahoo Finance chart"
-    }]]);
+      changePercent: finite(asset.change),
+      volume: finite(asset.volume),
+      marketCap: finite(asset.marketCap),
+      timestamp: finite(asset.quoteAt) || Date.now(),
+      source: T("MIC yayımlanmış fiyat", "MIC published price")
+    };
   }
 
   function dispatchQuotes(quotes) {
     if (!quotes?.size) return 0;
     window.dispatchEvent(new CustomEvent("piyasa-market-quotes", { detail: { quotes } }));
-    live.lastSuccessAt = Date.now();
     return quotes.size;
   }
 
   async function requestAsset(asset) {
     if (!asset) return null;
-    const symbol = normalize(provider(asset));
-    if (!symbol) return null;
     live.lastAttemptAt = Date.now();
     try {
-      let quotes = await fetchBatch([symbol]);
-      if (!quotes.has(symbol)) quotes = await fetchChartQuote(symbol);
+      const quotes = await fetchScanner([asset]);
+      const quote = quotes.get(providerSymbol(asset).toUpperCase());
+      if (!quote) throw new Error("SCANNER_QUOTE_MISSING");
       dispatchQuotes(quotes);
+      live.lastSuccessAt = Date.now();
       live.lastError = null;
       updateUi();
-      return quotes.get(symbol) || null;
-    } catch (batchError) {
-      try {
-        const quotes = await fetchChartQuote(symbol);
-        dispatchQuotes(quotes);
-        live.lastError = null;
-        updateUi();
-        return quotes.get(symbol) || null;
-      } catch (chartError) {
-        live.lastError = chartError || batchError;
-        updateUi();
-        return null;
-      }
+      return quote;
+    } catch (error) {
+      live.lastError = error;
+      const fallback = snapshotQuote(asset);
+      if (fallback) dispatchQuotes(new Map([[fallback.symbol, fallback]]));
+      updateUi();
+      return fallback;
     }
   }
 
   function priorityAssets() {
-    const all = assets();
-    const keys = new Set();
+    const all = assets(), keys = new Set();
     const selected = window.PiyasaMarketWorkspace?.getSelected?.();
     if (selected?.key) keys.add(selected.key);
     document.querySelectorAll("#pmAssetList [data-pm-key]").forEach(node => { if (node.offsetParent !== null) keys.add(node.dataset.pmKey); });
     for (const asset of window.PiyasaResearchIntelligence?.getPersonalAssets?.() || []) keys.add(asset.key);
     try {
       for (const transaction of state?.portfolio?.transactions || []) {
-        const symbol = normalize(transaction.symbol).replace(/\.IS$/, "");
+        const symbol = String(transaction.symbol || "").toUpperCase().replace(/\.IS$/, "");
         all.filter(asset => asset.symbol === symbol && (String(transaction.currency).toUpperCase() === "TRY" ? asset.market === "BIST" : true)).forEach(asset => keys.add(asset.key));
       }
     } catch (_) {}
-    return all.filter(asset => keys.has(asset.key)).slice(0, 120);
+    return all.filter(asset => keys.has(asset.key)).slice(0, 150);
+  }
+
+  function chunks(values, size) {
+    const result = [];
+    for (let index = 0; index < values.length; index += size) result.push(values.slice(index, index + size));
+    return result;
   }
 
   async function refreshPriority() {
@@ -204,20 +204,17 @@
     const list = priorityAssets();
     live.priorityTotal = list.length;
     live.priorityUpdated = 0;
-    if (!list.length) { updateUi(); return; }
-    const symbols = [...new Set(list.map(provider).map(normalize).filter(Boolean))];
-    const batches = chunk(symbols, 20);
-    for (const batch of batches) {
+    for (const batch of chunks(list, BATCH_SIZE)) {
       try {
-        const quotes = await fetchBatch(batch);
+        const quotes = await fetchScanner(batch);
         live.priorityUpdated += dispatchQuotes(quotes);
-        const missing = batch.filter(symbol => !quotes.has(symbol));
-        for (const symbol of missing.slice(0, 8)) {
-          try { live.priorityUpdated += dispatchQuotes(await fetchChartQuote(symbol)); } catch (_) {}
-        }
-      } catch (_) {
-        for (const symbol of batch.slice(0, 12)) {
-          try { live.priorityUpdated += dispatchQuotes(await fetchChartQuote(symbol)); } catch (error) { live.lastError = error; }
+        live.lastSuccessAt = quotes.size ? Date.now() : live.lastSuccessAt;
+        live.lastError = quotes.size ? null : live.lastError;
+      } catch (error) {
+        live.lastError = error;
+        for (const asset of batch) {
+          const fallback = snapshotQuote(asset);
+          if (fallback) dispatchQuotes(new Map([[fallback.symbol, fallback]]));
         }
       }
       updateUi(T("Öncelikli hisseler yenileniyor", "Refreshing priority equities"));
@@ -227,35 +224,23 @@
   async function fullScan() {
     if (!live.active || live.scanning) return;
     live.scanning = true;
-    live.generation += 1;
-    const generation = live.generation;
+    const generation = ++live.generation;
+    live.total = assets().length;
     live.processed = 0;
     live.updated = 0;
-    live.total = assets().length;
-    live.lastAttemptAt = Date.now();
-    updateUi(T("Öncelikli hisseler yenileniyor", "Refreshing priority equities"));
     await refreshPriority();
-    const symbols = [...new Set(assets().map(provider).map(normalize).filter(Boolean))];
-    const batches = chunk(symbols, BATCH_SIZE);
-    let consecutiveFailures = 0;
-    for (let offset = 0; offset < batches.length; offset += CONCURRENCY) {
+    const groups = chunks(assets(), BATCH_SIZE);
+    for (let offset = 0; offset < groups.length; offset += CONCURRENCY) {
       if (!live.active || generation !== live.generation) break;
-      const group = batches.slice(offset, offset + CONCURRENCY);
-      const results = await Promise.allSettled(group.map(fetchBatch));
-      for (let index = 0; index < results.length; index += 1) {
-        live.processed += group[index].length;
-        if (results[index].status === "fulfilled") {
-          const count = dispatchQuotes(results[index].value);
-          live.updated += count;
-          consecutiveFailures = count ? 0 : consecutiveFailures + 1;
-        } else {
-          live.lastError = results[index].reason;
-          consecutiveFailures += 1;
-        }
-      }
+      const block = groups.slice(offset, offset + CONCURRENCY);
+      const results = await Promise.allSettled(block.map(fetchScanner));
+      results.forEach((result, index) => {
+        live.processed += block[index].length;
+        if (result.status === "fulfilled") live.updated += dispatchQuotes(result.value);
+        else live.lastError = result.reason;
+      });
       updateUi(T("Tüm hisse evreni yenileniyor", "Refreshing full equity universe"));
-      if (consecutiveFailures >= 12) break;
-      await sleep(180);
+      await sleep(150);
     }
     if (generation === live.generation) live.scanning = false;
     updateUi();
@@ -270,16 +255,13 @@
   async function start() {
     live.active = true;
     sessionStorage.setItem(SESSION_KEY, "1");
-    schedule();
-    updateUi(T("Piyasa dosyaları yenileniyor", "Refreshing market files"));
+    schedule(); updateUi(T("Piyasa dosyaları yenileniyor", "Refreshing market files"));
     await window.PiyasaMarketWorkspace?.refresh?.(true);
     await refreshPriority();
-    fullScan();
   }
 
   function stop() {
-    live.active = false;
-    live.generation += 1;
+    live.active = false; live.generation += 1;
     sessionStorage.removeItem(SESSION_KEY);
     clearInterval(live.priorityTimer); clearInterval(live.fullTimer);
     live.priorityTimer = null; live.fullTimer = null;
@@ -287,11 +269,9 @@
   }
 
   function bind() {
-    const button = $("refresh");
-    if (button) button.onclick = event => { event.preventDefault(); start(); };
-    const localButton = $("pmReloadMarket");
-    if (localButton) localButton.onclick = event => { event.preventDefault(); start(); };
-    window.addEventListener("pm-market-asset-change", event => { if (live.active && event.detail?.asset) requestAsset(event.detail.asset); });
+    if ($("refresh")) $("refresh").onclick = event => { event.preventDefault(); start(); };
+    if ($("pmReloadMarket")) $("pmReloadMarket").onclick = event => { event.preventDefault(); start(); };
+    window.addEventListener("pm-market-asset-change", event => { if (event.detail?.asset) requestAsset(event.detail.asset); });
     window.addEventListener("piyasa-personal-list-change", () => { if (live.active) refreshPriority(); });
     document.addEventListener("visibilitychange", () => { if (live.active && !document.hidden) refreshPriority(); });
     window.addEventListener("pagehide", () => { clearInterval(live.priorityTimer); clearInterval(live.fullTimer); });
@@ -306,7 +286,7 @@
     refresh: fullScan,
     requestAsset,
     isActive: () => live.active,
-    _test: { fetchBatch, fetchChartQuote, priorityAssets }
+    _test: { scannerTicker, fetchScanner, priorityAssets }
   };
 
   bind();
