@@ -4,7 +4,7 @@
   if (window.__PM_MARKET_LIVE_SESSION__) return;
   window.__PM_MARKET_LIVE_SESSION__ = true;
 
-  const SESSION_KEY = "piyasa-masasi-ai.live-session.v4";
+  const SESSION_KEY = "piyasa-masasi-ai.live-session.v5";
   const PRIORITY_INTERVAL = 30_000;
   const FULL_RESCAN_INTERVAL = 10 * 60_000;
   const BATCH_SIZE = 100;
@@ -101,9 +101,10 @@
     try {
       const response = await fetch(endpoint, {
         method: "POST",
+        mode: "cors",
         cache: "no-store",
         signal: controller.signal,
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        headers: { Accept: "application/json" },
         body: JSON.stringify({ symbols: { tickers, query: { types: [] } }, columns: ["name", "close", "change", "volume", "market_cap_basic", "update_mode"] })
       });
       if (!response.ok) throw new Error(`SCANNER_HTTP_${response.status}`);
@@ -286,7 +287,7 @@
     refresh: fullScan,
     requestAsset,
     isActive: () => live.active,
-    _test: { scannerTicker, fetchScanner, priorityAssets }
+    _test: { scannerTicker, fetchScanner, priorityAssets, postScanner }
   };
 
   bind();
