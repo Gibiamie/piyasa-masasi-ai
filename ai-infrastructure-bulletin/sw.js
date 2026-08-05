@@ -1,4 +1,4 @@
-const CACHE = "piyasa-masasi-workspace-v24";
+const CACHE = "piyasa-masasi-workspace-v25";
 const STATIC = [
   "./",
   "./index.html",
