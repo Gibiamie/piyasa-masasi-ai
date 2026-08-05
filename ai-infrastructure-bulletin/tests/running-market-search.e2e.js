@@ -33,7 +33,8 @@ let browser = null;
         integration: Boolean(window.__PM_MARKET_INTEGRATION_BOOTSTRAP__),
         workspace: Boolean(window.__PM_MARKET_CORE_V2__),
         intraday: Boolean(window.__PM_NATIVE_INTRADAY_CORE__),
-        live: Boolean(window.__PM_MARKET_LIVE_SESSION__)
+        live: Boolean(window.__PM_MARKET_LIVE_SESSION__),
+        languagePortfolio: Boolean(window.__PM_LANGUAGE_PORTFOLIO_RUNTIME__)
       }
     };
   });
@@ -47,7 +48,7 @@ let browser = null;
   assert.equal(diagnostics.displayedUs, diagnostics.catalogCounts.US);
   assert.ok(diagnostics.catalogCounts.BIST >= 600);
   assert.ok(diagnostics.catalogCounts.US >= 6000);
-  assert.deepEqual(diagnostics.modules, { integration: true, workspace: true, intraday: true, live: true });
+  assert.deepEqual(diagnostics.modules, { integration: true, workspace: true, intraday: true, live: true, languagePortfolio: true });
 
   await page.locator("#globalSearch").fill("ASTOR");
   await page.waitForFunction(() => Boolean(document.querySelector('#globalSearchResults [data-key="BIST:ASTOR"]')));
@@ -70,6 +71,60 @@ let browser = null;
   await page.locator('#pmMarketFilters [data-filter="BIST"]').click();
   assert.ok(await search("RDW") >= 1, "RDW search must work after selecting the BIST filter");
   assert.ok(await search("LINK") >= 2, "BIST:LINK and US:LINK must both remain searchable");
+
+  // Turkish -> English must translate the complete dynamic market workspace.
+  if (await page.locator("html").getAttribute("lang") !== "tr") {
+    await page.evaluate(() => { localStorage.setItem("ai-infrastructure-bulletin.language", "tr"); location.reload(); });
+    await page.waitForTimeout(7000);
+  }
+  await page.locator("#languageToggle").click();
+  await page.waitForFunction(() => document.documentElement.lang === "en");
+  await page.waitForTimeout(300);
+  assert.equal(await page.locator("#viewTitle").textContent(), "Market and chart");
+  assert.equal(await page.locator("#globalSearch").getAttribute("placeholder"), "Search ticker or company name");
+  assert.equal(await page.locator("#marketView .pm-status-card").first().locator("span").textContent(), "Total equities");
+  assert.equal(await page.locator('#pmMarketFilters [data-filter="ALL"]').textContent(), "All");
+  assert.equal(await page.locator('#pmSourceTabs [data-source="INTRADAY"]').textContent(), "MIC intraday");
+  assert.equal(await page.locator("#pmAddTransaction").textContent(), "Add transaction for this equity");
+  assert.equal(await page.locator("#pmOpenPortfolio").textContent(), "Open portfolio");
+  assert.equal(await page.locator("#marketView").getByText("SİSTEM DURUMU", { exact: true }).count(), 0);
+  assert.equal(await page.locator("#marketView").getByText("Bu hisse için işlem ekle", { exact: true }).count(), 0);
+
+  // The portfolio transaction form must resolve symbols from the same official catalogue.
+  await page.locator('.tab[data-view="portfolio"]').click();
+  await page.waitForFunction(() => document.querySelector("#portfolioView")?.classList.contains("active"));
+  assert.equal(await page.locator("#transactionFormTitle").textContent(), "Record a purchase or sale");
+  await page.locator("#txSymbol").fill("GARAN");
+  await page.locator("#txSymbol").blur();
+  await page.waitForFunction(() => {
+    const name = document.querySelector("#txName")?.value || "";
+    const price = Number(document.querySelector("#txCurrentPrice")?.value);
+    const date = document.querySelector("#txCurrentPriceDate")?.value || "";
+    return name.length > 2 && Number.isFinite(price) && price > 0 && /^\d{4}-\d{2}-\d{2}$/.test(date);
+  });
+  const transactionAutofill = await page.evaluate(() => ({
+    name: document.querySelector("#txName")?.value,
+    currency: document.querySelector("#txCurrency")?.value,
+    unit: document.querySelector("#txUnit")?.value,
+    price: document.querySelector("#txCurrentPrice")?.value,
+    priceDate: document.querySelector("#txCurrentPriceDate")?.value,
+    assetType: document.querySelector("#txAssetType")?.value
+  }));
+  assert.match(transactionAutofill.name, /GARANT|GARAN/i);
+  assert.equal(transactionAutofill.currency, "TRY");
+  assert.equal(transactionAutofill.unit, "lot");
+  assert.ok(Number(transactionAutofill.price) > 0);
+  assert.match(transactionAutofill.priceDate, /^\d{4}-\d{2}-\d{2}$/);
+  assert.equal(transactionAutofill.assetType, "STOCK");
+
+  // English -> Turkish must update the active portfolio page without reloading.
+  await page.locator("#languageToggle").click();
+  await page.waitForFunction(() => document.documentElement.lang === "tr");
+  await page.waitForTimeout(300);
+  assert.equal(await page.locator("#transactionFormTitle").textContent(), "Alış veya satış kaydet");
+  assert.equal(await page.locator('label:has(#txSymbol) span').textContent(), "Sembol");
+  assert.equal(await page.locator('label:has(#txCurrentPrice) span').textContent(), "Güncel fiyat (opsiyonel)");
+  assert.equal(await page.locator('label:has(#txCurrentPriceDate) span').textContent(), "Güncel fiyat tarihi");
 
   assert.equal(await page.locator("#marketView iframe").count(), 0, "market workspace must not contain an iframe");
   assert.equal(await page.locator("#marketView").getByText(/TradingView/i).count(), 0, "market workspace must not expose TradingView UI");
