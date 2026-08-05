@@ -1,0 +1,31 @@
+name: Verify Live Language and Portfolio
+
+on:
+  pull_request:
+    branches: [remediation/v30-audit]
+    paths:
+      - '.github/workflows/verify-live-language-portfolio.yml'
+      - 'ai-infrastructure-bulletin/language-portfolio-runtime.js'
+      - 'ai-infrastructure-bulletin/market-integration.js'
+      - 'ai-infrastructure-bulletin/sw.js'
+      - 'ai-infrastructure-bulletin/tests/running-market-search.e2e.js'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install browser runtime
+        run: npm install --no-save playwright@1.55.0
+      - name: Verify published language switching and transaction autofill
+        env:
+          PM_APP_URL: https://gibiamie.github.io/piyasa-masasi-ai/ai-infrastructure-bulletin/?release=official-v22#market
+        run: node ai-infrastructure-bulletin/tests/running-market-search.e2e.js
