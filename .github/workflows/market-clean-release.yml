@@ -75,31 +75,27 @@ jobs:
       - name: Verify language switching, catalogue search and transaction autofill
         run: node ai-infrastructure-bulletin/tests/running-market-search.e2e.js
 
-      - name: Verify exact BIST and US intraday symbols
+      - name: Verify BIST and US browser scanner quotes
         run: |
           node <<'NODE'
+          const cases = [
+            { endpoint: 'https://scanner.tradingview.com/turkey/scan', ticker: 'BIST:LMKDC' },
+            { endpoint: 'https://scanner.tradingview.com/turkey/scan', ticker: 'BIST:ISCTR' },
+            { endpoint: 'https://scanner.tradingview.com/america/scan', ticker: 'NYSE:RDW' }
+          ];
           (async () => {
-            for (const symbol of ['ISCTR.IS', 'LMKDC.IS', 'RDW']) {
-              let lastError = null;
-              for (const host of ['query1.finance.yahoo.com', 'query2.finance.yahoo.com']) {
-                try {
-                  const url = `https://${host}/v8/finance/chart/${symbol}?range=1d&interval=5m&events=history&includePrePost=false`;
-                  const response = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0' } });
-                  if (!response.ok) throw new Error(`${host} HTTP ${response.status}`);
-                  const payload = await response.json();
-                  const chart = payload?.chart?.result?.[0];
-                  const returned = String(chart?.meta?.symbol || '').toUpperCase();
-                  const validBars = (chart?.indicators?.quote?.[0]?.close || []).filter(Number.isFinite).length;
-                  if (returned !== symbol) throw new Error(`expected ${symbol}, received ${returned}`);
-                  if (!validBars) throw new Error(`${symbol} returned no valid bars`);
-                  console.log(`${symbol}: ${validBars} valid 5-minute bars`);
-                  lastError = null;
-                  break;
-                } catch (error) {
-                  lastError = error;
-                }
-              }
-              if (lastError) throw lastError;
+            for (const item of cases) {
+              const response = await fetch(item.endpoint, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', Accept: 'application/json', Origin: 'https://gibiamie.github.io' },
+                body: JSON.stringify({ symbols: { tickers: [item.ticker], query: { types: [] } }, columns: ['name', 'close', 'change', 'volume', 'market_cap_basic', 'update_mode'] })
+              });
+              if (!response.ok) throw new Error(`${item.ticker} scanner HTTP ${response.status}`);
+              const payload = await response.json();
+              const row = payload?.data?.find(value => value.s === item.ticker);
+              if (!row || !Number.isFinite(Number(row.d?.[1]))) throw new Error(`${item.ticker} returned no valid price`);
+              const allowOrigin = response.headers.get('access-control-allow-origin') || '';
+              console.log(`${item.ticker}: price=${row.d[1]} cors=${allowOrigin || 'not-declared'}`);
             }
           })().catch(error => {
             console.error(error);
