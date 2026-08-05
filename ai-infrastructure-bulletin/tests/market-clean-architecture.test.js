@@ -8,17 +8,19 @@ const files = {
   workspace: fs.readFileSync("ai-infrastructure-bulletin/market-core-v2.js", "utf8"),
   intraday: fs.readFileSync("ai-infrastructure-bulletin/intraday-core.js", "utf8"),
   live: fs.readFileSync("ai-infrastructure-bulletin/market-live-session.js", "utf8"),
+  languagePortfolio: fs.readFileSync("ai-infrastructure-bulletin/language-portfolio-runtime.js", "utf8"),
   sw: fs.readFileSync("ai-infrastructure-bulletin/sw.js", "utf8"),
   catalog: fs.readFileSync("ai-infrastructure-bulletin/data/equity-catalog.json", "utf8")
 };
 
-for (const name of ["integration", "workspace", "intraday", "live", "sw"]) {
+for (const name of ["integration", "workspace", "intraday", "live", "languagePortfolio", "sw"]) {
   assert.doesNotMatch(files[name], /mountTradingView|s3\.tradingview\.com|pmTvWrap|tradingview-widget-container/, `${name} must not contain embedded widget code`);
 }
 assert.match(files.integration, /market-core-v2\.js/);
 assert.doesNotMatch(files.integration, /market-core\.js["']/);
 assert.match(files.integration, /intraday-core\.js/);
 assert.match(files.integration, /market-live-session\.js/);
+assert.match(files.integration, /language-portfolio-runtime\.js/);
 assert.doesNotMatch(files.integration, /live-market-core|market-live-bridge|chart-fetch-fallback|live-session-control/);
 assert.match(files.workspace, /equity-catalog\.json/);
 assert.match(files.workspace, /keyOf\(market, symbol\)/);
@@ -27,8 +29,12 @@ assert.match(files.intraday, /AbortController/);
 assert.match(files.intraday, /SYMBOL_MISMATCH/);
 assert.match(files.live, /sessionStorage/);
 assert.match(files.live, /fullScan/);
-assert.match(files.sw, /piyasa-masasi-workspace-v21/);
+assert.match(files.languagePortfolio, /applyMarketLanguage/);
+assert.match(files.languagePortfolio, /fillTransactionAsset/);
+assert.match(files.languagePortfolio, /txCurrentPriceDate/);
+assert.match(files.sw, /piyasa-masasi-workspace-v22/);
 assert.match(files.sw, /equity-catalog\.json/);
+assert.match(files.sw, /language-portfolio-runtime\.js/);
 assert.doesNotMatch(files.sw, /client\.navigate|combineMarketIntegration|market-core\.js/);
 
 const catalog = JSON.parse(files.catalog);
@@ -40,4 +46,4 @@ for (const key of ["BIST:BURCE", "BIST:ISATR", "BIST:ISKUR", "BIST:UMPAS", "US:R
   assert.ok(keys.has(key), `${key} missing from catalogue`);
 }
 
-console.log("market-clean-architecture: official catalogue runtime validated");
+console.log("market-clean-architecture: official catalogue, language runtime and portfolio autofill validated");
