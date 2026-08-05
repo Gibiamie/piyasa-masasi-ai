@@ -23,6 +23,7 @@ assert.match(files.integration, /intraday-core\.js/);
 assert.match(files.integration, /market-live-session\.js/);
 assert.match(files.integration, /language-portfolio-runtime\.js/);
 assert.match(files.integration, /research-core-v2\.js/);
+assert.match(files.integration, /2026\.08\.05\.25/);
 assert.doesNotMatch(files.integration, /workspace-enhancements|research-intelligence-core|live-market-core|market-live-bridge|chart-fetch-fallback|live-session-control/);
 
 assert.match(files.workspace, /equity-catalog\.json/);
@@ -41,6 +42,8 @@ assert.match(files.live, /refreshPriority/);
 assert.match(files.live, /scanner\.tradingview\.com\/turkey\/scan/);
 assert.match(files.live, /scanner\.tradingview\.com\/america\/scan/);
 assert.match(files.live, /fetchScanner/);
+assert.match(files.live, /headers: \{ Accept: "application\/json" \}/);
+assert.doesNotMatch(files.live, /Content-Type/);
 assert.match(files.live, /PiyasaResearchIntelligence\?\.getPersonalAssets/);
 assert.doesNotMatch(files.live, /query1\.finance\.yahoo|query2\.finance\.yahoo|allorigins|corsproxy|codetabs/);
 
@@ -60,7 +63,7 @@ assert.match(files.research, /renderSourcesView/);
 assert.match(files.research, /renderOverview/);
 assert.doesNotMatch(files.research, /REPO_ISSUES_URL|Ekleme talebi oluştur/);
 
-assert.match(files.sw, /piyasa-masasi-workspace-v24/);
+assert.match(files.sw, /piyasa-masasi-workspace-v25/);
 assert.match(files.sw, /equity-catalog\.json/);
 assert.match(files.sw, /language-portfolio-runtime\.js/);
 assert.match(files.sw, /research-core-v2\.js/);
@@ -78,4 +81,4 @@ for (const key of ["BIST:BURCE", "BIST:ISATR", "BIST:ISKUR", "BIST:UMPAS", "US:R
   assert.ok(keys.has(key), `${key} missing from catalogue`);
 }
 
-console.log("market-clean-architecture: browser scanner quotes, open-session bars, canonical research and sources validated");
+console.log("market-clean-architecture: v25 browser scanner, open-session bars, canonical research and sources validated");
