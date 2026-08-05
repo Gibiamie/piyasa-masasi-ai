@@ -1,0 +1,53 @@
+name: Market v25 Live Verification
+
+on:
+  push:
+    branches: [remediation/v30-audit]
+    paths:
+      - 'ai-infrastructure-bulletin/market-integration.js'
+      - 'ai-infrastructure-bulletin/market-core-v2.js'
+      - 'ai-infrastructure-bulletin/intraday-core.js'
+      - 'ai-infrastructure-bulletin/market-live-session.js'
+      - 'ai-infrastructure-bulletin/language-portfolio-runtime.js'
+      - 'ai-infrastructure-bulletin/research-core-v2.js'
+      - 'ai-infrastructure-bulletin/sw.js'
+      - 'ai-infrastructure-bulletin/tests/running-market-search.e2e.js'
+      - '.github/workflows/market-v25-live-verification.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Wait for GitHub Pages v25 deployment
+        run: |
+          set -euo pipefail
+          url="https://gibiamie.github.io/piyasa-masasi-ai/ai-infrastructure-bulletin/market-integration.js?release=${GITHUB_SHA}"
+          for attempt in $(seq 1 40); do
+            if curl -fsSL "$url" | grep -q '2026.08.05.25'; then
+              echo "GitHub Pages v25 is available"
+              exit 0
+            fi
+            echo "Waiting for GitHub Pages deployment: ${attempt}/40"
+            sleep 10
+          done
+          echo "GitHub Pages did not expose v25 in time" >&2
+          exit 1
+
+      - name: Install live browser test runtime
+        run: npm install --no-save playwright@1.55.0
+
+      - name: Verify published application
+        env:
+          PM_APP_URL: https://gibiamie.github.io/piyasa-masasi-ai/ai-infrastructure-bulletin/?release=official-v25-${{ github.sha }}#market
+        run: node ai-infrastructure-bulletin/tests/running-market-search.e2e.js
