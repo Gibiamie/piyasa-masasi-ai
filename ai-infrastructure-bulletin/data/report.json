@@ -1,12 +1,12 @@
 {
   "report": {
-    "report_id": "2026-08-05-1202",
-    "generated_at": "2026-08-05T12:02:39.969833+04:00",
+    "report_id": "2026-08-05-1204",
+    "generated_at": "2026-08-05T12:04:41.128119+04:00",
     "timezone": "Asia/Muscat",
-    "window_start": "2026-08-04T12:02:39.969833+04:00",
-    "window_end": "2026-08-05T12:02:39.969833+04:00",
+    "window_start": "2026-08-04T12:04:41.128119+04:00",
+    "window_end": "2026-08-05T12:04:41.128119+04:00",
     "market_data_as_of": "2026-08-05",
-    "material_event_count": 48,
+    "material_event_count": 47,
     "company_count": 18,
     "headline_status": "MATERIAL_NEWS_FOUND",
     "data_mode": "automated_public_sources"
@@ -16,85 +16,28 @@
     "headline_en": "Daily company assessment of the tracking universe",
     "market_regime": "Çok şirketli günlük tarama",
     "market_regime_en": "Multi-company daily scan",
-    "dominant_theme": "AMD",
+    "dominant_theme": "TSLA",
     "main_positive_driver": "Şirket bazında gelir, kapasite, sipariş ve stratejik uygulama",
     "main_positive_driver_en": "Company-specific revenue, capacity, orders and strategic execution",
     "main_risk": "Değerleme, finansman, döngü ve uygulama riski",
     "main_risk_en": "Valuation, financing, cycle and execution risk",
-    "summary": "18 şirket değerlendirildi; son 24 saatte 17 şirket için 48 önem eşiğini geçen gelişme bulundu.",
-    "summary_en": "18 companies were assessed; 48 developments concerning 17 companies passed the materiality threshold in the last 24 hours."
+    "summary": "18 şirket değerlendirildi; son 24 saatte 17 şirket için 47 önem eşiğini geçen gelişme bulundu.",
+    "summary_en": "18 companies were assessed; 47 developments concerning 17 companies passed the materiality threshold in the last 24 hours."
   },
   "events": [
     {
-      "event_id": "evt-491bb8632f6848",
-      "primary_theme": "AMD",
-      "related_themes": [],
-      "companies": [
-        "AMD"
-      ],
-      "headline": "AMD beats Q2 earnings estimates but shares fall over 10% amid cautious revenue guidance - pluang.com",
-      "event_time": "2026-08-04T21:42:01+00:00",
-      "published_time": "2026-08-04T21:42:01+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.050461+00:00",
-      "facts": [
-        "AMD beats Q2 earnings estimates but shares fall over 10% amid cautious revenue guidance - pluang.com"
-      ],
-      "why_it_matters": "AMD yatırım tezinin ana sürücüleri: Instinct hızlandırıcı satışları; Veri merkezi pazar payı; Ürün yol haritası ve tedarik.",
-      "why_it_matters_en": "Key drivers of the AMD investment thesis: Instinct accelerator sales; Data-center market share; Product roadmap and supply.",
-      "investment_meaning": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
-      "investment_meaning_en": "The development should be monitored; it is not sufficient on its own to determine a position decision.",
-      "thesis_impact": "THESIS_UNCHANGED",
-      "research_view": {
-        "rating": "NEUTRAL",
-        "time_horizon": "Orta-Uzun vadeli",
-        "time_horizon_en": "Medium to long term",
-        "summary": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
-        "summary_en": "The development should be monitored; it is not sufficient on its own to determine a position decision.",
-        "reasons": [
-          "AMD için son 24 saatte önem filtresini geçen gelişme"
-        ],
-        "reasons_en": [
-          "A development concerning AMD passed the materiality filter in the last 24 hours"
-        ],
-        "risks": [
-          "Nvidia rekabeti",
-          "Brüt marj baskısı",
-          "Ürün geçiş riski",
-          "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
-        ],
-        "risks_en": [
-          "Competition from Nvidia",
-          "Gross-margin pressure",
-          "Product-transition risk",
-          "A headline alone does not fully measure the financial effect"
-        ]
-      },
-      "risk_badge": "GROWTH",
-      "confidence": "MEDIUM",
-      "sources": [
-        {
-          "source_type": "SECONDARY_NEWS",
-          "publisher": "pluang.com",
-          "title": "AMD beats Q2 earnings estimates but shares fall over 10% amid cautious revenue guidance - pluang.com",
-          "published_at": "2026-08-04T21:42:01+00:00",
-          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOWldXeWxmRWpWNzNMcGszUDJ3MWlsU2JScV9NbDNRWFRxcEI5eC12UjRwZ3RxbXE3aDEyUy1UVE1XSjZfa3NzVkpkbTQ5Nm12NEFTa21PMWFwVlpIQk16b0NSQTZyV1pSYi1EQ2diTE9uMmkzRXR5YUoxc0Fwa0dHY1E0S0hnSzRWVmx5YVJvS0h6Vm1lZ1hLYnhoMnp6X1BHSTN5ZlltOUwzUWFQ?oc=5",
-          "primary_source": false
-        }
-      ]
-    },
-    {
-      "event_id": "evt-2e6e15a882c7cd",
+      "event_id": "evt-456069ce5a3414",
       "primary_theme": "TSLA",
       "related_themes": [],
       "companies": [
         "TSLA"
       ],
-      "headline": "Why GM sees billions in new revenue from subscriptions, defense contracts - Automotive News",
+      "headline": "Why GM sees billions in new revenue from subscriptions, defense contracts - autonews.com",
       "event_time": "2026-08-04T15:31:00+00:00",
       "published_time": "2026-08-04T15:31:00+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.050502+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.353540+00:00",
       "facts": [
-        "Why GM sees billions in new revenue from subscriptions, defense contracts - Automotive News"
+        "Why GM sees billions in new revenue from subscriptions, defense contracts - autonews.com"
       ],
       "why_it_matters": "Tesla yatırım tezinin ana sürücüleri: Araç teslimatları ve fiyatlama; Otonomi ve yapay zeka gelir potansiyeli; Enerji depolama büyümesi.",
       "why_it_matters_en": "Key drivers of the Tesla investment thesis: Vehicle deliveries and pricing; Autonomy and AI revenue potential; Energy-storage growth.",
@@ -131,8 +74,8 @@
       "sources": [
         {
           "source_type": "SECONDARY_NEWS",
-          "publisher": "Automotive News",
-          "title": "Why GM sees billions in new revenue from subscriptions, defense contracts - Automotive News",
+          "publisher": "autonews.com",
+          "title": "Why GM sees billions in new revenue from subscriptions, defense contracts - autonews.com",
           "published_at": "2026-08-04T15:31:00+00:00",
           "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQWGR5eGJQNUdhbjlsTVpYcWJXWW11Tk1aNUJJOVlvZUJpcnRiMHFfU2ZmVk1oeWt2UnBDY0RxRXV4eUVMdmhVQU1qRG1icXJjcllSZklmWUJDbHhGQjZNMGgzNzFudGQzLWpQY3d0NW9QbFlqWm5zYTR4N2YxVFZ4eWhVcjVDMnFGUzZN?oc=5",
           "primary_source": false
@@ -149,7 +92,7 @@
       "headline": "[AMD Q2 2026 Earnings Call] AMD Posts Record $11.5B Revenue as Data Center Sales More Than Double, Lifting 2027 EPS Target Above $20 - finance.biggo.com",
       "event_time": "2026-08-04T23:55:00+00:00",
       "published_time": "2026-08-04T23:55:00+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.050535+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.353583+00:00",
       "facts": [
         "[AMD Q2 2026 Earnings Call] AMD Posts Record $11.5B Revenue as Data Center Sales More Than Double, Lifting 2027 EPS Target Above $20 - finance.biggo.com"
       ],
@@ -206,7 +149,7 @@
       "headline": "AMD’s Data Center Revenue More Than Doubled as Total Sales Hit a Record $11.5 Billion - The Eastern Herald",
       "event_time": "2026-08-04T21:21:33+00:00",
       "published_time": "2026-08-04T21:21:33+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.050566+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.353618+00:00",
       "facts": [
         "AMD’s Data Center Revenue More Than Doubled as Total Sales Hit a Record $11.5 Billion - The Eastern Herald"
       ],
@@ -263,7 +206,7 @@
       "headline": "AMD’s Data Center Revenue More Than Doubled as Total Sales Hit a Record $11.5 Billion - The Eastern Herald",
       "event_time": "2026-08-04T21:21:33+00:00",
       "published_time": "2026-08-04T21:21:33+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.050597+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.353654+00:00",
       "facts": [
         "AMD’s Data Center Revenue More Than Doubled as Total Sales Hit a Record $11.5 Billion - The Eastern Herald"
       ],
@@ -320,7 +263,7 @@
       "headline": "Alex Karp Says Palantir Crushed Earnings With 'Shrinking' Sales Team - Business Insider",
       "event_time": "2026-08-04T11:22:00+00:00",
       "published_time": "2026-08-04T11:22:00+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.050620+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.353679+00:00",
       "facts": [
         "Alex Karp Says Palantir Crushed Earnings With 'Shrinking' Sales Team - Business Insider"
       ],
@@ -377,7 +320,7 @@
       "headline": "Borsada Bilanço Heyecanı: Yarın Hangi Şirketler Karını Açıklayacak? - YatırımX",
       "event_time": "2026-08-04T10:45:07+00:00",
       "published_time": "2026-08-04T10:45:07+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.050649+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.353708+00:00",
       "facts": [
         "Borsada Bilanço Heyecanı: Yarın Hangi Şirketler Karını Açıklayacak? - YatırımX"
       ],
@@ -434,7 +377,7 @@
       "headline": "Google's $150 Billion AI Chip Deal Reshapes Infrastructure Financing - Indiatimes",
       "event_time": "2026-08-05T04:51:29+00:00",
       "published_time": "2026-08-05T04:51:29+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.050673+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.353732+00:00",
       "facts": [
         "Google's $150 Billion AI Chip Deal Reshapes Infrastructure Financing - Indiatimes"
       ],
@@ -491,7 +434,7 @@
       "headline": "Earnings’ key factors: Bad time for acquisitions - Moomoo",
       "event_time": "2026-08-05T03:20:49+00:00",
       "published_time": "2026-08-05T03:20:49+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.050700+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.353775+00:00",
       "facts": [
         "Earnings’ key factors: Bad time for acquisitions - Moomoo"
       ],
@@ -548,7 +491,7 @@
       "headline": "Earnings’ key factors: Bad time for acquisitions - Moomoo",
       "event_time": "2026-08-05T03:20:49+00:00",
       "published_time": "2026-08-05T03:20:49+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.050720+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.353799+00:00",
       "facts": [
         "Earnings’ key factors: Bad time for acquisitions - Moomoo"
       ],
@@ -605,7 +548,7 @@
       "headline": "Palantir Short Sellers Lose $3 Billion After 30% Earnings Rally - BeInCrypto",
       "event_time": "2026-08-05T02:38:00+00:00",
       "published_time": "2026-08-05T02:38:00+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.050741+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.353825+00:00",
       "facts": [
         "Palantir Short Sellers Lose $3 Billion After 30% Earnings Rally - BeInCrypto"
       ],
@@ -662,7 +605,7 @@
       "headline": "Billionaire Money Manager Christopher Begg Bought Google at 15x Earnings. Here’s Why He Calls It the Best Business in the World - AOL.com",
       "event_time": "2026-08-04T15:46:58+00:00",
       "published_time": "2026-08-04T15:46:58+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.050770+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.353856+00:00",
       "facts": [
         "Billionaire Money Manager Christopher Begg Bought Google at 15x Earnings. Here’s Why He Calls It the Best Business in the World - AOL.com"
       ],
@@ -710,18 +653,18 @@
       ]
     },
     {
-      "event_id": "evt-38136c1f593934",
+      "event_id": "evt-c2ff120b610c93",
       "primary_theme": "TSLA",
       "related_themes": [],
       "companies": [
         "TSLA"
       ],
-      "headline": "Is Ford Stock a Buy After Q2 Earnings Beat & Raised Guidance? - The Globe and Mail",
+      "headline": "Is Ford Stock a Buy After Q2 Earnings Beat & Raised Guidance? - theglobeandmail.com",
       "event_time": "2026-08-04T13:38:00+00:00",
       "published_time": "2026-08-04T13:38:00+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.050795+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.353878+00:00",
       "facts": [
-        "Is Ford Stock a Buy After Q2 Earnings Beat & Raised Guidance? - The Globe and Mail"
+        "Is Ford Stock a Buy After Q2 Earnings Beat & Raised Guidance? - theglobeandmail.com"
       ],
       "why_it_matters": "Tesla yatırım tezinin ana sürücüleri: Araç teslimatları ve fiyatlama; Otonomi ve yapay zeka gelir potansiyeli; Enerji depolama büyümesi.",
       "why_it_matters_en": "Key drivers of the Tesla investment thesis: Vehicle deliveries and pricing; Autonomy and AI revenue potential; Energy-storage growth.",
@@ -758,67 +701,10 @@
       "sources": [
         {
           "source_type": "SECONDARY_NEWS",
-          "publisher": "The Globe and Mail",
-          "title": "Is Ford Stock a Buy After Q2 Earnings Beat & Raised Guidance? - The Globe and Mail",
+          "publisher": "theglobeandmail.com",
+          "title": "Is Ford Stock a Buy After Q2 Earnings Beat & Raised Guidance? - theglobeandmail.com",
           "published_at": "2026-08-04T13:38:00+00:00",
           "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPVlcyWHlocF9XMVk5Yl80WDczelNHcXhtQjkwNHRRQU1zSDVRcEpNVzBJaExIMXdibk1NcWE4ZXl5SnhaYkFELWJqeWhzV2xGVVY0ZTNXT2pwYUd0WTZkZ25mems3SHBuV1pXcTZLczZoZWE2SVpOY09aOGxnWDZsd1o5RlZqSE5sSEVvdGIyT1I2RGZDQ01vMjNqZldGZmVYQkdsSlFESEFuRzBpSlhsbjd5UExNM0RKSnFMVUI2M2ltaU9hZVdPaXJYbWtxc3BOcVRNRGw2N0tmckU?oc=5",
-          "primary_source": false
-        }
-      ]
-    },
-    {
-      "event_id": "evt-1511a9127720b6",
-      "primary_theme": "TSM",
-      "related_themes": [],
-      "companies": [
-        "TSM"
-      ],
-      "headline": "NVIDIA's GPU Orders Strain TSMC's Production Capacity - GuruFocus",
-      "event_time": "2026-08-04T12:51:27+00:00",
-      "published_time": "2026-08-04T12:51:27+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.050815+00:00",
-      "facts": [
-        "NVIDIA's GPU Orders Strain TSMC's Production Capacity - GuruFocus"
-      ],
-      "why_it_matters": "TSMC yatırım tezinin ana sürücüleri: AI çip talebi; İleri düğüm ve paketleme kapasitesi; Sermaye harcaması getirisi.",
-      "why_it_matters_en": "Key drivers of the TSMC investment thesis: AI-chip demand; Advanced-node and packaging capacity; Return on capital expenditure.",
-      "investment_meaning": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
-      "investment_meaning_en": "The development should be monitored; it is not sufficient on its own to determine a position decision.",
-      "thesis_impact": "THESIS_UNCHANGED",
-      "research_view": {
-        "rating": "NEUTRAL",
-        "time_horizon": "Orta-Uzun vadeli",
-        "time_horizon_en": "Medium to long term",
-        "summary": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
-        "summary_en": "The development should be monitored; it is not sufficient on its own to determine a position decision.",
-        "reasons": [
-          "TSMC için son 24 saatte önem filtresini geçen gelişme"
-        ],
-        "reasons_en": [
-          "A development concerning TSMC passed the materiality filter in the last 24 hours"
-        ],
-        "risks": [
-          "Jeopolitik risk",
-          "Yüksek capex",
-          "Müşteri ve döngü riski",
-          "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
-        ],
-        "risks_en": [
-          "Geopolitical risk",
-          "High capex",
-          "Customer and cycle risk",
-          "A headline alone does not fully measure the financial effect"
-        ]
-      },
-      "risk_badge": "ESTABLISHED",
-      "confidence": "MEDIUM",
-      "sources": [
-        {
-          "source_type": "SECONDARY_NEWS",
-          "publisher": "GuruFocus",
-          "title": "NVIDIA's GPU Orders Strain TSMC's Production Capacity - GuruFocus",
-          "published_at": "2026-08-04T12:51:27+00:00",
-          "url": "https://news.google.com/rss/articles/CBMitwJBVV95cUxQbHRZYlpJQ05DbHZuOUp0c3RZTlh0bXA3Z0NKMVhVZlNrSk5vOF9HazZ2Mlhqc0d3eGJZai04dEgzSFMxdXhKenczbm5NVDJYbUNwUkZ2WUQ5d2E5TmE3MTVpN3VVYnh2X2hlOHhmQmpfeVdTS0JyMmFZcFUzSWd6aFdCczBIcF92M2Z5TU5MUG5WU3dNTFptMEJtOHN0eUVUOTBwTGlLdEFXNGp3c0FMOFJwRDE5MkIwdjZaUkx0OGk4SUdlZnRJMEhsWDJzSmFmcUpSRkVtSHNzdTREM05UdVliSEVwckpfSmx0UVpPd0NkRlhCd2lhTVhMZXh3eGNzcXczejl4MXZrYnNlTjZlOTM0WXZ6c09rb1NRQVlLcXgwNW4xSXRGSzdjN1pmUG5BYWNubVBiOA?oc=5",
           "primary_source": false
         }
       ]
@@ -833,7 +719,7 @@
       "headline": "Google Builds $200 Billion AI Chip Financing Network - Seoul Economic Daily",
       "event_time": "2026-08-04T11:12:59+00:00",
       "published_time": "2026-08-04T11:12:59+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.050839+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.353902+00:00",
       "facts": [
         "Google Builds $200 Billion AI Chip Financing Network - Seoul Economic Daily"
       ],
@@ -890,7 +776,7 @@
       "headline": "Blockbuster Q2 Revenue Surge: NVIDIA’s AI Dominance Fuels Historic Earnings Despit - Investing.com Australia",
       "event_time": "2026-08-05T03:18:13+00:00",
       "published_time": "2026-08-05T03:18:13+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.050865+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.353931+00:00",
       "facts": [
         "Blockbuster Q2 Revenue Surge: NVIDIA’s AI Dominance Fuels Historic Earnings Despit - Investing.com Australia"
       ],
@@ -938,18 +824,18 @@
       ]
     },
     {
-      "event_id": "evt-eb0d564f5db72a",
+      "event_id": "evt-9a3b8883ffebfe",
       "primary_theme": "PLTR",
       "related_themes": [],
       "companies": [
         "PLTR"
       ],
-      "headline": "Palantir (PLTR) Surges 15% After Blowout Q2: Revenue +93%, US Commercial +149%, Guidance Raised to $8.15B - tradingkey.com",
+      "headline": "Palantir (PLTR) Surges 15% After Blowout Q2: Revenue +93%, US Commercial +149%, Guidance Raised to $8.15B - TradingKey",
       "event_time": "2026-08-05T02:07:20+00:00",
       "published_time": "2026-08-05T02:07:20+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.050887+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.353954+00:00",
       "facts": [
-        "Palantir (PLTR) Surges 15% After Blowout Q2: Revenue +93%, US Commercial +149%, Guidance Raised to $8.15B - tradingkey.com"
+        "Palantir (PLTR) Surges 15% After Blowout Q2: Revenue +93%, US Commercial +149%, Guidance Raised to $8.15B - TradingKey"
       ],
       "why_it_matters": "Palantir yatırım tezinin ana sürücüleri: AIP ticari müşteri büyümesi; Kamu sözleşmeleri; Marj ve serbest nakit akışı.",
       "why_it_matters_en": "Key drivers of the Palantir investment thesis: AIP commercial-customer growth; Government contracts; Margins and free cash flow.",
@@ -986,8 +872,8 @@
       "sources": [
         {
           "source_type": "SECONDARY_NEWS",
-          "publisher": "tradingkey.com",
-          "title": "Palantir (PLTR) Surges 15% After Blowout Q2: Revenue +93%, US Commercial +149%, Guidance Raised to $8.15B - tradingkey.com",
+          "publisher": "TradingKey",
+          "title": "Palantir (PLTR) Surges 15% After Blowout Q2: Revenue +93%, US Commercial +149%, Guidance Raised to $8.15B - TradingKey",
           "published_at": "2026-08-05T02:07:20+00:00",
           "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPNW1SMVhJWDF4Z2FqUFlEQVNwZUxRWmpYc1NUWHpuRmZUZF9IWGxCbEFEazRvRnlGbHFZR0NmQVdiTmJzSm5PNFpyNGYzT0hRSkp6dzc5dUdVYXA1TTRFTUdOZFNUWDdLa1ZpTHgtRWFPZkVXYUtaUVgyY2ZNdk5qUUlKWEpWekFtaVBwX1NpaDRTR21ocXM0MXV1b2N5MWI1VzdBTVRSOGR3M1JkRlh1c3FiNHktazdSbmhpckgtTGYyQ2FZRHI1RlVfZlNpOFdIdnFYcFVQWm03dXBFdXhR?oc=5",
           "primary_source": false
@@ -1004,7 +890,7 @@
       "headline": "AMD Projects Q3 Revenue of $13 Billion, AI Data Center Demand Provides Tailwind but Shares Trade Softly - finance.biggo.com",
       "event_time": "2026-08-04T21:55:00+00:00",
       "published_time": "2026-08-04T21:55:00+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.050913+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.353978+00:00",
       "facts": [
         "AMD Projects Q3 Revenue of $13 Billion, AI Data Center Demand Provides Tailwind but Shares Trade Softly - finance.biggo.com"
       ],
@@ -1052,6 +938,63 @@
       ]
     },
     {
+      "event_id": "evt-6754bea8da530b",
+      "primary_theme": "AMD",
+      "related_themes": [],
+      "companies": [
+        "AMD"
+      ],
+      "headline": "AMD Projects Q3 Revenue of $13 Billion, AI Data Center Demand Provides Tailwind but Shares Trade Softly - finance.biggo.com",
+      "event_time": "2026-08-04T21:55:00+00:00",
+      "published_time": "2026-08-04T21:55:00+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.353999+00:00",
+      "facts": [
+        "AMD Projects Q3 Revenue of $13 Billion, AI Data Center Demand Provides Tailwind but Shares Trade Softly - finance.biggo.com"
+      ],
+      "why_it_matters": "AMD yatırım tezinin ana sürücüleri: Instinct hızlandırıcı satışları; Veri merkezi pazar payı; Ürün yol haritası ve tedarik.",
+      "why_it_matters_en": "Key drivers of the AMD investment thesis: Instinct accelerator sales; Data-center market share; Product roadmap and supply.",
+      "investment_meaning": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
+      "investment_meaning_en": "The development should be monitored; it is not sufficient on its own to determine a position decision.",
+      "thesis_impact": "THESIS_UNCHANGED",
+      "research_view": {
+        "rating": "NEUTRAL",
+        "time_horizon": "Orta-Uzun vadeli",
+        "time_horizon_en": "Medium to long term",
+        "summary": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
+        "summary_en": "The development should be monitored; it is not sufficient on its own to determine a position decision.",
+        "reasons": [
+          "AMD için son 24 saatte önem filtresini geçen gelişme"
+        ],
+        "reasons_en": [
+          "A development concerning AMD passed the materiality filter in the last 24 hours"
+        ],
+        "risks": [
+          "Nvidia rekabeti",
+          "Brüt marj baskısı",
+          "Ürün geçiş riski",
+          "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
+        ],
+        "risks_en": [
+          "Competition from Nvidia",
+          "Gross-margin pressure",
+          "Product-transition risk",
+          "A headline alone does not fully measure the financial effect"
+        ]
+      },
+      "risk_badge": "GROWTH",
+      "confidence": "MEDIUM",
+      "sources": [
+        {
+          "source_type": "SECONDARY_NEWS",
+          "publisher": "finance.biggo.com",
+          "title": "AMD Projects Q3 Revenue of $13 Billion, AI Data Center Demand Provides Tailwind but Shares Trade Softly - finance.biggo.com",
+          "published_at": "2026-08-04T21:55:00+00:00",
+          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9CVlZsSUpaSUNQQ29lMGlDTXowdWpWS0NtSThnaXdwSkxKVUUybzNyWXdaMjhYdjRET1VacFpKeVBFdzBka2d5cmVCSjRTWDgzbTVEcEhUQVlxREFhakV3X3N3STZ0V2lLWkg1LXQyVGdCcW5MbFE?oc=5",
+          "primary_source": false
+        }
+      ]
+    },
+    {
       "event_id": "evt-d75822070cfc81",
       "primary_theme": "VST",
       "related_themes": [],
@@ -1061,7 +1004,7 @@
       "headline": "Pinnacle West Q2 Earnings Miss Estimates, Revenues Increase Y/Y - TradingView",
       "event_time": "2026-08-04T18:54:00+00:00",
       "published_time": "2026-08-04T18:54:00+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.050936+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.354022+00:00",
       "facts": [
         "Pinnacle West Q2 Earnings Miss Estimates, Revenues Increase Y/Y - TradingView"
       ],
@@ -1118,7 +1061,7 @@
       "headline": "[PNW Q2 2026 Earnings Call] Weather-Normalized Sales Soar 9.6% as Data Centers Fuel Growth; Pinnacle West Now Targets Top-End $4.75 EPS - finance.biggo.com",
       "event_time": "2026-08-04T18:15:00+00:00",
       "published_time": "2026-08-04T18:15:00+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.050961+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.354051+00:00",
       "facts": [
         "[PNW Q2 2026 Earnings Call] Weather-Normalized Sales Soar 9.6% as Data Centers Fuel Growth; Pinnacle West Now Targets Top-End $4.75 EPS - finance.biggo.com"
       ],
@@ -1175,7 +1118,7 @@
       "headline": "Buy Western Digital (WDC) Stock as Q4 Earnings Approach? - Zacks Investment Research",
       "event_time": "2026-08-04T17:24:23+00:00",
       "published_time": "2026-08-04T17:24:23+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.050986+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.354073+00:00",
       "facts": [
         "Buy Western Digital (WDC) Stock as Q4 Earnings Approach? - Zacks Investment Research"
       ],
@@ -1232,7 +1175,7 @@
       "headline": "Ak Yatırım’dan TTRAK Bilanço Yorumu: Hedef 560 TL - Para Ajansı",
       "event_time": "2026-08-04T14:30:00+00:00",
       "published_time": "2026-08-04T14:30:00+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.051009+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.354097+00:00",
       "facts": [
         "Ak Yatırım’dan TTRAK Bilanço Yorumu: Hedef 560 TL - Para Ajansı"
       ],
@@ -1289,7 +1232,7 @@
       "headline": "SanDisk's High-Wire Act: A $42 Billion Order Book Meets Wall Street's Hardest Test - AD HOC NEWS",
       "event_time": "2026-08-04T14:27:33+00:00",
       "published_time": "2026-08-04T14:27:33+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.051032+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.354120+00:00",
       "facts": [
         "SanDisk's High-Wire Act: A $42 Billion Order Book Meets Wall Street's Hardest Test - AD HOC NEWS"
       ],
@@ -1346,7 +1289,7 @@
       "headline": "CAT stock rises 9% on earnings beat, revenue forecast as AI demand boosts power unit - Invezz",
       "event_time": "2026-08-04T13:37:33+00:00",
       "published_time": "2026-08-04T13:37:33+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.051054+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.354144+00:00",
       "facts": [
         "CAT stock rises 9% on earnings beat, revenue forecast as AI demand boosts power unit - Invezz"
       ],
@@ -1403,7 +1346,7 @@
       "headline": "AMD's revenue climbs 50% and data center sales doubled, but the stock is down - CNBC",
       "event_time": "2026-08-04T20:31:05+00:00",
       "published_time": "2026-08-04T20:31:05+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.051078+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.354170+00:00",
       "facts": [
         "AMD's revenue climbs 50% and data center sales doubled, but the stock is down - CNBC"
       ],
@@ -1460,7 +1403,7 @@
       "headline": "Godrej Properties Q1 Results: Profit falls 42% to Rs 349 crore, sales bookings rise 22% - The Economic Times",
       "event_time": "2026-08-04T13:31:51+00:00",
       "published_time": "2026-08-04T13:31:51+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.051103+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.354193+00:00",
       "facts": [
         "Godrej Properties Q1 Results: Profit falls 42% to Rs 349 crore, sales bookings rise 22% - The Economic Times"
       ],
@@ -1517,7 +1460,7 @@
       "headline": "Deniz Yatırım'dan TürkTraktör Kararı! Hedef Fiyat 564 TL'ye İndirildi! - Para Ajansı",
       "event_time": "2026-08-04T13:00:00+00:00",
       "published_time": "2026-08-04T13:00:00+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.051131+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.354218+00:00",
       "facts": [
         "Deniz Yatırım'dan TürkTraktör Kararı! Hedef Fiyat 564 TL'ye İndirildi! - Para Ajansı"
       ],
@@ -1574,7 +1517,7 @@
       "headline": "Constellation Was a Big Utility Winner in July, Climbing Over 13% After Blue Energy Investment, PJM Capacity Auction Win - citybiz",
       "event_time": "2026-08-04T10:31:28+00:00",
       "published_time": "2026-08-04T10:31:28+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.051157+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.354242+00:00",
       "facts": [
         "Constellation Was a Big Utility Winner in July, Climbing Over 13% After Blue Energy Investment, PJM Capacity Auction Win - citybiz"
       ],
@@ -1631,7 +1574,7 @@
       "headline": "After Earnings, Is Tesla Stock a Buy, a Sell, or Fairly Valued? - Morningstar",
       "event_time": "2026-08-05T06:07:42+00:00",
       "published_time": "2026-08-05T06:07:42+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.051178+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.354272+00:00",
       "facts": [
         "After Earnings, Is Tesla Stock a Buy, a Sell, or Fairly Valued? - Morningstar"
       ],
@@ -1688,7 +1631,7 @@
       "headline": "Top 10 billionaires shaping the global chip industry in AI age: Leaders behind NVIDIA, TSMC, Arm, Intel, AMD, Samsung, ASML, Foxconn, Cambricon - Gulf News",
       "event_time": "2026-08-05T05:58:42+00:00",
       "published_time": "2026-08-05T05:58:42+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.051202+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.354297+00:00",
       "facts": [
         "Top 10 billionaires shaping the global chip industry in AI age: Leaders behind NVIDIA, TSMC, Arm, Intel, AMD, Samsung, ASML, Foxconn, Cambricon - Gulf News"
       ],
@@ -1745,7 +1688,7 @@
       "headline": "Hyperscalers Commit Nearly $600 Billion to AI Infrastructure Amid Surging Demand - Indiatimes",
       "event_time": "2026-08-05T04:41:29+00:00",
       "published_time": "2026-08-05T04:41:29+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.051225+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.354317+00:00",
       "facts": [
         "Hyperscalers Commit Nearly $600 Billion to AI Infrastructure Amid Surging Demand - Indiatimes"
       ],
@@ -1802,7 +1745,7 @@
       "headline": "Sandisk Earnings Ahead: How's Data Center Shift Coming Along? - Moomoo",
       "event_time": "2026-08-05T03:44:33+00:00",
       "published_time": "2026-08-05T03:44:33+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.051245+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.354337+00:00",
       "facts": [
         "Sandisk Earnings Ahead: How's Data Center Shift Coming Along? - Moomoo"
       ],
@@ -1859,7 +1802,7 @@
       "headline": "Tailwinds return for semiconductor stocks! Can SanDisk's earnings and Marvell’s AI memory strategy extend the rally? - Moomoo",
       "event_time": "2026-08-05T03:00:52+00:00",
       "published_time": "2026-08-05T03:00:52+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.051271+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.354367+00:00",
       "facts": [
         "Tailwinds return for semiconductor stocks! Can SanDisk's earnings and Marvell’s AI memory strategy extend the rally? - Moomoo"
       ],
@@ -1916,7 +1859,7 @@
       "headline": "NASA Searches Couch Cushions, Finds Another $600 Million for Moon Missions - AOL.com",
       "event_time": "2026-08-05T02:32:24+00:00",
       "published_time": "2026-08-05T02:32:24+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.051292+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.354388+00:00",
       "facts": [
         "NASA Searches Couch Cushions, Finds Another $600 Million for Moon Missions - AOL.com"
       ],
@@ -1973,7 +1916,7 @@
       "headline": "TMC Stock Climbs 7% On Allseas Deep-Sea Mining Deal – Stock Approaches 200-DMA Ahead Of Q1 Earnings - Stocktwits",
       "event_time": "2026-08-05T01:32:00+00:00",
       "published_time": "2026-08-05T01:32:00+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.051322+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.354416+00:00",
       "facts": [
         "TMC Stock Climbs 7% On Allseas Deep-Sea Mining Deal – Stock Approaches 200-DMA Ahead Of Q1 Earnings - Stocktwits"
       ],
@@ -2021,30 +1964,30 @@
       ]
     },
     {
-      "event_id": "evt-ca6edc2f5e7fb9",
+      "event_id": "evt-5dd6a65345b058",
       "primary_theme": "LUNR",
       "related_themes": [],
       "companies": [
         "LUNR"
       ],
-      "headline": "LUNR Stock Falls 16% As $175M Dilution Deal Weighs On Shares – Retail Calls The Dip An ‘Overreaction’ - Stocktwits",
-      "event_time": "2026-08-05T01:08:23+00:00",
-      "published_time": "2026-08-05T01:08:23+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.051370+00:00",
+      "headline": "Intuitive Machines Stock (LUNR) Jumps on Winning a Major Spacecraft Contract - TipRanks",
+      "event_time": "2026-08-04T20:34:33+00:00",
+      "published_time": "2026-08-04T20:34:33+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.354437+00:00",
       "facts": [
-        "LUNR Stock Falls 16% As $175M Dilution Deal Weighs On Shares – Retail Calls The Dip An ‘Overreaction’ - Stocktwits"
+        "Intuitive Machines Stock (LUNR) Jumps on Winning a Major Spacecraft Contract - TipRanks"
       ],
       "why_it_matters": "Intuitive Machines yatırım tezinin ana sürücüleri: NASA ve ticari sözleşmeler; Görev başarısı ve fırlatma takvimi; Nakit tüketimi ve yeni finansman.",
       "why_it_matters_en": "Key drivers of the Intuitive Machines investment thesis: NASA and commercial contracts; Mission success and launch schedule; Cash consumption and new financing.",
-      "investment_meaning": "Araştırma görünümü zayıfladı; etkinin geçici mi yapısal mı olduğu resmî kaynaklarla kontrol edilmelidir.",
-      "investment_meaning_en": "The research view weakened; official sources should determine whether the effect is temporary or structural.",
-      "thesis_impact": "THESIS_WEAKENED",
+      "investment_meaning": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
+      "investment_meaning_en": "The development should be monitored; it is not sufficient on its own to determine a position decision.",
+      "thesis_impact": "THESIS_UNCHANGED",
       "research_view": {
-        "rating": "NEGATIVE",
+        "rating": "NEUTRAL",
         "time_horizon": "Orta-Uzun vadeli",
         "time_horizon_en": "Medium to long term",
-        "summary": "Araştırma görünümü zayıfladı; etkinin geçici mi yapısal mı olduğu resmî kaynaklarla kontrol edilmelidir.",
-        "summary_en": "The research view weakened; official sources should determine whether the effect is temporary or structural.",
+        "summary": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
+        "summary_en": "The development should be monitored; it is not sufficient on its own to determine a position decision.",
         "reasons": [
           "Intuitive Machines için son 24 saatte önem filtresini geçen gelişme"
         ],
@@ -2069,10 +2012,67 @@
       "sources": [
         {
           "source_type": "SECONDARY_NEWS",
-          "publisher": "Stocktwits",
-          "title": "LUNR Stock Falls 16% As $175M Dilution Deal Weighs On Shares – Retail Calls The Dip An ‘Overreaction’ - Stocktwits",
-          "published_at": "2026-08-05T01:08:23+00:00",
-          "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxPS1JieGVnOTRNUXA3dE5ZaDE1SkJIM2lsWFhmM0FlZXZybVZUYmtDZTdUT3AyOUV4NDJhXzFUTm85bFU3OUlNRFM3UUtBSHh5OGt0TUlfbHZIQXBSd2hRWWdvR1dla19xZUNQWEE0c2dsZjB2QXpJRUlzSXZyNVhVNU43UDN0VmFmTWNBX3V3UWJpQ3NtX0RtSjBuOWwtY3BDWDVRbTFySmlvRXlmc0ZlNXdHOUdEZUtvR1VnS1N3ZkRoREhCU3hUUVVZcWZlQndYYnZhNndEbmhBTEVlYk9KN29SYUh6WFMyZ2FUZ01QUkdrdw?oc=5",
+          "publisher": "TipRanks",
+          "title": "Intuitive Machines Stock (LUNR) Jumps on Winning a Major Spacecraft Contract - TipRanks",
+          "published_at": "2026-08-04T20:34:33+00:00",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNbldJTDNPZXR0TDN6MkZxQU51VGZzRlhRb3pfLUpxNE9kTGV2UVJXUEpIVUIxQlpvbEJKZ3FGUzc0cTdfdFpfMm5RX3dSMkFVNFVNZW5DNl9vVWgwZm1FM21rVXFxUF9la0FIUEZyaEFJS3NOcGpRbFI5WV9nQktuTzUyZHFrZnBpdk1wV0RnTUxIdnY1ZzFSYnNsRk1SZnhnMkJ4dkllbw?oc=5",
+          "primary_source": false
+        }
+      ]
+    },
+    {
+      "event_id": "evt-c8f4f0c1e3eee2",
+      "primary_theme": "TSM",
+      "related_themes": [],
+      "companies": [
+        "TSM"
+      ],
+      "headline": "PNW Q2 FY2026 earnings call - finance.biggo.com",
+      "event_time": "2026-08-04T19:19:17+00:00",
+      "published_time": "2026-08-04T19:19:17+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.354461+00:00",
+      "facts": [
+        "PNW Q2 FY2026 earnings call - finance.biggo.com"
+      ],
+      "why_it_matters": "TSMC yatırım tezinin ana sürücüleri: AI çip talebi; İleri düğüm ve paketleme kapasitesi; Sermaye harcaması getirisi.",
+      "why_it_matters_en": "Key drivers of the TSMC investment thesis: AI-chip demand; Advanced-node and packaging capacity; Return on capital expenditure.",
+      "investment_meaning": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
+      "investment_meaning_en": "The development should be monitored; it is not sufficient on its own to determine a position decision.",
+      "thesis_impact": "THESIS_UNCHANGED",
+      "research_view": {
+        "rating": "NEUTRAL",
+        "time_horizon": "Orta-Uzun vadeli",
+        "time_horizon_en": "Medium to long term",
+        "summary": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
+        "summary_en": "The development should be monitored; it is not sufficient on its own to determine a position decision.",
+        "reasons": [
+          "TSMC için son 24 saatte önem filtresini geçen gelişme"
+        ],
+        "reasons_en": [
+          "A development concerning TSMC passed the materiality filter in the last 24 hours"
+        ],
+        "risks": [
+          "Jeopolitik risk",
+          "Yüksek capex",
+          "Müşteri ve döngü riski",
+          "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
+        ],
+        "risks_en": [
+          "Geopolitical risk",
+          "High capex",
+          "Customer and cycle risk",
+          "A headline alone does not fully measure the financial effect"
+        ]
+      },
+      "risk_badge": "ESTABLISHED",
+      "confidence": "MEDIUM",
+      "sources": [
+        {
+          "source_type": "SECONDARY_NEWS",
+          "publisher": "finance.biggo.com",
+          "title": "PNW Q2 FY2026 earnings call - finance.biggo.com",
+          "published_at": "2026-08-04T19:19:17+00:00",
+          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFA5azVSU3NrWGJIQXZTSjdraUQweS1SU1Rzb2NQTDNVemRlakpTckFodGFHcHN6enlvNkdxX3VLR3RZUXZ0QU9ORVhYbWRNVlM3ZjNwSWtlMS1kSURueVM2dTJOT196cU14YXp4QnVzc3V5WUVSMWc?oc=5",
           "primary_source": false
         }
       ]
@@ -2087,7 +2087,7 @@
       "headline": "Anthropic Signs $10 Billion Deal With Volta Infra for Norwegian AI Data Centers - The Eastern Herald",
       "event_time": "2026-08-04T19:15:27+00:00",
       "published_time": "2026-08-04T19:15:27+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.051394+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.354483+00:00",
       "facts": [
         "Anthropic Signs $10 Billion Deal With Volta Infra for Norwegian AI Data Centers - The Eastern Herald"
       ],
@@ -2135,63 +2135,6 @@
       ]
     },
     {
-      "event_id": "evt-b5c52f23d0bd1b",
-      "primary_theme": "CEG",
-      "related_themes": [],
-      "companies": [
-        "CEG"
-      ],
-      "headline": "Constellation Energy remains a Buy despite 17% valuation drop, stable earnings outlook, and integration progress. - pluang.com",
-      "event_time": "2026-08-04T19:00:53+00:00",
-      "published_time": "2026-08-04T19:00:53+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.051419+00:00",
-      "facts": [
-        "Constellation Energy remains a Buy despite 17% valuation drop, stable earnings outlook, and integration progress. - pluang.com"
-      ],
-      "why_it_matters": "Constellation Energy yatırım tezinin ana sürücüleri: Nükleer üretim ve kapasite fiyatları; Veri merkezi PPA anlaşmaları; Elektrik talep artışı.",
-      "why_it_matters_en": "Key drivers of the Constellation Energy investment thesis: Nuclear generation and capacity pricing; Data-center PPA agreements; Growth in electricity demand.",
-      "investment_meaning": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
-      "investment_meaning_en": "The development should be monitored; it is not sufficient on its own to determine a position decision.",
-      "thesis_impact": "THESIS_UNCHANGED",
-      "research_view": {
-        "rating": "NEUTRAL",
-        "time_horizon": "Orta-Uzun vadeli",
-        "time_horizon_en": "Medium to long term",
-        "summary": "Gelişme izlenmeli; tek başına pozisyon kararı üretmek için yeterli değildir.",
-        "summary_en": "The development should be monitored; it is not sufficient on its own to determine a position decision.",
-        "reasons": [
-          "Constellation Energy için son 24 saatte önem filtresini geçen gelişme"
-        ],
-        "reasons_en": [
-          "A development concerning Constellation Energy passed the materiality filter in the last 24 hours"
-        ],
-        "risks": [
-          "Regülasyon ve santral kesintileri",
-          "Emtia ve kapasite fiyatları",
-          "Sözleşme onayları",
-          "Haber başlığı finansal etkiyi tek başına tam olarak ölçmez"
-        ],
-        "risks_en": [
-          "Regulation and plant outages",
-          "Commodity and capacity prices",
-          "Contract approvals",
-          "A headline alone does not fully measure the financial effect"
-        ]
-      },
-      "risk_badge": "ESTABLISHED",
-      "confidence": "MEDIUM",
-      "sources": [
-        {
-          "source_type": "SECONDARY_NEWS",
-          "publisher": "pluang.com",
-          "title": "Constellation Energy remains a Buy despite 17% valuation drop, stable earnings outlook, and integration progress. - pluang.com",
-          "published_at": "2026-08-04T19:00:53+00:00",
-          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNWDBISzlMYzZCNTk5VFU4eGdoc1NXZGxzVDhoTTk1R3hKNkhNQkhuNEdwMXEzRWg0TzVSdXNLdF9yN3J5SXk4b1liRy1zY3RiUC1BQVlXcUw4MllNN0tfQnN1MVBmMUxnX2lHRmcxa1p4Q09UeXNKWFFHQWt1RHY4Y0FHS1FFWDdCVk04UVp2bzFrUQ?oc=5",
-          "primary_source": false
-        }
-      ]
-    },
-    {
       "event_id": "evt-44bc5a3f9ec4f2",
       "primary_theme": "MRVL",
       "related_themes": [],
@@ -2201,7 +2144,7 @@
       "headline": "Marvell Stock Surges 10%: Next-Gen AI Storage Unveiled Ahead of Q2 Earnings - Marvell Technology (NASDAQ - Benzinga",
       "event_time": "2026-08-04T15:50:08+00:00",
       "published_time": "2026-08-04T15:50:08+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.051447+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.354506+00:00",
       "facts": [
         "Marvell Stock Surges 10%: Next-Gen AI Storage Unveiled Ahead of Q2 Earnings - Marvell Technology (NASDAQ - Benzinga"
       ],
@@ -2258,7 +2201,7 @@
       "headline": "Earnings Halftime: REITs Defy Rate Pressure - Seeking Alpha",
       "event_time": "2026-08-04T15:00:00+00:00",
       "published_time": "2026-08-04T15:00:00+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.051466+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.354525+00:00",
       "facts": [
         "Earnings Halftime: REITs Defy Rate Pressure - Seeking Alpha"
       ],
@@ -2315,7 +2258,7 @@
       "headline": "Lam Research Climbs as Strong Earnings and AI-Driven Chip Spending Optimism Support Shares - Quiver Quantitative",
       "event_time": "2026-08-04T14:54:00+00:00",
       "published_time": "2026-08-04T14:54:00+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.051488+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.354547+00:00",
       "facts": [
         "Lam Research Climbs as Strong Earnings and AI-Driven Chip Spending Optimism Support Shares - Quiver Quantitative"
       ],
@@ -2372,7 +2315,7 @@
       "headline": "Earnings call transcript: Kimco Realty tops Q2 2026 estimates, lifts outlook - Investing.com UK",
       "event_time": "2026-08-04T14:52:07+00:00",
       "published_time": "2026-08-04T14:52:07+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.051511+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.354571+00:00",
       "facts": [
         "Earnings call transcript: Kimco Realty tops Q2 2026 estimates, lifts outlook - Investing.com UK"
       ],
@@ -2429,7 +2372,7 @@
       "headline": "Marvell Technology (NASDAQ:MRVL) Shares Surge 11% on AI-Memory Drive, Market Value Rises by $20 Billion - TechStock²",
       "event_time": "2026-08-04T14:45:53+00:00",
       "published_time": "2026-08-04T14:45:53+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.051540+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.354599+00:00",
       "facts": [
         "Marvell Technology (NASDAQ:MRVL) Shares Surge 11% on AI-Memory Drive, Market Value Rises by $20 Billion - TechStock²"
       ],
@@ -2486,7 +2429,7 @@
       "headline": "Bitdeer Signs $4.7 Billion Norway AI Data Center Lease With Volta - TheEnergyMag",
       "event_time": "2026-08-04T13:08:00+00:00",
       "published_time": "2026-08-04T13:08:00+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.051568+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.354622+00:00",
       "facts": [
         "Bitdeer Signs $4.7 Billion Norway AI Data Center Lease With Volta - TheEnergyMag"
       ],
@@ -2543,7 +2486,7 @@
       "headline": "Vertiv Holdings Co (VRT) Raises Guidance On AI Demand, Is The Upside Already Priced In? - simplywall.st",
       "event_time": "2026-08-04T10:11:01+00:00",
       "published_time": "2026-08-04T10:11:01+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.051592+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.354647+00:00",
       "facts": [
         "Vertiv Holdings Co (VRT) Raises Guidance On AI Demand, Is The Upside Already Priced In? - simplywall.st"
       ],
@@ -2600,7 +2543,7 @@
       "headline": "Decommissioned Nuclear Plant Gets New Life with SMRs - Tomorrow's World Today",
       "event_time": "2026-08-04T19:30:25+00:00",
       "published_time": "2026-08-04T19:30:25+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.051613+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.354671+00:00",
       "facts": [
         "Decommissioned Nuclear Plant Gets New Life with SMRs - Tomorrow's World Today"
       ],
@@ -2657,7 +2600,7 @@
       "headline": "Vertiv Expands Global Manufacturing Capacity for AI-Ready Data Center Cooling Solutions - CXOToday.com",
       "event_time": "2026-08-04T12:56:51+00:00",
       "published_time": "2026-08-04T12:56:51+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.051635+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.354693+00:00",
       "facts": [
         "Vertiv Expands Global Manufacturing Capacity for AI-Ready Data Center Cooling Solutions - CXOToday.com"
       ],
@@ -2714,7 +2657,7 @@
       "headline": "Westinghouse and Amentum Partner to Expand Delivery Capacity for APX Fleet Deployment - Business Wire",
       "event_time": "2026-08-04T12:30:00+00:00",
       "published_time": "2026-08-04T12:30:00+00:00",
-      "retrieved_time": "2026-08-05T08:02:46.051658+00:00",
+      "retrieved_time": "2026-08-05T08:04:46.354714+00:00",
       "facts": [
         "Westinghouse and Amentum Partner to Expand Delivery Capacity for APX Fleet Deployment - Business Wire"
       ],
@@ -3040,11 +2983,11 @@
       "provider_symbol": "TTRAK.IS",
       "company": "Türk Traktör",
       "currency": "TRY",
-      "price": 410.0,
-      "return_1d_pct": 1.11,
-      "return_21d_pct": -7.03,
-      "return_252d_pct": -34.29,
-      "distance_from_52w_high_pct": -36.53,
+      "price": 410.5,
+      "return_1d_pct": 1.23,
+      "return_21d_pct": -7.96,
+      "return_252d_pct": -32.59,
+      "distance_from_52w_high_pct": -36.46,
       "price_as_of": "2026-08-05",
       "risk_badge": "ESTABLISHED",
       "sector": "Tarım Makineleri",
@@ -3160,8 +3103,8 @@
         "Regulatory and execution risk"
       ],
       "latest_event_headlines": [
-        "Why GM sees billions in new revenue from subscriptions, defense contracts - Automotive News",
-        "Is Ford Stock a Buy After Q2 Earnings Beat & Raised Guidance? - The Globe and Mail",
+        "Why GM sees billions in new revenue from subscriptions, defense contracts - autonews.com",
+        "Is Ford Stock a Buy After Q2 Earnings Beat & Raised Guidance? - theglobeandmail.com",
         "After Earnings, Is Tesla Stock a Buy, a Sell, or Fairly Valued? - Morningstar"
       ],
       "price_context": {
@@ -3316,9 +3259,9 @@
         "Product-transition risk"
       ],
       "latest_event_headlines": [
-        "AMD beats Q2 earnings estimates but shares fall over 10% amid cautious revenue guidance - pluang.com",
         "[AMD Q2 2026 Earnings Call] AMD Posts Record $11.5B Revenue as Data Center Sales More Than Double, Lifting 2027 EPS Target Above $20 - finance.biggo.com",
-        "AMD’s Data Center Revenue More Than Doubled as Total Sales Hit a Record $11.5 Billion - The Eastern Herald"
+        "AMD’s Data Center Revenue More Than Doubled as Total Sales Hit a Record $11.5 Billion - The Eastern Herald",
+        "AMD Projects Q3 Revenue of $13 Billion, AI Data Center Demand Provides Tailwind but Shares Trade Softly - finance.biggo.com"
       ],
       "price_context": {
         "currency": "USD",
@@ -3472,7 +3415,7 @@
       "latest_event_headlines": [
         "Alex Karp Says Palantir Crushed Earnings With 'Shrinking' Sales Team - Business Insider",
         "Palantir Short Sellers Lose $3 Billion After 30% Earnings Rally - BeInCrypto",
-        "Palantir (PLTR) Surges 15% After Blowout Q2: Revenue +93%, US Commercial +149%, Guidance Raised to $8.15B - tradingkey.com"
+        "Palantir (PLTR) Surges 15% After Blowout Q2: Revenue +93%, US Commercial +149%, Guidance Raised to $8.15B - TradingKey"
       ],
       "price_context": {
         "currency": "USD",
@@ -3700,11 +3643,11 @@
       "time_horizon_en": "Medium to long term",
       "confidence": "HIGH",
       "risk_badge": "ESTABLISHED",
-      "summary": "Son 24 saatte 3 önem eşiğini geçen gelişme bulundu. 252 işlem günlük trend negatif, son 21 işlem gününde tepki yükselişi var; kalıcı dönüş için temel teyit gerekir.",
-      "summary_en": "3 company-specific developments passed the materiality threshold in the last 24 hours. The 252-trading-day trend is negative, while the last 21 trading days show a rebound; a durable reversal requires fundamental confirmation.",
+      "summary": "Son 24 saatte 2 önem eşiğini geçen gelişme bulundu. 252 işlem günlük trend negatif, son 21 işlem gününde tepki yükselişi var; kalıcı dönüş için temel teyit gerekir.",
+      "summary_en": "2 company-specific developments passed the materiality threshold in the last 24 hours. The 252-trading-day trend is negative, while the last 21 trading days show a rebound; a durable reversal requires fundamental confirmation.",
       "performance_context": "252 işlem günlük trend negatif, son 21 işlem gününde tepki yükselişi var; kalıcı dönüş için temel teyit gerekir.",
       "performance_context_en": "The 252-trading-day trend is negative, while the last 21 trading days show a rebound; a durable reversal requires fundamental confirmation.",
-      "material_event_count": 3,
+      "material_event_count": 2,
       "key_drivers": [
         "Nükleer üretim ve kapasite fiyatları",
         "Veri merkezi PPA anlaşmaları",
@@ -3727,8 +3670,7 @@
       ],
       "latest_event_headlines": [
         "Earnings’ key factors: Bad time for acquisitions - Moomoo",
-        "Constellation Was a Big Utility Winner in July, Climbing Over 13% After Blue Energy Investment, PJM Capacity Auction Win - citybiz",
-        "Constellation Energy remains a Buy despite 17% valuation drop, stable earnings outlook, and integration progress. - pluang.com"
+        "Constellation Was a Big Utility Winner in July, Climbing Over 13% After Blue Energy Investment, PJM Capacity Auction Win - citybiz"
       ],
       "price_context": {
         "currency": "USD",
@@ -3881,9 +3823,9 @@
         "Customer and cycle risk"
       ],
       "latest_event_headlines": [
-        "NVIDIA's GPU Orders Strain TSMC's Production Capacity - GuruFocus",
         "[PNW Q2 2026 Earnings Call] Weather-Normalized Sales Soar 9.6% as Data Centers Fuel Growth; Pinnacle West Now Targets Top-End $4.75 EPS - finance.biggo.com",
-        "Top 10 billionaires shaping the global chip industry in AI age: Leaders behind NVIDIA, TSMC, Arm, Intel, AMD, Samsung, ASML, Foxconn, Cambricon - Gulf News"
+        "Top 10 billionaires shaping the global chip industry in AI age: Leaders behind NVIDIA, TSMC, Arm, Intel, AMD, Samsung, ASML, Foxconn, Cambricon - Gulf News",
+        "PNW Q2 FY2026 earnings call - finance.biggo.com"
       ],
       "price_context": {
         "currency": "USD",
@@ -3939,11 +3881,11 @@
       ],
       "price_context": {
         "currency": "TRY",
-        "price": 410.0,
-        "return_1d_pct": 1.11,
-        "return_21d_pct": -7.03,
-        "return_252d_pct": -34.29,
-        "distance_from_52w_high_pct": -36.53,
+        "price": 410.5,
+        "return_1d_pct": 1.23,
+        "return_21d_pct": -7.96,
+        "return_252d_pct": -32.59,
+        "distance_from_52w_high_pct": -36.46,
         "price_as_of": "2026-08-05",
         "data_status": "CURRENT"
       }
@@ -3987,7 +3929,7 @@
       "latest_event_headlines": [
         "NASA Searches Couch Cushions, Finds Another $600 Million for Moon Missions - AOL.com",
         "TMC Stock Climbs 7% On Allseas Deep-Sea Mining Deal – Stock Approaches 200-DMA Ahead Of Q1 Earnings - Stocktwits",
-        "LUNR Stock Falls 16% As $175M Dilution Deal Weighs On Shares – Retail Calls The Dip An ‘Overreaction’ - Stocktwits"
+        "Intuitive Machines Stock (LUNR) Jumps on Winning a Major Spacecraft Contract - TipRanks"
       ],
       "price_context": {
         "currency": "USD",
