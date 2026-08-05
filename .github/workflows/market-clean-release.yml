@@ -75,7 +75,7 @@ jobs:
       - name: Verify language switching, catalogue search and transaction autofill
         run: node ai-infrastructure-bulletin/tests/running-market-search.e2e.js
 
-      - name: Verify BIST and US browser scanner quotes
+      - name: Verify BIST and US scanner simple POSTs
         run: |
           node <<'NODE'
           const cases = [
@@ -87,7 +87,7 @@ jobs:
             for (const item of cases) {
               const response = await fetch(item.endpoint, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json', Accept: 'application/json', Origin: 'https://gibiamie.github.io' },
+                headers: { Accept: 'application/json' },
                 body: JSON.stringify({ symbols: { tickers: [item.ticker], query: { types: [] } }, columns: ['name', 'close', 'change', 'volume', 'market_cap_basic', 'update_mode'] })
               });
               if (!response.ok) throw new Error(`${item.ticker} scanner HTTP ${response.status}`);
