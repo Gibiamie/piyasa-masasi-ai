@@ -5,12 +5,13 @@
   window.__PM_MARKET_INTEGRATION_BOOTSTRAP__ = true;
   window.__PM_MARKET_INTEGRATION__ = true;
 
-  const VERSION = "2026.08.04.5";
+  const VERSION = "2026.08.05.1";
   const MODULES = [
     ["./workspace-enhancements.js", "__PM_WORKSPACE_ENHANCEMENTS__"],
     ["./market-core-v2.js", "__PM_MARKET_CORE_V2__"],
     ["./intraday-core.js", "__PM_NATIVE_INTRADAY_CORE__"],
-    ["./market-live-session.js", "__PM_MARKET_LIVE_SESSION__"]
+    ["./market-live-session.js", "__PM_MARKET_LIVE_SESSION__"],
+    ["./language-portfolio-runtime.js", "__PM_LANGUAGE_PORTFOLIO_RUNTIME__"]
   ];
 
   function loadScript(path, marker) {
