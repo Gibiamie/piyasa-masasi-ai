@@ -10,6 +10,7 @@ on:
       - 'ai-infrastructure-bulletin/intraday-core.js'
       - 'ai-infrastructure-bulletin/market-live-session.js'
       - 'ai-infrastructure-bulletin/language-portfolio-runtime.js'
+      - 'ai-infrastructure-bulletin/research-core-v2.js'
       - 'ai-infrastructure-bulletin/sw.js'
       - 'ai-infrastructure-bulletin/tests/market-core-clean.test.js'
       - 'ai-infrastructure-bulletin/tests/market-clean-architecture.test.js'
@@ -24,6 +25,7 @@ on:
       - 'ai-infrastructure-bulletin/intraday-core.js'
       - 'ai-infrastructure-bulletin/market-live-session.js'
       - 'ai-infrastructure-bulletin/language-portfolio-runtime.js'
+      - 'ai-infrastructure-bulletin/research-core-v2.js'
       - 'ai-infrastructure-bulletin/sw.js'
       - 'ai-infrastructure-bulletin/tests/market-core-clean.test.js'
       - 'ai-infrastructure-bulletin/tests/market-clean-architecture.test.js'
@@ -52,10 +54,11 @@ jobs:
           node --check ai-infrastructure-bulletin/intraday-core.js
           node --check ai-infrastructure-bulletin/market-live-session.js
           node --check ai-infrastructure-bulletin/language-portfolio-runtime.js
+          node --check ai-infrastructure-bulletin/research-core-v2.js
           node --check ai-infrastructure-bulletin/sw.js
           node --check ai-infrastructure-bulletin/tests/running-market-search.e2e.js
 
-      - name: Run market core tests
+      - name: Run market core and architecture tests
         run: |
           node ai-infrastructure-bulletin/tests/market-core-clean.test.js
           node ai-infrastructure-bulletin/tests/market-clean-architecture.test.js
@@ -76,7 +79,7 @@ jobs:
         run: |
           node <<'NODE'
           (async () => {
-            for (const symbol of ['ISCTR.IS', 'RDW']) {
+            for (const symbol of ['ISCTR.IS', 'LMKDC.IS', 'RDW']) {
               let lastError = null;
               for (const host of ['query1.finance.yahoo.com', 'query2.finance.yahoo.com']) {
                 try {
