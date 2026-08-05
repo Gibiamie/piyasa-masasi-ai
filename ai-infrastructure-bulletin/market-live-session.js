@@ -4,11 +4,12 @@
   if (window.__PM_MARKET_LIVE_SESSION__) return;
   window.__PM_MARKET_LIVE_SESSION__ = true;
 
-  const SESSION_KEY = "piyasa-masasi-ai.live-session.v2";
+  const SESSION_KEY = "piyasa-masasi-ai.live-session.v3";
   const PRIORITY_INTERVAL = 30_000;
   const FULL_RESCAN_INTERVAL = 10 * 60_000;
-  const BATCH_SIZE = 100;
-  const CONCURRENCY = 3;
+  const BATCH_SIZE = 40;
+  const CONCURRENCY = 4;
+  const REQUEST_TIMEOUT = 10_000;
 
   const live = {
     active: sessionStorage.getItem(SESSION_KEY) === "1",
@@ -16,6 +17,8 @@
     total: 0,
     processed: 0,
     updated: 0,
+    priorityTotal: 0,
+    priorityUpdated: 0,
     lastAttemptAt: null,
     lastSuccessAt: null,
     lastError: null,
@@ -27,7 +30,7 @@
   const $ = id => document.getElementById(id);
   const normalize = value => String(value || "").trim().toUpperCase();
   const language = () => document.documentElement.lang === "en" ? "en" : "tr";
-  const text = (tr, en) => language() === "en" ? en : tr;
+  const T = (tr, en) => language() === "en" ? en : tr;
   const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
   function ensureDetail() {
@@ -56,80 +59,128 @@
     if (!pill) return;
 
     if (!live.active) {
-      pill.textContent = text("Canlı izleme kapalı", "Live monitoring off");
+      pill.textContent = T("Canlı izleme kapalı", "Live monitoring off");
       pill.className = "status-pill neutral";
-      if (detail) detail.textContent = text("Yenile'ye basınca sekme açık kaldığı sürece fiyatlar güncellenir.", "Press Refresh to update prices while this tab remains open.");
-      if (button) button.textContent = text("Yenile ve izlemeyi başlat", "Refresh and start monitoring");
-      if (localButton) localButton.textContent = text("Fiyatları yenile ve izlemeyi başlat", "Refresh and start monitoring");
+      if (detail) detail.textContent = T("Yenile'ye basınca seçili, görünür, liste ve portföy hisseleri 30 saniyede bir güncellenir.", "Press Refresh to update selected, visible, watchlist and portfolio equities every 30 seconds.");
+      if (button) button.textContent = T("Yenile ve izlemeyi başlat", "Refresh and start monitoring");
+      if (localButton) localButton.textContent = T("Yenile ve izlemeyi başlat", "Refresh and start monitoring");
       return;
     }
 
     if (live.scanning) {
-      pill.textContent = text("Canlı izleme açık · güncelleniyor", "Live monitoring on · updating");
+      pill.textContent = T("Canlı izleme açık · güncelleniyor", "Live monitoring on · updating");
       pill.className = "status-pill positive";
-      if (detail) detail.textContent = `${activity || text("Hisse evreni taranıyor", "Scanning equity universe")} · ${live.processed}/${live.total} · ${text("güncellenen", "updated")}: ${live.updated}`;
+      if (detail) detail.textContent = `${activity || T("Hisse evreni taranıyor", "Scanning equity universe")} · ${live.processed}/${live.total} · ${T("güncellenen", "updated")}: ${live.updated} · ${T("öncelikli", "priority")}: ${live.priorityUpdated}/${live.priorityTotal}`;
     } else if (live.lastError && !live.lastSuccessAt) {
-      pill.textContent = text("Canlı izleme açık · veri alınamadı", "Live monitoring on · data unavailable");
+      pill.textContent = T("Canlı izleme açık · yeniden deneniyor", "Live monitoring on · retrying");
       pill.className = "status-pill warning";
-      if (detail) detail.textContent = text("Şimdi yenile ile yeniden deneyin.", "Press Refresh now to retry.");
+      if (detail) detail.textContent = T("Öncelikli hisseler için alternatif veri yolları deneniyor.", "Alternative data routes are being tried for priority equities.");
     } else {
-      pill.textContent = text("Canlı izleme açık", "Live monitoring on");
+      pill.textContent = T("Canlı izleme açık", "Live monitoring on");
       pill.className = "status-pill positive";
-      if (detail) detail.textContent = `${text("Son başarılı kontrol", "Last successful check")}: ${formatTime(live.lastSuccessAt)} · ${text("güncellenen", "updated")}: ${live.updated}/${live.total}`;
+      if (detail) detail.textContent = `${T("Son başarılı kontrol", "Last successful check")}: ${formatTime(live.lastSuccessAt)} · ${T("öncelikli", "priority")}: ${live.priorityUpdated}/${live.priorityTotal}${live.scanning ? ` · ${live.updated}/${live.total}` : ""}`;
     }
-    if (button) button.textContent = text("Şimdi yenile", "Refresh now");
-    if (localButton) localButton.textContent = text("Şimdi yenile", "Refresh now");
+    if (button) button.textContent = T("Şimdi yenile", "Refresh now");
+    if (localButton) localButton.textContent = T("Şimdi yenile", "Refresh now");
   }
 
-  function chunk(values, size) {
-    const output = [];
-    for (let index = 0; index < values.length; index += size) output.push(values.slice(index, index + size));
-    return output;
+  function assets() { return window.PiyasaMarketWorkspace?.getAssets?.() || []; }
+  function provider(asset) { return asset?.providerSymbol || (asset?.market === "BIST" ? `${asset.symbol}.IS` : asset?.symbol); }
+  function chunk(values, size) { const output = []; for (let index = 0; index < values.length; index += size) output.push(values.slice(index, index + size)); return output; }
+
+  async function fetchWithTimeout(url, timeout = REQUEST_TIMEOUT) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), timeout);
+    try {
+      const response = await fetch(url, { cache: "no-store", signal: controller.signal, headers: { Accept: "application/json,text/plain,*/*" } });
+      if (!response.ok) throw new Error(`HTTP_${response.status}`);
+      return await response.json();
+    } finally { clearTimeout(timer); }
   }
 
-  async function fetchJson(url) {
-    const response = await fetch(url, { cache: "no-store", headers: { Accept: "application/json,text/plain,*/*" } });
-    if (!response.ok) throw new Error(`HTTP_${response.status}`);
-    return response.json();
+  async function firstSuccessful(urls) {
+    const attempts = urls.map(url => fetchWithTimeout(url));
+    try { return await Promise.any(attempts); }
+    catch (error) { throw error?.errors?.at(-1) || error; }
+  }
+
+  function quoteCandidates(symbols) {
+    const joined = symbols.join(",");
+    const direct = `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${encodeURIComponent(joined)}`;
+    return [direct, direct.replace("query1.finance.yahoo.com", "query2.finance.yahoo.com"), `https://api.allorigins.win/raw?url=${encodeURIComponent(direct)}`, `https://corsproxy.io/?url=${encodeURIComponent(direct)}`];
   }
 
   async function fetchBatch(symbols) {
     if (!symbols.length) return new Map();
-    const joined = symbols.join(",");
-    const direct = `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${encodeURIComponent(joined)}`;
-    const candidates = [
-      direct,
-      direct.replace("query1.finance.yahoo.com", "query2.finance.yahoo.com"),
-      `https://api.allorigins.win/raw?url=${encodeURIComponent(direct)}`
-    ];
-    let lastError = null;
-    for (const url of candidates) {
+    const payload = await firstSuccessful(quoteCandidates(symbols));
+    const rows = payload?.quoteResponse?.result;
+    if (!Array.isArray(rows)) throw new Error("INVALID_QUOTE_RESPONSE");
+    return new Map(rows.map(row => [normalize(row.symbol), {
+      symbol: normalize(row.symbol),
+      price: row.regularMarketPrice,
+      changePercent: row.regularMarketChangePercent,
+      volume: row.regularMarketVolume,
+      marketCap: row.marketCap,
+      timestamp: Number(row.regularMarketTime || 0) * 1000 || Date.now(),
+      source: "MIC · Yahoo Finance quote"
+    }]).filter(([, quote]) => Number.isFinite(Number(quote.price))));
+  }
+
+  async function fetchChartQuote(symbol) {
+    const direct = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?range=1d&interval=1m&events=history&includePrePost=false`;
+    const payload = await firstSuccessful([direct, direct.replace("query1.finance.yahoo.com", "query2.finance.yahoo.com"), `https://api.allorigins.win/raw?url=${encodeURIComponent(direct)}`, `https://corsproxy.io/?url=${encodeURIComponent(direct)}`, `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(direct)}`]);
+    const result = payload?.chart?.result?.[0];
+    if (!result) throw new Error(payload?.chart?.error?.description || "EMPTY_CHART_QUOTE");
+    const close = result.indicators?.quote?.[0]?.close || [];
+    let last = null;
+    for (let index = close.length - 1; index >= 0; index -= 1) if (Number.isFinite(Number(close[index]))) { last = Number(close[index]); break; }
+    const meta = result.meta || {};
+    const price = Number.isFinite(Number(meta.regularMarketPrice)) ? Number(meta.regularMarketPrice) : last;
+    if (!Number.isFinite(price)) throw new Error("CHART_PRICE_MISSING");
+    const previous = Number(meta.chartPreviousClose ?? meta.previousClose);
+    return new Map([[normalize(symbol), {
+      symbol: normalize(symbol),
+      price,
+      changePercent: Number.isFinite(previous) && previous ? (price / previous - 1) * 100 : null,
+      volume: null,
+      marketCap: null,
+      timestamp: Number(meta.regularMarketTime || 0) * 1000 || Date.now(),
+      source: "MIC · Yahoo Finance chart"
+    }]]);
+  }
+
+  function dispatchQuotes(quotes) {
+    if (!quotes?.size) return 0;
+    window.dispatchEvent(new CustomEvent("piyasa-market-quotes", { detail: { quotes } }));
+    live.lastSuccessAt = Date.now();
+    return quotes.size;
+  }
+
+  async function requestAsset(asset) {
+    if (!asset) return null;
+    const symbol = normalize(provider(asset));
+    if (!symbol) return null;
+    live.lastAttemptAt = Date.now();
+    try {
+      let quotes = await fetchBatch([symbol]);
+      if (!quotes.has(symbol)) quotes = await fetchChartQuote(symbol);
+      dispatchQuotes(quotes);
+      live.lastError = null;
+      updateUi();
+      return quotes.get(symbol) || null;
+    } catch (batchError) {
       try {
-        const payload = await fetchJson(url);
-        const rows = payload?.quoteResponse?.result;
-        if (!Array.isArray(rows)) throw new Error("INVALID_QUOTE_RESPONSE");
-        return new Map(rows.map(row => [normalize(row.symbol), {
-          symbol: normalize(row.symbol),
-          price: row.regularMarketPrice,
-          changePercent: row.regularMarketChangePercent,
-          volume: row.regularMarketVolume,
-          marketCap: row.marketCap,
-          timestamp: Number(row.regularMarketTime || 0) * 1000 || Date.now(),
-          source: "MIC browser live feed · Yahoo Finance quote"
-        }]));
-      } catch (error) {
-        lastError = error;
+        const quotes = await fetchChartQuote(symbol);
+        dispatchQuotes(quotes);
+        live.lastError = null;
+        updateUi();
+        return quotes.get(symbol) || null;
+      } catch (chartError) {
+        live.lastError = chartError || batchError;
+        updateUi();
+        return null;
       }
     }
-    throw lastError || new Error("QUOTE_FETCH_FAILED");
-  }
-
-  function assets() {
-    return window.PiyasaMarketWorkspace?.getAssets?.() || [];
-  }
-
-  function provider(asset) {
-    return asset.providerSymbol || (asset.market === "BIST" ? `${asset.symbol}.IS` : asset.symbol);
   }
 
   function priorityAssets() {
@@ -137,77 +188,40 @@
     const keys = new Set();
     const selected = window.PiyasaMarketWorkspace?.getSelected?.();
     if (selected?.key) keys.add(selected.key);
-
-    document.querySelectorAll("#pmAssetList [data-pm-key]").forEach(node => {
-      if (node.offsetParent !== null) keys.add(node.dataset.pmKey);
-    });
-
-    try {
-      const personal = JSON.parse(localStorage.getItem("piyasa-masasi-ai.personal-list.v1") || "[]");
-      for (const symbol of Array.isArray(personal) ? personal : []) {
-        all.filter(asset => asset.symbol === String(symbol).toUpperCase().replace(/\.IS$/, "")).forEach(asset => keys.add(asset.key));
-      }
-    } catch (_) {}
-
+    document.querySelectorAll("#pmAssetList [data-pm-key]").forEach(node => { if (node.offsetParent !== null) keys.add(node.dataset.pmKey); });
+    for (const asset of window.PiyasaResearchIntelligence?.getPersonalAssets?.() || []) keys.add(asset.key);
     try {
       for (const transaction of state?.portfolio?.transactions || []) {
-        const symbol = String(transaction.symbol || "").toUpperCase().replace(/\.IS$/, "");
-        all.filter(asset => asset.symbol === symbol).forEach(asset => keys.add(asset.key));
+        const symbol = normalize(transaction.symbol).replace(/\.IS$/, "");
+        all.filter(asset => asset.symbol === symbol && (String(transaction.currency).toUpperCase() === "TRY" ? asset.market === "BIST" : true)).forEach(asset => keys.add(asset.key));
       }
     } catch (_) {}
-
     return all.filter(asset => keys.has(asset.key)).slice(0, 120);
   }
 
-  function dispatchQuotes(quotes) {
-    if (!quotes.size) return 0;
-    window.dispatchEvent(new CustomEvent("piyasa-market-quotes", { detail: { quotes } }));
-    return quotes.size;
-  }
-
-  async function scanAssets(list, generation, activity) {
+  async function refreshPriority() {
+    if (!live.active) return;
+    const list = priorityAssets();
+    live.priorityTotal = list.length;
+    live.priorityUpdated = 0;
+    if (!list.length) { updateUi(); return; }
     const symbols = [...new Set(list.map(provider).map(normalize).filter(Boolean))];
-    const batches = chunk(symbols, BATCH_SIZE);
-    let updated = 0;
-    for (let offset = 0; offset < batches.length; offset += CONCURRENCY) {
-      if (!live.active || generation !== live.generation) break;
-      const group = batches.slice(offset, offset + CONCURRENCY);
-      const results = await Promise.allSettled(group.map(fetchBatch));
-      for (let index = 0; index < results.length; index += 1) {
-        const result = results[index];
-        live.processed += group[index].length;
-        if (result.status === "fulfilled") {
-          updated += dispatchQuotes(result.value);
-          live.lastSuccessAt = Date.now();
-        } else {
-          live.lastError = result.reason;
+    const batches = chunk(symbols, 20);
+    for (const batch of batches) {
+      try {
+        const quotes = await fetchBatch(batch);
+        live.priorityUpdated += dispatchQuotes(quotes);
+        const missing = batch.filter(symbol => !quotes.has(symbol));
+        for (const symbol of missing.slice(0, 8)) {
+          try { live.priorityUpdated += dispatchQuotes(await fetchChartQuote(symbol)); } catch (_) {}
+        }
+      } catch (_) {
+        for (const symbol of batch.slice(0, 12)) {
+          try { live.priorityUpdated += dispatchQuotes(await fetchChartQuote(symbol)); } catch (error) { live.lastError = error; }
         }
       }
-      live.updated += updated;
-      updateUi(activity);
-      await sleep(250);
+      updateUi(T("Öncelikli hisseler yenileniyor", "Refreshing priority equities"));
     }
-    return updated;
-  }
-
-  async function scanPriority() {
-    if (!live.active || live.scanning) return;
-    const list = priorityAssets();
-    if (!list.length) return;
-    const generation = live.generation;
-    live.lastAttemptAt = Date.now();
-    try {
-      const quotes = await fetchBatch([...new Set(list.map(provider))]);
-      if (generation !== live.generation) return;
-      live.updated = dispatchQuotes(quotes);
-      live.total = list.length;
-      live.processed = list.length;
-      live.lastSuccessAt = Date.now();
-      live.lastError = null;
-    } catch (error) {
-      live.lastError = error;
-    }
-    updateUi();
   }
 
   async function fullScan() {
@@ -219,73 +233,70 @@
     live.updated = 0;
     live.total = assets().length;
     live.lastAttemptAt = Date.now();
-    updateUi(text("Öncelikli hisseler yenileniyor", "Refreshing priority equities"));
-    try {
-      await scanAssets(priorityAssets(), generation, text("Öncelikli hisseler yenileniyor", "Refreshing priority equities"));
-      await scanAssets(assets(), generation, text("Tüm hisse evreni yenileniyor", "Refreshing the full equity universe"));
-      if (generation === live.generation) {
-        live.lastSuccessAt = Date.now();
-        live.lastError = null;
+    updateUi(T("Öncelikli hisseler yenileniyor", "Refreshing priority equities"));
+    await refreshPriority();
+    const symbols = [...new Set(assets().map(provider).map(normalize).filter(Boolean))];
+    const batches = chunk(symbols, BATCH_SIZE);
+    let consecutiveFailures = 0;
+    for (let offset = 0; offset < batches.length; offset += CONCURRENCY) {
+      if (!live.active || generation !== live.generation) break;
+      const group = batches.slice(offset, offset + CONCURRENCY);
+      const results = await Promise.allSettled(group.map(fetchBatch));
+      for (let index = 0; index < results.length; index += 1) {
+        live.processed += group[index].length;
+        if (results[index].status === "fulfilled") {
+          const count = dispatchQuotes(results[index].value);
+          live.updated += count;
+          consecutiveFailures = count ? 0 : consecutiveFailures + 1;
+        } else {
+          live.lastError = results[index].reason;
+          consecutiveFailures += 1;
+        }
       }
-    } catch (error) {
-      live.lastError = error;
-    } finally {
-      if (generation === live.generation) live.scanning = false;
-      updateUi();
+      updateUi(T("Tüm hisse evreni yenileniyor", "Refreshing full equity universe"));
+      if (consecutiveFailures >= 12) break;
+      await sleep(180);
     }
+    if (generation === live.generation) live.scanning = false;
+    updateUi();
   }
 
   function schedule() {
-    clearInterval(live.priorityTimer);
-    clearInterval(live.fullTimer);
-    live.priorityTimer = setInterval(() => {
-      if (live.active && !document.hidden) scanPriority();
-    }, PRIORITY_INTERVAL);
-    live.fullTimer = setInterval(() => {
-      if (live.active && !document.hidden) fullScan();
-    }, FULL_RESCAN_INTERVAL);
+    clearInterval(live.priorityTimer); clearInterval(live.fullTimer);
+    live.priorityTimer = setInterval(() => { if (live.active && !document.hidden) refreshPriority(); }, PRIORITY_INTERVAL);
+    live.fullTimer = setInterval(() => { if (live.active && !document.hidden) fullScan(); }, FULL_RESCAN_INTERVAL);
   }
 
   async function start() {
     live.active = true;
     sessionStorage.setItem(SESSION_KEY, "1");
     schedule();
-    updateUi(text("Piyasa dosyaları yenileniyor", "Refreshing market files"));
+    updateUi(T("Piyasa dosyaları yenileniyor", "Refreshing market files"));
     await window.PiyasaMarketWorkspace?.refresh?.(true);
-    await fullScan();
+    await refreshPriority();
+    fullScan();
   }
 
   function stop() {
     live.active = false;
     live.generation += 1;
     sessionStorage.removeItem(SESSION_KEY);
-    clearInterval(live.priorityTimer);
-    clearInterval(live.fullTimer);
-    live.priorityTimer = null;
-    live.fullTimer = null;
+    clearInterval(live.priorityTimer); clearInterval(live.fullTimer);
+    live.priorityTimer = null; live.fullTimer = null;
     updateUi();
   }
 
   function bind() {
     const button = $("refresh");
     if (button) button.onclick = event => { event.preventDefault(); start(); };
+    const localButton = $("pmReloadMarket");
+    if (localButton) localButton.onclick = event => { event.preventDefault(); start(); };
+    window.addEventListener("pm-market-asset-change", event => { if (live.active && event.detail?.asset) requestAsset(event.detail.asset); });
+    window.addEventListener("piyasa-personal-list-change", () => { if (live.active) refreshPriority(); });
+    document.addEventListener("visibilitychange", () => { if (live.active && !document.hidden) refreshPriority(); });
+    window.addEventListener("pagehide", () => { clearInterval(live.priorityTimer); clearInterval(live.fullTimer); });
     updateUi();
-    if (live.active) {
-      schedule();
-      setTimeout(() => fullScan(), 0);
-    }
-    document.addEventListener("visibilitychange", () => {
-      if (live.active && !document.hidden) scanPriority();
-    });
-    window.addEventListener("pagehide", () => {
-      clearInterval(live.priorityTimer);
-      clearInterval(live.fullTimer);
-    });
-    setInterval(() => {
-      const current = $("refresh");
-      if (current && current.onclick == null) current.onclick = event => { event.preventDefault(); start(); };
-      updateUi();
-    }, 5000);
+    if (live.active) { schedule(); setTimeout(refreshPriority, 0); }
   }
 
   window.PiyasaMarketLive = {
@@ -293,7 +304,9 @@
     start,
     stop,
     refresh: fullScan,
-    isActive: () => live.active
+    requestAsset,
+    isActive: () => live.active,
+    _test: { fetchBatch, fetchChartQuote, priorityAssets }
   };
 
   bind();
