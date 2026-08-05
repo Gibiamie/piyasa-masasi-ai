@@ -21,6 +21,7 @@ let browser = null;
     return {
       readyState: document.readyState,
       marketSearchPresent: Boolean(document.querySelector("#pmMarketSearch")),
+      globalSearchPresent: Boolean(document.querySelector("#globalSearch")),
       total: window.PiyasaMarketWorkspace?.getAssets?.().length || 0,
       displayedTotal: Number(document.querySelector("#pmStatusTotal")?.textContent || 0),
       displayedBist: Number(document.querySelector("#pmStatusBist")?.textContent || 0),
@@ -39,6 +40,7 @@ let browser = null;
   console.log("market diagnostics", JSON.stringify({ ...diagnostics, errors: [...new Set(errors)] }));
 
   assert.equal(diagnostics.marketSearchPresent, true, "market search UI must be mounted");
+  assert.equal(diagnostics.globalSearchPresent, true, "top search UI must be mounted");
   assert.equal(diagnostics.total, diagnostics.catalogCounts.TOTAL, "runtime universe must equal the official catalogue");
   assert.equal(diagnostics.displayedTotal, diagnostics.catalogCounts.TOTAL);
   assert.equal(diagnostics.displayedBist, diagnostics.catalogCounts.BIST);
@@ -46,6 +48,14 @@ let browser = null;
   assert.ok(diagnostics.catalogCounts.BIST >= 600);
   assert.ok(diagnostics.catalogCounts.US >= 6000);
   assert.deepEqual(diagnostics.modules, { integration: true, workspace: true, intraday: true, live: true });
+
+  await page.locator("#globalSearch").fill("ASTOR");
+  await page.waitForFunction(() => Boolean(document.querySelector('#globalSearchResults [data-key="BIST:ASTOR"]')));
+  assert.equal(await page.locator('#globalSearchResults [data-key="BIST:ASTOR"]').count(), 1, "top search must find ASTOR in the official catalogue");
+  assert.equal(await page.locator("#globalSearchResults").getByText(/Eşleşen varlık bulunamadı|No matching asset found/i).count(), 0, "legacy research-universe empty state must not appear");
+  await page.locator('#globalSearchResults [data-key="BIST:ASTOR"]').click();
+  await page.waitForFunction(() => document.querySelector("#pmAssetTitle")?.textContent?.startsWith("ASTOR"));
+  assert.equal(new URL(page.url()).hash, "#market", "top-search selection must open the market view");
 
   async function search(symbol) {
     await page.locator("#pmMarketSearch").fill(symbol);
