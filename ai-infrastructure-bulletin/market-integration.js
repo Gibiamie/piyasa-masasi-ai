@@ -5,13 +5,13 @@
   window.__PM_MARKET_INTEGRATION_BOOTSTRAP__ = true;
   window.__PM_MARKET_INTEGRATION__ = true;
 
-  const VERSION = "2026.08.05.1";
+  const VERSION = "2026.08.05.23";
   const MODULES = [
-    ["./workspace-enhancements.js", "__PM_WORKSPACE_ENHANCEMENTS__"],
     ["./market-core-v2.js", "__PM_MARKET_CORE_V2__"],
     ["./intraday-core.js", "__PM_NATIVE_INTRADAY_CORE__"],
     ["./market-live-session.js", "__PM_MARKET_LIVE_SESSION__"],
-    ["./language-portfolio-runtime.js", "__PM_LANGUAGE_PORTFOLIO_RUNTIME__"]
+    ["./language-portfolio-runtime.js", "__PM_LANGUAGE_PORTFOLIO_RUNTIME__"],
+    ["./workspace-enhancements.js", "__PM_WORKSPACE_ENHANCEMENTS__"]
   ];
 
   function loadScript(path, marker) {
@@ -49,10 +49,10 @@
   }
 
   start().catch(error => {
-    console.error("Piyasa Masası market workspace failed to start", error);
+    console.error("Piyasa Masası workspace failed to start", error);
     const freshness = document.getElementById("freshness");
     if (freshness) {
-      freshness.textContent = "Piyasa modülü yüklenemedi";
+      freshness.textContent = document.documentElement.lang === "en" ? "Market module could not be loaded" : "Piyasa modülü yüklenemedi";
       freshness.className = "status-pill warning";
     }
   });
