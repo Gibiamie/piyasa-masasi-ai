@@ -1,5 +1,6 @@
 "use strict";
 
+// Verification branch: validate the top search against the published equity catalogue.
 const assert = require("node:assert/strict");
 const { chromium } = require("playwright");
 
