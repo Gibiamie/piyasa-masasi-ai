@@ -727,9 +727,9 @@ BMRC,Bank of Marin Bancorp - Common Stock,stock,Common Stock,Nasdaq Global Selec
 BMRN,BioMarin Pharmaceutical Inc. - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 BNAI,Brand Engagement Network Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 BNAIW,Brand Engagement Network Inc. - Warrant,stock,Warrant,Nasdaq Capital Market,N,100
-BNC,CEA Industries Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,D,100
-BNCWW,CEA Industries Inc. - Warrant,stock,Warrant,Nasdaq Capital Market,D,100
-BNCWZ,CEA Industries Inc. - Warrants,stock,Warrant,Nasdaq Capital Market,D,100
+BNC,CEA Industries Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
+BNCWW,CEA Industries Inc. - Warrant,stock,Warrant,Nasdaq Capital Market,N,100
+BNCWZ,CEA Industries Inc. - Warrants,stock,Warrant,Nasdaq Capital Market,N,100
 BND,Vanguard Total Bond Market ETF,etf,ETF,Nasdaq Global Market,N,100
 BNDP,Vanguard Core-Plus Bond Index ETF,etf,ETF,Nasdaq Global Market,N,100
 BNDW,Vanguard Total World Bond ETF,etf,ETF,Nasdaq Global Market,N,100
@@ -1150,7 +1150,7 @@ CNSP,"CNS Pharmaceuticals, Inc. - Common Stock",stock,Common Stock,Nasdaq Capita
 CNSY,"Cerenome, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 CNTB,Connect Biopharma Holdings Limited - Ordinary Shares,stock,Ordinary Share,Nasdaq Global Market,N,100
 CNTN,"Canton Strategic Holdings, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
-CNTX,Context Therapeutics Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
+CNTX,Context Therapeutics Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,D,100
 CNTY,"Century Casinos, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 CNVS,Cineverse Corp. - Class A Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 CNXC,Concentrix Corporation - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
@@ -2129,7 +2129,7 @@ GNLN,"Greenlane Holdings, Inc. - Class A Common Stock",stock,Common Stock,Nasdaq
 GNLX,Genelux Corporation - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 GNMA,iShares GNMA Bond ETF,etf,ETF,Nasdaq Global Market,N,100
 GNOM,Global X Genomics & Biotechnology ETF,etf,ETF,Nasdaq Global Market,N,100
-GNPX,"Genprex, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
+GNPX,"Genprex, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 GNSS,Genasys Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 GNTA,Genenta Science S.p.A. - American Depositary Shares,stock,Depositary Share,Nasdaq Capital Market,N,100
 GNTX,Gentex Corporation - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
@@ -2887,7 +2887,7 @@ LDRX,SGI Enhanced Market Leaders ETF,etf,ETF,Nasdaq Global Market,N,100
 LDSF,First Trust Low Duration Strategic Focus ETF,etf,ETF,Nasdaq Global Market,N,100
 LE,"Lands' End, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 LECO,"Lincoln Electric Holdings, Inc. - Common Shares",stock,Common Stock,Nasdaq Global Select Market,N,40
-LEDS,SemiLEDS Corporation - Common Stock,stock,Common Stock,Nasdaq Capital Market,D,100
+LEDS,SemiLEDS Corporation - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 LEE,"Lee Enterprises, Incorporated - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 LEGH,Legacy Housing Corporation - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 LEGN,Legend Biotech Corporation - American Depositary Shares,stock,Depositary Share,Nasdaq Global Select Market,N,100
@@ -3027,7 +3027,7 @@ LUNR,"Intuitive Machines, Inc. - Class A Common Stock",stock,Common Stock,Nasdaq
 LVDS,JPMorgan Fundamental Data Science Large Value ETF,etf,ETF,Nasdaq Global Market,N,100
 LVHD,Franklin U.S. Low Volatility High Dividend Index ETF,etf,ETF,Nasdaq Global Market,N,100
 LVIG,Longview Advantage Fixed Income ETF,etf,ETF,Nasdaq Global Market,N,100
-LVLU,"Lulu's Fashion Lounge Holdings, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
+LVLU,"Lulu's Fashion Lounge Holdings, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 LVO,"LiveOne, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 LWAC,LightWave Acquisition Corp. - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Global Market,N,100
 LWACU,LightWave Acquisition Corp. - Units,stock,Unit,Nasdaq Global Market,N,100
@@ -4949,7 +4949,7 @@ TPLS,Thornburg Core Plus Bond ETF,etf,ETF,Nasdaq Global Market,N,100
 TPST,"Tempest Therapeutics, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
 TQQQ,ProShares UltraPro QQQ,etf,ETF,Nasdaq Global Market,N,100
 TQQY,GraniteShares YieldBOOST QQQ ETF,etf,ETF,Nasdaq Global Market,N,100
-TRAW,"Traws Pharma, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
+TRAW,"Traws Pharma, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
 TRAX,"First Tracks Biotherapeutics, Inc. - Ordinary Shares",stock,Ordinary Share,Nasdaq Global Select Market,N,100
 TRBF,Angel Oak Total Return ETF,etf,ETF,Nasdaq Global Market,N,100
 TRDA,"Entrada Therapeutics, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
@@ -5278,7 +5278,7 @@ VSAT,"ViaSat, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Marke
 VSDA,VictoryShares Dividend Accelerator ETF,etf,ETF,Nasdaq Global Market,N,100
 VSEC,VSE Corporation - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 VSECU,VSE Corporation - Tangible Equity Units,stock,Unit,Nasdaq Global Select Market,N,100
-VSEE,"VSee Health, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
+VSEE,"VSee Health, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 VSEEW,"VSee Health, Inc. - Warrant",stock,Warrant,Nasdaq Capital Market,N,100
 VSME,VS Media Holdings Limited - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
 VSMV,VictoryShares US Multi-Factor Minimum Volatility ETF,etf,ETF,Nasdaq Global Market,N,100
@@ -5565,5 +5565,5 @@ ZTWO,F/m 2-Year Investment Grade Corporate Bond ETF,etf,ETF,Nasdaq Global Market
 ZUMZ,Zumiez Inc. - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 ZURA,Zura Bio Limited - Class A Ordinary shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
 ZVRA,"Zevra Therapeutics, Inc.  - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
-ZYBT,Zhengye Biotechnology Holding Limited - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,D,100
+ZYBT,Zhengye Biotechnology Holding Limited - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
 ZYME,Zymeworks Inc. - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
