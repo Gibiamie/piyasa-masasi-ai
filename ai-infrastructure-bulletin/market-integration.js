@@ -10,6 +10,7 @@
     ["./market-core-v2.js", "__PM_MARKET_CORE_V2__"],
     ["./intraday-core.js", "__PM_NATIVE_INTRADAY_CORE__"],
     ["./market-live-session.js", "__PM_MARKET_LIVE_SESSION__"],
+    ["./daily-history-controller.js", "__PM_DAILY_HISTORY_CONTROLLER__"],
     ["./language-portfolio-runtime.js", "__PM_LANGUAGE_PORTFOLIO_RUNTIME__"],
     ["./research-core-v2.js", "__PM_RESEARCH_CORE_V2__"]
   ];
