@@ -10,6 +10,7 @@ const STATIC = [
   "./market-core-v2.js",
   "./intraday-core.js",
   "./market-live-session.js",
+  "./daily-history-controller.js",
   "./language-portfolio-runtime.js",
   "./research-core-v2.js",
   "./data/equity-catalog.json",
