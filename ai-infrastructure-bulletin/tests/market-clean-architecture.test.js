@@ -25,7 +25,7 @@ assert.match(files.integration, /market-live-session\.js/);
 assert.match(files.integration, /daily-history-controller\.js/);
 assert.match(files.integration, /language-portfolio-runtime\.js/);
 assert.match(files.integration, /research-core-v2\.js/);
-assert.match(files.integration, /2026\.08\.09\.29/);
+assert.match(files.integration, /2026\.08\.09\.30/);
 assert.doesNotMatch(files.integration, /workspace-enhancements|research-intelligence-core|live-market-core|market-live-bridge|chart-fetch-fallback|live-session-control|chart-controller-v27/);
 
 assert.match(files.workspace, /equity-catalog\.json/);
@@ -51,11 +51,13 @@ assert.doesNotMatch(files.live, /query1\.finance\.yahoo|query2\.finance\.yahoo|a
 
 assert.match(files.dailyHistory, /RANGE_OPTIONS/);
 assert.match(files.dailyHistory, /INTERVAL_OPTIONS/);
-assert.match(files.dailyHistory, /DAILY_COVERAGE_RANGE = "5y"/);
-assert.match(files.dailyHistory, /query1\.finance\.yahoo\.com/);
+assert.match(files.dailyHistory, /DAILY_BASE = "\.\.\/mic\/data\/history"/);
+assert.match(files.dailyHistory, /HOURLY_BASE = "\.\.\/mic\/data\/hourly"/);
+assert.match(files.dailyHistory, /HOURLY_RANGES/);
 assert.match(files.dailyHistory, /pm6m/);
 assert.match(files.dailyHistory, /returnFromRows/);
 assert.match(files.dailyHistory, /returnOneYear/);
+assert.doesNotMatch(files.dailyHistory, /query1\.finance\.yahoo|query2\.finance\.yahoo/);
 assert.doesNotMatch(files.dailyHistory, /activateIntradayFallback|setSource\("INTRADAY"/);
 
 assert.match(files.languagePortfolio, /applyMarketLanguage/);
@@ -74,9 +76,10 @@ assert.match(files.research, /renderSourcesView/);
 assert.match(files.research, /renderOverview/);
 assert.doesNotMatch(files.research, /REPO_ISSUES_URL|Ekleme talebi oluştur/);
 
-assert.match(files.sw, /piyasa-masasi-workspace-v29/);
+assert.match(files.sw, /piyasa-masasi-workspace-v30/);
 assert.match(files.sw, /equity-catalog\.json/);
 assert.match(files.sw, /daily-history-controller\.js/);
+assert.match(files.sw, /\/mic\/data\/hourly\//);
 assert.match(files.sw, /language-portfolio-runtime\.js/);
 assert.match(files.sw, /research-core-v2\.js/);
 assert.doesNotMatch(files.sw, /workspace-enhancements|research-intelligence-core|client\.navigate|combineMarketIntegration|market-core\.js|chart-controller-v27/);
@@ -93,4 +96,4 @@ for (const key of ["BIST:BURCE", "BIST:ISATR", "BIST:ISKUR", "BIST:UMPAS", "US:R
   assert.ok(keys.has(key), `${key} missing from catalogue`);
 }
 
-console.log("market-clean-architecture: v29 advanced portfolio chart, browser scanner and canonical research validated");
+console.log("market-clean-architecture: v30 same-origin portfolio chart, browser scanner and canonical research validated");
