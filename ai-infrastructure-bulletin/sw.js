@@ -1,4 +1,4 @@
-const CACHE = "piyasa-masasi-workspace-v29";
+const CACHE = "piyasa-masasi-workspace-v30";
 const STATIC = [
   "./",
   "./index.html",
@@ -46,7 +46,8 @@ self.addEventListener("fetch", event => {
     || url.pathname.endsWith("/data/equity-catalog.json")
     || url.pathname.endsWith("/mic/data/market.json")
     || url.pathname.endsWith("/mic/data/nasdaq-quotes.json")
-    || url.pathname.includes("/mic/data/history/");
+    || url.pathname.includes("/mic/data/history/")
+    || url.pathname.includes("/mic/data/hourly/");
 
   if (marketData) {
     event.respondWith(fetch(event.request, { cache: "no-store" }).then(response => {
