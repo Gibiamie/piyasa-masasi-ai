@@ -5,12 +5,11 @@
   window.__PM_MARKET_INTEGRATION_BOOTSTRAP__ = true;
   window.__PM_MARKET_INTEGRATION__ = true;
 
-  const VERSION = "2026.08.09.27";
+  const VERSION = "2026.08.09.28";
   const MODULES = [
     ["./market-core-v2.js", "__PM_MARKET_CORE_V2__"],
     ["./intraday-core.js", "__PM_NATIVE_INTRADAY_CORE__"],
     ["./market-live-session.js", "__PM_MARKET_LIVE_SESSION__"],
-    ["./chart-controller-v27.js", "__PM_CHART_CONTROLLER_V27__"],
     ["./language-portfolio-runtime.js", "__PM_LANGUAGE_PORTFOLIO_RUNTIME__"],
     ["./research-core-v2.js", "__PM_RESEARCH_CORE_V2__"]
   ];
