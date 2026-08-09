@@ -6,6 +6,9 @@
 
   const INITIAL_CHECK_MS = 1800;
   const RETRY_MS = 60_000;
+  const CACHE_TTL_MS = 5 * 60_000;
+  const DAILY_BASE = "../mic/data/history";
+  const HOURLY_BASE = "../mic/data/hourly";
   const RANGE_OPTIONS = [
     ["1D", "1G", "1D"],
     ["1W", "1H", "1W"],
@@ -24,28 +27,20 @@
     ["1wk", "1 H", "1 W"],
     ["1mo", "1 A", "1 M"]
   ];
-  const RANGE_TO_YAHOO = {
-    "1D": "1d",
-    "1W": "5d",
-    "1M": "1mo",
-    "3M": "3mo",
-    "6M": "6mo",
-    "1Y": "1y",
-    "YTD": "ytd"
-  };
-  const DAILY_COVERAGE_RANGE = "5y";
   const DAILY_INTERVALS = new Set(["1d", "1wk", "1mo"]);
   const HOURLY_INTERVALS = new Set(["1h", "2h", "4h"]);
+  const HOURLY_RANGES = new Set(["1D", "1W", "1M"]);
 
   let timer = null;
   let expectedVersion = 0;
   let chartRequest = 0;
   let selectedRange = "1Y";
   let selectedInterval = "1d";
-  let observer = null;
+  let statusObserver = null;
   let lastAdvancedStatus = "";
-  const providerCache = new Map();
-  const dailyCoverageCache = new Map();
+  const dailyCache = new Map();
+  const hourlyCache = new Map();
+  const returnCache = new Map();
 
   const $ = id => document.getElementById(id);
   const finite = value => Number.isFinite(Number(value)) ? Number(value) : null;
@@ -54,7 +49,7 @@
   const locale = () => language() === "en" ? "en-GB" : "tr-TR";
   const workspace = () => window.PiyasaMarketWorkspace || null;
   const selectedAsset = () => workspace()?.getSelected?.() || null;
-  const providerSymbol = asset => asset?.providerSymbol || (asset?.market === "BIST" ? `${asset.symbol}.IS` : asset?.symbol || "");
+  const assetKey = asset => String(asset?.key || `${asset?.market || "US"}:${asset?.symbol || ""}`).toUpperCase();
   const timezone = asset => asset?.market === "BIST" ? "Europe/Istanbul" : "America/New_York";
 
   function stopTimer() {
@@ -146,21 +141,6 @@
     };
   }
 
-  function rowsFromYahoo(payload) {
-    const chart = payload?.chart?.result?.[0];
-    if (!chart) return [];
-    const timestamps = chart.timestamp || [];
-    const quote = chart.indicators?.quote?.[0] || {};
-    return timestamps.map((time, index) => normalizeRow(
-      time,
-      quote.open?.[index],
-      quote.high?.[index],
-      quote.low?.[index],
-      quote.close?.[index],
-      quote.volume?.[index]
-    )).filter(Boolean);
-  }
-
   function localDailyRows() {
     const history = workspace()?.state?.history || [];
     return history.map(row => {
@@ -170,40 +150,55 @@
     }).filter(Boolean);
   }
 
-  async function fetchYahoo(asset, range, interval) {
-    const symbol = providerSymbol(asset);
-    if (!symbol) throw new Error("PROVIDER_SYMBOL_MISSING");
-    const key = `${symbol}|${range}|${interval}`;
-    if (providerCache.has(key)) return providerCache.get(key);
+  async function fetchLocalJson(url) {
+    const response = await fetch(`${url}${url.includes("?") ? "&" : "?"}v=${Date.now()}`, {
+      cache: "no-store",
+      headers: { "Cache-Control": "no-cache", Accept: "application/json,text/plain,*/*" }
+    });
+    if (!response.ok) throw new Error(`${url} HTTP ${response.status}`);
+    return response.json();
+  }
 
-    const encoded = encodeURIComponent(symbol);
-    let lastError = null;
-    for (const host of ["query1.finance.yahoo.com", "query2.finance.yahoo.com"]) {
-      try {
-        const url = new URL(`https://${host}/v8/finance/chart/${encoded}`);
-        url.searchParams.set("range", range);
-        url.searchParams.set("interval", interval);
-        url.searchParams.set("events", "div,splits");
-        url.searchParams.set("includePrePost", "false");
-        const response = await fetch(url.href, {
-          method: "GET",
-          mode: "cors",
-          credentials: "omit",
-          cache: "no-store",
-          headers: { Accept: "application/json,text/plain,*/*" }
-        });
-        if (!response.ok) throw new Error(`${host} HTTP ${response.status}`);
-        const payload = await response.json();
-        if (payload?.chart?.error) throw new Error(String(payload.chart.error.description || payload.chart.error.code || "Yahoo chart error"));
-        const rows = rowsFromYahoo(payload);
-        if (!rows.length) throw new Error("NO_VALID_BARS");
-        providerCache.set(key, rows);
-        return rows;
-      } catch (error) {
-        lastError = error;
-      }
-    }
-    throw lastError || new Error("CHART_PROVIDER_FAILED");
+  function cached(map, key) {
+    const entry = map.get(key);
+    if (!entry || Date.now() - entry.loadedAt > CACHE_TTL_MS) return null;
+    return entry.value;
+  }
+
+  function store(map, key, value) {
+    map.set(key, { loadedAt: Date.now(), value });
+    return value;
+  }
+
+  async function loadDailyRows(asset) {
+    const key = assetKey(asset);
+    const hit = cached(dailyCache, key);
+    if (hit) return hit;
+    try {
+      const payload = await fetchLocalJson(`${DAILY_BASE}/${encodeURIComponent(asset.symbol)}.json`);
+      const raw = Array.isArray(payload.history) ? payload.history : Array.isArray(payload.data) ? payload.data : [];
+      const rows = raw.map(row => {
+        const time = row.time ?? row.timestamp ?? Date.parse(`${String(row.date || "").slice(0, 10)}T12:00:00Z`);
+        return normalizeRow(time, row.open, row.high, row.low, row.close, row.volume);
+      }).filter(Boolean).sort((a, b) => a.time - b.time);
+      if (rows.length) return store(dailyCache, key, rows);
+    } catch (_) {}
+    return localDailyRows();
+  }
+
+  async function loadHourlyRows(asset) {
+    const key = assetKey(asset);
+    const hit = cached(hourlyCache, key);
+    if (hit) return hit;
+    const market = String(asset.market || "US").toUpperCase();
+    const payload = await fetchLocalJson(`${HOURLY_BASE}/${market}/${encodeURIComponent(asset.symbol)}.json`);
+    const raw = Array.isArray(payload.bars) ? payload.bars : [];
+    const rows = raw.map(bar => Array.isArray(bar)
+      ? normalizeRow(bar[0], bar[1], bar[2], bar[3], bar[4], bar[5])
+      : normalizeRow(bar.time ?? bar.timestamp, bar.open, bar.high, bar.low, bar.close, bar.volume)
+    ).filter(Boolean).sort((a, b) => a.time - b.time);
+    if (!rows.length) throw new Error("HOURLY_HISTORY_EMPTY");
+    return store(hourlyCache, key, rows);
   }
 
   function dateKey(ms, asset) {
@@ -259,9 +254,8 @@
     for (const row of rows) {
       const key = interval === "1wk" ? weekKey(row.time) : monthKey(row.time);
       const current = buckets.get(key);
-      if (!current) {
-        buckets.set(key, { ...row });
-      } else {
+      if (!current) buckets.set(key, { ...row });
+      else {
         current.high = Math.max(current.high, row.high);
         current.low = Math.min(current.low, row.low);
         current.close = row.close;
@@ -284,21 +278,8 @@
     return rows.filter(row => row.time >= startMs);
   }
 
-  async function ensureDailyCoverage(asset) {
-    const symbol = providerSymbol(asset);
-    if (!symbol) return localDailyRows();
-    if (dailyCoverageCache.has(symbol)) return dailyCoverageCache.get(symbol);
-    try {
-      const rows = await fetchYahoo(asset, DAILY_COVERAGE_RANGE, "1d");
-      dailyCoverageCache.set(symbol, rows);
-      return rows;
-    } catch (_) {
-      return localDailyRows();
-    }
-  }
-
   function intervalSupported(range, interval) {
-    if (range === "5Y" && HOURLY_INTERVALS.has(interval)) return false;
+    if (HOURLY_INTERVALS.has(interval)) return HOURLY_RANGES.has(range);
     return true;
   }
 
@@ -309,16 +290,13 @@
 
   async function chartRows(asset) {
     enforceCompatibleInterval();
-    if (DAILY_INTERVALS.has(selectedInterval)) {
-      const dailyRows = await ensureDailyCoverage(asset);
-      return filterRange(aggregateDaily(dailyRows, selectedInterval), selectedRange);
+    if (HOURLY_INTERVALS.has(selectedInterval)) {
+      const rows = await loadHourlyRows(asset);
+      const hours = Number(selectedInterval.replace("h", "")) || 1;
+      return filterRange(aggregateHourly(rows, hours, asset), selectedRange);
     }
-
-    const yahooRange = RANGE_TO_YAHOO[selectedRange];
-    if (!yahooRange) throw new Error("HOURLY_RANGE_UNAVAILABLE");
-    const hourly = await fetchYahoo(asset, yahooRange, "1h");
-    const hours = Number(selectedInterval.replace("h", "")) || 1;
-    return filterRange(aggregateHourly(hourly, hours, asset), selectedRange);
+    const rows = await loadDailyRows(asset);
+    return filterRange(aggregateDaily(rows, selectedInterval), selectedRange);
   }
 
   function setMetric(id, value) {
@@ -355,21 +333,30 @@
     return (last.close / base.close - 1) * 100;
   }
 
-  async function renderReturns(asset) {
-    let rows = [];
-    try { rows = await ensureDailyCoverage(asset); } catch (_) {}
+  function applyReturns(asset, values) {
     if (selectedAsset()?.key !== asset.key) return;
+    setMetric("pm1m", values.oneMonth);
+    setMetric("pm3m", values.threeMonth);
+    setMetric("pm6m", values.sixMonth);
+    setMetric("pm1y", values.oneYear);
+  }
 
+  async function renderReturns(asset) {
+    const key = assetKey(asset);
+    const remembered = returnCache.get(key);
+    if (remembered) applyReturns(asset, remembered);
+
+    const rows = await loadDailyRows(asset);
+    if (selectedAsset()?.key !== asset.key) return;
     const fallback = asset.performance || {};
-    const oneMonth = returnFromRows(rows, 1) ?? finite(fallback["1A"]);
-    const threeMonth = returnFromRows(rows, 3) ?? finite(fallback["3A"]);
-    const sixMonth = returnFromRows(rows, 6) ?? finite(fallback["6A"]);
-    const oneYear = returnOneYear(rows) ?? finite(fallback["1Y"]);
-
-    setMetric("pm1m", oneMonth);
-    setMetric("pm3m", threeMonth);
-    setMetric("pm6m", sixMonth);
-    setMetric("pm1y", oneYear);
+    const values = {
+      oneMonth: returnFromRows(rows, 1) ?? finite(fallback["1A"]),
+      threeMonth: returnFromRows(rows, 3) ?? finite(fallback["3A"]),
+      sixMonth: returnFromRows(rows, 6) ?? finite(fallback["6A"]),
+      oneYear: returnOneYear(rows) ?? finite(fallback["1Y"])
+    };
+    returnCache.set(key, values);
+    applyReturns(asset, values);
   }
 
   function renderControls() {
@@ -400,7 +387,7 @@
       intervalHost.innerHTML = INTERVAL_OPTIONS.map(([key, trLabel, enLabel]) => {
         const disabled = !intervalSupported(selectedRange, key);
         const title = disabled
-          ? T("5 yıllık görünümde saatlik veri sağlayıcı sınırı nedeniyle kullanılamaz.", "Hourly provider data is unavailable for the 5-year view.")
+          ? T("Saatlik mum geçmişi 1 gün, 1 hafta ve 1 ay görünümlerinde kullanılabilir.", "Hourly candle history is available for the 1-day, 1-week and 1-month views.")
           : "";
         return `<button type="button" data-candle-interval="${key}" class="${selectedInterval === key ? "active" : ""}" ${disabled ? "disabled" : ""} title="${title}">${language() === "en" ? enLabel : trLabel}</button>`;
       }).join("");
@@ -455,7 +442,6 @@
       if ($("pmChartStats")) $("pmChartStats").textContent = "—";
       return;
     }
-
     if (message) message.style.display = "none";
 
     const p = { l: 62, r: 20, t: 30, b: 60 };
@@ -464,13 +450,11 @@
     const priceHeight = height * 0.8;
     const volumeTop = p.t + height * 0.85;
     const volumeHeight = height * 0.13;
-
     let min = Math.min(...rows.map(row => row.low ?? row.close));
     let max = Math.max(...rows.map(row => row.high ?? row.close));
     const padding = (max - min || Math.max(0.01, max * 0.002)) * 0.07;
     min -= padding;
     max += padding;
-
     const maxVolume = Math.max(1, ...rows.map(row => row.volume || 0));
     const x = index => p.l + (rows.length === 1 ? width / 2 : index * width / (rows.length - 1));
     const y = value => p.t + (max - value) * priceHeight / Math.max(1e-9, max - min);
@@ -499,16 +483,11 @@
       context.strokeStyle = context.fillStyle = "#8ecab4";
       context.lineWidth = 2;
       context.beginPath();
-      rows.forEach((row, index) => {
-        if (index) context.lineTo(x(index), y(row.close));
-        else context.moveTo(x(index), y(row.close));
-      });
+      rows.forEach((row, index) => index ? context.lineTo(x(index), y(row.close)) : context.moveTo(x(index), y(row.close)));
       if (rows.length === 1) {
         context.arc(x(0), y(rows[0].close), 4, 0, Math.PI * 2);
         context.fill();
-      } else {
-        context.stroke();
-      }
+      } else context.stroke();
     } else {
       const candleWidth = Math.max(1, Math.min(9, width / rows.length * 0.62));
       rows.forEach((row, index) => {
@@ -519,12 +498,7 @@
         context.moveTo(xx, y(row.high));
         context.lineTo(xx, y(row.low));
         context.stroke();
-        context.fillRect(
-          xx - candleWidth / 2,
-          Math.min(y(row.open), y(row.close)),
-          candleWidth,
-          Math.max(1, Math.abs(y(row.open) - y(row.close)))
-        );
+        context.fillRect(xx - candleWidth / 2, Math.min(y(row.open), y(row.close)), candleWidth, Math.max(1, Math.abs(y(row.open) - y(row.close))));
       });
     }
 
@@ -559,8 +533,8 @@
     const asset = api?.getSelected?.();
     if (!api?.state || !asset || api.state.source !== "DAILY") return;
     const token = ++chartRequest;
-
     renderControls();
+
     const message = $("pmChartMessage");
     if (message) {
       message.style.display = "grid";
@@ -570,19 +544,18 @@
     try {
       const rows = await chartRows(asset);
       if (token !== chartRequest || selectedAsset()?.key !== asset.key || workspace()?.state?.source !== "DAILY") return;
-      drawRows(rows, HOURLY_INTERVALS.has(selectedInterval) ? "Yahoo Finance hourly chart feed" : "Yahoo Finance / MIC daily history");
-    } catch (error) {
+      drawRows(rows, HOURLY_INTERVALS.has(selectedInterval) ? "MIC hourly OHLC cache" : "MIC daily OHLC cache");
+    } catch (_) {
       if (token !== chartRequest) return;
       const fallbackRows = DAILY_INTERVALS.has(selectedInterval)
         ? filterRange(aggregateDaily(localDailyRows(), selectedInterval), selectedRange)
         : [];
-      if (fallbackRows.length) {
-        drawRows(fallbackRows, "MIC daily history");
-      } else {
+      if (fallbackRows.length) drawRows(fallbackRows, "MIC daily history");
+      else {
         drawRows([], "");
         if (message) {
           message.textContent = HOURLY_INTERVALS.has(selectedInterval)
-            ? T("Saatlik mum verisi şu anda veri sağlayıcıdan alınamadı. Günlük/haftalık/aylık mum aralığını deneyin.", "Hourly candle data is currently unavailable from the provider. Try daily, weekly, or monthly candles.")
+            ? T("Saatlik OHLC geçmişi henüz hazırlanmadı. Veri önbelleği tamamlandığında bu mum aralığı otomatik kullanılabilir olacak.", "Hourly OHLC history is not ready yet. This candle interval will become available when the cache is populated.")
             : T("Bu dönem için yeterli fiyat geçmişi bulunamadı.", "There is not enough price history for this range.");
         }
       }
@@ -593,21 +566,12 @@
     const api = workspace();
     const asset = api?.getSelected?.();
     if (!api?.state || !asset || api.state.source !== "DAILY" || hasHistory()) return;
-
     const status = $("pmHistoryStatus");
     const message = $("pmChartMessage");
-    if (status) {
-      status.textContent = T(
-        `${asset.symbol} günlük OHLC geçmişi hazırlanıyor · Portföy grafiği açık kalacak`,
-        `${asset.symbol} daily OHLC history is being prepared · Portfolio chart will remain open`
-      );
-    }
+    if (status) status.textContent = T(`${asset.symbol} günlük OHLC geçmişi hazırlanıyor · Portföy grafiği açık kalacak`, `${asset.symbol} daily OHLC history is being prepared · Portfolio chart will remain open`);
     if (message) {
       message.style.display = "grid";
-      message.textContent = T(
-        "Günlük fiyat geçmişi henüz hazır değil. Veri oluştuğunda grafik otomatik yüklenecek.",
-        "Daily price history is not ready yet. The chart will load automatically when the data becomes available."
-      );
+      message.textContent = T("Günlük fiyat geçmişi henüz hazır değil. Veri oluştuğunda grafik otomatik yüklenecek.", "Daily price history is not ready yet. The chart will load automatically when the data becomes available.");
     }
   }
 
@@ -618,11 +582,9 @@
     if (!api?.state || !asset || api.state.source !== "DAILY") return;
     if (hasHistory()) return;
     if (version && Number(api.state.requestVersion || 0) !== Number(version)) return;
-
     expectedVersion = Number(api.state.requestVersion || 0);
     showWaitingState();
     try { await api.select?.(asset.key, true); } catch (_) {}
-
     if (!dailySelected() || hasHistory()) return;
     expectedVersion = Number(api.state.requestVersion || 0);
     showWaitingState();
@@ -654,12 +616,11 @@
   }
 
   function installObserver() {
-    if (observer) observer.disconnect();
+    if (statusObserver) statusObserver.disconnect();
     const status = $("pmHistoryStatus");
     if (!status) return;
-    observer = new MutationObserver(() => {
-      if (!dailySelected()) return;
-      if (status.textContent === lastAdvancedStatus) return;
+    statusObserver = new MutationObserver(() => {
+      if (!dailySelected() || status.textContent === lastAdvancedStatus) return;
       const asset = selectedAsset();
       if (!asset) return;
       setTimeout(() => {
@@ -667,7 +628,7 @@
         refreshChart();
       }, 0);
     });
-    observer.observe(status, { childList: true, characterData: true, subtree: true });
+    statusObserver.observe(status, { childList: true, characterData: true, subtree: true });
   }
 
   function installUi() {
@@ -689,19 +650,17 @@
           renderReturns(asset);
           refreshChart();
         }
-      } else {
-        stopTimer();
-      }
+      } else stopTimer();
     });
 
     window.addEventListener("pm-market-source-change", event => {
       installUi();
       if (event.detail?.source === "DAILY") {
         schedule(event.detail?.version, 250);
+        const asset = selectedAsset();
+        if (asset) renderReturns(asset);
         refreshChart();
-      } else {
-        stopTimer();
-      }
+      } else stopTimer();
       renderControls();
     });
 
@@ -711,8 +670,7 @@
 
     window.addEventListener("piyasa-market-quotes", () => {
       const asset = selectedAsset();
-      if (!asset) return;
-      setTimeout(() => renderReturns(asset), 0);
+      if (asset) setTimeout(() => renderReturns(asset), 0);
     });
 
     window.addEventListener("resize", () => {
@@ -722,6 +680,8 @@
     document.addEventListener("visibilitychange", () => {
       if (!document.hidden && dailySelected()) {
         if (!hasHistory()) schedule(null, 250);
+        const asset = selectedAsset();
+        if (asset) renderReturns(asset);
         refreshChart();
       }
     });
@@ -752,6 +712,7 @@
       RETRY_MS,
       RANGE_OPTIONS,
       INTERVAL_OPTIONS,
+      HOURLY_RANGES,
       aggregateHourly,
       aggregateDaily,
       filterRange,
