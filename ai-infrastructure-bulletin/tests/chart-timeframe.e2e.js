@@ -6,6 +6,40 @@ const { chromium } = require("playwright");
 const APP_URL = process.env.PM_APP_URL || "http://127.0.0.1:4173/ai-infrastructure-bulletin/#market";
 let browser = null;
 
+function syntheticDaily() {
+  const history = [];
+  const start = Date.UTC(2024, 0, 2, 12, 0, 0);
+  for (let index = 0; index < 800; index += 1) {
+    const time = start + index * 86400_000;
+    const base = 8 + index * 0.008 + Math.sin(index / 17) * 0.55;
+    history.push({
+      date: new Date(time).toISOString().slice(0, 10),
+      open: base - 0.08,
+      high: base + 0.32,
+      low: base - 0.26,
+      close: base + 0.06,
+      volume: 1_000_000 + index * 1000
+    });
+  }
+  return { symbol: "RDW", provider: "CI synthetic daily cache", range: "5y", history };
+}
+
+function syntheticHourly() {
+  const bars = [];
+  const start = Date.UTC(2026, 6, 1, 13, 30, 0) / 1000;
+  for (let day = 0; day < 38; day += 1) {
+    const date = new Date((start + day * 86400) * 1000);
+    if ([0, 6].includes(date.getUTCDay())) continue;
+    for (let hour = 0; hour < 7; hour += 1) {
+      const timestamp = start + day * 86400 + hour * 3600;
+      const index = bars.length;
+      const base = 10 + index * 0.012 + Math.sin(index / 8) * 0.18;
+      bars.push([timestamp, base - 0.03, base + 0.14, base - 0.12, base + 0.05, 120000 + index * 250]);
+    }
+  }
+  return { key: "US:RDW", symbol: "RDW", market: "US", provider: "CI synthetic hourly cache", range: "60d", interval: "1h", bars };
+}
+
 (async () => {
   browser = await chromium.launch({ headless: true, channel: "chrome" });
   const page = await browser.newPage();
@@ -13,27 +47,13 @@ let browser = null;
   page.on("pageerror", error => errors.push(error.message));
   page.on("console", message => { if (message.type() === "error") errors.push(message.text()); });
 
+  const daily = syntheticDaily();
+  const hourly = syntheticHourly();
+  await page.route("**/mic/data/history/RDW.json*", route => route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(daily) }));
+  await page.route("**/mic/data/hourly/US/RDW.json*", route => route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(hourly) }));
+
   await page.goto(APP_URL, { waitUntil: "commit", timeout: 30000 });
   await page.waitForFunction(() => Boolean(window.PiyasaDailyHistory && document.querySelector("#pmMarketSearch")), null, { timeout: 30000 });
-
-  const corsCheck = await page.evaluate(async () => {
-    const url = "https://query1.finance.yahoo.com/v8/finance/chart/RDW?range=1mo&interval=1h&events=div%2Csplits&includePrePost=false";
-    try {
-      const response = await fetch(url, { mode: "cors", credentials: "omit", cache: "no-store" });
-      const payload = response.ok ? await response.json() : null;
-      return {
-        ok: response.ok,
-        status: response.status,
-        bars: payload?.chart?.result?.[0]?.timestamp?.length || 0,
-        error: payload?.chart?.error || null
-      };
-    } catch (error) {
-      return { ok: false, status: 0, bars: 0, error: String(error) };
-    }
-  });
-  console.log("yahoo browser chart check", JSON.stringify(corsCheck));
-  assert.equal(corsCheck.ok, true, `browser must be able to read Yahoo chart feed: ${JSON.stringify(corsCheck)}`);
-  assert.ok(corsCheck.bars > 10, "RDW one-hour feed must contain multiple bars");
 
   await page.locator("#pmMarketSearch").fill("RDW");
   await page.waitForFunction(() => Boolean(document.querySelector('#pmAssetList [data-pm-key="US:RDW"]')));
@@ -58,7 +78,7 @@ let browser = null;
   await page.locator('#pmRangeButtons [data-range="1M"]').click();
   await page.locator('#pmCandleIntervals [data-candle-interval="1h"]').click();
   await page.waitForFunction(() => /1 sa OHLC|1 h OHLC/.test(document.querySelector("#pmHistoryStatus")?.textContent || ""), null, { timeout: 30000 });
-  assert.equal(await page.locator("#pmChartMessage").isVisible(), false, "one-hour RDW candles must render");
+  assert.equal(await page.locator("#pmChartMessage").isVisible(), false, "one-hour RDW candles must render from same-origin cache");
 
   await page.locator('#pmCandleIntervals [data-candle-interval="2h"]').click();
   await page.waitForFunction(() => /2 sa OHLC|2 h OHLC/.test(document.querySelector("#pmHistoryStatus")?.textContent || ""), null, { timeout: 30000 });
@@ -66,18 +86,20 @@ let browser = null;
   await page.locator('#pmCandleIntervals [data-candle-interval="4h"]').click();
   await page.waitForFunction(() => /4 sa OHLC|4 h OHLC/.test(document.querySelector("#pmHistoryStatus")?.textContent || ""), null, { timeout: 30000 });
 
-  await page.locator('#pmRangeButtons [data-range="5Y"]').click();
+  await page.locator('#pmRangeButtons [data-range="3M"]').click();
   await page.waitForFunction(() => document.querySelector('#pmCandleIntervals [data-candle-interval="1d"]')?.classList.contains("active"));
   for (const interval of ["1h", "2h", "4h"]) {
-    assert.equal(await page.locator(`#pmCandleIntervals [data-candle-interval="${interval}"]`).isDisabled(), true, `${interval} must be disabled for 5Y because the hourly provider does not retain five years`);
+    assert.equal(await page.locator(`#pmCandleIntervals [data-candle-interval="${interval}"]`).isDisabled(), true, `${interval} must be disabled after the 1-month range because the server cache retains 60 days of hourly bars`);
   }
+
+  await page.locator('#pmRangeButtons [data-range="5Y"]').click();
   await page.waitForFunction(() => /1 G OHLC|1 D OHLC/.test(document.querySelector("#pmHistoryStatus")?.textContent || ""), null, { timeout: 30000 });
 
   await page.locator('#pmRangeButtons [data-range="YTD"]').click();
   await page.waitForFunction(() => /OHLC/.test(document.querySelector("#pmHistoryStatus")?.textContent || ""));
 
   assert.deepEqual([...new Set(errors)], [], `browser errors: ${[...new Set(errors)].join(" | ")}`);
-  console.log("chart-timeframe: range, interval, five-year fallback and return metrics validated");
+  console.log("chart-timeframe: same-origin ranges, hourly aggregation, long-range daily fallback and return metrics validated");
 })().then(async () => {
   if (browser) await browser.close();
 }).catch(async error => {
