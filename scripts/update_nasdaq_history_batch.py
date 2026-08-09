@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-# MIC US equity daily-history coverage and refresh rotation.
+# MIC US equity five-year daily-history coverage and refresh rotation.
 # The chart history universe must be the same canonical catalogue used by the UI.
 import json
 import math
@@ -17,6 +17,8 @@ ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "ai-infrastructure-bulletin" / "data" / "equity-catalog.json"
 HISTORY_DIR = ROOT / "mic" / "data" / "history"
 STATE_FILE = ROOT / "mic" / "data" / "nasdaq-history-state.json"
+HISTORY_RANGE = "5y"
+HISTORY_ROWS = 1350
 BATCH_SIZE = max(10, min(500, int(os.getenv("MIC_NASDAQ_HISTORY_BATCH", "200"))))
 WORKERS = max(2, min(12, int(os.getenv("MIC_NASDAQ_HISTORY_WORKERS", "8"))))
 MISSING_PRIORITY_LIMIT = max(
@@ -75,7 +77,7 @@ def fetch_one(asset):
         try:
             response = requests.get(
                 f"https://{host}/v8/finance/chart/{encoded}",
-                params={"range": "2y", "interval": "1d", "events": "div,splits"},
+                params={"range": HISTORY_RANGE, "interval": "1d", "events": "div,splits"},
                 headers=HEADERS,
                 timeout=30,
             )
@@ -126,7 +128,8 @@ def fetch_one(asset):
                     "provider_symbol": provider_symbol,
                     "provider": "Yahoo Finance chart feed",
                     "updated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-                    "history": history[-540:],
+                    "range": HISTORY_RANGE,
+                    "history": history[-HISTORY_ROWS:],
                 },
                 None,
             )
@@ -223,6 +226,8 @@ def main():
         "cursor": next_cursor,
         "eligible_count": len(assets),
         "catalog": "ai-infrastructure-bulletin/data/equity-catalog.json",
+        "history_range": HISTORY_RANGE,
+        "history_rows": HISTORY_ROWS,
         "batch_size": len(batch),
         "forced_priority_count": forced_count,
         "missing_priority_count": missing_count,
@@ -239,7 +244,7 @@ def main():
     }
     STATE_FILE.write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     print(
-        "US equity history coverage "
+        "US equity five-year history coverage "
         f"cursor={cursor}->{next_cursor}; forced={forced_count}; retry={retry_count}; "
         f"missing={missing_before}->{missing_after}; missing_priority={missing_count}; "
         f"regular={regular_added}; success={successes}; failed={len(failures)}; eligible={len(assets)}"
