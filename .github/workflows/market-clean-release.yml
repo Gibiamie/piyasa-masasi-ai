@@ -9,12 +9,15 @@ on:
       - 'ai-infrastructure-bulletin/market-core-v2.js'
       - 'ai-infrastructure-bulletin/intraday-core.js'
       - 'ai-infrastructure-bulletin/market-live-session.js'
+      - 'ai-infrastructure-bulletin/daily-history-controller.js'
       - 'ai-infrastructure-bulletin/language-portfolio-runtime.js'
       - 'ai-infrastructure-bulletin/research-core-v2.js'
       - 'ai-infrastructure-bulletin/sw.js'
       - 'ai-infrastructure-bulletin/tests/market-core-clean.test.js'
       - 'ai-infrastructure-bulletin/tests/market-clean-architecture.test.js'
+      - 'ai-infrastructure-bulletin/tests/market-core-architecture.test.js'
       - 'ai-infrastructure-bulletin/tests/running-market-search.e2e.js'
+      - 'ai-infrastructure-bulletin/tests/chart-timeframe.e2e.js'
       - '.github/workflows/market-clean-release.yml'
   pull_request:
     branches: [remediation/v30-audit]
@@ -24,12 +27,15 @@ on:
       - 'ai-infrastructure-bulletin/market-core-v2.js'
       - 'ai-infrastructure-bulletin/intraday-core.js'
       - 'ai-infrastructure-bulletin/market-live-session.js'
+      - 'ai-infrastructure-bulletin/daily-history-controller.js'
       - 'ai-infrastructure-bulletin/language-portfolio-runtime.js'
       - 'ai-infrastructure-bulletin/research-core-v2.js'
       - 'ai-infrastructure-bulletin/sw.js'
       - 'ai-infrastructure-bulletin/tests/market-core-clean.test.js'
       - 'ai-infrastructure-bulletin/tests/market-clean-architecture.test.js'
+      - 'ai-infrastructure-bulletin/tests/market-core-architecture.test.js'
       - 'ai-infrastructure-bulletin/tests/running-market-search.e2e.js'
+      - 'ai-infrastructure-bulletin/tests/chart-timeframe.e2e.js'
       - '.github/workflows/market-clean-release.yml'
   workflow_dispatch:
 
@@ -39,7 +45,7 @@ permissions:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
 
@@ -53,15 +59,18 @@ jobs:
           node --check ai-infrastructure-bulletin/market-core-v2.js
           node --check ai-infrastructure-bulletin/intraday-core.js
           node --check ai-infrastructure-bulletin/market-live-session.js
+          node --check ai-infrastructure-bulletin/daily-history-controller.js
           node --check ai-infrastructure-bulletin/language-portfolio-runtime.js
           node --check ai-infrastructure-bulletin/research-core-v2.js
           node --check ai-infrastructure-bulletin/sw.js
           node --check ai-infrastructure-bulletin/tests/running-market-search.e2e.js
+          node --check ai-infrastructure-bulletin/tests/chart-timeframe.e2e.js
 
       - name: Run market core and architecture tests
         run: |
           node ai-infrastructure-bulletin/tests/market-core-clean.test.js
           node ai-infrastructure-bulletin/tests/market-clean-architecture.test.js
+          node ai-infrastructure-bulletin/tests/market-core-architecture.test.js
 
       - name: Install browser test runtime
         run: npm install --no-save playwright@1.55.0
@@ -74,6 +83,9 @@ jobs:
 
       - name: Verify language switching, catalogue search and transaction autofill
         run: node ai-infrastructure-bulletin/tests/running-market-search.e2e.js
+
+      - name: Verify chart ranges, candle intervals and return metrics
+        run: node ai-infrastructure-bulletin/tests/chart-timeframe.e2e.js
 
       - name: Verify BIST and US scanner simple POSTs
         run: |
