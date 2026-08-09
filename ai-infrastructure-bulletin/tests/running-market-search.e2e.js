@@ -53,7 +53,7 @@ let browser = null;
     languagePortfolio: true,
     research: true
   });
-  assert.ok(diagnostics.scripts.some(src => src.includes("2026.08.09.29")), "v29 runtime modules must be loaded");
+  assert.ok(diagnostics.scripts.some(src => src.includes("2026.08.09.30")), "v30 runtime modules must be loaded");
 
   async function search(symbol) {
     await page.locator("#pmMarketSearch").fill(symbol);
@@ -113,7 +113,7 @@ let browser = null;
   assert.equal(await page.locator("#marketView").getByText(/TradingView/i).count(), 0, "market workspace must not expose TradingView UI");
   assert.deepEqual([...new Set(errors)], [], `browser errors: ${[...new Set(errors)].join(" | ")}`);
 
-  console.log("running-market-search: v29 catalogue, intraday, language and portfolio assertions passed");
+  console.log("running-market-search: v30 catalogue, intraday, language and portfolio assertions passed");
 })().then(async () => {
   if (browser) await browser.close();
 }).catch(async error => {
