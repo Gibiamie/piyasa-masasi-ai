@@ -8,23 +8,25 @@ const files = {
   workspace: fs.readFileSync("ai-infrastructure-bulletin/market-core-v2.js", "utf8"),
   intraday: fs.readFileSync("ai-infrastructure-bulletin/intraday-core.js", "utf8"),
   live: fs.readFileSync("ai-infrastructure-bulletin/market-live-session.js", "utf8"),
+  dailyHistory: fs.readFileSync("ai-infrastructure-bulletin/daily-history-controller.js", "utf8"),
   languagePortfolio: fs.readFileSync("ai-infrastructure-bulletin/language-portfolio-runtime.js", "utf8"),
   research: fs.readFileSync("ai-infrastructure-bulletin/research-core-v2.js", "utf8"),
   sw: fs.readFileSync("ai-infrastructure-bulletin/sw.js", "utf8"),
   catalog: fs.readFileSync("ai-infrastructure-bulletin/data/equity-catalog.json", "utf8")
 };
 
-for (const name of ["integration", "workspace", "intraday", "live", "languagePortfolio", "research", "sw"]) {
+for (const name of ["integration", "workspace", "intraday", "live", "dailyHistory", "languagePortfolio", "research", "sw"]) {
   assert.doesNotMatch(files[name], /mountTradingView|s3\.tradingview\.com|pmTvWrap|tradingview-widget-container/, `${name} must not contain embedded widget code`);
 }
 
 assert.match(files.integration, /market-core-v2\.js/);
 assert.match(files.integration, /intraday-core\.js/);
 assert.match(files.integration, /market-live-session\.js/);
+assert.match(files.integration, /daily-history-controller\.js/);
 assert.match(files.integration, /language-portfolio-runtime\.js/);
 assert.match(files.integration, /research-core-v2\.js/);
-assert.match(files.integration, /2026\.08\.05\.25/);
-assert.doesNotMatch(files.integration, /workspace-enhancements|research-intelligence-core|live-market-core|market-live-bridge|chart-fetch-fallback|live-session-control/);
+assert.match(files.integration, /2026\.08\.09\.29/);
+assert.doesNotMatch(files.integration, /workspace-enhancements|research-intelligence-core|live-market-core|market-live-bridge|chart-fetch-fallback|live-session-control|chart-controller-v27/);
 
 assert.match(files.workspace, /equity-catalog\.json/);
 assert.match(files.workspace, /keyOf\(market, symbol\)/);
@@ -47,6 +49,15 @@ assert.doesNotMatch(files.live, /Content-Type/);
 assert.match(files.live, /PiyasaResearchIntelligence\?\.getPersonalAssets/);
 assert.doesNotMatch(files.live, /query1\.finance\.yahoo|query2\.finance\.yahoo|allorigins|corsproxy|codetabs/);
 
+assert.match(files.dailyHistory, /RANGE_OPTIONS/);
+assert.match(files.dailyHistory, /INTERVAL_OPTIONS/);
+assert.match(files.dailyHistory, /DAILY_COVERAGE_RANGE = "5y"/);
+assert.match(files.dailyHistory, /query1\.finance\.yahoo\.com/);
+assert.match(files.dailyHistory, /pm6m/);
+assert.match(files.dailyHistory, /returnFromRows/);
+assert.match(files.dailyHistory, /returnOneYear/);
+assert.doesNotMatch(files.dailyHistory, /activateIntradayFallback|setSource\("INTRADAY"/);
+
 assert.match(files.languagePortfolio, /applyMarketLanguage/);
 assert.match(files.languagePortfolio, /fillTransactionAsset/);
 assert.match(files.languagePortfolio, /txCurrentPriceDate/);
@@ -63,11 +74,12 @@ assert.match(files.research, /renderSourcesView/);
 assert.match(files.research, /renderOverview/);
 assert.doesNotMatch(files.research, /REPO_ISSUES_URL|Ekleme talebi oluştur/);
 
-assert.match(files.sw, /piyasa-masasi-workspace-v25/);
+assert.match(files.sw, /piyasa-masasi-workspace-v29/);
 assert.match(files.sw, /equity-catalog\.json/);
+assert.match(files.sw, /daily-history-controller\.js/);
 assert.match(files.sw, /language-portfolio-runtime\.js/);
 assert.match(files.sw, /research-core-v2\.js/);
-assert.doesNotMatch(files.sw, /workspace-enhancements|research-intelligence-core|client\.navigate|combineMarketIntegration|market-core\.js/);
+assert.doesNotMatch(files.sw, /workspace-enhancements|research-intelligence-core|client\.navigate|combineMarketIntegration|market-core\.js|chart-controller-v27/);
 
 assert.equal(fs.existsSync("ai-infrastructure-bulletin/workspace-enhancements.js"), false, "obsolete workspace patch must be deleted");
 assert.equal(fs.existsSync("ai-infrastructure-bulletin/research-intelligence-core.js"), false, "superseded research prototype must be deleted");
@@ -81,4 +93,4 @@ for (const key of ["BIST:BURCE", "BIST:ISATR", "BIST:ISKUR", "BIST:UMPAS", "US:R
   assert.ok(keys.has(key), `${key} missing from catalogue`);
 }
 
-console.log("market-clean-architecture: v25 browser scanner, open-session bars, canonical research and sources validated");
+console.log("market-clean-architecture: v29 advanced portfolio chart, browser scanner and canonical research validated");
