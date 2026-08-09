@@ -43,6 +43,7 @@
   let selectedRange = "1Y";
   let selectedInterval = "1d";
   let observer = null;
+  let lastAdvancedStatus = "";
   const providerCache = new Map();
   const dailyCoverageCache = new Map();
 
@@ -292,9 +293,7 @@
       dailyCoverageCache.set(symbol, rows);
       return rows;
     } catch (_) {
-      const rows = localDailyRows();
-      if (rows.length) dailyCoverageCache.set(symbol, rows);
-      return rows;
+      return localDailyRows();
     }
   }
 
@@ -356,10 +355,10 @@
     return (last.close / base.close - 1) * 100;
   }
 
-  async function renderReturns(asset, requestToken = chartRequest) {
+  async function renderReturns(asset) {
     let rows = [];
     try { rows = await ensureDailyCoverage(asset); } catch (_) {}
-    if (requestToken !== chartRequest || selectedAsset()?.key !== asset.key) return;
+    if (selectedAsset()?.key !== asset.key) return;
 
     const fallback = asset.performance || {};
     const oneMonth = returnFromRows(rows, 1) ?? finite(fallback["1A"]);
@@ -549,7 +548,9 @@
     }
     if ($("pmHistoryStatus")) {
       const intervalLabel = INTERVAL_OPTIONS.find(item => item[0] === selectedInterval);
-      $("pmHistoryStatus").textContent = `${rows.length} ${language() === "en" ? intervalLabel?.[2] : intervalLabel?.[1]} OHLC · ${dateLabel(rows[0].time)} → ${dateLabel(rows.at(-1).time)}${sourceLabel ? ` · ${sourceLabel}` : ""}`;
+      const statusText = `${rows.length} ${language() === "en" ? intervalLabel?.[2] : intervalLabel?.[1]} OHLC · ${dateLabel(rows[0].time)} → ${dateLabel(rows.at(-1).time)}${sourceLabel ? ` · ${sourceLabel}` : ""}`;
+      lastAdvancedStatus = statusText;
+      $("pmHistoryStatus").textContent = statusText;
     }
   }
 
@@ -658,11 +659,11 @@
     if (!status) return;
     observer = new MutationObserver(() => {
       if (!dailySelected()) return;
+      if (status.textContent === lastAdvancedStatus) return;
       const asset = selectedAsset();
       if (!asset) return;
-      const token = chartRequest;
       setTimeout(() => {
-        renderReturns(asset, token);
+        renderReturns(asset);
         refreshChart();
       }, 0);
     });
@@ -685,8 +686,7 @@
         installUi();
         const asset = selectedAsset();
         if (asset) {
-          const token = chartRequest;
-          renderReturns(asset, token);
+          renderReturns(asset);
           refreshChart();
         }
       } else {
@@ -712,8 +712,7 @@
     window.addEventListener("piyasa-market-quotes", () => {
       const asset = selectedAsset();
       if (!asset) return;
-      const token = chartRequest;
-      setTimeout(() => renderReturns(asset, token), 0);
+      setTimeout(() => renderReturns(asset), 0);
     });
 
     window.addEventListener("resize", () => {
@@ -731,8 +730,7 @@
       installUi();
       const asset = selectedAsset();
       if (asset) {
-        const token = chartRequest;
-        renderReturns(asset, token);
+        renderReturns(asset);
         if (dailySelected()) refreshChart();
       }
     }).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
@@ -745,7 +743,7 @@
     refreshChart,
     refreshReturns: () => {
       const asset = selectedAsset();
-      if (asset) return renderReturns(asset, chartRequest);
+      if (asset) return renderReturns(asset);
     },
     get range() { return selectedRange; },
     get interval() { return selectedInterval; },
@@ -767,7 +765,7 @@
   bind();
   const asset = selectedAsset();
   if (asset && dailySelected()) {
-    renderReturns(asset, chartRequest);
+    renderReturns(asset);
     refreshChart();
   }
 })();
