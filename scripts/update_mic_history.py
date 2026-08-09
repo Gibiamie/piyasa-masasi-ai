@@ -12,6 +12,8 @@ import requests
 ROOT = Path(__file__).resolve().parents[1]
 MARKET = ROOT / "mic" / "data" / "market.json"
 HISTORY_DIR = ROOT / "mic" / "data" / "history"
+HISTORY_RANGE = "5y"
+HISTORY_ROWS = 1350
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126 Safari/537.36",
     "Accept": "application/json,text/plain,*/*",
@@ -57,7 +59,7 @@ def fetch_yahoo(asset: dict) -> dict:
         try:
             response = requests.get(
                 url,
-                params={"range": "2y", "interval": "1d", "events": "div,splits"},
+                params={"range": HISTORY_RANGE, "interval": "1d", "events": "div,splits"},
                 headers=HEADERS,
                 timeout=25,
             )
@@ -97,7 +99,8 @@ def fetch_yahoo(asset: dict) -> dict:
                 "provider_symbol": provider_symbol,
                 "provider": "Yahoo Finance chart feed",
                 "updated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-                "history": history[-540:],
+                "range": HISTORY_RANGE,
+                "history": history[-HISTORY_ROWS:],
             }
         except Exception as exc:  # noqa: BLE001
             last_error = f"{host}: {exc}"
@@ -137,7 +140,7 @@ def main() -> None:
             if message.startswith("ERROR"):
                 failed.append(f"{symbol}: {message}")
             print(symbol, message)
-    print(f"symbols={len(assets)} changed={changed} failed={len(failed)}")
+    print(f"symbols={len(assets)} changed={changed} failed={len(failed)} range={HISTORY_RANGE}")
     if failed:
         print("\n".join(failed[:50]))
     if len(assets) and len(failed) == len(assets):
