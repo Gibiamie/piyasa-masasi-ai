@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-# MIC Nasdaq daily-history coverage and refresh rotation.
+# MIC US equity daily-history coverage and refresh rotation.
+# The chart history universe must be the same canonical catalogue used by the UI.
 import json
 import math
 import os
@@ -13,7 +14,7 @@ from urllib.parse import quote
 import requests
 
 ROOT = Path(__file__).resolve().parents[1]
-CATALOG = ROOT / "mic" / "data" / "nasdaq-assets.json"
+CATALOG = ROOT / "ai-infrastructure-bulletin" / "data" / "equity-catalog.json"
 HISTORY_DIR = ROOT / "mic" / "data" / "history"
 STATE_FILE = ROOT / "mic" / "data" / "nasdaq-history-state.json"
 BATCH_SIZE = max(10, min(500, int(os.getenv("MIC_NASDAQ_HISTORY_BATCH", "200"))))
@@ -42,8 +43,16 @@ def finite(value):
         return None
 
 
-def eligible(asset):
-    return asset.get("type") == "etf" or asset.get("instrument_class") not in EXCLUDED
+def is_us_equity(asset):
+    market = str(asset.get("market") or "").upper().strip()
+    currency = str(asset.get("currency") or "").upper().strip()
+    provider_symbol = str(asset.get("provider_symbol") or "").upper().strip()
+    instrument_class = str(asset.get("instrument_class") or "").strip()
+    if market == "BIST" or currency == "TRY" or provider_symbol.endswith(".IS"):
+        return False
+    if instrument_class in EXCLUDED:
+        return False
+    return bool(asset.get("symbol"))
 
 
 def symbol_of(asset):
@@ -151,10 +160,10 @@ def append_unique(target, seen, assets, limit):
 def main():
     HISTORY_DIR.mkdir(parents=True, exist_ok=True)
     catalog = json.loads(CATALOG.read_text(encoding="utf-8"))
-    assets = [asset for asset in catalog.get("assets", []) if eligible(asset)]
+    assets = [asset for asset in catalog.get("assets", []) if is_us_equity(asset)]
     assets.sort(key=symbol_of)
     if not assets:
-        raise RuntimeError("Nasdaq catalog is empty")
+        raise RuntimeError("Canonical US equity catalogue is empty")
 
     by_symbol = {symbol_of(asset): asset for asset in assets if symbol_of(asset)}
     state = load_state()
@@ -169,10 +178,10 @@ def main():
         if asset:
             retry.append(asset)
 
-    # Missing daily histories are coverage defects, so fill them before routine refresh rotation.
-    missing = [asset for asset in assets if not history_path(asset).exists()]
-    missing.sort(key=symbol_of)
-    missing = missing[:MISSING_PRIORITY_LIMIT]
+    missing_all = [asset for asset in assets if not history_path(asset).exists()]
+    missing_all.sort(key=symbol_of)
+    missing_before = len(missing_all)
+    missing = missing_all[:MISSING_PRIORITY_LIMIT]
 
     batch = []
     seen = set()
@@ -213,10 +222,11 @@ def main():
     out = {
         "cursor": next_cursor,
         "eligible_count": len(assets),
+        "catalog": "ai-infrastructure-bulletin/data/equity-catalog.json",
         "batch_size": len(batch),
         "forced_priority_count": forced_count,
         "missing_priority_count": missing_count,
-        "missing_before": len([asset for asset in assets if not history_path(asset).exists()]) + successes,
+        "missing_before": missing_before,
         "missing_after": missing_after,
         "regular_batch_size": regular_added,
         "retry_count": retry_count,
@@ -229,13 +239,13 @@ def main():
     }
     STATE_FILE.write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     print(
-        "Nasdaq history coverage "
+        "US equity history coverage "
         f"cursor={cursor}->{next_cursor}; forced={forced_count}; retry={retry_count}; "
-        f"missing_priority={missing_count}; regular={regular_added}; success={successes}; "
-        f"failed={len(failures)}; missing_after={missing_after}; eligible={len(assets)}"
+        f"missing={missing_before}->{missing_after}; missing_priority={missing_count}; "
+        f"regular={regular_added}; success={successes}; failed={len(failures)}; eligible={len(assets)}"
     )
     if successes == 0:
-        raise RuntimeError("Nasdaq history batch produced no successful files")
+        raise RuntimeError("US equity history batch produced no successful files")
 
 
 if __name__ == "__main__":
