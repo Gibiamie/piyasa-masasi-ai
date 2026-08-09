@@ -34,6 +34,10 @@ jobs:
         env:
           MIC_NASDAQ_HISTORY_BATCH: '200'
           MIC_NASDAQ_HISTORY_WORKERS: '10'
+          MIC_NASDAQ_HISTORY_MISSING_PRIORITY: '200'
+          # Immediate coverage repair for the currently verified missing US chart.
+          # Generic missing-history prioritization above prevents the same defect for new symbols.
+          MIC_NASDAQ_HISTORY_PRIORITY: 'RDW'
       - name: Commit refreshed feeds
         run: |
           git config user.name "github-actions[bot]"
