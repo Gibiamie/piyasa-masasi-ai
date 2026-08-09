@@ -5,7 +5,9 @@ on:
   push:
     paths:
       - scripts/update_mic_data.py
+      - scripts/update_mic_history.py
       - scripts/update_nasdaq_history_batch.py
+      - scripts/update_hourly_history_batch.py
       - .github/workflows/mic-market-data.yml
   schedule:
     - cron: '*/15 * * * *'
@@ -20,7 +22,7 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -35,16 +37,20 @@ jobs:
           MIC_NASDAQ_HISTORY_BATCH: '200'
           MIC_NASDAQ_HISTORY_WORKERS: '10'
           MIC_NASDAQ_HISTORY_MISSING_PRIORITY: '200'
-          # Immediate coverage repair for the currently verified missing US chart.
-          # Generic missing-history prioritization above prevents the same defect for new symbols.
           MIC_NASDAQ_HISTORY_PRIORITY: 'RDW'
+      - run: python scripts/update_hourly_history_batch.py
+        env:
+          MIC_HOURLY_HISTORY_BATCH: '120'
+          MIC_HOURLY_HISTORY_WORKERS: '10'
+          MIC_HOURLY_HISTORY_MISSING_PRIORITY: '120'
+          MIC_HOURLY_HISTORY_PRIORITY: 'US:RDW'
       - name: Commit refreshed feeds
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add mic/data/market.json mic/data/nasdaq-assets.json mic/data/nasdaq-listed.csv mic/data/nasdaq-quotes.json mic/data/nasdaq-history-state.json mic/data/history
+          git add mic/data/market.json mic/data/nasdaq-assets.json mic/data/nasdaq-listed.csv mic/data/nasdaq-quotes.json mic/data/nasdaq-history-state.json mic/data/history mic/data/hourly-history-state.json mic/data/hourly
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m "chore: refresh MIC market, Nasdaq quotes and history cache"
+          git commit -m "chore: refresh MIC market and chart caches"
           for attempt in 1 2 3; do
             if git push origin "HEAD:${GITHUB_REF_NAME}"; then exit 0; fi
             git fetch origin "${GITHUB_REF_NAME}"
