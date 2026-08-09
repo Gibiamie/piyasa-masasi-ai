@@ -1,4 +1,4 @@
-const CACHE = "piyasa-masasi-workspace-v26";
+const CACHE = "piyasa-masasi-workspace-v27";
 const STATIC = [
   "./",
   "./index.html",
@@ -10,6 +10,7 @@ const STATIC = [
   "./market-core-v2.js",
   "./intraday-core.js",
   "./market-live-session.js",
+  "./chart-controller-v27.js",
   "./language-portfolio-runtime.js",
   "./research-core-v2.js",
   "./data/equity-catalog.json",
