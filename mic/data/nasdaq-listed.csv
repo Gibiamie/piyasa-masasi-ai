@@ -138,9 +138,9 @@ AESPW,Aeon Acquisition I Corp. - Warrants,stock,Warrant,Nasdaq Global Market,N,1
 AEVA,"Aeva Technologies, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 AEYE,"AudioEye, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 AFCG,Advanced Flower Capital Inc. - Common Stock,stock,Common Stock,Nasdaq Global Market,N,100
-AFJK,"Aimei Health Technology Co., Ltd - Ordinary Share",stock,Ordinary Share,Nasdaq Global Market,N,100
-AFJKR,"Aimei Health Technology Co., Ltd - Right",stock,Right,Nasdaq Global Market,N,100
-AFJKU,"Aimei Health Technology Co., Ltd - Unit",stock,Unit,Nasdaq Global Market,N,100
+AFJK,"Aimei Health Technology Co., Ltd - Ordinary Share",stock,Ordinary Share,Nasdaq Global Market,D,100
+AFJKR,"Aimei Health Technology Co., Ltd - Right",stock,Right,Nasdaq Global Market,D,100
+AFJKU,"Aimei Health Technology Co., Ltd - Unit",stock,Unit,Nasdaq Global Market,D,100
 AFOS,ARS Focused Opportunity Strategy ETF,etf,ETF,Nasdaq Global Market,N,100
 AFRI,Forafric Global PLC - Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
 AFRIW,Forafric Global PLC - Warrants,stock,Warrant,Nasdaq Capital Market,N,100
@@ -561,7 +561,7 @@ BBOT,"BridgeBio Oncology Therapeutics, Inc. - Common Stock",stock,Common Stock,N
 BBSI,"Barrett Business Services, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 BBUL,GraniteShares 2x Long BB Daily ETF,etf,ETF,Nasdaq Global Market,N,100
 BBYY,GraniteShares YieldBOOST BABA ETF,etf,ETF,Nasdaq Global Market,N,100
-BCAB,"BioAtla, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
+BCAB,"BioAtla, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 BCAL,California BanCorp - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 BCAX,Bicara Therapeutics Inc. - Common Stock,stock,Common Stock,Nasdaq Global Market,N,100
 BCBP,"BCB Bancorp, Inc. (NJ) - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
@@ -786,7 +786,7 @@ BRRR,Coinshares Bitcoin ETF,etf,ETF,Nasdaq Global Market,N,100
 BRRWW,"ProCap Financial, Inc. - Warrant.",stock,Warrant,Nasdaq Capital Market,N,100
 BRTMU,B&R Technology Merger Corp. - Units,stock,Unit,Nasdaq Global Market,N,100
 BRTR,iShares Total Return Active ETF,etf,ETF,Nasdaq Global Market,N,100
-BRTX,"BioRestorative Therapies, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
+BRTX,"BioRestorative Therapies, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,H,100
 BRUN,Boost Run Inc. - Class A Common Stock,stock,Common Stock,Nasdaq Global Market,N,100
 BRVE,"Braveheart Bio, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
 BRZE,"Braze, Inc. - Class A Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
@@ -879,7 +879,7 @@ BWMN,Bowman Consulting Group Ltd. - Common Stock,stock,Common Stock,Nasdaq Globa
 BXBL,"BOXABL, Inc.  - Common stock",stock,Common Stock,Nasdaq Global Market,N,100
 BYAH,"Park Ha Biological Technology Co., Ltd. - Class A Ordinary Shares",stock,Ordinary Share,Nasdaq Capital Market,N,100
 BYFC,Broadway Financial Corporation - Class A Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
-BYND,"Beyond Meat, Inc. - Common stock",stock,Common Stock,Nasdaq Global Select Market,D,100
+BYND,"Beyond Meat, Inc. - Common stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 BYRN,"Byrna Technologies, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 BYSI,"BeyondSpring, Inc. - Ordinary Shares",stock,Ordinary Share,Nasdaq Capital Market,N,100
 BZ,KANZHUN LIMITED - American Depository Shares,stock,Nasdaq Listed Security,Nasdaq Global Select Market,N,100
@@ -1309,7 +1309,7 @@ CVRX,"CVRx, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,
 CVV,CVD Equipment Corporation - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 CWBC,Community West Bancshares - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 CWCO,Consolidated Water Co. Ltd. - Ordinary Shares,stock,Ordinary Share,Nasdaq Global Select Market,N,100
-CWD,CaliberCos Inc. - Class A Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
+CWD,CaliberCos Inc. - Class A Common Stock,stock,Common Stock,Nasdaq Capital Market,D,100
 CWST,"Casella Waste Systems, Inc. - Class A Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 CWY,GraniteShares YieldBOOST CRWV ETF,etf,ETF,Nasdaq Global Market,N,100
 CXAI,CXApp Inc. - Class A Common Stock,stock,Common Stock,Nasdaq Capital Market,D,100
@@ -1942,7 +1942,7 @@ FTHA,Forefront Tech Holdings Acquisition Corp - Class A Ordinary Shares,stock,Or
 FTHAU,Forefront Tech Holdings Acquisition Corp - Unit,stock,Unit,Nasdaq Global Market,N,100
 FTHAW,Forefront Tech Holdings Acquisition Corp - Warrant,stock,Warrant,Nasdaq Global Market,N,100
 FTHI,First Trust BuyWrite Income ETF,etf,ETF,Nasdaq Global Market,N,100
-FTHM,Fathom Holdings Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
+FTHM,Fathom Holdings Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,D,100
 FTLF,"FitLife Brands, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 FTNT,"Fortinet, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 FTQI,First Trust Nasdaq BuyWrite Income ETF,etf,ETF,Nasdaq Global Market,N,100
@@ -2383,7 +2383,7 @@ HWBK,"Hawthorn Bancshares, Inc. - Common Stock",stock,Common Stock,Nasdaq Global
 HWC,Hancock Whitney Corporation - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 HWCPZ,Hancock Whitney Corporation - 6.25% Subordinated Notes due 2060,stock,Nasdaq Listed Security,Nasdaq Global Select Market,N,100
 HWGV,Hotchkis & Wiley Global Value Fund,etf,ETF,Nasdaq Global Market,N,100
-HWH,HWH International Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,D,100
+HWH,HWH International Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 HWIV,Hotchkis & Wiley International Value Fund,etf,ETF,Nasdaq Global Market,N,100
 HWKN,"Hawkins, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 HWO,Hotchkis & Wiley Opportunities Fund,etf,ETF,Nasdaq Global Market,N,100
@@ -2714,7 +2714,7 @@ JSM,"Navient Corporation - 6% Senior Notes due December 15, 2043",stock,Note,Nas
 JSMD,Janus Henderson Small/Mid Cap Growth Alpha ETF,etf,ETF,Nasdaq Global Market,N,100
 JSML,Janus Henderson Small Cap Growth Alpha ETF,etf,ETF,Nasdaq Global Market,N,100
 JSPR,"Jasper Therapeutics, Inc. - Class A Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
-JSPRW,"Jasper Therapeutics, Inc. - Warrant",stock,Warrant,Nasdaq Capital Market,N,100
+JSPRW,"Jasper Therapeutics, Inc. - Warrant",stock,Warrant,Nasdaq Capital Market,D,100
 JTAI,Jet.AI Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 JTEK,JPMorgan U.S. Tech Leaders ETF,etf,ETF,Nasdaq Global Market,N,100
 JTTT,JATT III Acquisition Corp - Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
@@ -3844,9 +3844,9 @@ PFOE,Pathfinder Focused Opportunities ETF,etf,ETF,Nasdaq Global Market,N,100
 PFSA,"Profusa, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
 PFX,PhenixFIN Corporation  - Common Stock,stock,Common Stock,Nasdaq Global Market,N,100
 PFXNZ,PhenixFIN Corporation  - 5.25% Notes due 2028,stock,Nasdaq Listed Security,Nasdaq Global Market,N,100
-PGAC,Pantages Capital Acquisition Corporation - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Global Market,N,100
-PGACR,Pantages Capital Acquisition Corporation - Right,stock,Right,Nasdaq Global Market,N,100
-PGACU,Pantages Capital Acquisition Corporation - Unit,stock,Unit,Nasdaq Global Market,N,100
+PGAC,Pantages Capital Acquisition Corporation - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Global Market,D,100
+PGACR,Pantages Capital Acquisition Corporation - Right,stock,Right,Nasdaq Global Market,D,100
+PGACU,Pantages Capital Acquisition Corporation - Unit,stock,Unit,Nasdaq Global Market,D,100
 PGC,Peapack-Gladstone Financial Corporation - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 PGEN,"Precigen, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 PGJ,Invesco Golden Dragon China ETF,etf,ETF,Nasdaq Global Market,N,100
@@ -4302,7 +4302,7 @@ RNGTU,Range Capital Acquisition Corp II - Units,stock,Unit,Nasdaq Global Market,
 RNGTW,Range Capital Acquisition Corp II - Warrants,stock,Warrant,Nasdaq Global Market,N,100
 RNIN,Bushido Capital US SMID Cap Equity ETF,etf,ETF,Nasdaq Global Market,N,100
 RNRG,Global X Renewable Energy Producers ETF,etf,ETF,Nasdaq Global Market,N,100
-RNTX,"Rein Therapeutics, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
+RNTX,"Rein Therapeutics, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
 RNW,ReNew Energy Global plc - Class A Shares,stock,Nasdaq Listed Security,Nasdaq Global Select Market,N,100
 RNXT,"RenovoRx, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 ROAD,"Construction Partners, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,D,100
@@ -4877,7 +4877,7 @@ THEO,BOA Acquisition Corp. II - Class A Ordinary Shares,stock,Ordinary Share,Nas
 THEOR,BOA Acquisition Corp. II - Rights,stock,Right,Nasdaq Global Market,N,100
 THEOU,BOA Acquisition Corp. II - Units,stock,Unit,Nasdaq Global Market,N,100
 THFF,First Financial Corporation  - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
-THH,TryHard Holdings Limited - Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,D,100
+THH,TryHard Holdings Limited - Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
 THMZ,Lazard Equity Megatrends ETF,etf,ETF,Nasdaq Global Market,N,100
 THRM,Gentherm Inc - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 THRV,Prospera Income ETF,etf,ETF,Nasdaq Global Market,N,100
@@ -5163,7 +5163,7 @@ UYSCR,UY Scuti Acquisition Corp. - Rights,stock,Right,Nasdaq Capital Market,N,10
 UYSCU,UY Scuti Acquisition Corp. - Units,stock,Unit,Nasdaq Capital Market,N,100
 UZX,Linkage Global Inc - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,D,100
 VABK,Virginia National Bankshares Corporation - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
-VAI,Valor Energy Incorporated - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
+VAI,Valor Energy Incorporated - Common Stock,stock,Common Stock,Nasdaq Capital Market,D,100
 VALG,Leverage Shares 2X Long VALE Daily ETF,etf,ETF,Nasdaq Global Market,N,100
 VALN,Valneva SE - American Depositary Shares,stock,Depositary Share,Nasdaq Global Select Market,N,100
 VALU,"Value Line, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
