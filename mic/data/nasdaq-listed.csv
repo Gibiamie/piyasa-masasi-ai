@@ -459,6 +459,10 @@ ATLCL,Atlanticus Holdings Corporation - 6.125% Senior Notes due 2026,stock,Note,
 ATLCP,"Atlanticus Holdings Corporation - 7.625% Series B Cumulative Perpetual Preferred Stock, no par value per share",stock,Preferred,Nasdaq Global Select Market,N,100
 ATLCZ,Atlanticus Holdings Corporation - 9.25% Senior Notes due 2029,stock,Note,Nasdaq Global Market,N,100
 ATLO,Ames National Corporation - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
+ATLQ,JAB Acquisition Corp I - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Global Market,N,100
+ATLQR,JAB Acquisition Corp I - Rights,stock,Right,Nasdaq Global Market,N,100
+ATLQU,JAB Acquisition Corp I - Units,stock,Unit,Nasdaq Global Market,N,100
+ATLQW,JAB Acquisition Corp I - Warrants,stock,Warrant,Nasdaq Global Market,N,100
 ATLX,Atlas Lithium Corporation - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 ATNI,"ATN International, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 ATOM,Atomera Incorporated - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
@@ -561,7 +565,6 @@ BBOT,"BridgeBio Oncology Therapeutics, Inc. - Common Stock",stock,Common Stock,N
 BBSI,"Barrett Business Services, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 BBUL,GraniteShares 2x Long BB Daily ETF,etf,ETF,Nasdaq Global Market,N,100
 BBYY,GraniteShares YieldBOOST BABA ETF,etf,ETF,Nasdaq Global Market,N,100
-BCAB,"BioAtla, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 BCAL,California BanCorp - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 BCAX,Bicara Therapeutics Inc. - Common Stock,stock,Common Stock,Nasdaq Global Market,N,100
 BCBP,"BCB Bancorp, Inc. (NJ) - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
@@ -1913,9 +1916,9 @@ FSBW,"FS Bancorp, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,
 FSCS,First Trust SMID Capital Strength ETF,etf,ETF,Nasdaq Global Market,N,100
 FSEA,"First Seacoast Bancorp, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 FSGS,First Trust SMID Growth Strength ETF,etf,ETF,Nasdaq Global Market,N,100
-FSHP,Flag Ship Acquisition Corp. - Ordinary Shares,stock,Ordinary Share,Nasdaq Global Market,N,100
-FSHPR,Flag Ship Acquisition Corp. - Right,stock,Right,Nasdaq Global Market,N,100
-FSHPU,Flag Ship Acquisition Corp. - Unit,stock,Unit,Nasdaq Global Market,N,100
+FSHP,Flag Ship Acquisition Corp. - Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
+FSHPR,Flag Ship Acquisition Corp. - Right,stock,Right,Nasdaq Capital Market,N,100
+FSHPU,Flag Ship Acquisition Corp. - Unit,stock,Unit,Nasdaq Capital Market,N,100
 FSLR,"First Solar, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 FSLY,"Fastly, Inc. - Class A Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 FSTB,Fidelity Short-Term Bond ETF,etf,ETF,Nasdaq Global Market,N,100
@@ -2661,10 +2664,6 @@ IXHL,Incannex Healthcare Inc. - Common Stock,stock,Common Stock,Nasdaq Capital M
 IXUS,iShares Core MSCI Total International Stock ETF,etf,ETF,Nasdaq Global Market,N,100
 IZEA,"IZEA Worldwide, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 IZM,ICZOOM Group Inc. - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,H,100
-JAB,JAB Acquisition Corp I - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Global Market,N,100
-JABRR,JAB Acquisition Corp I - Rights,stock,Right,Nasdaq Global Market,N,100
-JABRU,JAB Acquisition Corp I - Units,stock,Unit,Nasdaq Global Market,N,100
-JABRW,JAB Acquisition Corp I - Warrants,stock,Warrant,Nasdaq Global Market,N,100
 JACK,Jack In The Box Inc. - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 JAGX,"Jaguar Health, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 JAKK,"JAKKS Pacific, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
@@ -3053,7 +3052,7 @@ MAXI,Simplify Bitcoin Strategy ETF,etf,ETF,Nasdaq Global Market,N,100
 MAYS,"J. W. Mays, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 MAZE,"Maze Therapeutics, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
 MB,MasterBeef Group - Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
-MBAI,Check-Cap Ltd. - Ordinary Share,stock,Ordinary Share,Nasdaq Capital Market,N,100
+MBAI,MBody AI Ltd. - Ordinary Share,stock,Ordinary Share,Nasdaq Capital Market,N,100
 MBB,iShares MBS ETF,etf,ETF,Nasdaq Global Market,N,100
 MBBC,"Marathon Bancorp, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 MBIN,Merchants Bancorp - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
@@ -3654,6 +3653,7 @@ ONFO,Onfolio Holdings Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Mark
 ONFOW,Onfolio Holdings Inc. - Warrant,stock,Warrant,Nasdaq Capital Market,D,100
 ONMD,OneMedNet Corp - Class A Common Stock,stock,Common Stock,Nasdaq Capital Market,D,100
 ONMDW,OneMedNet Corp - Warrant,stock,Warrant,Nasdaq Capital Market,N,100
+OPAD,Offerpad Solutions Inc.  - Class A Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 OPAL,OPAL Fuels Inc. - Class A Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 OPBK,OP Bancorp - Common Stock,stock,Common Stock,Nasdaq Global Market,N,100
 OPCH,"Option Care Health, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
@@ -4762,7 +4762,7 @@ SVIVW,Spring Valley Acquisition Corp. IV - Warrants,stock,Warrant,Nasdaq Global 
 SVRA,"Savara, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 SVRE,SaverOne 2014 Ltd. - American Depositary Shares,stock,Depositary Share,Nasdaq Capital Market,N,100
 SVREW,SaverOne 2014 Ltd. - Warrant,stock,Warrant,Nasdaq Capital Market,N,100
-SVRN,OceanPal Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,E,100
+SVRN,"SVRN, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,E,100
 SWAG,"Stran & Company, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 SWAGW,"Stran & Company, Inc. - Warrant",stock,Warrant,Nasdaq Capital Market,N,100
 SWBI,"Smith & Wesson Brands, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
@@ -4958,6 +4958,7 @@ TQQY,GraniteShares YieldBOOST QQQ ETF,etf,ETF,Nasdaq Global Market,N,100
 TRAW,"Traws Pharma, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
 TRAX,"First Tracks Biotherapeutics, Inc. - Ordinary Shares",stock,Ordinary Share,Nasdaq Global Select Market,N,100
 TRBF,Angel Oak Total Return ETF,etf,ETF,Nasdaq Global Market,N,100
+TRBG,TurboGen Ltd. - Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
 TRDA,"Entrada Therapeutics, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
 TREE,"LendingTree, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 TREO,Tactical Resources Corp. - Common Shares,stock,Common Stock,Nasdaq Capital Market,N,100
