@@ -382,7 +382,7 @@ ARCIW,Archimedes Tech SPAC Partners III Co. - Warrant,stock,Warrant,Nasdaq Globa
 ARCL,ARC Group Acquisition I Corp - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Global Market,N,100
 ARCLR,ARC Group Acquisition I Corp - Right,stock,Right,Nasdaq Global Market,N,100
 ARCLU,ARC Group Acquisition I Corp - Unit,stock,Unit,Nasdaq Global Market,N,100
-ARCLW,ARC Group Acquisition I Corp - Warrants,stock,Warrant,Nasdaq Global Market,N,100
+ARCLW,ARC Group Acquisition I Corp - Warrants,stock,Warrant,Nasdaq Global Market,D,100
 ARCT,Arcturus Therapeutics Holdings Inc. - Common Stock,stock,Common Stock,Nasdaq Global Market,N,100
 ARDX,"Ardelyx, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
 AREC,American Resources Corporation - Class A Common Stock,stock,Common Stock,Nasdaq Capital Market,E,100
@@ -1112,7 +1112,7 @@ CLOA,iShares AAA CLO Active ETF,etf,ETF,Nasdaq Global Market,N,100
 CLOD,Themes Cloud Computing ETF,etf,ETF,Nasdaq Global Market,N,100
 CLOU,Global X Cloud Computing ETF,etf,ETF,Nasdaq Global Market,N,100
 CLOV,"Clover Health Investments, Corp.  - Class A Common stock",stock,Common Stock,Nasdaq Global Select Market,N,100
-CLPS,CLPS Incorporation - Common Stock,stock,Common Stock,Nasdaq Global Market,D,100
+CLPS,CLPS Incorporation - Common Stock,stock,Common Stock,Nasdaq Global Market,N,100
 CLPT,ClearPoint Neuro Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 CLRB,"Cellectar Biosciences, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 CLRO,"ClearOne, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
@@ -1298,7 +1298,7 @@ CULP,"Culp, Inc. - Common Shares",stock,Common Stock,Nasdaq Capital Market,N,100
 CUPR,Cuprina Holdings (Cayman) Limited - Class A Ordinary shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
 CURI,CuriosityStream Inc.  - Class A Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 CURR,Currenc Group Inc. - Ordinary Shares,stock,Ordinary Share,Nasdaq Global Market,N,100
-CURX,Curanex Pharmaceuticals Inc - Common Stock,stock,Common Stock,Nasdaq Capital Market,D,100
+CURX,Curanex Pharmaceuticals Inc - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 CUVL,Clinuvel Pharmaceuticals Limited - American Depositary Shares,stock,Depositary Share,Nasdaq Global Select Market,N,100
 CV,"CapsoVision, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 CVBF,CVB Financial Corporation - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
@@ -1336,8 +1336,8 @@ DAAQ,Digital Asset Acquisition Corp. - Class A Ordinary shares,stock,Ordinary Sh
 DAAQU,Digital Asset Acquisition Corp. - Units,stock,Unit,Nasdaq Global Market,N,100
 DAAQW,Digital Asset Acquisition Corp. - Warrant,stock,Warrant,Nasdaq Global Market,N,100
 DADS,Digital Asset Debt Strategy ETF,etf,ETF,Nasdaq Global Market,N,100
-DAIC,"CID HoldCo, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,D,100
-DAICW,"CID HoldCo, Inc. - Warrants",stock,Warrant,Nasdaq Global Market,D,100
+DAIC,"CID HoldCo, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,H,100
+DAICW,"CID HoldCo, Inc. - Warrants",stock,Warrant,Nasdaq Global Market,H,100
 DAIO,Data I/O Corporation - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 DAK,Dakota Active Equity ETF,etf,ETF,Nasdaq Global Market,N,100
 DAKT,"Daktronics, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
@@ -1656,8 +1656,8 @@ EUDA,Euda Health Holdings Limited - Ordinary Shares,stock,Ordinary Share,Nasdaq 
 EUDAW,Euda Health Holdings Limited - Warrant,stock,Warrant,Nasdaq Capital Market,N,100
 EUFN,iShares MSCI Europe Financials ETF,etf,ETF,Nasdaq Global Market,N,100
 EURK,Eureka Acquisition Corp - Class A Ordinary Share,stock,Ordinary Share,Nasdaq Capital Market,D,100
-EURKR,Eureka Acquisition Corp - Right,stock,Right,Nasdaq Capital Market,N,100
-EURKU,Eureka Acquisition Corp - Unit,stock,Unit,Nasdaq Capital Market,N,100
+EURKR,Eureka Acquisition Corp - Right,stock,Right,Nasdaq Capital Market,D,100
+EURKU,Eureka Acquisition Corp - Unit,stock,Unit,Nasdaq Capital Market,D,100
 EVAX,Evaxion A/S - American Depositary Share,stock,Depositary Share,Nasdaq Capital Market,N,100
 EVCM,EverCommerce Inc. - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 EVER,"EverQuote, Inc. - Class A Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
@@ -2096,7 +2096,7 @@ GLE,Global Engine Group Holding Limited - Class A Ordinary Shares,stock,Ordinary
 GLGG,Leverage Shares 2X Long GLXY Daily ETF,etf,ETF,Nasdaq Global Market,N,100
 GLIBA,Liberty Capital Corporation - Series A GCI Group Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 GLIBK,Liberty Capital Corporation - Series C GCI Group Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
-GLMD,Galmed Pharmaceuticals Ltd. - Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,D,100
+GLMD,Galmed Pharmaceuticals Ltd. - Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
 GLND,Greenland Energy Company - Common Stock,stock,Common Stock,Nasdaq Global Market,N,100
 GLNDW,Greenland Energy Company - Warrant,stock,Warrant,Nasdaq Global Market,N,100
 GLNG,Golar LNG Limited - Common Shares,stock,Common Stock,Nasdaq Global Select Market,N,100
@@ -2495,8 +2495,8 @@ IJT,iShares S&P SmallCap 600 Growth ETF,etf,ETF,Nasdaq Global Market,N,100
 IKT,"Inhibikase Therapeutics, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 ILAG,Intelligent Living Application Group Inc. - Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
 ILIT,iShares Lithium Miners and Producers ETF,etf,ETF,Nasdaq Global Market,N,100
-ILLR,Triller Group Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
-ILLRW,Triller Group Inc. - Warrant,stock,Warrant,Nasdaq Capital Market,N,100
+ILLR,Triller Group Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,D,100
+ILLRW,Triller Group Inc. - Warrant,stock,Warrant,Nasdaq Capital Market,D,100
 ILLU,Illumination Acquisition Corp I - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Global Market,N,100
 ILLUU,Illumination Acquisition Corp I - Units,stock,Unit,Nasdaq Global Market,N,100
 ILLUW,Illumination Acquisition Corp I - Warrant,stock,Warrant,Nasdaq Global Market,N,100
@@ -2620,7 +2620,7 @@ IREN,IREN Limited - Ordinary Shares,stock,Ordinary Share,Nasdaq Global Select Ma
 IRHO,Iron Horse Acquisitions II Corp. - Common Stock,stock,Common Stock,Nasdaq Global Market,N,100
 IRHOR,Iron Horse Acquisitions II Corp. - Rights,stock,Right,Nasdaq Global Market,N,100
 IRHOU,Iron Horse Acquisitions II Corp. - Units,stock,Unit,Nasdaq Global Market,N,100
-IRIX,IRIDEX Corporation - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
+IRIX,IRIDEX Corporation - Common Stock,stock,Common Stock,Nasdaq Capital Market,D,100
 IRMD,iRadimed Corporation - Common Stock,stock,Common Stock,Nasdaq Global Market,N,100
 IRON,"Disc Medicine, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
 IRTC,"iRhythm Holdings, Inc.  - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
@@ -2727,7 +2727,7 @@ JYD,Jayud Global Logistics Limited - Class A Ordinary Shares,stock,Ordinary Shar
 JYNT,The Joint Corp. - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 JZ,Jianzhi Education Technology Group Company Limited - American Depositary Shares,stock,Depositary Share,Nasdaq Capital Market,N,100
 JZXN,"Jiuzi Holdings, Inc. - Ordinary Shares",stock,Ordinary Share,Nasdaq Capital Market,N,100
-KALA,"KALA BIO, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
+KALA,"KALA BIO, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
 KALU,Kaiser Aluminum Corporation - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 KARD,"Kardigan, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
 KARO,Karooooo Ltd. - Ordinary shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
@@ -4212,7 +4212,7 @@ RDZNW,"Roadzen, Inc. - Warrants",stock,Warrant,Nasdaq Capital Market,N,100
 REAI,Intelligent Real Estate ETF,etf,ETF,Nasdaq Global Market,N,100
 REAL,"The RealReal, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 REAX,Real REMAX Group Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
-REBN,"Reborn Coffee, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
+REBN,"Reborn Coffee, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,E,100
 RECT,Rectitude Holdings Ltd - Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
 REFI,"Chicago Atlantic Real Estate Finance, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
 REFR,Research Frontiers Incorporated - Common Stock,stock,Common Stock,Nasdaq Capital Market,D,100
@@ -4607,7 +4607,7 @@ SNPS,"Synopsys, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Mar
 SNSR,Global X Internet of Things ETF,etf,ETF,Nasdaq Global Market,N,100
 SNT,Senstar Technologies Corporation - Common Shares,stock,Common Stock,Nasdaq Global Market,N,100
 SNTG,Sentage Holdings Inc. - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
-SNTI,"Senti Biosciences Holdings, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
+SNTI,"Senti Biosciences Holdings, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
 SNWV,"SANUWAVE Health, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
 SNY,Sanofi - American Depositary Shares,stock,Depositary Share,Nasdaq Global Select Market,N,100
 SNYR,Synergy CHC Corp. - Common Stock,stock,Common Stock,Nasdaq Capital Market,H,100
@@ -4834,7 +4834,7 @@ TCMD,"Tactile Systems Technology, Inc. - Common Stock",stock,Common Stock,Nasdaq
 TCOM,Trip.com Group Limited - American Depositary Shares,stock,Depositary Share,Nasdaq Global Select Market,N,100
 TCPC,BlackRock TCP Capital Corp. - Closed End Fund,stock,Closed-End Fund,Nasdaq Global Select Market,N,100
 TCRT,"Alaunos Therapeutics, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
-TCRX,"TScan Therapeutics, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
+TCRX,"TScan Therapeutics, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,D,100
 TCX,Tucows Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 TDAC,Translational Development Acquisition Corp. - Ordinary Shares,stock,Ordinary Share,Nasdaq Global Market,N,100
 TDACU,Translational Development Acquisition Corp. - Units,stock,Unit,Nasdaq Global Market,N,100
@@ -5139,7 +5139,7 @@ USDX,SGI Enhanced Core ETF,etf,ETF,Nasdaq Global Market,N,100
 USEA,United Maritime Corporation - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 USFI,BrandywineGLOBAL - U.S. Fixed Income ETF,etf,ETF,Nasdaq Global Market,N,100
 USGG,Leverage Shares 2X Long USAR Daily ETF,etf,ETF,Nasdaq Global Market,N,100
-USGO,U.S. GoldMining Inc. - Common stock,stock,Common Stock,Nasdaq Capital Market,N,100
+USGO,U.S. GoldMining Inc. - Common stock,stock,Common Stock,Nasdaq Capital Market,D,100
 USIG,iShares Broad USD Investment Grade Corporate Bond ETF,etf,ETF,Nasdaq Global Market,N,100
 USIN,WisdomTree 7-10 Year Laddered Treasury Fund,etf,ETF,Nasdaq Global Market,N,100
 USIO,"Usio, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
