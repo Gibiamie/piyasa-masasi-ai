@@ -649,8 +649,8 @@ BHFAO,"Brighthouse Financial, Inc. - Depositary Shares, each representing a 1/1,
 BHFAP,"Brighthouse Financial, Inc. - Depositary Shares 6.6% Non-Cumulative Preferred Stock, Series A",stock,Preferred,Nasdaq Global Select Market,N,100
 BHRB,Burke & Herbert Financial Services Corp. - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 BHST,BioHarvest Sciences Inc. - Common Stock,stock,Common Stock,Nasdaq Global Market,N,100
-BIAF,"bioAffinity Technologies, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
-BIAFW,"bioAffinity Technologies, Inc. - Warrant",stock,Warrant,Nasdaq Capital Market,D,100
+BIAF,"bioAffinity Technologies, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
+BIAFW,"bioAffinity Technologies, Inc. - Warrant",stock,Warrant,Nasdaq Capital Market,N,100
 BIB,ProShares Ultra Nasdaq Biotechnology,etf,ETF,Nasdaq Global Market,N,100
 BID,Tribeca Strategic Acquisition Corp. - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Global Market,N,100
 BIDG,Leverage Shares 2X Long BIDU Daily ETF,etf,ETF,Nasdaq Global Market,N,100
@@ -781,7 +781,7 @@ BRKU,Direxion Daily BRKB Bull 2X ETF,etf,ETF,Nasdaq Global Market,N,100
 BRLS,Borealis Foods Inc. - Class A Common Shares,stock,Common Stock,Nasdaq Capital Market,H,100
 BRLSW,Borealis Foods Inc. - Warrant,stock,Warrant,Nasdaq Capital Market,H,100
 BRLT,"Brilliant Earth Group, Inc. - Class A Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
-BRNS,Barinthus Biotherapeutics plc - American Depositary Shares,stock,Depositary Share,Nasdaq Capital Market,D,100
+BRNS,Barinthus Biotherapeutics plc - American Depositary Shares,stock,Depositary Share,Nasdaq Capital Market,N,100
 BRNX,BrenX Ltd. - Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
 BRNY,Burney U.S. Factor Rotation ETF,etf,ETF,Nasdaq Global Market,N,100
 BRR,"ProCap Financial, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
@@ -2000,7 +2000,7 @@ GAING,Gladstone Investment Corporation - 7.125% Notes due 2031,stock,Nasdaq List
 GAINI,Gladstone Investment Corporation - 7.875% Notes due 2030,stock,Nasdaq Listed Security,Nasdaq Global Select Market,N,100
 GAINZ,Gladstone Investment Corporation - 4.875% Notes due 2028,stock,Nasdaq Listed Security,Nasdaq Global Select Market,N,100
 GALT,Galectin Therapeutics Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
-GAME,"GameSquare Holdings, Inc. - Common stock",stock,Common Stock,Nasdaq Capital Market,D,100
+GAME,"GameSquare Holdings, Inc. - Common stock",stock,Common Stock,Nasdaq Capital Market,N,100
 GANX,"Gain Therapeutics, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
 GARY,Mango Growth ETF,etf,ETF,Nasdaq Global Market,N,100
 GASS,"StealthGas, Inc. - common stock",stock,Common Stock,Nasdaq Global Select Market,N,100
@@ -2534,7 +2534,7 @@ INBK,First Internet Bancorp - Common Stock,stock,Common Stock,Nasdaq Global Sele
 INBKZ,First Internet Bancorp - Fixed-to-Floating Rate Subordinated Notes Due 2029,stock,Nasdaq Listed Security,Nasdaq Global Select Market,N,100
 INBS,Intelligent Bio Solutions Inc.  - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 INBX,"Inhibrx Biosciences, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
-INCR,Intercure Ltd. - ordinary shares,stock,Ordinary Share,Nasdaq Global Market,D,100
+INCR,Intercure Ltd. - ordinary shares,stock,Ordinary Share,Nasdaq Global Market,N,100
 INCY,Incyte Corporation - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 IND,Xtrackers Nifty 500 India ETF,etf,ETF,Nasdaq Global Market,N,100
 INDB,Independent Bank Corp. - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
@@ -3561,7 +3561,7 @@ NXST,"Nexstar Media Group, Inc. - Common Stock",stock,Common Stock,Nasdaq Global
 NXT,Nextpower Inc. - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 NXTC,"NextCure, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 NXTG,First Trust Indxx NextG ETF,etf,ETF,Nasdaq Global Market,N,100
-NXTS,Nexentis Technologies Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
+NXTS,Nexentis Technologies Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,D,100
 NXTT,Next Technology Holding Inc. - Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
 NXXT,"NextNRG, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
 NYAX,Nayax Ltd. - Ordinary Shares,stock,Ordinary Share,Nasdaq Global Select Market,N,100
@@ -4087,7 +4087,7 @@ QMID,WisdomTree U.S. MidCap Quality Growth Fund,etf,ETF,Nasdaq Global Market,N,1
 QMLS,"QumulusAI, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
 QMOM,Alpha Architect U.S. Quantitative Momentum ETF,etf,ETF,Nasdaq Global Market,N,100
 QNBC,QNB Corp. - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
-QNCX,"Quince Therapeutics, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
+QNCX,"Quince Therapeutics, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,D,100
 QNDX,State Street SPDR Portfolio Nasdaq 100 ETF,etf,ETF,Nasdaq Global Market,N,100
 QNME,"Quanome Technologies, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
 QNRX,"Quoin Pharmaceuticals, Ltd. - American Depositary Shares",stock,Depositary Share,Nasdaq Capital Market,N,100
@@ -5444,7 +5444,7 @@ XBTY,GraniteShares YieldBOOST Bitcoin ETF,etf,ETF,Nasdaq Global Market,N,100
 XCBE,X3 Acquisition Corp. Ltd. - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Global Market,N,100
 XCBEU,X3 Acquisition Corp. Ltd. - Unit,stock,Unit,Nasdaq Global Market,N,100
 XCBEW,X3 Acquisition Corp. Ltd. - Warrant,stock,Warrant,Nasdaq Global Market,N,100
-XCH,XCHG Limited - ADS,stock,Nasdaq Listed Security,Nasdaq Global Market,D,100
+XCH,XCHG Limited - ADS,stock,Nasdaq Listed Security,Nasdaq Global Market,N,100
 XCNY,State Street SPDR S&P Emerging Markets ex-China ETF,etf,ETF,Nasdaq Global Market,N,100
 XCSH,XFUNDS 1-3 Month BOX ETF,etf,ETF,Nasdaq Global Market,N,100
 XCUR,"Exicure, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
