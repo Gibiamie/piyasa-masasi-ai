@@ -1,0 +1,41 @@
+name: Audit US Universe
+
+on:
+  push:
+    branches: [audit/bist-universe-run]
+    paths:
+      - 'scripts/audit-us-universe.mjs'
+      - 'mic/data/market.json'
+      - '.github/workflows/audit-us-universe.yml'
+  pull_request:
+    branches: [remediation/v30-audit]
+    paths:
+      - 'scripts/audit-us-universe.mjs'
+      - 'mic/data/market.json'
+      - '.github/workflows/audit-us-universe.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Compare Nasdaq screener with application
+        run: node scripts/audit-us-universe.mjs
+      - name: Publish summary
+        if: always()
+        run: test -f audit-results/us-universe-audit.md && cat audit-results/us-universe-audit.md >> "$GITHUB_STEP_SUMMARY" || true
+      - name: Upload audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: us-universe-audit
+          path: audit-results/
+          if-no-files-found: ignore
