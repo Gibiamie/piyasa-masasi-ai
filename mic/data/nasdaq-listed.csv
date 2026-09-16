@@ -1779,7 +1779,6 @@ FDTX,Fidelity Disruptive Technology ETF,etf,ETF,Nasdaq Global Market,N,100
 FDUS,Fidus Investment Corporation - Closed End Fund,stock,Closed-End Fund,Nasdaq Global Select Market,N,100
 FEAM,"5E Advanced Materials, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 FEBO,Fenbo Holdings Limited - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,D,100
-FEED,"ENvue Medical, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 FEIM,"Frequency Electronics, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
 FELE,"Franklin Electric Co., Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 FEM,First Trust Emerging Markets AlphaDEX Fund,etf,ETF,Nasdaq Global Market,N,100
@@ -2768,9 +2767,9 @@ KEYY,Keystone Acquisition Corp. - Class A Ordinary Shares,stock,Ordinary Share,N
 KEYYU,Keystone Acquisition Corp. - Unit,stock,Unit,Nasdaq Global Market,N,100
 KEYYW,Keystone Acquisition Corp. - Warrants,stock,Warrant,Nasdaq Global Market,N,100
 KFFB,Kentucky First Federal Bancorp - Common Stock,stock,Common Stock,Nasdaq Global Market,N,100
-KFII,K&F Growth Acquisition Corp. II - Class A Ordinary shares,stock,Ordinary Share,Nasdaq Global Market,D,100
-KFIIR,K&F Growth Acquisition Corp. II - Rights,stock,Right,Nasdaq Global Market,N,100
-KFIIU,K&F Growth Acquisition Corp. II - Unit,stock,Unit,Nasdaq Global Market,N,100
+KFII,K - Class A Ordinary shares,stock,Ordinary Share,Nasdaq Capital Market,D,100
+KFIIR,K - Rights,stock,Right,Nasdaq Capital Market,N,100
+KFIIU,K - Unit,stock,Unit,Nasdaq Capital Market,N,100
 KG,"Kestrel Group, Ltd. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 KGEI,Kolibri Global Energy Inc. - Common stock,stock,Common Stock,Nasdaq Capital Market,N,100
 KIDS,OrthoPediatrics Corp. - Common Stock,stock,Common Stock,Nasdaq Global Market,N,100
@@ -3465,10 +3464,10 @@ NNE,Nano Nuclear Energy Inc. - common stock,stock,Common Stock,Nasdaq Capital Ma
 NNNN,Anbio Biotechnology - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Global Market,N,100
 NNOX,NANO-X IMAGING LTD - Ordinary Shares,stock,Ordinary Share,Nasdaq Global Market,N,100
 NODK,"NI Holdings, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
-NOEM,CO2 Energy Transition Corp. - Common Stock,stock,Common Stock,Nasdaq Global Market,N,100
-NOEMR,CO2 Energy Transition Corp. - Right,stock,Right,Nasdaq Global Market,N,100
-NOEMU,CO2 Energy Transition Corp. - Unit,stock,Unit,Nasdaq Global Market,N,100
-NOEMW,CO2 Energy Transition Corp. - Warrant,stock,Warrant,Nasdaq Global Market,N,100
+NOEM,CO2 Energy Transition Corp. - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
+NOEMR,CO2 Energy Transition Corp. - Right,stock,Right,Nasdaq Capital Market,N,100
+NOEMU,CO2 Energy Transition Corp. - Unit,stock,Unit,Nasdaq Capital Market,N,100
+NOEMW,CO2 Energy Transition Corp. - Warrant,stock,Warrant,Nasdaq Capital Market,N,100
 NOMA,NOMADAR Corp. - Class A Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 NOVT,Novanta Inc. - Common Shares,stock,Common Stock,Nasdaq Global Select Market,N,100
 NOVTU,Novanta Inc. - Tangible Equity Units,stock,Unit,Nasdaq Global Select Market,N,100
@@ -4623,7 +4622,6 @@ SNTI,"Senti Biosciences Holdings, Inc. - Common Stock",stock,Common Stock,Nasdaq
 SNWV,"SANUWAVE Health, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
 SNY,Sanofi - American Depositary Shares,stock,Depositary Share,Nasdaq Global Select Market,N,100
 SNYR,Synergy CHC Corp. - Common Stock,stock,Common Stock,Nasdaq Capital Market,H,100
-SOBR,"SOBR Safe, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 SOCA,Solarius Capital Acquisition Corp. - Class A Ordinary Share,stock,Ordinary Share,Nasdaq Global Market,N,100
 SOCAU,Solarius Capital Acquisition Corp. - Units,stock,Unit,Nasdaq Global Market,N,100
 SOCAW,Solarius Capital Acquisition Corp. - Warrant,stock,Warrant,Nasdaq Global Market,N,100
