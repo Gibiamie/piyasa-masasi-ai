@@ -1,0 +1,39 @@
+name: Audit Live BIST Search
+
+on:
+  pull_request:
+    branches: [remediation/v30-audit]
+    paths:
+      - 'scripts/audit-live-bist-search.mjs'
+      - '.github/workflows/audit-live-bist-search.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit-live-search:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Test every current KAP symbol in live search
+        run: node scripts/audit-live-bist-search.mjs
+
+      - name: Upload search audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: live-bist-search-audit
+          path: audit-results/
+          if-no-files-found: error
