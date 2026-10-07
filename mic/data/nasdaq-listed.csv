@@ -1,6 +1,6 @@
 Symbol,Security Name,MIC Type,Instrument Class,Market Tier,Financial Status,Round Lot Size
 AAAP,Pacer Barings CLO Market Flex ETF,etf,ETF,Nasdaq Global Market,N,100
-AACG,"ATA Creativity Global - American Depositary Shares, each representing two common shares",stock,Depositary Share,Nasdaq Capital Market,N,100
+AACG,"ATA Creativity Global - American Depositary Shares, each representing two common shares",stock,Depositary Share,Nasdaq Capital Market,D,100
 AACI,Armada Acquisition Corp. III - Class A Ordinary Share,stock,Ordinary Share,Nasdaq Global Market,N,100
 AACIU,Armada Acquisition Corp. III - Units,stock,Unit,Nasdaq Global Market,N,100
 AACIW,Armada Acquisition Corp. III - Warrant,stock,Warrant,Nasdaq Global Market,N,100
@@ -562,7 +562,7 @@ BATRK,"Atlanta Braves Holdings, Inc. - Series C Common Stock",stock,Common Stock
 BBB,CYBER HORNET S&P 500 and Bitcoin 75/25 Strategy ETF,etf,ETF,Nasdaq Global Market,N,100
 BBBYW,"Neighborhood Intelligence, Inc.  - Warrant",stock,Warrant,Nasdaq Global Select Market,N,100
 BBCP,"Concrete Pumping Holdings, Inc.  - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
-BBGI,"Beasley Broadcast Group, Inc. - Class A Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
+BBGI,"Beasley Broadcast Group, Inc. - Class A Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
 BBH,VanEck Biotech ETF,etf,ETF,Nasdaq Global Market,N,100
 BBIO,"BridgeBio Pharma, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 BBLG,Bone Biologics Corp - Common Stock,stock,Common Stock,Nasdaq Capital Market,D,100
@@ -2511,8 +2511,8 @@ IJT,iShares S&P SmallCap 600 Growth ETF,etf,ETF,Nasdaq Global Market,N,100
 IKT,"Inhibikase Therapeutics, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 ILAG,Intelligent Living Application Group Inc. - Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
 ILIT,iShares Lithium Miners and Producers ETF,etf,ETF,Nasdaq Global Market,N,100
-ILLR,Triller Group Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,D,100
-ILLRW,Triller Group Inc. - Warrant,stock,Warrant,Nasdaq Capital Market,D,100
+ILLR,Triller Group Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
+ILLRW,Triller Group Inc. - Warrant,stock,Warrant,Nasdaq Capital Market,N,100
 ILLU,Illumination Acquisition Corp I - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Global Market,N,100
 ILLUU,Illumination Acquisition Corp I - Units,stock,Unit,Nasdaq Global Market,N,100
 ILLUW,Illumination Acquisition Corp I - Warrant,stock,Warrant,Nasdaq Global Market,N,100
@@ -4314,7 +4314,7 @@ RML,Resolution Minerals Ltd - American Depositary Shares,stock,Depositary Share,
 RMNI,"Rimini Street, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
 RMR,The RMR Group Inc. - Class A Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 RMSG,Real Messenger Corporation - Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,D,100
-RMSGW,Real Messenger Corporation - Warrants,stock,Warrant,Nasdaq Capital Market,D,100
+RMSGW,Real Messenger Corporation - Warrants,stock,Warrant,Nasdaq Capital Market,N,100
 RMTI,"Rockwell Medical, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 RNA,"Atrium Therapeutics, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 RNAC,"Cartesian Therapeutics, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
@@ -4589,7 +4589,7 @@ SLP,"Simulations Plus, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Sel
 SLQD,iShares 0-5 Year Investment Grade Corporate Bond ETF,etf,ETF,Nasdaq Global Market,N,100
 SLRC,SLR Investment Corp. - Closed End Fund,stock,Closed-End Fund,Nasdaq Global Select Market,N,100
 SLS,"SELLAS Life Sciences Group, Inc.  - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
-SLSN,"Solesence, Inc. - Common stock",stock,Common Stock,Nasdaq Capital Market,N,100
+SLSN,"Solesence, Inc. - Common stock",stock,Common Stock,Nasdaq Capital Market,D,100
 SLVO,"ETRACS Silver Shares Covered Call ETNs due April 21, 2033",etf,ETF,Nasdaq Global Market,N,100
 SLVR,Sprott Silver Miners & Physical Silver ETF,etf,ETF,Nasdaq Global Market,N,100
 SLXN,Silexion Therapeutics Corp - Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,D,100
@@ -4677,7 +4677,7 @@ SPEGU,Silver Pegasus Acquisition Corp - Unit,stock,Unit,Nasdaq Global Market,N,1
 SPFI,"South Plains Financial, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 SPHL,Springview Holdings Ltd - Ordinary shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
 SPIT,F/m Emerald Special Situations ETF,etf,ETF,Nasdaq Global Market,N,100
-SPKL,Spark I Acquisition Corp. - Class A Ordinary Share,stock,Ordinary Share,Nasdaq Global Market,D,100
+SPKL,Spark I Acquisition Corp. - Class A Ordinary Share,stock,Ordinary Share,Nasdaq Global Market,N,100
 SPKLU,Spark I Acquisition Corp. - Unit,stock,Unit,Nasdaq Global Market,N,100
 SPKLW,Spark I Acquisition Corp. - Warrant,stock,Warrant,Nasdaq Global Market,N,100
 SPOG,Leverage Shares 2X Long SPOT Daily ETF,etf,ETF,Nasdaq Global Market,N,100
@@ -5492,7 +5492,7 @@ XCUR,"Exicure, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,1
 XDEF,Xtrackers Europe Defense Technologies ETF,etf,ETF,Nasdaq Global Market,N,100
 XE,"X-Energy, Inc. - Class A Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 XEL,Xcel Energy Inc. - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
-XELB,"Xcel Brands, Inc - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
+XELB,"Xcel Brands, Inc - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
 XELLL,"Xcel Energy Inc. - 6.25% Junior Subordinated Notes, Series due 2085",stock,Nasdaq Listed Security,Nasdaq Global Market,N,100
 XENE,Xenon Pharmaceuticals Inc. - Common Shares,stock,Common Stock,Nasdaq Global Market,N,100
 XERS,"Xeris Biopharma Holdings, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
