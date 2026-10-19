@@ -713,7 +713,7 @@ BLRKW,Bluerock Acquisition Corp. - Warrants,stock,Warrant,Nasdaq Global Market,N
 BLRX,BioLineRx Ltd. - American Depositary Shares,stock,Depositary Share,Nasdaq Capital Market,N,100
 BLSG,Leverage Shares 2X Long BLSH Daily ETF,etf,ETF,Nasdaq Global Market,N,100
 BLSM,"BlossomHill Therapeutics, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
-BLTE,"Belite Bio, Inc - American Depositary Shares",stock,Depositary Share,Nasdaq Capital Market,N,100
+BLTE,"Belite Bio, Inc - American Depositary Shares",stock,Depositary Share,Nasdaq Global Select Market,N,100
 BLUW,Blue Water Acquisition Corp. III - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Global Market,N,100
 BLUWU,Blue Water Acquisition Corp. III - Unit.,stock,Unit,Nasdaq Global Market,N,100
 BLUWW,Blue Water Acquisition Corp. III - Warrant.,stock,Warrant,Nasdaq Global Market,N,100
@@ -1012,7 +1012,6 @@ CDW,CDW Corporation - Common Stock,stock,Common Stock,Nasdaq Global Select Marke
 CDXS,"Codexis, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 CDZI,"Cadiz, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
 CDZIP,"Cadiz, Inc. - Depositary Shares",stock,Depositary Share,Nasdaq Global Market,N,100
-CECO,CECO Environmental Corp. - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 CEFA,Global X S&P Catholic Values Developed ex-U.S. ETF,etf,ETF,Nasdaq Global Market,N,100
 CEG,Constellation Energy Corporation - Common Stock When-Issued,stock,Common Stock,Nasdaq Global Select Market,N,40
 CELC,Celcuity Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
@@ -1562,7 +1561,7 @@ EFRA,iShares Environmental Infrastructure and Industrials ETF,etf,ETF,Nasdaq Glo
 EFSC,Enterprise Financial Services Corporation - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 EFSCP,"Enterprise Financial Services Corporation - Depositary Shares Each Representing a 1/40th Interest in a Share of 5% Fixed Rate Non-Cumulative Perpetual Preferred Stock, Series A",stock,Preferred,Nasdaq Global Select Market,N,100
 EFSI,Eagle Financial Services Inc - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
-EFTY,"Etoiles Capital Group Co., Ltd. - Class A Ordinary Shares",stock,Ordinary Share,Nasdaq Capital Market,N,100
+EFTY,"Etoiles Capital Group Co., Ltd. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 EGAN,eGain Corporation - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 EGBN,"Eagle Bancorp, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 EGGQ,NestYield Visionary ETF,etf,ETF,Nasdaq Global Market,N,100
@@ -2313,6 +2312,7 @@ HIFS,Hingham Institution for Savings - Common Stock,stock,Common Stock,Nasdaq Gl
 HIHO,Highway Holdings Limited - Common Stock,stock,Common Stock,Nasdaq Capital Market,D,100
 HIMX,"Himax Technologies, Inc. - American depositary shares, each of which represents two ordinary shares.",stock,Depositary Share,Nasdaq Global Select Market,N,100
 HIMZ,Defiance Daily Target 2X Long HIMS ETF,etf,ETF,Nasdaq Global Market,N,100
+HINC,Hartford High Yield ETF,etf,ETF,Nasdaq Global Market,N,100
 HIND,"Vyome Holdings, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 HIS,Humilis US Focused Opportunities ETF,etf,ETF,Nasdaq Global Market,N,100
 HISF,First Trust High Income Strategic Focus ETF,etf,ETF,Nasdaq Global Market,N,100
@@ -2450,7 +2450,6 @@ IBGM,iShares iBonds Dec 2056 Term Treasury ETF,etf,ETF,Nasdaq Global Market,N,10
 IBIO,"iBio, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 IBIT,iShares Bitcoin Trust ETF,etf,ETF,Nasdaq Global Market,N,100
 IBKR,"Interactive Brokers Group, Inc. - Class A Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
-IBOC,International Bancshares Corporation - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 IBOT,VanEck Robotics ETF,etf,ETF,Nasdaq Global Market,N,100
 IBRX,"ImmunityBio, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 IBTG,iShares iBonds Dec 2026 Term Treasury ETF,etf,ETF,Nasdaq Global Market,N,100
@@ -2884,6 +2883,7 @@ LCFY,Locafy Limited - Ordinary Share,stock,Ordinary Share,Nasdaq Capital Market,
 LCFYW,Locafy Limited - Warrant,stock,Warrant,Nasdaq Capital Market,N,100
 LCID,"Lucid Group, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 LCNB,LCNB Corporation - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
+LCU,Lion Copper Corp. - Common Shares,stock,Common Stock,Nasdaq Capital Market,N,100
 LCUT,"Lifetime Brands, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 LDEM,iShares ESG MSCI EM Leaders ETF,etf,ETF,Nasdaq Global Market,N,100
 LDRX,SGI Enhanced Market Leaders ETF,etf,ETF,Nasdaq Global Market,N,100
@@ -3000,7 +3000,6 @@ LQDT,"Liquidity Services, Inc. - Common Stock",stock,Common Stock,Nasdaq Global 
 LRCX,Lam Research Corporation - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 LRE,"Lead Real Estate Co., Ltd - American Depositary Shares",stock,Depositary Share,Nasdaq Capital Market,N,100
 LRGE,ClearBridge Large Cap Growth Select ETF,etf,ETF,Nasdaq Global Market,N,100
-LRHC,La Rosa Holdings Corp. - Common Stock,stock,Common Stock,Nasdaq Capital Market,D,100
 LRMR,"Larimar Therapeutics, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
 LRND,NYLIM U.S. Large Cap R&D Leaders ETF,etf,ETF,Nasdaq Global Market,N,100
 LSAK,"Lesaka Technologies, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
@@ -3202,7 +3201,6 @@ MLKN,"MillerKnoll, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select 
 MLTX,MoonLake Immunotherapeutics - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
 MLYS,"Mineralys Therapeutics, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 MMED,"MiniMed Group, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
-MMEDV,"MiniMed Group, Inc. - Common Stock When Issued",stock,Common Stock,Nasdaq Global Select Market,N,100
 MMLP,Martin Midstream Partners L.P. - Common Units Representing Limited Partnership Interests,stock,Unit,Nasdaq Global Select Market,N,100
 MMSI,"Merit Medical Systems, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 MMTX,Miluna Acquisition Corp - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Global Market,N,100
@@ -3442,7 +3440,7 @@ NGNE,Neurogene Inc. - Common Stock,stock,Common Stock,Nasdaq Global Market,N,100
 NHIV,NewHold Investment Corp IV - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Global Market,N,100
 NHIVU,NewHold Investment Corp IV - Units,stock,Unit,Nasdaq Global Market,N,100
 NHIVW,NewHold Investment Corp IV - Warrants,stock,Warrant,Nasdaq Global Market,N,100
-NHP,"National Healthcare Properties, Inc. - Class A Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
+NHP,"National Healthcare Properties, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
 NHTC,Natural Health Trends Corp. - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 NICE,NICE Ltd - American Depositary Shares each representing one Ordinary Share,stock,Depositary Share,Nasdaq Global Select Market,N,100
 NICM,Nicola Mining Inc. - American Depositary Shares,stock,Depositary Share,Nasdaq Capital Market,N,100
@@ -4093,7 +4091,6 @@ QBTZ,Defiance Daily Target 2x Short QBTS ETF,etf,ETF,Nasdaq Global Market,N,100
 QBUF,Innovator Nasdaq-100 10 Buffer ETF Quarterly,etf,ETF,Nasdaq Global Market,N,100
 QBY,GraniteShares YieldBoost QBTS ETF,etf,ETF,Nasdaq Global Market,N,100
 QCLN,First Trust NASDAQ Clean Edge Green Energy Index Fund,etf,ETF,Nasdaq Global Market,N,100
-QCLR,Global X NASDAQ 100 Collar 95-110 ETF,etf,ETF,Nasdaq Global Market,N,100
 QCLS,"Q/C Technologies, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 QCMD,Direxion Daily QCOM Bear 1X ETF,etf,ETF,Nasdaq Global Market,N,100
 QCML,GraniteShares 2x Long QCOM Daily ETF,etf,ETF,Nasdaq Global Market,N,100
@@ -4474,7 +4471,6 @@ SDSTW,Stardust Power Inc. - Warrant,stock,Warrant,Nasdaq Capital Market,D,100
 SDTY,YieldMax S&P 500 0DTE Covered Call Strategy ETF,etf,ETF,Nasdaq Global Market,N,100
 SDVY,First Trust SMID Cap Rising Dividend Achievers ETF,etf,ETF,Nasdaq Global Market,N,100
 SEAT,Vivid Seats Inc. - Class A common stock,stock,Common Stock,Nasdaq Global Select Market,N,100
-SEATW,Vivid Seats Inc. - Warrant,stock,Warrant,Nasdaq Global Select Market,N,100
 SEDG,"SolarEdge Technologies, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 SEED,Origin Agritech Limited - Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
 SEEM,SEI Select Emerging Markets Equity ETF,etf,ETF,Nasdaq Global Market,N,100
@@ -4709,6 +4705,7 @@ SRET,Global X SuperDividend REIT ETF,etf,ETF,Nasdaq Global Market,N,100
 SRPT,"Sarepta Therapeutics, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 SRRK,Scholar Rock Holding Corporation - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 SRTA,"Strata Critical Medical, Inc. - Class A Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
+SRTM,Stratum Holdings Corp. - Common Stock,stock,Common Stock,Nasdaq Capital Market,D,100
 SRTS,"Sensus Healthcare, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 SRZN,"Surrozen, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 SSAC,SPACSphere Acquisition Corp. - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Global Market,N,100
