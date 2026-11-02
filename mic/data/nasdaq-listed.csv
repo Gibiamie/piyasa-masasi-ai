@@ -243,7 +243,7 @@ ALGS,"Aligos Therapeutics, Inc. - Common stock",stock,Common Stock,Nasdaq Capita
 ALGT,Allegiant Travel Company - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 ALHC,"Alignment Healthcare, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 ALIL,Argent Focused Small Cap ETF,etf,ETF,Nasdaq Global Market,N,100
-ALIS,Calisa Acquisition Corp - Ordinary shares,stock,Ordinary Share,Nasdaq Global Market,D,100
+ALIS,Calisa Acquisition Corp - Ordinary shares,stock,Ordinary Share,Nasdaq Global Market,N,100
 ALISR,Calisa Acquisition Corp - Right,stock,Right,Nasdaq Global Market,N,100
 ALISU,Calisa Acquisition Corp - Units,stock,Unit,Nasdaq Global Market,N,100
 ALKS,Alkermes plc - Ordinary Shares,stock,Ordinary Share,Nasdaq Global Select Market,N,100
@@ -633,7 +633,6 @@ BFLX,iShares Flexible Equity Active ETF,etf,ETF,Nasdaq Global Market,N,100
 BFRG,"Bullfrog AI Holdings, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
 BFRGW,"Bullfrog AI Holdings, Inc. - Warrants",stock,Warrant,Nasdaq Capital Market,N,100
 BFRI,Biofrontera Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
-BFRIW,Biofrontera Inc. - Warrants,stock,Warrant,Nasdaq Capital Market,N,100
 BFST,"Business First Bancshares, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 BGC,"BGC Group, Inc. - Class A Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 BGCG,Baillie Gifford International Concentrated Growth ETF,etf,ETF,Nasdaq Global Market,N,100
@@ -941,6 +940,7 @@ CART,Maplebear Inc. - Common Stock,stock,Common Stock,Nasdaq Global Select Marke
 CARY,Angel Oak Income ETF,etf,ETF,Nasdaq Global Market,N,100
 CARZ,First Trust S-Network Future Vehicles & Technology ETF,etf,ETF,Nasdaq Global Market,N,100
 CASH,"Pathward Financial, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
+CASK,"Sempreon, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 CASS,"Cass Information Systems, Inc - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 CAST,"FreeCast, Inc. - Class A common stock",stock,Common Stock,Nasdaq Global Market,N,100
 CASY,"Caseys General Stores, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,40
@@ -1406,12 +1406,11 @@ DGRE,WisdomTree Emerging Markets Quality Dividend Growth Fund,etf,ETF,Nasdaq Glo
 DGRS,WisdomTree U.S. SmallCap Quality Dividend Growth Fund,etf,ETF,Nasdaq Global Market,N,100
 DGRW,WisdomTree U.S. Quality Dividend Growth Fund,etf,ETF,Nasdaq Global Market,N,100
 DGXX,Digi Power X Inc. - Common Subordinate Voting Shares,stock,Nasdaq Listed Security,Nasdaq Capital Market,N,100
-DH,Definitive Healthcare Corp. - Class A Common Stock,stock,Common Stock,Nasdaq Global Select Market,D,100
+DH,Definitive Healthcare Corp. - Class A Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 DHC,Diversified Healthcare Trust  - Common Shares of Beneficial Interest,stock,Common Stock,Nasdaq Global Select Market,N,100
 DHCNI,Diversified Healthcare Trust  - 5.625% Senior Notes due 2042,stock,Note,Nasdaq Global Select Market,N,100
 DHCNL,Diversified Healthcare Trust  - 6.25% Senior Notes Due 2046,stock,Note,Nasdaq Global Select Market,N,100
 DIBS,"1stdibs.com, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
-DINE,Simplify Tax Aware Diversified Income Strategy ETF,etf,ETF,Nasdaq Global Market,N,100
 DIOD,Diodes Incorporated - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 DIVD,Altrius Global Dividend ETF,etf,ETF,Nasdaq Global Market,N,100
 DJCO,Daily Journal Corp. (S.C.) - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,40
@@ -2110,7 +2109,7 @@ GLBS,Globus Maritime Limited - Common Stock,stock,Common Stock,Nasdaq Capital Ma
 GLCR,GlacierShares Nasdaq Iceland ETF,etf,ETF,Nasdaq Global Market,N,100
 GLDB,IDX Alternative FIAT ETF,etf,ETF,Nasdaq Global Market,N,100
 GLDI,"ETRACS Gold Shares Covered Call ETNs due February 2, 2033",etf,ETF,Nasdaq Global Market,N,100
-GLE,Global Engine Group Holding Limited - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,D,100
+GLE,Global Engine Group Holding Limited - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
 GLIBA,Liberty Capital Corporation - Series A GCI Group Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 GLIBK,Liberty Capital Corporation - Series C GCI Group Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 GLND,Greenland Energy Company - Common Stock,stock,Common Stock,Nasdaq Global Market,N,100
@@ -2583,7 +2582,7 @@ INTS,"Intensity Therapeutics, Inc. - Common Stock",stock,Common Stock,Nasdaq Cap
 INTU,Intuit Inc. - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,40
 INTW,GraniteShares 2x Long INTC Daily ETF,etf,ETF,Nasdaq Global Market,N,100
 INTZ,Intrusion Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,D,100
-INV,"Innventure, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
+INV,"Innventure, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,D,100
 INVA,"Innoviva, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 INVE,"INVE Technologies, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 INVZ,Innoviz Technologies Ltd. - Ordinary shares,stock,Ordinary Share,Nasdaq Capital Market,D,100
@@ -2686,7 +2685,7 @@ JANX,"Janux Therapeutics, Inc. - Common Stock",stock,Common Stock,Nasdaq Global 
 JAPN,Horizon Kinetics Japan Owner Operator ETF,etf,ETF,Nasdaq Global Market,N,100
 JATT,JATT II Acquisition Corp - Ordinary Shares,stock,Ordinary Share,Nasdaq Global Market,N,100
 JAZZ,Jazz Pharmaceuticals plc - Ordinary Shares,stock,Ordinary Share,Nasdaq Global Select Market,N,100
-JBDI,JBDI Holdings Limited - Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
+JBDI,JBDI Holdings Limited - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
 JBHT,"J.B. Hunt Transport Services, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 JBIO,"Jade Biosciences, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 JBLU,JetBlue Airways Corporation - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
@@ -2795,7 +2794,7 @@ KMB,Kimberly-Clark Corporation - Common Stock,stock,Common Stock,Nasdaq Global S
 KMDA,Kamada Ltd. - Ordinary Shares,stock,Ordinary Share,Nasdaq Global Select Market,N,100
 KMRK,K-Tech Solutions Company Limited - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
 KMTS,"Kestra Medical Technologies, Ltd. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
-KNDI,"Kandi Technologies Group, Inc. - Ordinary Shares",stock,Ordinary Share,Nasdaq Global Select Market,D,100
+KNDI,"Kandi Technologies Group, Inc. - Ordinary Shares",stock,Ordinary Share,Nasdaq Global Select Market,N,100
 KNGZ,First Trust S&P 500 Diversified Dividend Aristocrats ETF,etf,ETF,Nasdaq Global Market,N,100
 KNSA,"Kiniksa Pharmaceuticals International, plc - Class A Ordinary Shares",stock,Ordinary Share,Nasdaq Global Select Market,N,100
 KOD,Kodiak Sciences Inc - Common Stock,stock,Common Stock,Nasdaq Global Market,N,100
@@ -2984,7 +2983,6 @@ LPCVU,Launchpad Cadenza Acquisition Corp I - Unit,stock,Unit,Nasdaq Global Marke
 LPCVW,Launchpad Cadenza Acquisition Corp I - Warrant,stock,Warrant,Nasdaq Global Market,N,100
 LPLA,LPL Financial Holdings Inc. - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,40
 LPTH,"LightPath Technologies, Inc. - Class A Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
-LQ,Simplify Tax Aware Alternatives ETF,etf,ETF,Nasdaq Global Market,N,100
 LQDA,Liquidia Corporation - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 LQDT,"Liquidity Services, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 LRCX,Lam Research Corporation - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,40
@@ -3151,7 +3149,6 @@ MGN,Megan Holdings Limited - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq
 MGNI,"Magnite, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 MGNX,"MacroGenics, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 MGOL,Leverage Shares MANGOS ETF,etf,ETF,Nasdaq Global Market,N,100
-MGPI,"MGP Ingredients, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 MGRC,McGrath RentCorp - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 MGRT,Mega Fortune Company Limited - Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
 MGRX,"Mangoceuticals, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
@@ -3166,7 +3163,7 @@ MILN,Global X Millennial Consumer ETF,etf,ETF,Nasdaq Global Market,N,100
 MIND,"MIND Technology, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 MIRA,"MIRA Pharmaceuticals, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
 MIRM,"Mirum Pharmaceuticals, Inc. - common stock",stock,Common Stock,Nasdaq Global Market,N,100
-MIST,Milestone Pharmaceuticals Inc. - Common Shares,stock,Common Stock,Nasdaq Global Select Market,N,100
+MIST,Milestone Pharmaceuticals Inc. - Common Shares,stock,Common Stock,Nasdaq Global Select Market,D,100
 MITK,"Mitek Systems, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 MKAM,MKAM ETF,etf,ETF,Nasdaq Global Market,N,100
 MKDW,MKDWELL Tech Inc. - Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
@@ -3962,7 +3959,7 @@ POWW,Outdoor Holding Company - Common Stock,stock,Common Stock,Nasdaq Capital Ma
 POWWP,Outdoor Holding Company - 8.75% Series A Cumulative Redeemable Perpetual Preferred Stock,stock,Preferred,Nasdaq Capital Market,N,100
 PPBT,Purple Biotech Ltd. - American Depositary Shares,stock,Depositary Share,Nasdaq Capital Market,N,100
 PPC,Pilgrim's Pride Corporation - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
-PPCB,"Propanc Biopharma, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
+PPCB,"Propanc Biopharma, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
 PPH,VanEck Pharmaceutical ETF,etf,ETF,Nasdaq Global Market,N,100
 PPHC,"Public Policy Holding Company, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
 PPI,Astoria Real Assets ETF,etf,ETF,Nasdaq Global Market,N,100
@@ -4143,7 +4140,7 @@ QSEAU,Quartzsea Acquisition Corporation - Units,stock,Unit,Nasdaq Global Market,
 QSI,Quantum-Si Incorporated - Class A Common Stock,stock,Common Stock,Nasdaq Global Market,N,100
 QSIX,Pacer Metaurus Nasdaq 100 Dividend Multiplier 600 ETF,etf,ETF,Nasdaq Global Market,N,100
 QSML,WisdomTree U.S. SmallCap Quality Growth Fund,etf,ETF,Nasdaq Global Market,N,100
-QTEC,First Trust NASDAQ-100-Technology Sector Index Fund,etf,ETF,Nasdaq Global Market,N,40
+QTEC,First Trust NASDAQ-100- Technology Index Fund,etf,ETF,Nasdaq Global Market,N,40
 QTEX,QTREX Quantum Ltd. - Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
 QTI,"QT Imaging Holdings, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 QTOP,iShares Nasdaq Top 30 Stocks ETF,etf,ETF,Nasdaq Global Market,N,100
