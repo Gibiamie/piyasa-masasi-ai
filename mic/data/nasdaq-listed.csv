@@ -127,7 +127,7 @@ AEBI,Aebi Schmidt Holding AG - Common Stock,stock,Common Stock,Nasdaq Global Sel
 AEC,Anfield Energy Inc. - Common Shares,stock,Common Stock,Nasdaq Capital Market,N,100
 AEHL,Antelope Enterprise Holdings Limited - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
 AEHR,Aehr Test Systems - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
-AEI,Alset Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
+AEI,Alset Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,D,100
 AEIS,"Advanced Energy Industries, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,40
 AEMD,"Aethlon Medical, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 AENT,Alliance Entertainment Holding Corporation - common stock,stock,Common Stock,Nasdaq Capital Market,N,100
@@ -160,6 +160,8 @@ AGEN,Agenus Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 AGGA,EA Astoria Beacon Dynamic Core US Fixed Income ETF,etf,ETF,Nasdaq Global Market,N,100
 AGIO,"Agios Pharmaceuticals, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 AGIX,KraneShares Public-Private AI & Technology ETF,etf,ETF,Nasdaq Global Market,N,100
+AGLT,"Agility Robotics, Inc. - Ordinary Shares",stock,Ordinary Share,Nasdaq Global Market,N,100
+AGLTW,"Agility Robotics, Inc. - Warrants",stock,Warrant,Nasdaq Capital Market,N,100
 AGMB,AgomAb Therapeutics NV - ADRs representing one common share.,stock,Common Stock,Nasdaq Global Select Market,N,100
 AGMH,AGM Group Holdings Inc. - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,D,100
 AGMI,Themes Silver Miners ETF,etf,ETF,Nasdaq Global Market,N,100
@@ -544,7 +546,7 @@ BABX,GraniteShares 2x Long BABA Daily ETF,etf,ETF,Nasdaq Global Market,N,100
 BACC,Blue Acquisition Corp. - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Global Market,N,100
 BACCR,Blue Acquisition Corp. - Right,stock,Right,Nasdaq Global Market,N,100
 BACCU,Blue Acquisition Corp. - Unit,stock,Unit,Nasdaq Global Market,N,100
-BAER,"Bridger Aerospace Group Holdings, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
+BAER,"Bridger Aerospace Group Holdings, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,D,100
 BAERW,"Bridger Aerospace Group Holdings, Inc. - Warrant",stock,Warrant,Nasdaq Global Market,N,100
 BAFE,Brown Advisory Flexible Equity ETF,etf,ETF,Nasdaq Global Market,N,100
 BAFN,BayFirst Financial Corp. - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
@@ -990,9 +992,6 @@ CCSB,Carbon Collective Short Duration Green Bond ETF,etf,ETF,Nasdaq Global Marke
 CCSI,"Consensus Cloud Solutions, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 CCSO,Carbon Collective Climate Solutions U.S. Equity ETF,etf,ETF,Nasdaq Global Market,N,100
 CCTG,CCSC Technology International Holdings Limited - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,D,100
-CCXI,Churchill Capital Corp XI - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Global Market,N,100
-CCXIU,Churchill Capital Corp XI - Units,stock,Unit,Nasdaq Global Market,N,100
-CCXIW,Churchill Capital Corp XI - Warrants,stock,Warrant,Nasdaq Global Market,N,100
 CD,Chaince Digital Holdings Inc. - American Ordinary Shares,stock,Ordinary Share,Nasdaq Global Market,N,100
 CDC,VictoryShares US EQ Income Enhanced Volatility Wtd ETF,etf,ETF,Nasdaq Global Market,N,100
 CDIG,City Different Investments Global Equity ETF,etf,ETF,Nasdaq Global Market,N,100
@@ -1351,8 +1350,8 @@ DAAQ,Digital Asset Acquisition Corp. - Class A Ordinary shares,stock,Ordinary Sh
 DAAQU,Digital Asset Acquisition Corp. - Units,stock,Unit,Nasdaq Global Market,N,100
 DAAQW,Digital Asset Acquisition Corp. - Warrant,stock,Warrant,Nasdaq Global Market,N,100
 DADS,Digital Asset Debt Strategy ETF,etf,ETF,Nasdaq Global Market,N,100
-DAIC,"CID HoldCo, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,H,100
-DAICW,"CID HoldCo, Inc. - Warrants",stock,Warrant,Nasdaq Global Market,H,100
+DAIC,"CID HoldCo, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,H,100
+DAICW,"CID HoldCo, Inc. - Warrants",stock,Warrant,Nasdaq Capital Market,H,100
 DAIO,Data I/O Corporation - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 DAK,Dakota Active Equity ETF,etf,ETF,Nasdaq Global Market,N,100
 DAKT,"Daktronics, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
@@ -1665,7 +1664,7 @@ ETOR,eToro Group Ltd. - Class A Common Shares,stock,Common Stock,Nasdaq Global S
 ETRA,"Electra Therapeutics, Inc. - Common stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 ETS,Elite Express Holding Inc. - Class A Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 EU,enCore Energy Corp. - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
-EUDA,Euda Health Holdings Limited - Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
+EUDA,Euda Health Holdings Limited - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
 EUDAW,Euda Health Holdings Limited - Warrant,stock,Warrant,Nasdaq Capital Market,N,100
 EUFN,iShares MSCI Europe Financials ETF,etf,ETF,Nasdaq Global Market,N,100
 EURK,Eureka Acquisition Corp - Class A Ordinary Share,stock,Ordinary Share,Nasdaq Capital Market,D,100
@@ -2111,8 +2110,8 @@ GLDI,"ETRACS Gold Shares Covered Call ETNs due February 2, 2033",etf,ETF,Nasdaq 
 GLE,Global Engine Group Holding Limited - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
 GLIBA,Liberty Capital Corporation - Series A GCI Group Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 GLIBK,Liberty Capital Corporation - Series C GCI Group Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
-GLND,Greenland Energy Company - Common Stock,stock,Common Stock,Nasdaq Global Market,N,100
-GLNDW,Greenland Energy Company - Warrant,stock,Warrant,Nasdaq Global Market,N,100
+GLND,Greenland Energy Company - Common Stock,stock,Common Stock,Nasdaq Global Market,D,100
+GLNDW,Greenland Energy Company - Warrant,stock,Warrant,Nasdaq Global Market,D,100
 GLNG,Golar LNG Limited - Common Shares,stock,Common Stock,Nasdaq Global Select Market,N,100
 GLOO,"Gloo Holdings, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 GLOW,VictoryShares WestEnd Global Equity ETF,etf,ETF,Nasdaq Global Market,N,100
@@ -2963,7 +2962,7 @@ LOGO,Alpha Brands Consumption Leaders ETF,etf,ETF,Nasdaq Global Market,N,100
 LONA,"LeonaBio, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 LOOP,"Loop Industries, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,D,100
 LOPE,"Grand Canyon Education, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
-LOT,Lotus Technology Inc. - American Depositary Shares,stock,Depositary Share,Nasdaq Global Select Market,N,100
+LOT,Lotus Technology Inc. - American Depositary Shares,stock,Depositary Share,Nasdaq Global Select Market,D,100
 LOTI,Liberty One Tactical Income ETF,etf,ETF,Nasdaq Global Market,N,100
 LOTWW,Lotus Technology Inc. - Warrants,stock,Warrant,Nasdaq Capital Market,N,100
 LOVE,The Lovesac Company - Common Stock,stock,Common Stock,Nasdaq Global Market,N,100
@@ -4458,7 +4457,7 @@ SEDG,"SolarEdge Technologies, Inc. - Common Stock",stock,Common Stock,Nasdaq Glo
 SEED,Origin Agritech Limited - Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,D,100
 SEEM,SEI Select Emerging Markets Equity ETF,etf,ETF,Nasdaq Global Market,N,100
 SEER,"Seer, Inc. - Class A Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
-SEGG,Sports Entertainment Gaming Global Corporation  - Common Stock,stock,Common Stock,Nasdaq Global Market,E,100
+SEGG,Sports Entertainment Gaming Global Corporation  - Common Stock,stock,Common Stock,Nasdaq Global Market,N,100
 SEIC,SEI Investments Company - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 SEIE,SEI Select International Equity ETF,etf,ETF,Nasdaq Global Market,N,100
 SEIS,SEI Select Small Cap ETF,etf,ETF,Nasdaq Global Market,N,100
@@ -5512,9 +5511,9 @@ XSLLW,Xsolla SPAC 1 - Warrants,stock,Warrant,Nasdaq Global Market,N,100
 XSPC,VegaShares Space & AI ETF,etf,ETF,Nasdaq Global Market,N,100
 XSPI,NEOS Boosted S&P 500 High Income ETF,etf,ETF,Nasdaq Global Market,N,100
 XT,iShares Future Exponential Technologies ETF,etf,ETF,Nasdaq Global Market,N,100
-XTER,Karman Line Acquisition Corp. - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Global Market,N,100
-XTERU,Karman Line Acquisition Corp. - Units,stock,Unit,Nasdaq Global Market,N,100
-XTERW,Karman Line Acquisition Corp. - Warrants,stock,Warrant,Nasdaq Global Market,N,100
+XTER,Xterax Corporation II - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Global Market,N,100
+XTERU,Xterax Corporation II - Units,stock,Unit,Nasdaq Global Market,N,100
+XTERW,Xterax Corporation II - Warrants,stock,Warrant,Nasdaq Global Market,N,100
 XTIA,"XTI Aerospace, Inc. Common Stock  - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 XTLB,XTL Biopharmaceuticals Ltd. - American Depositary Shares,stock,Depositary Share,Nasdaq Capital Market,N,100
 XUSM,MarketDesk International Momentum ETF,etf,ETF,Nasdaq Global Market,N,100
