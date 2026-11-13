@@ -621,8 +621,8 @@ BEEZ,Honeytree U.S. Equity ETF,etf,ETF,Nasdaq Global Market,N,100
 BEG,Leverage Shares 2x Long BE Daily ETF,etf,ETF,Nasdaq Global Market,N,100
 BELFA,Bel Fuse Inc. - Class A Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 BELFB,Bel Fuse Inc. - Class B Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
-BENF,Beneficient - Class A Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
-BENFW,Beneficient - Warrant,stock,Warrant,Nasdaq Capital Market,N,100
+BENF,Beneficient - Class A Common Stock,stock,Common Stock,Nasdaq Capital Market,D,100
+BENFW,Beneficient - Warrant,stock,Warrant,Nasdaq Capital Market,D,100
 BESO,GSR Crypto Core3 ETF,etf,ETF,Nasdaq Global Market,N,100
 BETR,Better Home & Finance Holding Company - Class A Common Stock,stock,Common Stock,Nasdaq Global Market,D,100
 BETRW,Better Home & Finance Holding Company - Warrant,stock,Warrant,Nasdaq Global Market,D,100
@@ -1111,7 +1111,6 @@ CLBK,"Columbia Financial, Inc. - Common Stock",stock,Common Stock,Nasdaq Global 
 CLBT,Cellebrite DI Ltd. - Ordinary Shares,stock,Ordinary Share,Nasdaq Global Select Market,N,100
 CLDX,"Celldex Therapeutics, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 CLFD,"Clearfield, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
-CLGN,CollPlant Biotechnologies Ltd. - Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
 CLIK,Click Holdings Limited - Ordinary Share,stock,Ordinary Share,Nasdaq Capital Market,N,100
 CLIR,ClearSign Technologies Corporation - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 CLLS,Cellectis S.A. - American Depositary Shares,stock,Depositary Share,Nasdaq Global Market,N,100
@@ -1760,8 +1759,6 @@ FCUV,Focus Universal Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Marke
 FCVT,First Trust SSI Strategic Convertible Securities ETF,etf,ETF,Nasdaq Global Market,N,100
 FDBC,"Fidelity D & D Bancorp, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
 FDCF,Fidelity Disruptive Communications ETF,etf,ETF,Nasdaq Global Market,N,100
-FDFF,Fidelity Disruptive Finance ETF,etf,ETF,Nasdaq Global Market,N,100
-FDIF,Fidelity Disruptors ETF,etf,ETF,Nasdaq Global Market,N,100
 FDIG,Fidelity Crypto Industry and Digital Payments ETF,etf,ETF,Nasdaq Global Market,N,100
 FDIQ,Invesco Bloomberg Financial Data Providers ETF,etf,ETF,Nasdaq Global Market,N,100
 FDIV,MarketDesk Focused U.S. Dividend ETF,etf,ETF,Nasdaq Global Market,N,100
@@ -1869,8 +1866,6 @@ FMACU,Future Money Acquisition Corporation - Units,stock,Unit,Nasdaq Global Mark
 FMAO,"Farmers & Merchants Bancorp, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 FMB,First Trust Managed Municipal ETF,etf,ETF,Nasdaq Global Market,N,100
 FMBH,"First Mid Bancshares, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
-FMED,Fidelity Disruptive Medicine ETF,etf,ETF,Nasdaq Global Market,N,100
-FMET,Fidelity Metaverse ETF,etf,ETF,Nasdaq Global Market,N,100
 FMFC,Kandal M Venture Limited - Class A ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,D,100
 FMHI,First Trust Municipal High Income ETF,etf,ETF,Nasdaq Global Market,N,100
 FMNB,Farmers National Banc Corp. - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
@@ -3627,14 +3622,14 @@ OKYO,OKYO Pharma Limited - Ordinary Shares,stock,Ordinary Share,Nasdaq Capital M
 OLB,"The OLB Group, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
 OLED,Universal Display Corporation - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 OLLI,"Ollie's Bargain Outlet Holdings, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
-OLMA,"Olema Pharmaceuticals, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
+OLMA,"Olema Oncology, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 OLOX,Olenox Industries Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 OM,"Outset Medical, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 OMAB,Grupo Aeroportuario del Centro Norte S.A.B. de C.V. - American Depositary Shares each representing 8 Series B shares,stock,Depositary Share,Nasdaq Global Select Market,N,100
 OMCL,"Omnicell, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 OMDA,"Omada Health, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 OMER,Omeros Corporation - Common Stock,stock,Common Stock,Nasdaq Global Market,N,100
-OMEX,"Odyssey Marine Exploration, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
+OMEX,"Odyssey Marine Exploration, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 OMH,Ohmyhome Limited - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
 OMSE,OMS Energy Technologies Inc. - Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
 ON,ON Semiconductor Corporation - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
@@ -3665,6 +3660,7 @@ OPEN,Opendoor Technologies Inc  - Common Stock,stock,Common Stock,Nasdaq Global 
 OPENL,"Opendoor Technologies Inc  - Series A Warrants, each whole warrant exercisable to purchase one share of Common Stock at an exercise price of $13.00 per warrant",stock,Warrant,Nasdaq Global Select Market,N,100
 OPENW,"Opendoor Technologies Inc  - Series K Warrants, each whole warrant exercisable to purchase one share of Common Stock at an exercise price of $9.00 per warrant",stock,Warrant,Nasdaq Global Select Market,N,100
 OPENZ,"Opendoor Technologies Inc  - Series Z Warrants, each whole warrant exercisable to purchase one share of Common Stock at an exercise price of $17.00 per warrant",stock,Warrant,Nasdaq Global Select Market,N,100
+OPHI,CollPlant Biotechnologies Ltd. - Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
 OPI,Office Properties Income Trust - Common shares of beneficial interest,stock,Common Stock,Nasdaq Capital Market,N,100
 OPK,"Opko Health, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 OPNW,"OpenWorld, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
@@ -4024,7 +4020,6 @@ PTF,Invesco Dorsey Wright Technology Momentum ETF,etf,ETF,Nasdaq Global Market,N
 PTGX,"Protagonist Therapeutics, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
 PTH,Invesco Dorsey Wright Healthcare Momentum ETF,etf,ETF,Nasdaq Global Market,N,100
 PTIR,GraniteShares 2x Long PLTR Daily ETF,etf,ETF,Nasdaq Global Market,N,100
-PTLE,PTL LTD - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
 PTLO,Portillo's Inc. - Class A Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 PTN,"Palatin Technologies, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 PTNQ,Pacer Trendpilot 100 ETF,etf,ETF,Nasdaq Global Market,N,100
@@ -4954,7 +4949,7 @@ TNONW,"Tenon Medical, Inc. - Warrant",stock,Warrant,Nasdaq Capital Market,N,100
 TNXP,Tonix Pharmaceuticals Holding Corp. - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 TNXT,T. Rowe Price Innovation Leaders ETF,etf,ETF,Nasdaq Global Market,N,100
 TNYA,"Tenaya Therapeutics, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
-TOMZ,"TOMI Environmental Solutions, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
+TOMZ,"TOMI Environmental Solutions, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 TONX,TON Strategy Company - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 TOP,TOP Financial Group Limited - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
 TORK,KraneShares Actuator ETF,etf,ETF,Nasdaq Global Market,N,100
@@ -5365,7 +5360,7 @@ WETO,Wetour Robotics Limited - Ordinary Shares,stock,Ordinary Share,Nasdaq Capit
 WEYS,"Weyco Group, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 WFCF,"Where Food Comes From, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 WFF,WF Holding Limited - Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
-WFRD,Weatherford International plc - Ordinary shares,stock,Ordinary Share,Nasdaq Global Select Market,N,100
+WFRD,Weatherford International Corp - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 WGMI,CoinShares Bitcoin Mining and Digital Power ETF,etf,ETF,Nasdaq Global Market,N,100
 WGS,GeneDx Holdings Corp. - Class A Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 WHF,"WhiteHorse Finance, Inc. - Closed End Fund",stock,Closed-End Fund,Nasdaq Global Select Market,N,100
@@ -5596,3 +5591,4 @@ ZURA,Zura Bio Limited - Class A Ordinary shares,stock,Ordinary Share,Nasdaq Capi
 ZVRA,"Zevra Therapeutics, Inc.  - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 ZYBT,Zhengye Biotechnology Holding Limited - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
 ZYME,Zymeworks Inc. - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
+ZYN,PTL LTD - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
