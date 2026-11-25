@@ -233,7 +233,7 @@ AKTX,Akari Therapeutics Plc - American Depositary Shares,stock,Depositary Share,
 ALAB,"Astera Labs, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,40
 ALAR,Alarum Technologies Ltd. - American Depositary Shares,stock,Depositary Share,Nasdaq Capital Market,N,100
 ALCO,"Alico, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
-ALDX,"Aldeyra Therapeutics, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
+ALDX,"Aldeyra Therapeutics, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
 ALEC,"Alector, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 ALF,Centurion Acquisition Corp. - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Global Market,N,100
 ALFUU,Centurion Acquisition Corp. - Unit,stock,Unit,Nasdaq Global Market,N,100
@@ -390,7 +390,7 @@ AQMS,"Aqua Metals, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market
 AQST,"Aquestive Therapeutics, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
 AQWA,Global X Clean Water ETF,etf,ETF,Nasdaq Global Market,N,100
 ARAI,Arrive AI Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,D,100
-ARAY,Accuray Incorporated - Common Stock,stock,Common Stock,Nasdaq Capital Market,D,100
+ARAY,Accuray Incorporated - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 ARBB,ARB IOT Group Limited - Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
 ARBE,Arbe Robotics Ltd. - Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,D,100
 ARBK,Argo Blockchain plc - American Depositary Shares,stock,Depositary Share,Nasdaq Capital Market,N,100
@@ -1196,7 +1196,7 @@ CONX,Direxion Daily COIN Bull 2X ETF,etf,ETF,Nasdaq Global Market,N,100
 COO,"The Cooper Companies, Inc.  - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 COOL,"VegaShares AI Thermal, Cooling & Power Management ETF",etf,ETF,Nasdaq Global Market,N,100
 COOT,Australian Oilseeds Holdings Limited - Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,D,100
-COOTW,Australian Oilseeds Holdings Limited - Warrant,stock,Warrant,Nasdaq Capital Market,N,100
+COOTW,Australian Oilseeds Holdings Limited - Warrant,stock,Warrant,Nasdaq Capital Market,D,100
 COPJ,Sprott Junior Copper Miners ETF,etf,ETF,Nasdaq Global Market,N,100
 COPP,Sprott Copper Miners ETF,etf,ETF,Nasdaq Global Market,N,100
 CORO,iShares International Country Rotation Active ETF,etf,ETF,Nasdaq Global Market,N,100
@@ -1399,7 +1399,7 @@ DFLI,Dragonfly Energy Holdings Corp - Common Stock,stock,Common Stock,Nasdaq Cap
 DFLIW,Dragonfly Energy Holdings Corp - Warrant,stock,Warrant,Nasdaq Capital Market,D,100
 DFNS,T3 Defense Inc. - Common Stock,stock,Common Stock,Nasdaq Global Market,N,100
 DFNSW,T3 Defense Inc. - Warrants,stock,Warrant,Nasdaq Capital Market,N,100
-DFSC,"DEFSEC Technologies Inc. - common stock, no R/S concurrent with offering",stock,Common Stock,Nasdaq Capital Market,N,100
+DFSC,"DEFSEC Technologies Inc. - common stock, no R/S concurrent with offering",stock,Common Stock,Nasdaq Capital Market,D,100
 DFSCW,DEFSEC Technologies Inc. - warrant,stock,Warrant,Nasdaq Capital Market,N,100
 DFTX,"Definium Therapeutics, Inc.  - Common Shares",stock,Common Stock,Nasdaq Global Select Market,N,100
 DGCB,Dimensional Global Credit ETF,etf,ETF,Nasdaq Global Market,N,100
@@ -1617,7 +1617,7 @@ ENHI,iShares Enhanced International Active ETF,etf,ETF,Nasdaq Global Market,N,10
 ENHU,iShares Enhanced Large Cap Core Active ETF,etf,ETF,Nasdaq Global Market,N,100
 ENHV,iShares Enhanced Large Cap Value Active ETF,etf,ETF,Nasdaq Global Market,N,100
 ENLT,Enlight Renewable Energy Ltd. - Ordinary Shares,stock,Ordinary Share,Nasdaq Global Select Market,N,100
-ENLV,Enlivex Ltd. - Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,D,100
+ENLV,Enlivex Ltd. - Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
 ENPH,"Enphase Energy, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
 ENRD,Einride AB - American Depositary Shares,stock,Depositary Share,Nasdaq Global Market,N,100
 ENRDW,Einride AB - Warrants,stock,Warrant,Nasdaq Capital Market,N,100
@@ -2049,7 +2049,7 @@ GCT,GigaCloud Technology Inc - Class A Ordinary Shares,stock,Ordinary Share,Nasd
 GDC,GD Culture Group Limited - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 GDEV,GDEV Inc. - Ordinary Shares,stock,Ordinary Share,Nasdaq Global Market,N,100
 GDHG,Golden Heaven Group Holdings Ltd.  - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
-GDRX,"GoodRx Holdings, Inc. - Class A Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
+GDRX,"GoodRx Holdings, Inc. - Class A Common Stock",stock,Common Stock,Nasdaq Global Select Market,E,100
 GDS,GDS Holdings Limited - American Depositary Shares,stock,Depositary Share,Nasdaq Global Market,N,100
 GDTC,CytoMed Therapeutics Limited - Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,D,100
 GDYN,"Grid Dynamics Holdings, Inc. - Class A Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
@@ -3070,7 +3070,7 @@ MBIO,"Mustang Bio, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market
 MBLY,Mobileye Global Inc. - Class A Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 MBNKO,"Medallion Bank - Fixed-Rate Reset Non-Cumulative Perpetual Preferred Stock, Series G, par value $1.00 per share",stock,Preferred,Nasdaq Capital Market,N,100
 MBOT,Microbot Medical Inc.  - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
-MBRX,"Moleculin Biotech, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
+MBRX,"Moleculin Biotech, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 MBS,Angel Oak Mortgage-Backed Securities ETF,etf,ETF,Nasdaq Global Market,N,100
 MBUU,"Malibu Boats, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
 MBVI,M3-Brigade Acquisition VI Corp. - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Global Market,N,100
@@ -3281,10 +3281,10 @@ MTEN,Mingteng International Corporation Inc. - Class A Ordinary Shares,stock,Ord
 MTEX,"Mannatech, Incorporated - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 MTGG,MayTech Global Growth ETF,etf,ETF,Nasdaq Global Market,N,100
 MTLS,Materialise NV - American Depositary Shares,stock,Depositary Share,Nasdaq Global Select Market,N,100
-MTRI,"Mentari Therapeutics, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
+MTRI,"Mentari Therapeutics, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 MTRX,Matrix Service Company - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 MTSI,"MACOM Technology Solutions Holdings, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,40
-MTVA,MetaVia Inc.  - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
+MTVA,MetaVia Inc.  - Common Stock,stock,Common Stock,Nasdaq Capital Market,D,100
 MTYY,GraniteShares YieldBOOST MSTR ETF,etf,ETF,Nasdaq Global Market,N,100
 MU,"Micron Technology, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,10
 MUD,Direxion Daily MU Bear 1X ETF,etf,ETF,Nasdaq Global Market,N,100
@@ -3571,7 +3571,7 @@ NXST,"Nexstar Media Group, Inc. - Common Stock",stock,Common Stock,Nasdaq Global
 NXT,Nextpower Inc. - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 NXTC,"NextCure, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,D,100
 NXTG,First Trust Indxx NextG ETF,etf,ETF,Nasdaq Global Market,N,100
-NXTS,Nexentis Technologies Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,D,100
+NXTS,Nexentis Technologies Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 NXTT,Next Technology Holding Inc. - Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
 NYAX,Nayax Ltd. - Ordinary Shares,stock,Ordinary Share,Nasdaq Global Select Market,N,100
 NYXH,Nyxoah SA - Ordinary Shares,stock,Ordinary Share,Nasdaq Global Market,N,100
@@ -3614,7 +3614,7 @@ ODTE,VegaShares SPX NDX RTY Premium Income ETF,etf,ETF,Nasdaq Global Market,N,10
 ODTX,"Odyssey Therapeutics, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 ODYS,Odysight.ai Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 OESX,"Orion Energy Systems, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
-OFAL,OFA Group - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,D,100
+OFAL,OFA Group - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
 OFIX,Orthofix Medical Inc.  - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 OFLX,"Omega Flex, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
 OFS,OFS Capital Corporation - Closed End Fund,stock,Closed-End Fund,Nasdaq Global Select Market,N,100
@@ -4384,7 +4384,7 @@ SABR,Sabre Corporation - Common Stock,stock,Common Stock,Nasdaq Global Select Ma
 SABS,"SAB Biotherapeutics, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 SAEN,Genenta Science S.p.A. - American Depositary Shares,stock,Depositary Share,Nasdaq Capital Market,D,100
 SAFT,"Safety Insurance Group, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
-SAFX,"XCF Global, Inc. - Class A Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
+SAFX,"XCF Global, Inc. - Class A Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 SAGT,SAGTEC GLOBAL LIMITED - Class A Ordinary shares,stock,Ordinary Share,Nasdaq Capital Market,D,100
 SAIA,"Saia, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,40
 SAIC,Science Applications International Corporation - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
@@ -4425,8 +4425,8 @@ SCHL,Scholastic Corporation - Common Stock,stock,Common Stock,Nasdaq Global Sele
 SCII,SC II Acquisition Corp. - Class A ordinary share,stock,Ordinary Share,Nasdaq Global Market,N,100
 SCIIR,SC II Acquisition Corp. - Rights,stock,Right,Nasdaq Global Market,N,100
 SCIIU,SC II Acquisition Corp. - Units,stock,Unit,Nasdaq Global Market,N,100
-SCLX,Scilex Holding Company - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
-SCLXW,Scilex Holding Company - Warrant,stock,Warrant,Nasdaq Capital Market,N,100
+SCLX,Scilex Holding Company - Common Stock,stock,Common Stock,Nasdaq Capital Market,D,100
+SCLXW,Scilex Holding Company - Warrant,stock,Warrant,Nasdaq Capital Market,D,100
 SCNI,Scinai Immunotherapeutics Ltd. - American Depositary Shares,stock,Depositary Share,Nasdaq Capital Market,N,100
 SCNX,"Scienture Holdings, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 SCOR,"comScore, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
@@ -5127,8 +5127,8 @@ UNHG,Leverage Shares 2X Long UNH Daily ETF,etf,ETF,Nasdaq Global Market,N,100
 UNIT,Uniti Group Inc. - Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
 UNIY,WisdomTree Voya Yield Enhanced USD Universal Bond Fund,etf,ETF,Nasdaq Global Market,N,100
 UNTY,"Unity Bancorp, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
-UONE,"Urban One, Inc.  - Class A Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
-UONEK,"Urban One, Inc.  - Class D Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
+UONE,"Urban One, Inc.  - Class A Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
+UONEK,"Urban One, Inc.  - Class D Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
 UPB,"Upstream Bio, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 UPBD,"Upbound Group, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 UPC,Universe Pharmaceuticals Inc - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
@@ -5483,7 +5483,7 @@ XLAB,Exascale Labs Holdings Inc. - Class A Common Stock,stock,Common Stock,Nasda
 XLABW,Exascale Labs Holdings Inc. - Warrant,stock,Warrant,Nasdaq Global Market,N,100
 XLO,"Xilio Therapeutics, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 XMAG,Defiance Large Cap ex-Mag 7 ETF,etf,ETF,Nasdaq Global Market,N,100
-XMAX,"XMAX, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
+XMAX,"XMAX, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 XMTR,"Xometry, Inc. - Class A Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 XNCR,"Xencor, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
 XNDU,Xanadu Quantum Technologies Limited - Class B Subordinate Voting Shares,stock,Nasdaq Listed Security,Nasdaq Global Market,N,100
