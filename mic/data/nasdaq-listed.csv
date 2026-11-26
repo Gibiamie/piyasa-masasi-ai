@@ -200,8 +200,8 @@ AIIO,Robo.ai Inc. - Class B Ordinary Shares,stock,Ordinary Share,Nasdaq Capital 
 AIIOW,Robo.ai Inc. - Warrant,stock,Warrant,Nasdaq Capital Market,N,100
 AIIR,Air Global PLC - Ordinary shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
 AIL,GraniteShares 2x Long Anthropic Daily ETF,etf,ETF,Nasdaq Global Market,N,100
-AIMD,"Ainos, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
-AIMDW,"Ainos, Inc. - warrants",stock,Warrant,Nasdaq Capital Market,N,100
+AIMD,"Ainos, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
+AIMDW,"Ainos, Inc. - warrants",stock,Warrant,Nasdaq Capital Market,D,100
 AIMG,Defiance AI Magnificent 10 ETF,etf,ETF,Nasdaq Global Market,N,100
 AIMS,Acuitas Small Cap Active ETF,etf,ETF,Nasdaq Global Market,N,100
 AINF,Defiance Inference AI Chip ETF,etf,ETF,Nasdaq Global Market,N,100
@@ -767,7 +767,7 @@ BOT,"RoboStrategy, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,
 BOTJ,"Bank of the James Financial Group, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 BOTT,Themes Humanoid Robotics ETF,etf,ETF,Nasdaq Global Market,N,100
 BOTZ,Global X Robotics & Artificial Intelligence ETF,etf,ETF,Nasdaq Global Market,N,100
-BOXL,Boxlight Corporation - Class A Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
+BOXL,Boxlight Corporation - Class A Common Stock,stock,Common Stock,Nasdaq Capital Market,D,100
 BPAC,Blueport Acquisition Ltd - Class A Ordinary Shares,stock,Ordinary Share,Nasdaq Capital Market,N,100
 BPACR,Blueport Acquisition Ltd - Rights,stock,Right,Nasdaq Capital Market,N,100
 BPACU,Blueport Acquisition Ltd - Units,stock,Unit,Nasdaq Capital Market,N,100
@@ -1880,9 +1880,9 @@ FLXS,"Flexsteel Industries, Inc. - Common Stock",stock,Common Stock,Nasdaq Globa
 FLY,Firefly Aerospace Inc. - Common Stock,stock,Common Stock,Nasdaq Global Market,N,100
 FLYE,"Fly-E Group, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 FLYW,Flywire Corporation - Voting Common Stock,stock,Common Stock,Nasdaq Global Select Market,N,100
-FMAC,Future Money Acquisition Corporation - Ordinary Shares,stock,Ordinary Share,Nasdaq Global Market,E,100
-FMACR,Future Money Acquisition Corporation - Rights,stock,Right,Nasdaq Global Market,E,100
-FMACU,Future Money Acquisition Corporation - Units,stock,Unit,Nasdaq Global Market,E,100
+FMAC,Future Money Acquisition Corporation - Ordinary Shares,stock,Ordinary Share,Nasdaq Global Market,N,100
+FMACR,Future Money Acquisition Corporation - Rights,stock,Right,Nasdaq Global Market,N,100
+FMACU,Future Money Acquisition Corporation - Units,stock,Unit,Nasdaq Global Market,N,100
 FMAO,"Farmers & Merchants Bancorp, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 FMB,First Trust Managed Municipal ETF,etf,ETF,Nasdaq Global Market,N,100
 FMBH,"First Mid Bancshares, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
@@ -1898,7 +1898,7 @@ FNK,First Trust Mid Cap Value AlphaDEX Fund,etf,ETF,Nasdaq Global Market,N,100
 FNKO,"Funko, Inc. - Class A Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 FNLC,"First Bancorp, Inc (ME) - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
 FNRN,First Northern Community Bancorp - Common stock,stock,Common Stock,Nasdaq Capital Market,N,100
-FNUC,Frontier Nuclear and Minerals Inc. - Common Shares,stock,Common Stock,Nasdaq Capital Market,N,100
+FNUC,Frontier Nuclear and Minerals Inc. - Common Shares,stock,Common Stock,Nasdaq Capital Market,E,100
 FNWB,First Northwest Bancorp - Common Stock,stock,Common Stock,Nasdaq Global Market,N,100
 FNWD,Finward Bancorp - common stock,stock,Common Stock,Nasdaq Capital Market,N,100
 FNX,First Trust Mid Cap Core AlphaDEX Fund,etf,ETF,Nasdaq Global Market,N,100
@@ -2290,7 +2290,7 @@ HCMAW,HCM III Acquisition Corp. - Warrants,stock,Warrant,Nasdaq Global Market,N,
 HCOP,Hartford Hybrid and Credit Opportunities ETF,etf,ETF,Nasdaq Global Market,N,100
 HCOW,Amplify COWS Covered Call ETF,etf,ETF,Nasdaq Global Market,N,100
 HCSG,"Healthcare Services Group, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Select Market,N,100
-HCTI,"Healthcare Triangle, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
+HCTI,"Healthcare Triangle, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 HCWB,HCW Biologics Inc. - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
 HDL,SUPER HI INTERNATIONAL HOLDING LTD. - American Depositary Shares,stock,Depositary Share,Nasdaq Global Market,N,100
 HDRN,"Hadron Energy, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
@@ -4676,7 +4676,7 @@ SPWR,SunPower Inc. - Common Stock,stock,Common Stock,Nasdaq Global Market,D,100
 SPWRW,SunPower Inc. - Warrant,stock,Warrant,Nasdaq Capital Market,N,100
 SPXD,Xtrackers S&P 500 Diversified Sector Weight ETF,etf,ETF,Nasdaq Global Market,N,100
 SPYQ,Tradr 2X Long SPY Quarterly ETF,etf,ETF,Nasdaq Global Market,N,100
-SQFT,"Presidio Property Trust, Inc. - Class A Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
+SQFT,"Presidio Property Trust, Inc. - Class A Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
 SQFTP,"Presidio Property Trust, Inc. - 9.375% Series D Cumulative Redeemable Perpetual Preferred Stock, $0.01 par value per share",stock,Preferred,Nasdaq Capital Market,N,100
 SQFTW,"Presidio Property Trust, Inc. - Series A Common Stock Purchase Warrants",stock,Warrant,Nasdaq Capital Market,N,100
 SQLV,Royce Quant Small-Cap Quality Value ETF,etf,ETF,Nasdaq Global Market,N,100
@@ -5324,7 +5324,7 @@ VTWG,Vanguard Russell 2000 Growth ETF,etf,ETF,Nasdaq Global Market,N,40
 VTWO,Vanguard Russell 2000 ETF,etf,ETF,Nasdaq Global Market,N,100
 VTWV,Vanguard Russell 2000 Value ETF,etf,ETF,Nasdaq Global Market,N,100
 VUZI,Vuzix Corporation  - Common Stock,stock,Common Stock,Nasdaq Capital Market,N,100
-VVOS,"Vivos Therapeutics, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,D,100
+VVOS,"Vivos Therapeutics, Inc. - Common Stock",stock,Common Stock,Nasdaq Capital Market,N,100
 VWAV,"VisionWave Holdings, Inc. - Common Stock",stock,Common Stock,Nasdaq Global Market,N,100
 VWAVW,"VisionWave Holdings, Inc. - Warrant",stock,Warrant,Nasdaq Capital Market,N,100
 VWOB,Vanguard Emerging Markets Government Bond ETF,etf,ETF,Nasdaq Global Market,N,100
